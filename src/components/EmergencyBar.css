@@ -1,0 +1,55 @@
+.emergency-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1100;
+  background: var(--blue-deeper);
+  border-bottom: 1px solid var(--border-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 20px;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  flex-wrap: wrap;
+}
+
+.eb-icon { color: var(--white); font-size: 0.75rem; animation: eb-pulse 2s ease infinite; }
+
+@keyframes eb-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+.eb-text { color: rgba(255,255,255,0.85); }
+
+.eb-911 {
+  background: var(--white);
+  color: var(--blue-deeper);
+  font-weight: 900;
+  padding: 3px 10px;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  transition: background 0.2s;
+}
+.eb-911:hover { background: var(--off-white); }
+
+.eb-divider { color: rgba(255,255,255,0.3); }
+
+.eb-phone {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--white); font-weight: 700;
+  transition: color 0.2s;
+}
+.eb-phone:hover { color: var(--blue-light); }
+.eb-phone-icon { font-size: 0.7rem; }
+
+:root { --bar-height: 34px; }
+
+@media (max-width: 600px) {
+  .emergency-bar { font-size: 0.7rem; gap: 7px; padding: 7px 12px; }
+  .eb-divider { display: none; }
+}

@@ -1,0 +1,123 @@
+.services {
+  padding: 110px 0;
+  background: var(--navy2);
+  position: relative;
+}
+
+.services::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-blue), transparent);
+}
+
+.section-header {
+  max-width: 680px;
+  margin-bottom: 64px;
+}
+
+.section-label {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--blue-light);
+  margin-bottom: 14px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  text-transform: uppercase;
+  line-height: 1.05;
+  margin-bottom: 18px;
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--light-text);
+  font-weight: 300;
+}
+
+.section-sub {
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.75;
+  font-weight: 300;
+  max-width: 500px;
+}
+
+/* Grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.service-card {
+  background: var(--card);
+  padding: 36px 32px 40px;
+  border-top: 2px solid transparent;
+  transition: border-color 0.25s, background 0.25s, transform 0.2s;
+  cursor: default;
+}
+
+.service-card:hover {
+  border-color: var(--blue);
+  background: #1F2428;
+  transform: translateY(-4px);
+}
+
+.sc-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.sc-icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.sc-tag {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: rgba(255,255,255,0.05);
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+}
+
+.sc-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+.sc-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+@media (max-width: 960px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .services { padding: 70px 0; }
+}
