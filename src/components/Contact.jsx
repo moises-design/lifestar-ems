@@ -47,7 +47,7 @@ export default function Contact() {
               <div className="info-icon"><FaPhone /></div>
               <div>
                 <div className="info-label">Phone</div>
-                <a href="tel:9566489774" className="info-value">(956) 648-9774</a>
+                <a href="tel:9566606543" className="info-value">(956) 660-6543</a>
                 <div className="info-sub">Non-emergency dispatch</div>
               </div>
             </div>
@@ -55,16 +55,16 @@ export default function Contact() {
               <div className="info-icon"><FaEnvelope /></div>
               <div>
                 <div className="info-label">Email</div>
-                <a href="mailto:info@lifestaremsrgv.com" className="info-value">info@lifestaremsrgv.com</a>
+                <a href="mailto:lifestarems.rgv@gmail.com" className="info-value">lifestarems.rgv@gmail.com</a>
                 <div className="info-sub">Billing &amp; general inquiries</div>
               </div>
             </div>
             <div className="info-item">
               <div className="info-icon"><FaMapMarkerAlt /></div>
               <div>
-                <div className="info-label">Service Area</div>
-                <div className="info-value">Rio Grande Valley, TX</div>
-                <div className="info-sub">Hidalgo, Cameron &amp; Starr Counties</div>
+                <div className="info-label">Address</div>
+                <div className="info-value">2526 W. Freddy Gonzalez</div>
+                <div className="info-sub">Edinburg, TX 78539</div>
               </div>
             </div>
             <div className="info-item">
@@ -117,7 +117,7 @@ export default function Contact() {
                   <textarea name="message" rows={5} placeholder="How can we help you?" value={form.message} onChange={handle} required />
                 </div>
                 {status === 'error' && (
-                  <p className="form-error">⚠️ Something went wrong. Please call us directly at (956) 648-9774.</p>
+                  <p className="form-error">⚠️ Something went wrong. Please call us directly at (956) 660-6543.</p>
                 )}
                 <button type="submit" className="btn-submit" disabled={status === 'sending'}>
                   {status === 'sending' ? 'Sending…' : 'Send Message →'}

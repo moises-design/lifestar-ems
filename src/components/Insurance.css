@@ -1,0 +1,76 @@
+.insurance-section {
+  padding: 90px 0;
+  background: var(--navy3);
+  border-top: 1px solid var(--border-blue);
+}
+
+.ins-header {
+  text-align: center;
+  margin-bottom: 52px;
+}
+.ins-header .section-title { margin-bottom: 16px; }
+
+.ins-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.ins-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--card);
+  border: 1px solid var(--border-blue);
+  color: var(--off-white);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 18px;
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+}
+.ins-badge:hover {
+  border-color: var(--blue);
+  background: var(--blue-glow);
+  transform: translateY(-2px);
+}
+
+.ins-check {
+  color: var(--blue);
+  font-size: 0.9rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.ins-footer {
+  text-align: center;
+  margin-top: 44px;
+}
+
+.ins-cta {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue-light);
+  border: 1px solid var(--border-blue);
+  padding: 14px 32px;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.ins-cta:hover {
+  color: var(--white);
+  border-color: var(--blue);
+  background: var(--blue-glow);
+}
+
+@media (max-width: 600px) {
+  .ins-grid { grid-template-columns: 1fr 1fr; }
+  .ins-badge { font-size: 0.72rem; padding: 12px 12px; }
+}
+@media (max-width: 400px) {
+  .ins-grid { grid-template-columns: 1fr; }
+}

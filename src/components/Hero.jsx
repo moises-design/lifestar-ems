@@ -1,4 +1,4 @@
-import { FaPhone, FaFacebook, FaChevronDown } from 'react-icons/fa'
+import { FaPhone, FaFacebook, FaChevronDown, FaStar } from 'react-icons/fa'
 import './Hero.css'
 
 export default function Hero() {
@@ -32,12 +32,19 @@ export default function Hero() {
           Compassionate care — every call.
         </p>
 
+        <div className="hero-eval-banner">
+          <FaStar className="hero-eval-icon" />
+          <span>FREE Evaluation</span>
+          <span className="hero-eval-divider">—</span>
+          <a href="tel:9566606543" className="hero-eval-phone">Call (956) 660-6543</a>
+        </div>
+
         <div className="hero-actions">
           <a href="tel:911" className="btn-primary">
             🚨 Dial 911 — Emergency
           </a>
-          <a href="tel:9566489774" className="btn-outline">
-            <FaPhone /> (956) 648-9774
+          <a href="tel:9566606543" className="btn-outline">
+            <FaPhone /> (956) 660-6543
           </a>
           <a href="https://www.facebook.com/LifeStarEMSRGV/" target="_blank" rel="noreferrer" className="btn-outline" style={{ color: '#7EB3F5', borderColor: 'rgba(126,179,245,0.3)' }}>
             <FaFacebook /> Follow Us

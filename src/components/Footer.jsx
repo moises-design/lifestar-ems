@@ -1,4 +1,5 @@
 import { FaFacebook, FaGoogle, FaPhone } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 import './Footer.css'
 
 export default function Footer() {
@@ -31,31 +32,32 @@ export default function Footer() {
           <div className="footer-col">
             <div className="footer-col-title">Services</div>
             <ul>
-              <li>Emergency Transport</li>
-              <li>Non-Emergency Transport</li>
-              <li>Interfacility Transfers</li>
-              <li>BLS / ALS Services</li>
-              <li>Long-Distance Transport</li>
+              <li><Link to="/services/dialysis">Dialysis Transport</Link></li>
+              <li><Link to="/services/therapy">Therapy Transport</Link></li>
+              <li><Link to="/services/pediatrics">Pediatrics Transport</Link></li>
+              <li><Link to="/services/long-distance">Long Distance Transport</Link></li>
+              <li><Link to="/services/event-standby">Event Standby</Link></li>
             </ul>
           </div>
 
           <div className="footer-col">
             <div className="footer-col-title">Quick Links</div>
             <ul>
-              <li><a href="#services">Services</a></li>
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#coverage">Coverage Area</a></li>
-              <li><a href="#gallery">Gallery</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="/#services">Services</a></li>
+              <li><a href="/#about">About Us</a></li>
+              <li><a href="/#coverage">Coverage Area</a></li>
+              <li><a href="/#gallery">Gallery</a></li>
+              <li><a href="/#contact">Contact</a></li>
             </ul>
           </div>
 
           <div className="footer-col">
             <div className="footer-col-title">Contact</div>
             <ul>
-              <li><a href="tel:9566489774">(956) 648-9774</a></li>
-              <li><a href="mailto:info@lifestaremsrgv.com">info@lifestaremsrgv.com</a></li>
-              <li>Rio Grande Valley, TX</li>
+              <li><a href="tel:9566606543">(956) 660-6543</a></li>
+              <li><a href="mailto:lifestarems.rgv@gmail.com">lifestarems.rgv@gmail.com</a></li>
+              <li>2526 W. Freddy Gonzalez</li>
+              <li>Edinburg, TX 78539</li>
               <li style={{ color: 'var(--blue-light)' }}>24 / 7 Dispatch</li>
             </ul>
           </div>
