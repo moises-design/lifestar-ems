@@ -16,14 +16,13 @@ const eventTypes = [
 ]
 
 const clients = [
-  { name: 'Boys & Girls Club of McAllen', icon: '🏅' },
-  { name: 'PSJA ISD', icon: '🎓' },
-  { name: 'Mission CISD', icon: '🎓' },
-  { name: 'Sharyland ISD', icon: '🎓' },
-  { name: 'Edinburg CISD', icon: '🎓' },
-  { name: 'UTRGV', icon: '🎓' },
-  { name: 'Special Olympics Texas', icon: '🥇' },
-  { name: 'Non-Profit Organizations', icon: '❤️' },
+  { name: 'Boys & Girls Club of McAllen', logo: '/images/boys-girls-club.svg' },
+  { name: 'PSJA ISD', logo: '/images/psja.svg' },
+  { name: 'Mission CISD', logo: '/images/mission-cisd.svg' },
+  { name: 'Sharyland ISD', logo: '/images/sharyland.svg' },
+  { name: 'Edinburg CISD', logo: '/images/edinburg-cisd.svg' },
+  { name: 'UTRGV', logo: '/images/utrgv.svg' },
+  { name: 'Special Olympics Texas', logo: '/images/special-olympics.svg' },
 ]
 
 export default function EventStandby() {
@@ -45,18 +44,14 @@ export default function EventStandby() {
     <div className="service-page event-page">
       <section className="sp-hero event-hero">
         <div className="sp-hero-bg" />
-        {/* Sports field lines background effect */}
         <div className="event-field-lines" />
-        {/* Floating sports icons */}
         <div className="event-sports-icons">
           {['🏈','⚽','🏃','🏀','🎵','🏆'].map((icon, i) => (
             <span key={i} className="sport-float" style={{ left:`${8 + i * 16}%`, animationDelay:`${i * 0.5}s` }}>{icon}</span>
           ))}
         </div>
         <div className="container sp-hero-inner">
-          <div className="event-hero-badge">
-            <span>🚑</span> EMS On-Site Coverage
-          </div>
+          <div className="event-hero-badge"><span>🚑</span> EMS On-Site Coverage</div>
           <h1 className="sp-title">
             Sports &<br />
             <span className="sp-accent event-accent">Event Medical</span><br />
@@ -68,7 +63,6 @@ export default function EventStandby() {
             <div className="sp-free-badge event-free">📋 FREE Event Quote</div>
           </div>
         </div>
-        {/* Scoreboard style stat */}
         <div className="event-scoreboard">
           <div className="sb-item"><span className="sb-num">24/7</span><span className="sb-label">Available</span></div>
           <div className="sb-div" />
@@ -78,7 +72,7 @@ export default function EventStandby() {
         </div>
       </section>
 
-      {/* Event Types - Sports Grid */}
+      {/* Event Types */}
       <section className="event-types-section">
         <div className="container">
           <span className="section-label">Events We Cover</span>
@@ -95,16 +89,16 @@ export default function EventStandby() {
         </div>
       </section>
 
-      {/* Past Clients */}
+      {/* Community Partners with REAL logos */}
       <section className="event-clients">
         <div className="container">
           <span className="section-label">Trusted By</span>
           <h2 className="section-title">Our Community<br /><em>Partners</em></h2>
-          <p className="section-sub">We are proud to have provided medical standby services for these organizations:</p>
+          <p className="section-sub">Proud to have provided medical standby services for these organizations:</p>
           <div className="clients-grid">
             {clients.map((c, i) => (
               <div className="client-card" key={i}>
-                <span className="client-icon">{c.icon}</span>
+                <img src={c.logo} alt={c.name} className="client-logo-img" />
                 <span className="client-name">{c.name}</span>
               </div>
             ))}
@@ -112,7 +106,7 @@ export default function EventStandby() {
         </div>
       </section>
 
-      {/* What We Provide + Form */}
+      {/* Form */}
       <section className="sp-offer">
         <div className="container">
           <div className="sp-offer-grid">
@@ -125,10 +119,9 @@ export default function EventStandby() {
                 ))}
               </ul>
             </div>
-
             <div className="sp-contact-box event-form-box">
               {status === 'sent' ? (
-                <div className="ld-success"><span>✅</span><h3>Request Received!</h3><p>We'll contact you within 24 hours with a custom quote for your event.</p></div>
+                <div className="ld-success"><span>✅</span><h3>Request Received!</h3><p>We'll contact you within 24 hours with a custom quote.</p></div>
               ) : (
                 <form onSubmit={submit}>
                   <h3 className="ld-form-title">🏆 Request Event Coverage</h3>

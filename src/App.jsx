@@ -1,7 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import './App.css'
 
-// Home sections
 import EmergencyBar from './components/EmergencyBar'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -13,8 +12,8 @@ import LongDistanceCities from './components/LongDistanceCities'
 import Gallery from './components/Gallery'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import FloatingNav from './components/FloatingNav'
 
-// Service pages
 import DialysisTransport from './pages/DialysisTransport'
 import TherapyTransport from './pages/TherapyTransport'
 import PediatricsTransport from './pages/PediatricsTransport'
@@ -41,6 +40,7 @@ function App() {
     <>
       <EmergencyBar />
       <Navbar />
+      <FloatingNav />
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />

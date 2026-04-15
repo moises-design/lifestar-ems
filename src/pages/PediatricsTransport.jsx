@@ -66,7 +66,7 @@ export default function PediatricsTransport() {
           <p className="sp-desc">We specialize in non-emergency medical transportation for children of all ages. Friendly, trained staff makes every ride comfortable, safe, and stress-free for your child and family.</p>
           <div className="sp-actions">
             <a href="tel:9566606543" className="sp-btn-primary peds-btn"><FaPhone /> Call (956) 660-6543</a>
-            <div className="sp-free-badge peds-free">🌟 FREE Evaluation for Your Child</div>
+            <div className="sp-free-badge peds-free">⭐ FREE Evaluation — No Obligation</div>
           </div>
         </div>
       </section>

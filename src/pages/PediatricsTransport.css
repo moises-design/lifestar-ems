@@ -59,7 +59,7 @@
 }
 
 .peds-accent { color: #48DBFB !important; text-shadow: 0 0 40px rgba(72,219,251,0.5) !important; }
-.peds-btn { background: #48DBFB !important; color: #060820 !important; font-weight: 900 !important; }
+.peds-btn { background: #48DBFB !important; color: var(--white) !important; font-weight: 900 !important; background: #0B9ED9 !important; }
 .peds-btn:hover { background: #7EE8FC !important; }
 .peds-free { color: #48DBFB !important; background: rgba(72,219,251,0.1) !important; border-color: rgba(72,219,251,0.35) !important; }
 

@@ -97,3 +97,32 @@
 
 @media (max-width: 900px) { .event-types-grid { grid-template-columns: repeat(2, 1fr); } .clients-grid { grid-template-columns: repeat(2, 1fr); } .event-scoreboard { display: none; } }
 @media (max-width: 500px) { .ld-form-row { grid-template-columns: 1fr; } }
+
+/* Client logo cards */
+.client-logo-img {
+  width: 100%; max-width: 130px; height: 65px;
+  object-fit: contain; border-radius: 3px;
+}
+.client-card {
+  background: var(--card); border: 1px solid var(--border-blue);
+  padding: 20px 16px; display: flex; flex-direction: column;
+  align-items: center; gap: 10px; text-align: center; transition: all 0.2s;
+}
+.client-card:hover { border-color: var(--blue); transform: translateY(-3px); background: var(--navy2); }
+.client-name { font-family: var(--font-display); font-weight: 600; font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--light-text); line-height: 1.4; }
+
+/* Shared form styles */
+.ld-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.ld-form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.ld-form-group label { font-family: var(--font-display); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+.ld-form-group input, .ld-form-group textarea { background: var(--navy2); border: 1px solid var(--border); color: var(--white); font-family: var(--font-body); font-size: 0.9rem; padding: 11px 14px; outline: none; transition: border-color 0.2s; resize: none; width: 100%; }
+.ld-form-group input:focus, .ld-form-group textarea:focus { border-color: var(--blue); }
+.ld-form-title { font-family: var(--font-display); font-weight: 900; font-size: 1.3rem; text-transform: uppercase; margin-bottom: 24px; }
+.ld-submit { width: 100%; font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 15px; border: none; margin-top: 8px; cursor: pointer; transition: background 0.2s; }
+.ld-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+.ld-success { text-align: center; padding: 32px 0; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.ld-success span { font-size: 3rem; }
+.ld-success h3 { font-family: var(--font-display); font-weight: 900; font-size: 1.4rem; text-transform: uppercase; }
+.ld-success p { color: var(--muted); max-width: 260px; line-height: 1.6; font-size: 0.9rem; }
+.ld-error { color: #F87171; font-size: 0.82rem; margin-bottom: 8px; padding: 8px 12px; background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.3); }
+@media (max-width: 500px) { .ld-form-row { grid-template-columns: 1fr; } }
