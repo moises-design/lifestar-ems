@@ -1,6 +1,0 @@
-.dialysis-hero { background: linear-gradient(160deg, #060D14 0%, #071828 60%, #060D14 100%); }
-.dialysis-bg::after { content:''; position:absolute; right:0; top:0; bottom:0; width:50%; background:url('/images/ambulance-1.jpg') center/cover no-repeat; opacity:0.08; mask-image:linear-gradient(to right, transparent, black); }
-
-.sp-feat-icon-wrap { width: 52px; height: 52px; border-radius: 12px; background: rgba(11,158,217,0.1); border: 1px solid rgba(11,158,217,0.2); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
-.sp-fa-icon { font-size: 1.5rem; color: var(--blue); filter: drop-shadow(0 0 6px rgba(11,158,217,0.4)); }
-.sp-list-check { color: var(--blue); flex-shrink: 0; font-size: 0.85rem; margin-top: 2px; }
