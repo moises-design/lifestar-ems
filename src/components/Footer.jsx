@@ -1,5 +1,4 @@
 import { FaFacebook, FaGoogle, FaPhone } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
 import './Footer.css'
 
 export default function Footer() {
@@ -32,22 +31,22 @@ export default function Footer() {
           <div className="footer-col">
             <div className="footer-col-title">Services</div>
             <ul>
-              <li><Link to="/services/dialysis">Dialysis Transport</Link></li>
-              <li><Link to="/services/therapy">Therapy Transport</Link></li>
-              <li><Link to="/services/pediatrics">Pediatrics Transport</Link></li>
-              <li><Link to="/services/long-distance">Long Distance Transport</Link></li>
-              <li><Link to="/services/event-standby">Event Standby</Link></li>
+              <li>Emergency Transport</li>
+              <li>Non-Emergency Transport</li>
+              <li>Interfacility Transfers</li>
+              <li>BLS / ALS Services</li>
+              <li>Long-Distance Transport</li>
             </ul>
           </div>
 
           <div className="footer-col">
             <div className="footer-col-title">Quick Links</div>
             <ul>
-              <li><a href="/#services">Services</a></li>
-              <li><a href="/#about">About Us</a></li>
-              <li><a href="/#coverage">Coverage Area</a></li>
-              <li><a href="/#gallery">Gallery</a></li>
-              <li><a href="/#contact">Contact</a></li>
+              <li><a href="#services">Services</a></li>
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#coverage">Coverage Area</a></li>
+              <li><a href="#gallery">Gallery</a></li>
+              <li><a href="#contact">Contact</a></li>
             </ul>
           </div>
 
@@ -56,15 +55,14 @@ export default function Footer() {
             <ul>
               <li><a href="tel:9566606543">(956) 660-6543</a></li>
               <li><a href="mailto:lifestarems.rgv@gmail.com">lifestarems.rgv@gmail.com</a></li>
-              <li>2526 W. Freddy Gonzalez</li>
-              <li>Edinburg, TX 78539</li>
+              <li>2526 W. Freddy Gonzalez, Edinburg, TX 78539</li>
               <li style={{ color: 'var(--blue-light)' }}>24 / 7 Dispatch</li>
             </ul>
           </div>
         </div>
 
         <div className="footer-bottom">
-          <p>© {new Date().getFullYear()} Life Star EMS — Rio Grande Valley, TX. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Life Star EMS — 2526 W. Freddy Gonzalez, Edinburg, TX 78539. All rights reserved.</p>
           <a href="https://lifestaremsrgv.com" target="_blank" rel="noreferrer">lifestaremsrgv.com</a>
         </div>
       </div>

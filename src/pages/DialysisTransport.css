@@ -1,0 +1,14 @@
+.dialysis-hero {
+  background:
+    linear-gradient(to right, rgba(10,24,40,0.97) 50%, rgba(10,24,40,0.7) 100%),
+    linear-gradient(135deg, #0A1828 0%, #0D2A45 50%, #0A1828 100%);
+}
+
+.dialysis-hero::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 0; bottom: 0; width: 45%;
+  background: url('/images/ambulance-1.jpg') center/cover no-repeat;
+  opacity: 0.15;
+  mask-image: linear-gradient(to right, transparent, black);
+}

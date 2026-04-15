@@ -1,177 +1,134 @@
-import { useState } from 'react'
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaCheckCircle } from 'react-icons/fa'
-import { supabase } from '../lib/supabase'
+import { Link } from 'react-router-dom'
+import { FaPhone, FaCheckCircle, FaClock, FaHeart, FaCalendarAlt, FaUserMd } from 'react-icons/fa'
 import './ServicePage.css'
+import './DialysisTransport.css'
 
-const keyPoints = [
-  { icon: '⏰', title: 'Punctual & Dependable', desc: 'We know dialysis patients need consistent, on-time transport 3x per week. We never miss a pickup — your schedule is our schedule.' },
-  { icon: '📅', title: 'Flexible Scheduling', desc: 'We coordinate around your dialysis appointments — morning, afternoon, or evening sessions, any day of the week.' },
-  { icon: '🏥', title: 'Coordinated with Centers', desc: 'We work directly with dialysis centers across the Rio Grande Valley to ensure smooth, stress-free arrivals and departures.' },
-  { icon: '👥', title: 'Trained, Friendly Staff', desc: 'Our EMT-certified crews are trained to assist dialysis patients with patience, compassion, and professionalism every trip.' },
+const features = [
+  { icon: <FaClock />, title: 'Always On Time', desc: 'We understand dialysis has strict schedules. Our drivers arrive early — every time.' },
+  { icon: <FaHeart />, title: 'Compassionate Care', desc: 'Our staff treats every patient with dignity, patience, and genuine care.' },
+  { icon: <FaCalendarAlt />, title: 'Flexible Scheduling', desc: 'We coordinate with your dialysis center to match your exact treatment schedule.' },
+  { icon: <FaUserMd />, title: 'Coordinated Care', desc: 'We communicate directly with your healthcare team for seamless transport.' },
 ]
 
-const insurances = [
-  'BlueCross BlueShield', 'Molina Healthcare', 'Ambetter',
-  'United Healthcare', 'Cigna', 'Humana',
-  'Wellcare / Allwell', 'Aetna', 'Medicare', 'Medicaid',
+const insurance = [
+  'Medicare', 'Medicaid', 'BlueCross BlueShield', 'Molina Healthcare',
+  'Ambetter', 'United Healthcare', 'Cigna', 'Humana',
+  'Wellcare / Allwell', 'Aetna', 'Private Insurance',
 ]
 
 export default function DialysisTransport() {
-  const [form, setForm] = useState({ name: '', phone: '', email: '', message: '' })
-  const [status, setStatus] = useState('idle')
-
-  const handle = e => setForm({ ...form, [e.target.name]: e.target.value })
-
-  const submit = async e => {
-    e.preventDefault()
-    setStatus('sending')
-    try {
-      const { error } = await supabase.from('contact_submissions').insert([{
-        name: form.name,
-        phone: form.phone || null,
-        email: form.email,
-        message: `[DIALYSIS TRANSPORT] ${form.message}`,
-        created_at: new Date().toISOString(),
-      }])
-      if (error) throw error
-      setStatus('sent')
-      setForm({ name: '', phone: '', email: '', message: '' })
-    } catch (err) {
-      console.error(err)
-      setStatus('error')
-    }
-  }
-
   return (
-    <main className="service-page">
+    <div className="service-page dialysis-page">
+
       {/* Hero */}
-      <section className="sp-hero">
-        <div className="sp-hero-inner container">
-          <div className="sp-hero-label">Non-Emergency Medical Transport</div>
-          <h1>Reliable Dialysis<br /><span>Transportation</span> Specialists</h1>
-          <p className="sp-hero-desc">
-            Life Star EMS understands that dialysis patients need consistent, on-time transport
-            three times per week. We provide dependable, compassionate medical transportation
-            across the Rio Grande Valley — every appointment, every time.
+      <section className="sp-hero dialysis-hero">
+        <div className="sp-hero-bg" />
+        <div className="container sp-hero-inner">
+          <div className="sp-eyebrow">
+            <span className="sp-dot" />
+            Specialized Medical Transportation
+          </div>
+          <h1 className="sp-title">
+            Reliable Dialysis<br />
+            <span className="sp-accent">Transportation</span><br />
+            Specialists
+          </h1>
+          <p className="sp-desc">
+            We understand that dialysis patients need consistent, dependable transport —
+            three times a week, every week. Life Star EMS is your trusted partner for
+            on-time, compassionate dialysis transportation across the Rio Grande Valley.
           </p>
-          <a href="tel:9566606543" className="sp-hero-cta">
-            ⭐ FREE Evaluation — Call (956) 660-6543
-          </a>
+          <div className="sp-actions">
+            <a href="tel:9566606543" className="sp-btn-primary">
+              <FaPhone /> Call (956) 660-6543
+            </a>
+            <div className="sp-free-badge">⭐ FREE Evaluation — No Obligation</div>
+          </div>
         </div>
       </section>
 
-      {/* Key Points */}
-      <section className="sp-points">
+      {/* Why Choose Us */}
+      <section className="sp-features">
         <div className="container">
-          <span className="section-label">Why Choose Life Star EMS</span>
-          <h2 className="section-title">Consistent Care,<br /><em>Every Trip</em></h2>
-          <div className="sp-points-grid">
-            {keyPoints.map(p => (
-              <div key={p.title} className="sp-point-card">
-                <div className="sp-point-icon">{p.icon}</div>
-                <h3>{p.title}</h3>
-                <p>{p.desc}</p>
+          <span className="section-label">Why Families Trust Us</span>
+          <h2 className="section-title">Built Around<br /><em>Your Schedule</em></h2>
+          <div className="sp-features-grid">
+            {features.map((f, i) => (
+              <div className="sp-feature-card" key={i}>
+                <div className="sp-feature-icon">{f.icon}</div>
+                <h3>{f.title}</h3>
+                <p>{f.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Banner */}
-      <div className="sp-cta-banner">
+      {/* What We Offer */}
+      <section className="sp-offer">
         <div className="container">
-          <h2>Get Your <span style={{ color: '#FFC107' }}>FREE</span> Evaluation Today</h2>
-          <p>Speak with our team about your dialysis transport needs — no obligation, no cost.</p>
-          <a href="tel:9566606543" className="sp-hero-cta">📞 Call (956) 660-6543</a>
+          <div className="sp-offer-grid">
+            <div>
+              <span className="section-label">Our Promise</span>
+              <h2 className="section-title">Punctual.<br /><em>Professional. Caring.</em></h2>
+              <ul className="sp-checklist">
+                {[
+                  'Door-to-door pickup and drop-off',
+                  'Wheelchair and stretcher accessible vehicles',
+                  'Trained and friendly EMT staff',
+                  'Coordinated with your dialysis center',
+                  'Consistent drivers you can recognize',
+                  'Available 7 days a week',
+                  'Bilingual staff — English & Spanish',
+                  'Insurance verified before your first trip',
+                ].map((item, i) => (
+                  <li key={i}><FaCheckCircle className="check" /> {item}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="sp-contact-box">
+              <h3>Schedule Your Free Evaluation</h3>
+              <p>We'll verify your insurance and set up your transport schedule at no cost.</p>
+              <a href="tel:9566606543" className="sp-btn-primary" style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
+                <FaPhone /> (956) 660-6543
+              </a>
+              <a href="mailto:lifestarems.rgv@gmail.com" className="sp-btn-outline">
+                lifestarems.rgv@gmail.com
+              </a>
+              <div className="sp-address">
+                📍 2526 W. Freddy Gonzalez<br />Edinburg, TX 78539
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
 
       {/* Insurance */}
       <section className="sp-insurance">
         <div className="container">
-          <span className="section-label">Coverage &amp; Billing</span>
+          <span className="section-label">No Surprise Bills</span>
           <h2 className="section-title">Insurance <em>We Accept</em></h2>
-          <div className="sp-insurance-grid">
-            {insurances.map(ins => (
-              <div key={ins} className="sp-ins-badge">{ins}</div>
+          <div className="sp-ins-grid">
+            {insurance.map((ins, i) => (
+              <div className="sp-ins-badge" key={i}>{ins}</div>
             ))}
           </div>
+          <p className="sp-ins-note">
+            Don't see your insurance? Call us — we'll verify your coverage for FREE.
+          </p>
         </div>
       </section>
 
-      {/* Contact Form */}
-      <section className="sp-contact">
+      {/* CTA */}
+      <section className="sp-cta">
         <div className="container">
-          <span className="section-label">Request Transport</span>
-          <h2 className="section-title">Schedule Your<br /><em>Dialysis Transport</em></h2>
-          <div className="sp-contact-grid">
-            <div className="sp-contact-info">
-              <h3>Contact Us</h3>
-              <div className="sp-info-item">
-                <div className="sp-info-icon"><FaPhone /></div>
-                <div>
-                  <div className="sp-info-label">Phone</div>
-                  <div className="sp-info-value"><a href="tel:9566606543">(956) 660-6543</a></div>
-                </div>
-              </div>
-              <div className="sp-info-item">
-                <div className="sp-info-icon"><FaEnvelope /></div>
-                <div>
-                  <div className="sp-info-label">Email</div>
-                  <div className="sp-info-value"><a href="mailto:lifestarems.rgv@gmail.com">lifestarems.rgv@gmail.com</a></div>
-                </div>
-              </div>
-              <div className="sp-info-item">
-                <div className="sp-info-icon"><FaMapMarkerAlt /></div>
-                <div>
-                  <div className="sp-info-label">Address</div>
-                  <div className="sp-info-value">2526 W. Freddy Gonzalez<br />Edinburg, TX 78539</div>
-                </div>
-              </div>
-            </div>
-
-            <div className="sp-form">
-              {status === 'sent' ? (
-                <div className="sp-form-success">
-                  <FaCheckCircle className="sp-success-icon" />
-                  <h3>Request Received!</h3>
-                  <p>We'll contact you shortly to confirm your dialysis transport schedule.</p>
-                  <button className="sp-hero-cta" onClick={() => setStatus('idle')}>Submit Another</button>
-                </div>
-              ) : (
-                <>
-                  <h3>Request Transport</h3>
-                  <form onSubmit={submit}>
-                    <div className="sp-form-row">
-                      <div className="sp-form-group">
-                        <label>Full Name *</label>
-                        <input type="text" name="name" placeholder="John Doe" value={form.name} onChange={handle} required />
-                      </div>
-                      <div className="sp-form-group">
-                        <label>Phone Number</label>
-                        <input type="tel" name="phone" placeholder="(956) 000-0000" value={form.phone} onChange={handle} />
-                      </div>
-                    </div>
-                    <div className="sp-form-group">
-                      <label>Email *</label>
-                      <input type="email" name="email" placeholder="you@example.com" value={form.email} onChange={handle} required />
-                    </div>
-                    <div className="sp-form-group">
-                      <label>Dialysis Center &amp; Notes</label>
-                      <textarea name="message" rows={4} placeholder="Dialysis center name, schedule, special requirements..." value={form.message} onChange={handle} />
-                    </div>
-                    {status === 'error' && <p className="sp-form-error">⚠️ Something went wrong. Please call (956) 660-6543 directly.</p>}
-                    <button type="submit" className="sp-hero-cta sp-form-submit" disabled={status === 'sending'}>
-                      {status === 'sending' ? 'Sending…' : 'Submit Transport Request →'}
-                    </button>
-                    <p className="sp-form-note">🚨 For medical emergencies, call 911 immediately.</p>
-                  </form>
-                </>
-              )}
-            </div>
-          </div>
+          <h2>Ready to Get Started?</h2>
+          <p>Call us today for your free evaluation. We'll handle everything.</p>
+          <a href="tel:9566606543" className="sp-btn-primary large">
+            <FaPhone /> Call (956) 660-6543 Now
+          </a>
         </div>
       </section>
-    </main>
+    </div>
   )
 }

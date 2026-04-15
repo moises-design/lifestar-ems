@@ -1,0 +1,88 @@
+.longdist {
+  padding: 100px 0;
+  background: var(--navy);
+}
+
+.longdist-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+
+.longdist-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 24px 0 32px;
+}
+.ldf {
+  font-size: 0.85rem;
+  color: var(--light-text);
+  font-weight: 400;
+}
+
+.btn-primary-blue {
+  display: inline-block;
+  background: var(--blue); color: var(--white);
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 0.95rem; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 15px 32px;
+  transition: background 0.2s, transform 0.15s;
+}
+.btn-primary-blue:hover { background: var(--blue-light); transform: translateY(-2px); }
+
+/* Cities */
+.cities-from {
+  font-size: 0.8rem; color: var(--muted);
+  letter-spacing: 0.12em; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.cities-from strong { color: var(--blue-light); }
+
+.city-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.city-card {
+  background: var(--card);
+  border: 1px solid var(--border-blue);
+  padding: 18px 16px;
+  display: flex; flex-direction: column; gap: 4px;
+  transition: all 0.2s;
+}
+.city-card:hover {
+  background: var(--navy2);
+  border-color: var(--blue);
+  transform: translateY(-2px);
+}
+
+.city-icon { font-size: 1.4rem; }
+.city-name {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 1rem;
+  letter-spacing: 0.06em; text-transform: uppercase;
+}
+.city-miles {
+  font-size: 0.72rem; color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+.anywhere-badge {
+  background: rgba(11,158,217,0.1);
+  border: 1px solid var(--border-blue);
+  padding: 12px 20px;
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 0.85rem;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--blue-light); text-align: center;
+}
+
+@media (max-width: 900px) {
+  .longdist-inner { grid-template-columns: 1fr; gap: 40px; }
+  .longdist { padding: 70px 0; }
+  .longdist-features { grid-template-columns: 1fr; }
+}

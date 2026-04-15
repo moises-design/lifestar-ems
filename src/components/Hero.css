@@ -10,14 +10,14 @@
 .hero-photo {
   position: absolute; inset: 0;
   background: url('/images/ambulance-1.jpg') center center / cover no-repeat;
-  opacity: 0.3;
+  opacity: 0.22;
   transform: scale(1.02);
 }
 
 .hero-gradient {
   position: absolute; inset: 0;
   background:
-    linear-gradient(to right, rgba(10,24,40,0.95) 42%, rgba(10,24,40,0.3) 100%),
+    linear-gradient(to right, rgba(10,24,40,0.98) 45%, rgba(10,24,40,0.5) 100%),
     linear-gradient(to top, rgba(10,24,40,0.9) 0%, transparent 40%);
 }
 
@@ -90,32 +90,6 @@
   animation: fadeUp 0.5s 0.35s ease both;
 }
 
-.hero-eval-banner {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  background: rgba(255, 193, 7, 0.12);
-  border: 1.5px solid rgba(255, 193, 7, 0.55);
-  color: #FFC107;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.92rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 11px 26px;
-  margin-bottom: 20px;
-  animation: fadeUp 0.5s 0.39s ease both;
-}
-.hero-eval-icon { font-size: 0.85rem; }
-.hero-eval-divider { opacity: 0.5; }
-.hero-eval-phone {
-  color: #FFD54F;
-  font-weight: 800;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.hero-eval-phone:hover { color: #fff; }
-
 .hero-actions {
   display: flex; flex-wrap: wrap; gap: 14px;
   margin-bottom: 60px;
@@ -180,4 +154,30 @@
   .stat { padding-right: 28px; }
   .line-blue { font-size: clamp(4rem, 18vw, 7rem); }
   .hero-logo-big img { height: 70px; }
+}
+
+/* FREE Evaluation badge */
+.hero-free-eval {
+  margin-bottom: 40px;
+  animation: fadeUp 0.5s 0.47s ease both;
+}
+.free-eval-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(240,192,64,0.12);
+  border: 1.5px solid rgba(240,192,64,0.5);
+  color: #F0C040;
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 12px 28px;
+  transition: all 0.2s;
+  animation: goldPulse 2.5s ease infinite;
+}
+.free-eval-btn:hover {
+  background: rgba(240,192,64,0.22);
+  border-color: #F0C040;
+  transform: translateY(-2px);
+}
+@keyframes goldPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(240,192,64,0.3); }
+  50%       { box-shadow: 0 0 0 8px rgba(240,192,64,0); }
 }

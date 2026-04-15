@@ -62,9 +62,9 @@ export default function Contact() {
             <div className="info-item">
               <div className="info-icon"><FaMapMarkerAlt /></div>
               <div>
-                <div className="info-label">Address</div>
-                <div className="info-value">2526 W. Freddy Gonzalez</div>
-                <div className="info-sub">Edinburg, TX 78539</div>
+                <div className="info-label">Service Area</div>
+                <div className="info-value">Edinburg, TX 78539</div>
+                <div className="info-sub">Hidalgo, Cameron &amp; Starr Counties</div>
               </div>
             </div>
             <div className="info-item">

@@ -51,12 +51,12 @@ export default function Coverage() {
         <div className="map-wrapper">
           <iframe
             title="Life Star EMS Service Area"
-            src="https://maps.google.com/maps?q=McAllen+Texas+Rio+Grande+Valley&output=embed"
+            src="https://maps.google.com/maps?q=2526+W+Freddy+Gonzalez+Edinburg+TX&output=embed"
             loading="lazy"
             allowFullScreen
           />
           <div className="map-overlay">
-            <span>📍 Rio Grande Valley, TX</span>
+            <span>📍 2526 W. Freddy Gonzalez, Edinburg, TX 78539</span>
           </div>
         </div>
       </div>

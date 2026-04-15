@@ -1,27 +1,22 @@
-import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect, useRef } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { FaBars, FaTimes, FaPhone, FaChevronDown } from 'react-icons/fa'
 import './Navbar.css'
 
 const serviceLinks = [
-  { label: 'Dialysis Transport', to: '/services/dialysis' },
-  { label: 'Therapy Transport', to: '/services/therapy' },
-  { label: 'Pediatrics Transport', to: '/services/pediatrics' },
-  { label: 'Long Distance Transport', to: '/services/long-distance' },
-  { label: 'Event Standby', to: '/services/event-standby' },
-]
-
-const mainLinks = [
-  { label: 'About', href: '/#about' },
-  { label: 'Coverage', href: '/#coverage' },
-  { label: 'Gallery', href: '/#gallery' },
-  { label: 'Contact', href: '/#contact' },
+  { label: '🚐 Dialysis Transport', href: '/services/dialysis' },
+  { label: '🧑‍⚕️ Therapy Transport', href: '/services/therapy' },
+  { label: '👶 Pediatrics Transport', href: '/services/pediatrics' },
+  { label: '🚑 Long Distance Transport', href: '/services/long-distance' },
+  { label: '🎪 Event Standby', href: '/services/event-standby' },
 ]
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
-  const [servicesOpen, setServicesOpen] = useState(false)
+  const [dropdown, setDropdown] = useState(false)
+  const dropRef = useRef(null)
+  const location = useLocation()
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 40)
@@ -29,10 +24,20 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', fn)
   }, [])
 
-  const closeAll = () => {
+  useEffect(() => {
     setOpen(false)
-    setServicesOpen(false)
-  }
+    setDropdown(false)
+  }, [location])
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (dropRef.current && !dropRef.current.contains(e.target)) {
+        setDropdown(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [])
 
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
@@ -46,30 +51,25 @@ export default function Navbar() {
         </Link>
 
         <ul className={`nav-links ${open ? 'open' : ''}`}>
-          {/* Services dropdown */}
-          <li className="has-dropdown">
-            <button
-              className="nav-dropdown-trigger"
-              onClick={() => setServicesOpen(o => !o)}
-            >
-              Services
-              <FaChevronDown className={`dropdown-arrow ${servicesOpen ? 'rotated' : ''}`} />
+          {/* Services Dropdown */}
+          <li className="nav-dropdown-wrap" ref={dropRef}>
+            <button className="nav-dropdown-btn" onClick={() => setDropdown(d => !d)}>
+              Services <FaChevronDown className={`drop-arrow ${dropdown ? 'open' : ''}`} />
             </button>
-            <ul className={`nav-dropdown ${servicesOpen ? 'open' : ''}`}>
-              {serviceLinks.map(l => (
-                <li key={l.to}>
-                  <Link to={l.to} onClick={closeAll}>{l.label}</Link>
-                </li>
-              ))}
-            </ul>
+            {dropdown && (
+              <div className="nav-dropdown">
+                {serviceLinks.map(s => (
+                  <Link key={s.href} to={s.href} className="nav-dropdown-item" onClick={() => setDropdown(false)}>
+                    {s.label}
+                  </Link>
+                ))}
+              </div>
+            )}
           </li>
-
-          {mainLinks.map(l => (
-            <li key={l.label}>
-              <a href={l.href} onClick={closeAll}>{l.label}</a>
-            </li>
-          ))}
-
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#coverage">Coverage</a></li>
+          <li><a href="/#gallery">Gallery</a></li>
+          <li><a href="/#contact">Contact</a></li>
           <li className="nav-phone-item">
             <a href="tel:9566606543" className="nav-phone-link">
               <FaPhone /> (956) 660-6543
