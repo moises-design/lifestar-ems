@@ -24,16 +24,11 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', fn)
   }, [])
 
-  useEffect(() => {
-    setOpen(false)
-    setDropdown(false)
-  }, [location])
+  useEffect(() => { setOpen(false); setDropdown(false) }, [location])
 
   useEffect(() => {
     const handleClick = (e) => {
-      if (dropRef.current && !dropRef.current.contains(e.target)) {
-        setDropdown(false)
-      }
+      if (dropRef.current && !dropRef.current.contains(e.target)) setDropdown(false)
     }
     document.addEventListener('mousedown', handleClick)
     return () => document.removeEventListener('mousedown', handleClick)
@@ -43,15 +38,14 @@ export default function Navbar() {
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav-inner container">
         <Link to="/" className="nav-logo">
-          <img src="/images/logo.png" alt="Life Star EMS Logo" className="nav-logo-img" />
+          <img src="/images/logo-transparent.png" alt="Life Star EMS" className="nav-logo-img" />
           <span className="nav-logo-text">
-            LIFE <span className="blue">STAR</span>
+            LIFE STAR <span className="purple">EMS</span>
             <span className="nav-logo-sub">Emergency Medical Services</span>
           </span>
         </Link>
 
         <ul className={`nav-links ${open ? 'open' : ''}`}>
-          {/* Services Dropdown */}
           <li className="nav-dropdown-wrap" ref={dropRef}>
             <button className="nav-dropdown-btn" onClick={() => setDropdown(d => !d)}>
               Services <FaChevronDown className={`drop-arrow ${dropdown ? 'open' : ''}`} />
@@ -80,7 +74,6 @@ export default function Navbar() {
         <a href="tel:9566606543" className="nav-cta desktop-only">
           <FaPhone /> (956) 660-6543
         </a>
-
         <button className="nav-toggle" onClick={() => setOpen(o => !o)} aria-label="menu">
           {open ? <FaTimes /> : <FaBars />}
         </button>

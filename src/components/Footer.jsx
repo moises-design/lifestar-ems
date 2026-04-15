@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <div className="footer-logo">
-              <img src="/images/logo.png" alt="Life Star EMS" />
+              <img src="/images/logo-transparent.png" alt="Life Star EMS" />
               <div>
                 <div className="footer-logo-name">LIFE <span>STAR</span></div>
                 <div className="footer-logo-sub">Emergency Medical Services</div>

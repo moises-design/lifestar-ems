@@ -17,7 +17,7 @@ export default function Hero() {
         </div>
 
         <div className="hero-logo-big">
-          <img src="/images/logo.png" alt="Life Star EMS" />
+          <img src="/images/logo-transparent.png" alt="Life Star EMS" />
         </div>
 
         <h1 className="hero-title">

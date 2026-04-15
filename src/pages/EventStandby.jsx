@@ -1,16 +1,18 @@
 import { useState } from 'react'
-import { FaPhone, FaCheckCircle, FaCalendarAlt } from 'react-icons/fa'
+import { FaPhone, FaCheckCircle } from 'react-icons/fa'
 import { supabase } from '../lib/supabase'
 import './ServicePage.css'
 import './EventStandby.css'
 
 const eventTypes = [
-  { icon: '🏫', label: 'School Events', desc: 'Track meets, graduations, sporting events' },
-  { icon: '🏆', label: 'Sports Events', desc: 'Football, soccer, basketball, tournaments' },
-  { icon: '🎭', label: 'Community Events', desc: 'Festivals, concerts, parades, fairs' },
-  { icon: '🏙️', label: 'City Events', desc: 'Municipal events, public gatherings' },
-  { icon: '🏢', label: 'Corporate Events', desc: 'Company gatherings, conferences' },
-  { icon: '🌟', label: 'Non-Profit Events', desc: 'Fundraisers, awareness events, charity runs' },
+  { icon: '🏈', label: 'Football Games', desc: 'Friday night lights, varsity, JV, playoff games' },
+  { icon: '⚽', label: 'Soccer Matches', desc: 'League games, tournaments, championship events' },
+  { icon: '🏃', label: '5K & Fun Runs', desc: 'Community races, charity runs, marathons' },
+  { icon: '🎵', label: 'Concerts & Festivals', desc: 'Music events, outdoor festivals, fairs' },
+  { icon: '🏀', label: 'Basketball Events', desc: 'Indoor/outdoor tournaments and games' },
+  { icon: '🎓', label: 'School Events', desc: 'Graduations, track meets, field days' },
+  { icon: '🏆', label: 'Sports Tournaments', desc: 'Multi-team events, championships, invitationals' },
+  { icon: '🌟', label: 'Community Events', desc: 'City events, parades, non-profit gatherings' },
 ]
 
 const clients = [
@@ -25,23 +27,15 @@ const clients = [
 ]
 
 export default function EventStandby() {
-  const [form, setForm] = useState({
-    name: '', phone: '', email: '', event_name: '',
-    event_date: '', event_location: '', attendance: '', event_type: '', notes: '',
-  })
+  const [form, setForm] = useState({ name: '', phone: '', email: '', event_name: '', event_date: '', event_location: '', attendance: '', event_type: '', notes: '' })
   const [status, setStatus] = useState('idle')
-
   const handle = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }))
 
   const submit = async e => {
-    e.preventDefault()
-    setStatus('sending')
+    e.preventDefault(); setStatus('sending')
     try {
       const message = `EVENT: ${form.event_name} | Date: ${form.event_date} | Location: ${form.event_location} | Attendance: ${form.attendance} | Type: ${form.event_type} | Notes: ${form.notes}`
-      const { error } = await supabase.from('contact_submissions').insert([{
-        name: form.name, phone: form.phone, email: form.email,
-        message, created_at: new Date().toISOString(),
-      }])
+      const { error } = await supabase.from('contact_submissions').insert([{ name: form.name, phone: form.phone, email: form.email, message, created_at: new Date().toISOString() }])
       if (error) throw error
       setStatus('sent')
     } catch { setStatus('error') }
@@ -51,39 +45,44 @@ export default function EventStandby() {
     <div className="service-page event-page">
       <section className="sp-hero event-hero">
         <div className="sp-hero-bg" />
-        <div className="event-confetti">
-          {['🎉', '⭐', '🏅', '🎊', '✨', '🌟'].map((e, i) => (
-            <span key={i} className="confetti-item" style={{
-              left: `${10 + i * 15}%`, animationDelay: `${i * 0.4}s`
-            }}>{e}</span>
+        {/* Sports field lines background effect */}
+        <div className="event-field-lines" />
+        {/* Floating sports icons */}
+        <div className="event-sports-icons">
+          {['🏈','⚽','🏃','🏀','🎵','🏆'].map((icon, i) => (
+            <span key={i} className="sport-float" style={{ left:`${8 + i * 16}%`, animationDelay:`${i * 0.5}s` }}>{icon}</span>
           ))}
         </div>
         <div className="container sp-hero-inner">
-          <div className="sp-eyebrow"><span className="sp-dot" /> Professional Event Coverage</div>
+          <div className="event-hero-badge">
+            <span>🚑</span> EMS On-Site Coverage
+          </div>
           <h1 className="sp-title">
-            Event Medical<br />
-            <span className="sp-accent event-accent">Standby</span><br />
-            Services
+            Sports &<br />
+            <span className="sp-accent event-accent">Event Medical</span><br />
+            Standby
           </h1>
-          <p className="sp-desc">
-            Life Star EMS provides professional on-site EMT and paramedic crews for
-            events of all sizes — from school sports to community festivals.
-            We keep your attendees safe so you can focus on the event.
-          </p>
+          <p className="sp-desc">Life Star EMS keeps your athletes, fans, and attendees safe. Professional EMT and paramedic crews on-site — from Friday night football to 5K runs, concerts, and community events across the Rio Grande Valley.</p>
           <div className="sp-actions">
-            <a href="tel:9566606543" className="sp-btn-primary event-btn">
-              <FaPhone /> Call (956) 660-6543
-            </a>
+            <a href="tel:9566606543" className="sp-btn-primary event-btn"><FaPhone /> Call (956) 660-6543</a>
             <div className="sp-free-badge event-free">📋 FREE Event Quote</div>
           </div>
         </div>
+        {/* Scoreboard style stat */}
+        <div className="event-scoreboard">
+          <div className="sb-item"><span className="sb-num">24/7</span><span className="sb-label">Available</span></div>
+          <div className="sb-div" />
+          <div className="sb-item"><span className="sb-num">EMT</span><span className="sb-label">Certified</span></div>
+          <div className="sb-div" />
+          <div className="sb-item"><span className="sb-num">RGV</span><span className="sb-label">Coverage</span></div>
+        </div>
       </section>
 
-      {/* Event Types */}
+      {/* Event Types - Sports Grid */}
       <section className="event-types-section">
         <div className="container">
           <span className="section-label">Events We Cover</span>
-          <h2 className="section-title">Any Event.<br /><em>Any Size.</em></h2>
+          <h2 className="section-title">Any Sport.<br /><em>Any Event. Any Size.</em></h2>
           <div className="event-types-grid">
             {eventTypes.map((t, i) => (
               <div className="event-type-card" key={i}>
@@ -113,7 +112,7 @@ export default function EventStandby() {
         </div>
       </section>
 
-      {/* Form + Info */}
+      {/* What We Provide + Form */}
       <section className="sp-offer">
         <div className="container">
           <div className="sp-offer-grid">
@@ -121,85 +120,48 @@ export default function EventStandby() {
               <span className="section-label">What We Provide</span>
               <h2 className="section-title">Full On-Site<br /><em>Medical Coverage</em></h2>
               <ul className="sp-checklist">
-                {[
-                  'Certified EMT and Paramedic crews on standby',
-                  'Fully equipped ambulance on site',
-                  'Rapid response to any medical situation',
-                  'AED, oxygen, and emergency equipment',
-                  'Bilingual staff — English & Spanish',
-                  'Coordinate with local EMS and hospitals',
-                  'Post-event incident reports available',
-                  'Flexible packages for any event size',
-                ].map((item, i) => (
+                {['Certified EMT and Paramedic crews on standby','Fully equipped ambulance on site','Rapid response to any medical situation','AED, oxygen, and emergency equipment ready','Bilingual staff — English & Spanish','Coordinate with local EMS and hospitals','Post-event incident reports available','Flexible packages for any event size'].map((item, i) => (
                   <li key={i}><FaCheckCircle className="check event-check" /> {item}</li>
                 ))}
               </ul>
             </div>
 
-            {/* Event Request Form */}
             <div className="sp-contact-box event-form-box">
               {status === 'sent' ? (
-                <div className="ld-success">
-                  <span>✅</span>
-                  <h3>Request Received!</h3>
-                  <p>We'll contact you within 24 hours with a custom quote for your event.</p>
-                </div>
+                <div className="ld-success"><span>✅</span><h3>Request Received!</h3><p>We'll contact you within 24 hours with a custom quote for your event.</p></div>
               ) : (
                 <form onSubmit={submit}>
-                  <h3 className="ld-form-title">📋 Request Event Coverage</h3>
+                  <h3 className="ld-form-title">🏆 Request Event Coverage</h3>
                   <div className="ld-form-row">
-                    <div className="ld-form-group">
-                      <label>Your Name *</label>
-                      <input name="name" type="text" placeholder="John Doe" required value={form.name} onChange={handle} />
-                    </div>
-                    <div className="ld-form-group">
-                      <label>Phone *</label>
-                      <input name="phone" type="tel" placeholder="(956) 000-0000" required value={form.phone} onChange={handle} />
-                    </div>
+                    <div className="ld-form-group"><label>Your Name *</label><input name="name" type="text" placeholder="John Doe" required value={form.name} onChange={handle} /></div>
+                    <div className="ld-form-group"><label>Phone *</label><input name="phone" type="tel" placeholder="(956) 000-0000" required value={form.phone} onChange={handle} /></div>
                   </div>
-                  <div className="ld-form-group">
-                    <label>Email *</label>
-                    <input name="email" type="email" placeholder="you@example.com" required value={form.email} onChange={handle} />
-                  </div>
-                  <div className="ld-form-group">
-                    <label>Event Name *</label>
-                    <input name="event_name" type="text" placeholder="e.g. Annual Track Meet" required value={form.event_name} onChange={handle} />
-                  </div>
+                  <div className="ld-form-group"><label>Email *</label><input name="email" type="email" placeholder="you@example.com" required value={form.email} onChange={handle} /></div>
+                  <div className="ld-form-group"><label>Event Name *</label><input name="event_name" type="text" placeholder="e.g. PSJA vs Edinburg Football" required value={form.event_name} onChange={handle} /></div>
                   <div className="ld-form-row">
-                    <div className="ld-form-group">
-                      <label>Event Date</label>
-                      <input name="event_date" type="date" value={form.event_date} onChange={handle} />
-                    </div>
-                    <div className="ld-form-group">
-                      <label>Expected Attendance</label>
-                      <input name="attendance" type="text" placeholder="e.g. 500 people" value={form.attendance} onChange={handle} />
-                    </div>
+                    <div className="ld-form-group"><label>Event Date</label><input name="event_date" type="date" value={form.event_date} onChange={handle} /></div>
+                    <div className="ld-form-group"><label>Expected Attendance</label><input name="attendance" type="text" placeholder="e.g. 500 people" value={form.attendance} onChange={handle} /></div>
                   </div>
-                  <div className="ld-form-group">
-                    <label>Event Location</label>
-                    <input name="event_location" type="text" placeholder="Address or venue name" value={form.event_location} onChange={handle} />
-                  </div>
+                  <div className="ld-form-group"><label>Event Location</label><input name="event_location" type="text" placeholder="Stadium, venue, or address" value={form.event_location} onChange={handle} /></div>
                   <div className="ld-form-group">
                     <label>Type of Event</label>
-                    <select name="event_type" value={form.event_type} onChange={handle} style={{ background: 'var(--navy2)', border: '1px solid var(--border)', color: 'var(--white)', padding: '11px 14px', fontFamily: 'var(--font-body)', fontSize: '0.9rem', outline: 'none' }}>
+                    <select name="event_type" value={form.event_type} onChange={handle} className="event-select">
                       <option value="">Select type...</option>
+                      <option>Football Game</option>
+                      <option>Soccer Match</option>
+                      <option>Basketball Tournament</option>
+                      <option>5K / Fun Run / Marathon</option>
+                      <option>Concert / Music Festival</option>
                       <option>School / CISD Event</option>
-                      <option>Sports Tournament</option>
                       <option>Community Festival</option>
                       <option>Non-Profit Event</option>
                       <option>Corporate Event</option>
-                      <option>City / Municipal Event</option>
-                      <option>Other</option>
+                      <option>Other Sports Event</option>
                     </select>
                   </div>
-                  <div className="ld-form-group">
-                    <label>Additional Notes</label>
-                    <textarea name="notes" rows={3} placeholder="Any special requirements..." value={form.notes} onChange={handle} />
-                  </div>
+                  <div className="ld-form-group"><label>Additional Notes</label><textarea name="notes" rows={3} placeholder="Any special requirements..." value={form.notes} onChange={handle} /></div>
                   {status === 'error' && <p className="ld-error">Something went wrong. Please call us at (956) 660-6543.</p>}
-                  <button type="submit" className="ld-submit event-submit" disabled={status === 'sending'}>
-                    {status === 'sending' ? 'Sending…' : 'Request Free Quote →'}
-                  </button>
+                  <button type="submit" className="ld-submit event-submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Request Free Quote →'}</button>
                 </form>
               )}
             </div>
@@ -211,9 +173,7 @@ export default function EventStandby() {
         <div className="container">
           <h2>Let's Cover Your Event</h2>
           <p>Call us for a free quote — we'll build a coverage plan around your event needs.</p>
-          <a href="tel:9566606543" className="sp-btn-primary event-btn large">
-            <FaPhone /> Call (956) 660-6543 Now
-          </a>
+          <a href="tel:9566606543" className="sp-btn-primary event-btn large"><FaPhone /> Call (956) 660-6543 Now</a>
         </div>
       </section>
     </div>
