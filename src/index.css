@@ -1,66 +1,97 @@
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400;1,700&family=Barlow:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,700&family=Barlow:wght@300;400;500;600&display=swap');
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* === LIFE STAR EMS — NAVY BLUE BRAND === */
   --blue:        #0B9ED9;
   --blue-bright: #12AEEE;
   --blue-light:  #3DC8FF;
-  --blue-pale:   #7DDBFF;
-  --blue-dark:   #0880B5;
-  --blue-deeper: #065A8A;
-  --blue-glow:   rgba(11, 158, 217, 0.2);
-
-  /* Backgrounds — deep navy */
-  --dark:   #060D14;
-  --dark2:  #091220;
-  --dark3:  #0C1828;
-  --card:   #0F2035;
-  --navy:   #060D14;
-  --navy2:  #091220;
-  --navy3:  #0C1828;
-
-  /* Text */
-  --white:      #FFFFFF;
-  --off-white:  #E8F4FF;
-  --light-text: #B0CCE0;
-  --muted:      #5A7A90;
-
-  /* Borders */
-  --border:      rgba(255,255,255,0.07);
-  --border-blue: rgba(11, 158, 217, 0.3);
-
+  --blue-dark:   #0770A8;
+  --blue-deeper: #054F7A;
+  --navy:        #060D14;
+  --navy2:       #091220;
+  --navy3:       #0C1828;
+  --card:        #0F2035;
+  --card2:       #102540;
+  --white:       #FFFFFF;
+  --off-white:   #E8F4FF;
+  --light-text:  #A8C8DC;
+  --muted:       #567080;
+  --border:      rgba(255,255,255,0.06);
+  --border-blue: rgba(11,158,217,0.25);
+  --red:         #DC2626;
   --font-display: 'Barlow Condensed', sans-serif;
   --font-body:    'Barlow', sans-serif;
 }
 
 html { scroll-behavior: smooth; }
+
 body {
   font-family: var(--font-body);
-  background: var(--dark);
+  background: var(--navy);
   color: var(--white);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
+
+/* Mobile: space for bottom nav */
+@media (max-width: 900px) { body { padding-bottom: 60px; } }
+
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
 button { cursor: pointer; font-family: inherit; }
 
-.container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+.container {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+@media (max-width: 768px) { .container { padding: 0 18px; } }
 
-.section-label {
+/* Shared typography */
+.label {
   display: inline-block;
   font-family: var(--font-display); font-weight: 700;
-  font-size: 0.72rem; letter-spacing: 0.28em; text-transform: uppercase;
-  color: var(--blue-light); margin-bottom: 14px;
+  font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--blue-light); margin-bottom: 12px;
 }
-.section-title {
+.title {
   font-family: var(--font-display); font-weight: 900;
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  text-transform: uppercase; line-height: 1.05; margin-bottom: 18px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  text-transform: uppercase; line-height: 1.05;
 }
-.section-title em { font-style: italic; color: var(--light-text); font-weight: 300; }
-.section-sub { font-size: 1rem; color: var(--muted); line-height: 1.75; font-weight: 300; max-width: 500px; }
+.title em { font-style: italic; color: var(--light-text); font-weight: 300; }
+.subtitle {
+  font-size: 1rem; color: var(--muted);
+  line-height: 1.75; font-weight: 300;
+  max-width: 520px; margin-top: 14px;
+}
 
-@media (max-width: 768px) { .container { padding: 0 20px; } }
+/* Shared buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-display); font-weight: 700;
+  font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 14px 28px; border: none; transition: all 0.2s; cursor: pointer;
+}
+.btn-blue { background: var(--blue); color: var(--white); }
+.btn-blue:hover { background: var(--blue-bright); transform: translateY(-2px); }
+.btn-outline { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.3); }
+.btn-outline:hover { border-color: var(--blue-light); transform: translateY(-2px); }
+.btn-red { background: var(--red); color: var(--white); }
+.btn-red:hover { background: #EF4444; transform: translateY(-2px); }
+
+/* Shared section spacing */
+.section { padding: 90px 0; }
+.section-sm { padding: 60px 0; }
+@media (max-width: 768px) { .section { padding: 60px 0; } }
+
+/* Pulse animation */
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(11,158,217,0.5); }
+  50%       { box-shadow: 0 0 0 8px rgba(11,158,217,0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}

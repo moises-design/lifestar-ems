@@ -1,146 +1,111 @@
-import { FaPhone, FaCheckCircle } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+import { FaPhone } from 'react-icons/fa'
 import './ServicePage.css'
 import './PediatricsTransport.css'
 
-const features = [
-  { icon: '😊', title: 'Kid-Friendly Staff', desc: 'Our team knows how to make children feel safe, calm, and comfortable.' },
-  { icon: '🛡️', title: 'Safe & Secure', desc: 'Specially equipped vehicles with pediatric safety features for all ages.' },
-  { icon: '💙', title: 'Family Centered', desc: 'Parents or guardians are always welcome to ride along.' },
-  { icon: '📋', title: 'Care Coordinated', desc: "We work with your child's therapy team for seamless scheduling." },
+const services = [
+  { icon:'🛰️', title:'Therapy Transport', items:['Physical therapy','Occupational therapy','Speech therapy'] },
+  { icon:'🌎', title:'Long-Distance Pediatric', items:['Transport across Texas','Houston, San Antonio, Dallas','Coordinated with families'] },
 ]
 
-const transportTo = [
-  { icon: '🧠', label: 'Speech Therapy' },
-  { icon: '🦵', label: 'Physical Therapy' },
-  { icon: '✋', label: 'Occupational Therapy' },
-  { icon: '🏥', label: 'Doctor Appointments' },
-  { icon: '💊', label: 'Specialist Visits' },
-  { icon: '🩺', label: 'Treatment Centers' },
-  { icon: '🎯', label: 'ABA Therapy' },
-  { icon: '❤️', label: 'Behavioral Health' },
+const trust = [
+  { icon:'👨‍⚕️', title:'Trained & Experienced Staff', desc:'Our team is experienced working with children — patient, calm, and professional.' },
+  { icon:'🛡️', title:'Safety First', desc:'Clean, well-equipped vehicles with child safety features for every trip.' },
+  { icon:'📱', title:'Family Communication', desc:'We keep parents informed before, during, and after every transport.' },
+  { icon:'🎯', title:'Child-Centered Approach', desc:'Every decision we make puts the comfort and wellbeing of your child first.' },
 ]
 
-const insurance = ['Driscoll Children\'s', 'Healthspring', 'Superior Healthplan', 'Medicaid CSHCN', 'United Healthcare', 'Molina Healthcare', 'Ambetter', 'Private Insurance']
-
-// Colorful stars with random positions
-const starColors = ['#48DBFB','#FF9F43','#FF6B9D','#A8FF78','#FFFFFF','#FFD700']
-const stars = Array.from({ length: 40 }, (_, i) => ({
-  id: i,
-  left: `${Math.random() * 100}%`,
-  top: `${Math.random() * 100}%`,
-  delay: `${Math.random() * 3}s`,
-  size: `${Math.random() * 3 + 2}px`,
-  color: starColors[Math.floor(Math.random() * starColors.length)],
-  duration: `${1.5 + Math.random() * 2}s`,
+// Colorful multi-size stars
+const starColors = ['#3DC8FF','#48DBFB','#A8E6CF','#FFFFFF','#E8F4FF']
+const stars = Array.from({length:60},(_,i)=>({
+  left:`${Math.random()*100}%`, top:`${Math.random()*100}%`,
+  size:`${Math.random()*3+1.5}px`,
+  color: starColors[Math.floor(Math.random()*starColors.length)],
+  delay:`${Math.random()*4}s`, dur:`${1.5+Math.random()*2.5}s`
 }))
 
 export default function PediatricsTransport() {
   return (
-    <div className="service-page peds-page">
+    <div className="sp peds-sp">
       <section className="sp-hero peds-hero">
-        <div className="sp-hero-bg" />
-        <div className="peds-stars">
-          {stars.map(s => (
-            <div key={s.id} className="peds-star" style={{
-              left: s.left, top: s.top,
-              animationDelay: s.delay,
-              animationDuration: s.duration,
-              width: s.size, height: s.size,
-              background: s.color,
-              boxShadow: `0 0 ${parseInt(s.size)*2}px ${s.color}`,
-            }} />
-          ))}
+        <div className="sp-hero-bg peds-bg">
+          <div className="peds-stars">
+            {stars.map((s,i)=><div key={i} className="p-star" style={{left:s.left,top:s.top,width:s.size,height:s.size,background:s.color,boxShadow:`0 0 ${parseInt(s.size)*2}px ${s.color}`,animationDelay:s.delay,animationDuration:s.dur}} />)}
+          </div>
+          <div className="peds-planet1" />
+          <div className="peds-planet2" />
+          <div className="peds-rocket">🚀</div>
         </div>
-        <div className="peds-planets">
-          <div className="peds-planet-1" />
-          <div className="peds-planet-2" />
-        </div>
-        <div className="peds-rocket">🚀</div>
-        <div className="container sp-hero-inner">
-          <div className="peds-badge">👶 Pediatric Specialists</div>
-          <h1 className="sp-title">
-            Safe & Caring<br />
-            <span className="sp-accent peds-accent">Pediatric</span><br />
-            Transportation
+        <div className="container sp-inner">
+          <div className="sp-badge peds-badge">🚀 Pediatric & Long-Distance Transport</div>
+          <h1 className="sp-h1">
+            Safe, Compassionate<br />
+            <span className="sp-accent peds-accent">Pediatric Transportation</span>
           </h1>
-          <p className="sp-desc">We specialize in non-emergency medical transportation for children of all ages. Friendly, trained staff makes every ride comfortable, safe, and stress-free for your child and family.</p>
-          <div className="sp-actions">
-            <a href="tel:9566606543" className="sp-btn-primary peds-btn"><FaPhone /> Call (956) 660-6543</a>
-            <div className="sp-free-badge peds-free">⭐ FREE Evaluation — No Obligation</div>
+          <p className="sp-lead">Reliable transportation for children needing therapy services and long-distance care across Texas. Our trained staff creates a calm, safe experience for every child and family.</p>
+          <div className="sp-btns">
+            <Link to="/request" className="btn btn-blue peds-btn">Request Pediatric Transport</Link>
+            <a href="tel:9566606543" className="btn btn-outline"><FaPhone /> Call Dispatch</a>
           </div>
         </div>
       </section>
 
-      <section className="sp-features peds-features-section">
+      {/* Space-themed service sections */}
+      <section className="peds-services section">
         <div className="container">
-          <span className="section-label">Your Child's Comfort Comes First</span>
-          <h2 className="section-title">A Ride They'll<br /><em>Feel Good About</em></h2>
-          <div className="sp-features-grid">
-            {features.map((f, i) => (
-              <div className="sp-feature-card peds-card" key={i}>
-                <div className="peds-feature-icon">{f.icon}</div>
-                <h3>{f.title}</h3>
-                <p>{f.desc}</p>
+          <span className="label">What We Provide</span>
+          <h2 className="title">Pediatric Transport<br /><em>Services</em></h2>
+          <div className="peds-svc-grid">
+            {services.map((s,i) => (
+              <div key={i} className="peds-svc-card">
+                <div className="psvc-icon">{s.icon}</div>
+                <h3>{s.title}</h3>
+                <ul>{s.items.map((item,j)=><li key={j}><span className="psvc-dot"/>  {item}</li>)}</ul>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="peds-transport-to">
+      {/* Trust section */}
+      <section className="sp-features">
         <div className="container">
-          <span className="section-label">Where We Take Your Child</span>
-          <h2 className="section-title">Therapy & Medical<br /><em>Destinations</em></h2>
-          <div className="peds-dest-grid">
-            {transportTo.map((t, i) => (
-              <div className="peds-dest-card" key={i}>
-                <span className="peds-dest-icon">{t.icon}</span>
-                <span className="peds-dest-label">{t.label}</span>
-              </div>
-            ))}
+          <span className="label">Why Parents Trust Us</span>
+          <h2 className="title">Your Child Is<br /><em>In Good Hands</em></h2>
+          <div className="sp-feat-grid">
+            {trust.map((t,i)=><div key={i} className="sp-feat peds-feat"><div className="sp-feat-icon">{t.icon}</div><h3>{t.title}</h3><p>{t.desc}</p></div>)}
           </div>
         </div>
       </section>
 
-      <section className="sp-offer">
+      <section className="sp-two">
         <div className="container">
-          <div className="sp-offer-grid">
+          <div className="sp-two-grid">
             <div>
-              <span className="section-label">Our Commitment</span>
-              <h2 className="section-title">Every Child<br /><em>Deserves Great Care</em></h2>
-              <ul className="sp-checklist">
-                {['Parent or guardian always welcome to ride along','Child safety seats and wheelchair accessibility','Bilingual staff — English & Spanish','Consistent, familiar drivers','On-time pickup — every single appointment','Direct coordination with therapy centers','Compassionate, patient, child-friendly staff','Available 7 days a week'].map((item, i) => (
-                  <li key={i}><FaCheckCircle className="check peds-check" /> {item}</li>
-                ))}
+              <span className="label">Our Commitment</span>
+              <h2 className="title">Every Child Deserves<br /><em>Safe, Caring Transport</em></h2>
+              <ul className="sp-list">
+                {['Parent or guardian always welcome to ride along','Child safety seats and wheelchair accessibility','Bilingual staff — English & Spanish','Consistent, familiar drivers','On-time pickup — every single appointment','Coordination with therapy centers and providers','Long-distance transport across all of Texas','Insurance accepted — verified before first trip'].map((item,i)=>(<li key={i}><span className="sp-list-dot"/>{item}</li>))}
               </ul>
             </div>
-            <div className="sp-contact-box peds-contact-box">
-              <div className="peds-contact-emoji">👨‍👩‍👧‍👦</div>
+            <div className="sp-cta-box peds-cta-box">
+              <div className="peds-emoji">👨‍👩‍👧‍👦</div>
               <h3>Free Evaluation</h3>
-              <p>Let's talk about your child's needs. We'll handle insurance and scheduling.</p>
-              <a href="tel:9566606543" className="sp-btn-primary peds-btn" style={{ display:'flex', justifyContent:'center', marginBottom:16 }}><FaPhone /> (956) 660-6543</a>
-              <a href="mailto:lifestarems.rgv@gmail.com" className="sp-btn-outline">lifestarems.rgv@gmail.com</a>
-              <div className="sp-address">📍 2526 W. Freddy Gonzalez<br />Edinburg, TX 78539</div>
+              <p>Let's discuss your child's transportation needs. We'll handle insurance and scheduling.</p>
+              <Link to="/request" className="btn btn-blue peds-btn">Request Pediatric Transport</Link>
+              <a href="tel:9566606543" className="btn btn-outline"><FaPhone /> Call Dispatch</a>
+              <div className="sp-addr">📍 2526 W. Freddy Gonzalez<br />Edinburg, TX 78539</div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="sp-insurance">
+      <section className="sp-cta-banner peds-cta-banner">
         <div className="container">
-          <span className="section-label">Coverage for Your Child</span>
-          <h2 className="section-title">Insurance <em>We Accept</em></h2>
-          <div className="sp-ins-grid">{insurance.map((ins, i) => <div className="sp-ins-badge peds-ins-badge" key={i}>{ins}</div>)}</div>
-          <p className="sp-ins-note">We verify your child's insurance for FREE before the first ride.</p>
-        </div>
-      </section>
-
-      <section className="sp-cta peds-cta-section">
-        <div className="container">
-          <div className="peds-cta-emoji">🌟</div>
-          <h2>Your Child Deserves the Best</h2>
-          <p>Call us today — we'll set up everything so your family can focus on what matters most.</p>
-          <a href="tel:9566606543" className="sp-btn-primary peds-btn large"><FaPhone /> Call (956) 660-6543 Now</a>
+          <h2>Schedule Safe Transport for Your Child</h2>
+          <p>Call us today — we make the process simple so you can focus on your child.</p>
+          <Link to="/request" className="btn btn-blue peds-btn">Request Pediatric Transport</Link>
+          <a href="tel:9566606543" className="btn btn-outline"><FaPhone /> Call Now</a>
         </div>
       </section>
     </div>

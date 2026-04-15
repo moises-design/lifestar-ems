@@ -1,70 +1,59 @@
+import { Link } from 'react-router-dom'
 import './Services.css'
 
 const services = [
   {
-    icon: '🚑',
-    title: 'Emergency Medical Transport',
-    desc: 'Rapid-response emergency medical transport with fully equipped ambulances and certified EMT crews ready 24/7 for life-threatening situations.',
-    tag: 'Priority Response',
-  },
-  {
     icon: '🏥',
-    title: 'Non-Emergency Transport',
-    desc: 'Safe, scheduled transportation to doctor appointments, dialysis, therapy, and medical procedures — comfortable and on time.',
-    tag: 'Scheduled',
+    title: 'Adult Dialysis Transportation',
+    href: '/services/dialysis',
+    points: ['Reliable transport to and from dialysis', 'Consistent scheduling you can count on', 'Patient safety and comfort first'],
+    color: '#0B9ED9',
   },
   {
-    icon: '🔄',
-    title: 'Interfacility Transfers',
-    desc: 'Professional patient transfers between hospitals, nursing homes, rehab centers, and clinics throughout the Rio Grande Valley.',
-    tag: 'Facility to Facility',
+    icon: '👶',
+    title: 'Pediatric Therapy Transportation',
+    href: '/services/therapy',
+    points: ['PT, OT, and speech therapy visits', 'Patient, compassionate, reliable care', 'Designed for children and families'],
+    color: '#48DBFB',
   },
   {
-    icon: '🛡️',
-    title: 'BLS / ALS Services',
-    desc: 'Basic Life Support and Advanced Life Support services delivered by certified paramedics and emergency medical technicians.',
-    tag: 'Certified Care',
+    icon: '🚀',
+    title: 'Pediatric & Long-Distance Transport',
+    href: '/services/pediatrics',
+    points: ['Non-emergency pediatric transportation', 'Long-distance transport across Texas', 'Coordinated trips with families'],
+    color: '#A78BFA',
   },
   {
-    icon: '👴',
-    title: 'Long-Distance Transport',
-    desc: 'Extended medical transport for patients needing to travel beyond the Valley — safe, monitored, and professionally staffed.',
-    tag: 'Extended Range',
-  },
-  {
-    icon: '📋',
-    title: 'Insurance Accepted',
-    desc: 'We work with Medicare, Medicaid, and most major insurance providers to ensure accessible care for all our patients.',
-    tag: 'Most Plans',
+    icon: '🚑',
+    title: 'Event EMS Standby',
+    href: '/services/events',
+    points: ['Medical coverage for school events', 'Sports, tournaments, and community events', 'Fast on-site emergency response'],
+    color: '#34D399',
   },
 ]
 
 export default function Services() {
   return (
-    <section className="services" id="services">
+    <section className="services section" id="services">
       <div className="container">
-        <div className="section-header">
-          <span className="section-label">What We Offer</span>
-          <h2 className="section-title">
-            Medical Transport<br />
-            <em>You Can Count On</em>
-          </h2>
-          <p className="section-sub">
-            From life-threatening emergencies to routine medical transport,
-            Life Star EMS is your trusted partner in pre-hospital care across the RGV.
-          </p>
+        <div className="services-header">
+          <span className="label">Core Services</span>
+          <h2 className="title">Medical Transport &<br /><em>EMS Coverage</em></h2>
+          <p className="subtitle">Professional, reliable, and compassionate — built for the Rio Grande Valley community.</p>
         </div>
 
         <div className="services-grid">
           {services.map((s, i) => (
-            <div className="service-card" key={i}>
-              <div className="sc-top">
-                <span className="sc-icon">{s.icon}</span>
-                <span className="sc-tag">{s.tag}</span>
-              </div>
-              <h3 className="sc-title">{s.title}</h3>
-              <p className="sc-desc">{s.desc}</p>
-            </div>
+            <Link to={s.href} className="svc-card" key={i} style={{ '--accent': s.color }}>
+              <div className="svc-icon">{s.icon}</div>
+              <h3 className="svc-title">{s.title}</h3>
+              <ul className="svc-points">
+                {s.points.map((p, j) => (
+                  <li key={j}><span className="svc-dot" />  {p}</li>
+                ))}
+              </ul>
+              <span className="svc-learn">Learn more →</span>
+            </Link>
           ))}
         </div>
       </div>

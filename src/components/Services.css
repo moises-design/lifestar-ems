@@ -1,123 +1,39 @@
-.services {
-  padding: 110px 0;
-  background: var(--navy2);
-  position: relative;
-}
+.services { background: var(--navy2); }
+.services::before { content:''; display:block; height:1px; background: linear-gradient(90deg, transparent, var(--border-blue), transparent); margin-bottom: 0; }
 
-.services::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border-blue), transparent);
-}
+.services-header { margin-bottom: 52px; }
 
-.section-header {
-  max-width: 680px;
-  margin-bottom: 64px;
-}
-
-.section-label {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.72rem;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--blue-light);
-  margin-bottom: 14px;
-}
-
-.section-title {
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: clamp(2.2rem, 4vw, 3.2rem);
-  text-transform: uppercase;
-  line-height: 1.05;
-  margin-bottom: 18px;
-}
-
-.section-title em {
-  font-style: italic;
-  color: var(--light-text);
-  font-weight: 300;
-}
-
-.section-sub {
-  font-size: 1rem;
-  color: var(--muted);
-  line-height: 1.75;
-  font-weight: 300;
-  max-width: 500px;
-}
-
-/* Grid */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
 }
 
-.service-card {
+.svc-card {
   background: var(--card);
-  padding: 36px 32px 40px;
-  border-top: 2px solid transparent;
-  transition: border-color 0.25s, background 0.25s, transform 0.2s;
-  cursor: default;
+  border: 1px solid var(--border-blue);
+  border-top: 3px solid var(--accent, var(--blue));
+  padding: 32px 24px;
+  display: flex; flex-direction: column; gap: 14px;
+  transition: all 0.25s; cursor: pointer;
+  position: relative; overflow: hidden;
 }
+.svc-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.02), transparent);
+  opacity: 0; transition: opacity 0.25s;
+}
+.svc-card:hover { border-color: var(--accent, var(--blue)); transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0,0,0,0.3), 0 0 0 1px var(--accent, var(--blue)); }
+.svc-card:hover::before { opacity: 1; }
 
-.service-card:hover {
-  border-color: var(--blue);
-  background: #1F2428;
-  transform: translateY(-4px);
-}
+.svc-icon { font-size: 2.6rem; line-height: 1; }
+.svc-title { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--white); line-height: 1.2; }
 
-.sc-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
+.svc-points { list-style: none; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.svc-points li { display: flex; align-items: flex-start; gap: 8px; font-size: 0.84rem; color: var(--light-text); line-height: 1.5; }
+.svc-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent, var(--blue)); flex-shrink: 0; margin-top: 6px; }
 
-.sc-icon {
-  font-size: 2rem;
-  line-height: 1;
-}
+.svc-learn { font-family: var(--font-display); font-weight: 700; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent, var(--blue)); margin-top: 4px; transition: gap 0.2s; }
 
-.sc-tag {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--muted);
-  background: rgba(255,255,255,0.05);
-  padding: 4px 10px;
-  border: 1px solid var(--border);
-}
-
-.sc-title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.15rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-  line-height: 1.2;
-}
-
-.sc-desc {
-  font-size: 0.9rem;
-  color: var(--muted);
-  line-height: 1.7;
-  font-weight: 300;
-}
-
-@media (max-width: 960px) {
-  .services-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (max-width: 600px) {
-  .services-grid { grid-template-columns: 1fr; }
-  .services { padding: 70px 0; }
-}
+@media (max-width: 900px) { .services-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 580px) { .services-grid { grid-template-columns: 1fr; } }

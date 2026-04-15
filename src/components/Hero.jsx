@@ -1,92 +1,80 @@
-import { FaPhone, FaFacebook, FaChevronDown } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
+import { FaPhone, FaFileAlt, FaChevronDown } from 'react-icons/fa'
 import './Hero.css'
+
+const stats = [
+  { val: '24/7', label: 'Always Available' },
+  { val: 'BLS/ALS', label: 'Certified Crews' },
+  { val: 'RGV', label: 'Full Coverage' },
+  { val: '★ 5.0', label: 'Google Rated' },
+]
 
 export default function Hero() {
   return (
     <section className="hero" id="home">
       <div className="hero-bg">
-        <div className="hero-photo" />
-        <div className="hero-gradient" />
+        <div className="hero-img" />
+        <div className="hero-grad" />
         <div className="hero-grid" />
         <div className="hero-glow" />
       </div>
 
-      {/* Floating particles */}
-      <div className="hero-particles">
-        {[...Array(12)].map((_, i) => (
-          <div key={i} className="hero-particle" style={{
-            left: `${5 + i * 8}%`,
-            animationDelay: `${i * 0.4}s`,
-            animationDuration: `${3 + (i % 3)}s`,
-          }} />
+      {/* Subtle floating particles */}
+      <div className="hero-particles" aria-hidden>
+        {[...Array(10)].map((_, i) => (
+          <div key={i} className="particle" style={{ left:`${8+i*9}%`, animationDelay:`${i*0.45}s`, animationDuration:`${3+i%3}s` }} />
         ))}
       </div>
 
-      <div className="hero-inner container">
-        <div className="hero-eyebrow">
-          <span className="pulse-dot" />
+      <div className="hero-content container">
+        <div className="hero-logo-wrap">
+          <img src="/images/logo-icon.png" alt="Life Star EMS" className="hero-logo" />
+        </div>
+
+        <div className="hero-badge">
+          <span className="badge-dot" />
           Serving the Rio Grande Valley — 24 / 7 / 365
         </div>
 
-        {/* Big centered logo */}
-        <div className="hero-logo-big">
-          <img src="/images/logo-icon.png" alt="Life Star EMS" />
-        </div>
-
-        <h1 className="hero-title">
-          <span className="line-top">When Every</span>
-          <span className="line-blue">Second</span>
-          <span className="line-bottom">Matters.</span>
+        <h1 className="hero-h1">
+          Reliable Medical Transport<br />
+          <span className="hero-accent">&amp; EMS Standby</span><br />
+          <span className="hero-sub-h">in the Rio Grande Valley</span>
         </h1>
 
         <p className="hero-desc">
-          Life Star EMS delivers professional emergency and non-emergency medical
-          transportation across the Rio Grande Valley. Certified crews. Rapid response.
-          Compassionate care — every call.
+          Specializing in dialysis transport, pediatric therapy transportation, and
+          professional EMS coverage for events across South Texas.
         </p>
 
-        <div className="hero-actions">
-          <a href="tel:911" className="btn-emergency">
-            🚨 Dial 911 — Emergency
+        <div className="hero-btns">
+          <Link to="/request" className="btn btn-blue">
+            <FaFileAlt /> Request EMS Coverage
+          </Link>
+          <a href="tel:9566606543" className="btn btn-outline">
+            <FaPhone /> Call Dispatch
           </a>
-          <a href="tel:9566606543" className="btn-primary">
-            <FaPhone /> (956) 660-6543
-          </a>
-          <a href="https://www.facebook.com/LifeStarEMSRGV/" target="_blank" rel="noreferrer" className="btn-outline">
-            <FaFacebook /> Follow Us
-          </a>
-        </div>
-
-        <div className="hero-free-eval">
-          <a href="tel:9566606543" className="free-eval-btn">
-            ⭐ FREE Evaluation — Call (956) 660-6543
+          <a href="tel:911" className="btn btn-red">
+            🚨 Emergency 911
           </a>
         </div>
 
         <div className="hero-stats">
-          <div className="stat">
-            <span className="stat-val">24 / 7</span>
-            <span className="stat-label">Always On Call</span>
-          </div>
-          <div className="stat-div" />
-          <div className="stat">
-            <span className="stat-val">BLS / ALS</span>
-            <span className="stat-label">Certified Crews</span>
-          </div>
-          <div className="stat-div" />
-          <div className="stat">
-            <span className="stat-val">RGV</span>
-            <span className="stat-label">Full Valley Coverage</span>
-          </div>
-          <div className="stat-div" />
-          <div className="stat">
-            <span className="stat-val">★ 5.0</span>
-            <span className="stat-label">Google Rated</span>
-          </div>
+          {stats.map((s, i) => (
+            <>
+              {i > 0 && <div key={`d${i}`} className="stat-div" />}
+              <div key={s.val} className="stat">
+                <span className="stat-val">{s.val}</span>
+                <span className="stat-lbl">{s.label}</span>
+              </div>
+            </>
+          ))}
         </div>
       </div>
 
-      <a href="#services" className="hero-scroll"><FaChevronDown /></a>
+      <a href="#services" className="hero-scroll" aria-label="Scroll down">
+        <FaChevronDown />
+      </a>
     </section>
   )
 }

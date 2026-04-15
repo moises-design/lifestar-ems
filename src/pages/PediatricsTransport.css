@@ -1,92 +1,31 @@
-/* 🚀 PEDIATRICS — ADVENTURE SPACE: Colorful, playful, rockets & planets */
-.peds-hero {
-  background: linear-gradient(160deg, #060820 0%, #0A0F3D 40%, #0D1650 70%, #060820 100%);
-  overflow: hidden;
-  min-height: 80vh;
-}
+/* PEDIATRICS — Adventure space, colorful stars, calming for parents */
+.peds-hero { background: linear-gradient(160deg, #060D20 0%, #0A1040 45%, #0C1560 70%, #060D20 100%); min-height: 80vh; overflow:hidden; }
+.peds-bg { position:absolute; inset:0; }
+.peds-stars { position:absolute; inset:0; pointer-events:none; z-index:1; }
+.p-star { position:absolute; border-radius:50%; animation: ptwinkle 2s ease infinite alternate; }
+@keyframes ptwinkle { from{opacity:0.15;transform:scale(0.7)} to{opacity:1;transform:scale(1.3)} }
+.peds-planet1 { position:absolute; right:14%; top:12%; width:70px; height:70px; border-radius:50%; background:radial-gradient(circle at 35% 35%, #FF9F43, #E55039); box-shadow:0 0 30px rgba(229,80,57,0.35); animation:pfloat 8s ease-in-out infinite; z-index:2; }
+.peds-planet2 { position:absolute; right:22%; bottom:18%; width:35px; height:35px; border-radius:50%; background:radial-gradient(circle at 35% 35%, #A8E6CF, #48DBFB); box-shadow:0 0 16px rgba(72,219,251,0.35); animation:pfloat 5s ease-in-out infinite reverse; z-index:2; }
+@keyframes pfloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+.peds-rocket { position:absolute; right:6%; bottom:12%; font-size:5rem; z-index:2; animation:procket 4s ease-in-out infinite; filter:drop-shadow(0 0 12px rgba(11,158,217,0.5)); }
+@keyframes procket { 0%,100%{transform:translateY(0) rotate(-22deg)} 50%{transform:translateY(-22px) rotate(-22deg)} }
 
-/* Twinkling multi-color stars */
-.peds-stars { position: absolute; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; }
-.peds-star {
-  position: absolute;
-  border-radius: 50%;
-  animation: twinklePeds 2s ease infinite alternate;
-}
-@keyframes twinklePeds {
-  from { opacity: 0.15; transform: scale(0.6); }
-  to   { opacity: 1; transform: scale(1.4); }
-}
+.peds-badge { background: rgba(61,200,255,0.1) !important; border-color: rgba(61,200,255,0.35) !important; color: #3DC8FF !important; }
+.peds-accent { color:#3DC8FF !important; text-shadow:0 0 50px rgba(61,200,255,0.5) !important; }
+.peds-btn { background: #0B9ED9 !important; }
 
-/* Planet decorations */
-.peds-planets { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-.peds-planet-1 {
-  position: absolute; right: 12%; top: 15%;
-  width: 80px; height: 80px; border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #FF9F43, #E55039);
-  box-shadow: 0 0 30px rgba(229,80,57,0.4);
-  animation: planetOrbit 8s ease-in-out infinite;
-}
-.peds-planet-2 {
-  position: absolute; right: 20%; bottom: 20%;
-  width: 40px; height: 40px; border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #48DBFB, #0ABDE3);
-  box-shadow: 0 0 20px rgba(10,189,227,0.4);
-  animation: planetOrbit 5s ease-in-out infinite reverse;
-}
-@keyframes planetOrbit {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(-15px); }
-}
+.peds-services { background: var(--navy2); }
+.peds-svc-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:40px; }
+.peds-svc-card { background:var(--card); border:1px solid rgba(61,200,255,0.2); padding:36px 28px; border-top:3px solid #3DC8FF; transition:all 0.22s; }
+.peds-svc-card:hover { transform:translateY(-4px); box-shadow:0 12px 36px rgba(0,0,0,0.3); }
+.psvc-icon { font-size:2.8rem; margin-bottom:16px; display:block; }
+.peds-svc-card h3 { font-family:var(--font-display); font-weight:700; font-size:1.1rem; text-transform:uppercase; margin-bottom:14px; }
+.peds-svc-card ul { list-style:none; display:flex; flex-direction:column; gap:8px; }
+.peds-svc-card li { display:flex; align-items:center; gap:8px; font-size:0.88rem; color:var(--light-text); }
+.psvc-dot { width:5px; height:5px; border-radius:50%; background:#3DC8FF; flex-shrink:0; }
 
-/* Rocket */
-.peds-rocket {
-  position: absolute; right: 6%; bottom: 15%;
-  font-size: 5rem; z-index: 2;
-  animation: rocketBlast 4s ease-in-out infinite;
-  filter: drop-shadow(0 0 15px rgba(11,158,217,0.5));
-}
-@keyframes rocketBlast {
-  0%, 100% { transform: translateY(0) rotate(-25deg); }
-  50%       { transform: translateY(-25px) rotate(-25deg); }
-}
-
-.peds-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(72,219,251,0.15); border: 1px solid rgba(72,219,251,0.4);
-  color: #48DBFB; padding: 8px 18px; margin-bottom: 20px;
-  font-family: var(--font-display); font-weight: 700;
-  font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase;
-}
-
-.peds-accent { color: #48DBFB !important; text-shadow: 0 0 40px rgba(72,219,251,0.5) !important; }
-.peds-btn { background: #48DBFB !important; color: var(--white) !important; font-weight: 900 !important; background: #0B9ED9 !important; }
-.peds-btn:hover { background: #7EE8FC !important; }
-.peds-free { color: #48DBFB !important; background: rgba(72,219,251,0.1) !important; border-color: rgba(72,219,251,0.35) !important; }
-
-/* Features section */
-.peds-features-section { background: #080C2A; }
-.peds-card:hover { border-top-color: #48DBFB !important; }
-.peds-feature-icon { font-size: 2.6rem; margin-bottom: 14px; }
-
-/* Destinations */
-.peds-transport-to { padding: 80px 0; background: #060820; }
-.peds-dest-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 40px; }
-.peds-dest-card {
-  background: rgba(72,219,251,0.05);
-  border: 1px solid rgba(72,219,251,0.2);
-  padding: 22px 14px; display: flex; flex-direction: column;
-  align-items: center; gap: 10px; text-align: center; transition: all 0.2s;
-}
-.peds-dest-card:hover { background: rgba(72,219,251,0.12); border-color: #48DBFB; transform: translateY(-4px); }
-.peds-dest-icon { font-size: 2rem; }
-.peds-dest-label { font-family: var(--font-display); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--light-text); }
-
-.peds-contact-box { border-color: rgba(72,219,251,0.3) !important; }
-.peds-contact-emoji { font-size: 3rem; text-align: center; margin-bottom: 16px; }
-.peds-check { color: #48DBFB !important; }
-.peds-ins-badge { border-color: rgba(72,219,251,0.2) !important; }
-.peds-ins-badge:hover { background: #48DBFB !important; color: #060820 !important; border-color: #48DBFB !important; }
-.peds-cta-section { background: #0A0F3D !important; }
-.peds-cta-emoji { font-size: 3rem; margin-bottom: 12px; }
-
-@media (max-width: 768px) { .peds-dest-grid { grid-template-columns: repeat(2, 1fr); } .peds-rocket { font-size: 3rem; } .peds-planet-1 { width: 50px; height: 50px; } }
+.peds-feat:hover { border-top-color: #3DC8FF !important; }
+.peds-cta-box { border-color: rgba(61,200,255,0.3) !important; }
+.peds-emoji { font-size:2.5rem; margin-bottom:14px; }
+.peds-cta-banner { background: #081830 !important; }
+@media(max-width:768px){ .peds-svc-grid{grid-template-columns:1fr;} .peds-rocket{font-size:3rem;} .peds-planet1,.peds-planet2{display:none;} }

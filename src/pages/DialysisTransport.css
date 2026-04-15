@@ -1,10 +1,2 @@
-.dialysis-hero {
-  background: linear-gradient(135deg, #060D14 0%, #091828 50%, #060D14 100%);
-}
-.dialysis-hero::after {
-  content: '';
-  position: absolute; right: 0; top: 0; bottom: 0; width: 45%;
-  background: url('/images/ambulance-1.jpg') center/cover no-repeat;
-  opacity: 0.1;
-  mask-image: linear-gradient(to right, transparent, black);
-}
+.dialysis-hero { background: linear-gradient(160deg, #060D14 0%, #071828 60%, #060D14 100%); }
+.dialysis-bg::after { content:''; position:absolute; right:0; top:0; bottom:0; width:50%; background:url('/images/ambulance-1.jpg') center/cover no-repeat; opacity:0.08; mask-image:linear-gradient(to right, transparent, black); }

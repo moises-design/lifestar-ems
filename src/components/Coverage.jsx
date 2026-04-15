@@ -1,62 +1,31 @@
-import { FaMapMarkerAlt } from 'react-icons/fa'
 import './Coverage.css'
 
-const cities = [
-  'McAllen', 'Mission', 'Edinburg', 'Pharr', 'Harlingen',
-  'Brownsville', 'Weslaco', 'Mercedes', 'San Juan', 'Alamo',
-  'Donna', 'Rio Grande City', 'Laredo', 'Hidalgo', 'Sullivan City',
-  'La Joya', 'Palmview', 'Penitas', 'Elsa', 'Edcouch',
-  'San Benito', 'Los Fresnos', 'La Feria', 'Palm Valley',
-]
-
-const counties = ['Hidalgo County', 'Cameron County', 'Starr County']
+const cities = ['Edinburg','McAllen','Mission','Pharr','Weslaco','Harlingen','Brownsville','San Juan','Alamo','Donna','Rio Grande City','Laredo']
 
 export default function Coverage() {
   return (
-    <section className="coverage" id="coverage">
+    <section className="coverage section" id="coverage">
       <div className="container">
-        <div className="coverage-grid">
+        <div className="coverage-inner">
           <div className="coverage-text">
-            <span className="section-label">Service Area</span>
-            <h2 className="section-title">
-              Full Rio Grande<br />
-              <em>Valley Coverage</em>
-            </h2>
-            <p className="section-sub" style={{ marginTop: 16 }}>
-              We serve communities across South Texas — if you're in the Rio Grande Valley,
-              Life Star EMS is here for you.
-            </p>
-
-            <div className="county-tags">
-              {counties.map(c => (
-                <div className="county-tag" key={c}>
-                  <FaMapMarkerAlt className="county-icon" />
-                  {c}
-                </div>
-              ))}
+            <span className="label">Service Area</span>
+            <h2 className="title">Covering the<br /><em>Rio Grande Valley</em></h2>
+            <p className="subtitle">Available 24/7 across South Texas. Long-distance transport available statewide to Houston, San Antonio, Dallas, Corpus Christi, Austin, and beyond.</p>
+            <div className="city-pills">
+              {cities.map(c => <span key={c} className="city-pill">{c}</span>)}
+              <span className="city-pill city-pill--more">+ Surrounding Areas</span>
+            </div>
+            <div className="coverage-cta">
+              <a href="tel:9566606543" className="btn btn-blue">Call Dispatch — (956) 660-6543</a>
             </div>
           </div>
-
-          <div className="cities-col">
-            <p className="cities-heading">Communities We Serve</p>
-            <div className="cities-grid">
-              {cities.map(city => (
-                <span className="city-pill" key={city}>{city}</span>
-              ))}
-              <span className="city-pill city-pill--more">+ More</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="map-wrapper">
-          <iframe
-            title="Life Star EMS Service Area"
-            src="https://maps.google.com/maps?q=2526+W+Freddy+Gonzalez+Edinburg+TX&output=embed"
-            loading="lazy"
-            allowFullScreen
-          />
-          <div className="map-overlay">
-            <span>📍 2526 W. Freddy Gonzalez, Edinburg, TX 78539</span>
+          <div className="coverage-map">
+            <iframe
+              src="https://maps.google.com/maps?q=Edinburg+Texas+78539&output=embed"
+              title="Life Star EMS Service Area"
+              loading="lazy" allowFullScreen
+            />
+            <div className="map-label">📍 2526 W. Freddy Gonzalez, Edinburg TX 78539</div>
           </div>
         </div>
       </div>
