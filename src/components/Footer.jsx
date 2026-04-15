@@ -46,7 +46,7 @@ export default function Footer() {
               <li><a href="mailto:lifestarems.rgv@gmail.com">lifestarems.rgv@gmail.com</a></li>
               <li>2526 W. Freddy Gonzalez</li>
               <li>Edinburg, TX 78539</li>
-              <li style={{color:'var(--blue-light)'}}>Dispatch Available 24/7</li>
+              <li style={{color:'var(--blue-light)'}}>Dispatch Flexible Scheduling</li>
             </ul>
           </div>
         </div>

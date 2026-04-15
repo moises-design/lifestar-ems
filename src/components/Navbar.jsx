@@ -19,17 +19,12 @@ export default function Navbar() {
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', fn)
-    fn()
+    window.addEventListener('scroll', fn); fn()
     return () => window.removeEventListener('scroll', fn)
   }, [])
-
   useEffect(() => { setOpen(false); setDropdown(false) }, [location])
-
   useEffect(() => {
-    const fn = e => {
-      if (dropRef.current && !dropRef.current.contains(e.target)) setDropdown(false)
-    }
+    const fn = e => { if (dropRef.current && !dropRef.current.contains(e.target)) setDropdown(false) }
     document.addEventListener('mousedown', fn)
     return () => document.removeEventListener('mousedown', fn)
   }, [])
@@ -52,14 +47,11 @@ export default function Navbar() {
               {dropdown && (
                 <div className="nav-dropdown">
                   {serviceLinks.map(s => (
-                    <Link key={s.href} to={s.href} className="dd-link" onClick={() => setDropdown(false)}>
-                      {s.label}
-                    </Link>
+                    <Link key={s.href} to={s.href} className="dd-link" onClick={() => setDropdown(false)}>{s.label}</Link>
                   ))}
                 </div>
               )}
             </li>
-            <li><Link to="/services/pediatrics" className="nav-link">Pediatric</Link></li>
             <li><Link to="/coverage" className="nav-link">Service Area</Link></li>
             <li><Link to="/request" className="nav-link">Request Transport</Link></li>
             <li><Link to="/contact" className="nav-link">Contact</Link></li>
@@ -79,12 +71,12 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile sticky call button */}
-      <div className="mobile-sticky-call">
-        <a href="tel:9566606543" className="sticky-call-btn">
-          <FaPhone /> Call Dispatch — (956) 660-6543
+      {/* Mobile sticky bottom bar */}
+      <div className="mobile-sticky">
+        <a href="tel:9566606543" className="ms-call">
+          <FaPhone /> (956) 660-6543
         </a>
-        <Link to="/request" className="sticky-request-btn">
+        <Link to="/request" className="ms-request">
           Request Transport
         </Link>
       </div>

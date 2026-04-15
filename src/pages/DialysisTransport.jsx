@@ -69,7 +69,7 @@ export default function DialysisTransport() {
               <p>We'll verify your insurance and set up your transport schedule at no cost to you.</p>
               <Link to="/request" className="btn btn-blue"><FaWheelchair /> Request Transport</Link>
               <a href="tel:9566606543" className="btn btn-outline"><FaPhone /> Call Dispatch</a>
-              <div className="sp-addr">📍 2526 W. Freddy Gonzalez<br />Edinburg, TX 78539<br />Available 24 / 7</div>
+              <div className="sp-addr">📍 2526 W. Freddy Gonzalez<br />Edinburg, TX 78539<br />Available Scheduled</div>
             </div>
           </div>
         </div>

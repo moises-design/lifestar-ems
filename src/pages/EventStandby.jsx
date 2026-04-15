@@ -62,7 +62,7 @@ export default function EventStandby() {
           </div>
         </div>
         <div className="event-scoreboard">
-          {[['24/7','Available'],['EMT','Certified'],['RGV','Coverage']].map(([v,l],i)=>(
+          {[['EMT','Certified'],['BLS/ALS','Licensed'],['RGV','Coverage']].map(([v,l],i)=>(
             <div key={i} className="sb-item"><span className="sb-val">{v}</span><span className="sb-lbl">{l}</span></div>
           ))}
         </div>
@@ -90,7 +90,7 @@ export default function EventStandby() {
         <div className="container">
           <span className="label">Trusted By</span>
           <h2 className="title">Community<br /><em>Partners</em></h2>
-          <p className="subtitle">Proud to have provided medical standby services for these organizations:</p>
+          <p className="subtitle">Proud to support and serve these organizations across the Rio Grande Valley.</p>
           <div className="clients-grid">
             {clients.map((c,i)=>(
               <div key={i} className="client-card">
@@ -110,7 +110,7 @@ export default function EventStandby() {
               <span className="label">What We Provide</span>
               <h2 className="title">Full On-Site<br /><em>Medical Coverage</em></h2>
               <ul className="sp-list">
-                {['Certified EMT and Paramedic crews on standby','Fully equipped ambulance on site','Rapid response to any medical situation','AED, oxygen, and emergency equipment','Bilingual staff — English & Spanish','Coordination with local EMS and hospitals','Post-event incident reports available','Flexible packages for any event size'].map((item,i)=>(<li key={i}><span className="sp-list-dot"/>{item}</li>))}
+                {['Certified EMT and Paramedic crews on standby','Fully equipped ambulance on site','Fast on-site medical response','AED, oxygen, and medical equipment','Bilingual staff — English & Spanish','Coordination with local EMS and hospitals','Post-event incident reports available','Flexible packages for any event size'].map((item,i)=>(<li key={i}><span className="sp-list-dot"/>{item}</li>))}
               </ul>
             </div>
             <div className="sp-cta-box event-form-box">

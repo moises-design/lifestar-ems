@@ -31,7 +31,7 @@ export default function Contact() {
                 { icon: <FaPhone />, label: 'Dispatch Line', val: '(956) 660-6543', href: 'tel:9566606543' },
                 { icon: <FaEnvelope />, label: 'Email', val: 'lifestarems.rgv@gmail.com', href: 'mailto:lifestarems.rgv@gmail.com' },
                 { icon: <FaMapMarkerAlt />, label: 'Address', val: '2526 W. Freddy Gonzalez, Edinburg TX 78539' },
-                { icon: <FaClock />, label: 'Dispatch Hours', val: '24 Hours / 7 Days a Week' },
+                { icon: <FaClock />, label: 'Office Hours', val: 'Mon–Sat · Flexible Scheduling' },
               ].map((item, i) => (
                 <div key={i} className="contact-detail">
                   <div className="cd-icon">{item.icon}</div>

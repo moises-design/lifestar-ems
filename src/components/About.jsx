@@ -38,8 +38,8 @@ export default function About() {
 
           <div className="about-cards">
             <div className="about-stat-card">
-              <span className="asc-num">24/7</span>
-              <span className="asc-label">Dispatch Available</span>
+              <span className="asc-num">On-Time</span>
+              <span className="asc-label">Every Appointment</span>
             </div>
             <div className="about-stat-card">
               <span className="asc-num">RGV</span>

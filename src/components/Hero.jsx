@@ -3,7 +3,7 @@ import { FaPhone, FaFileAlt } from 'react-icons/fa'
 import './Hero.css'
 
 const stats = [
-  { val: '24/7', label: 'Dispatch Available' },
+  { val: 'On-Time', label: 'Reliable Service' },
   { val: 'BLS/ALS', label: 'Certified Crews' },
   { val: 'RGV', label: 'Full Coverage' },
   { val: '★ 5.0', label: 'Google Rated' },
@@ -32,7 +32,7 @@ export default function Hero() {
 
         <div className="hero-eyebrow">
           <span className="hero-dot" />
-          Serving the Rio Grande Valley — 24 / 7 / 365
+          Serving the Rio Grande Valley — Reliable, Scheduled Transport
         </div>
 
         <h1 className="hero-h1">

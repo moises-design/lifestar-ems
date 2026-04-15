@@ -11,7 +11,7 @@ export default function Coverage() {
         <div className="cov-header">
           <span className="label">Service Area</span>
           <h2 className="title">Where We Serve</h2>
-          <p className="subtitle">Available 24/7 across the Rio Grande Valley and all of Texas for long-distance pediatric transport.</p>
+          <p className="subtitle">Flexible Scheduling across the Rio Grande Valley and all of Texas for long-distance pediatric transport.</p>
         </div>
 
         <div className="cov-grid">

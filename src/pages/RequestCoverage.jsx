@@ -79,7 +79,7 @@ export default function RequestCoverage() {
               <div className="req-info-box">
                 <h3>Contact Dispatch Directly</h3>
                 <a href="tel:9566606543" className="btn btn-blue req-call"><FaPhone /> (956) 660-6543</a>
-                <p>Available 24 / 7 for emergencies and scheduling</p>
+                <p>Available Scheduled for emergencies and scheduling</p>
               </div>
 
               <div className="req-info-box">

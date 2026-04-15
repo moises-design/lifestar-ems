@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 80">
-  <rect width="160" height="80" fill="#003082" rx="6"/>
-  <rect x="0" y="54" width="160" height="26" fill="#FF8200" rx="0 0 6 6"/>
-  <text x="80" y="40" font-family="Arial Black" font-size="30" fill="#FF8200" text-anchor="middle" font-weight="900">UTRGV</text>
-  <text x="80" y="70" font-family="Arial" font-size="8.5" fill="white" text-anchor="middle" font-weight="700">THE UNIVERSITY OF TEXAS RGV</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100">
+  <rect width="200" height="100" fill="#003082" rx="6"/>
+  <rect x="0" y="68" width="200" height="32" fill="#FF8200" rx="0 0 6 6"/>
+  <text x="100" y="54" font-family="Arial Black,sans-serif" font-size="36" fill="#FF8200" text-anchor="middle" font-weight="900">UTRGV</text>
+  <text x="100" y="86" font-family="Arial,sans-serif" font-size="9" fill="white" text-anchor="middle" font-weight="700">THE UNIVERSITY OF TEXAS RIO GRANDE VALLEY</text>
 </svg>
