@@ -8,6 +8,18 @@ export default function Hero() {
         <div className="hero-photo" />
         <div className="hero-gradient" />
         <div className="hero-grid" />
+        <div className="hero-glow" />
+      </div>
+
+      {/* Floating particles */}
+      <div className="hero-particles">
+        {[...Array(12)].map((_, i) => (
+          <div key={i} className="hero-particle" style={{
+            left: `${5 + i * 8}%`,
+            animationDelay: `${i * 0.4}s`,
+            animationDuration: `${3 + (i % 3)}s`,
+          }} />
+        ))}
       </div>
 
       <div className="hero-inner container">
@@ -16,8 +28,9 @@ export default function Hero() {
           Serving the Rio Grande Valley — 24 / 7 / 365
         </div>
 
+        {/* Big centered logo */}
         <div className="hero-logo-big">
-          <img src="/images/logo-transparent.png" alt="Life Star EMS" />
+          <img src="/images/logo-icon.png" alt="Life Star EMS" />
         </div>
 
         <h1 className="hero-title">
@@ -33,13 +46,13 @@ export default function Hero() {
         </p>
 
         <div className="hero-actions">
-          <a href="tel:911" className="btn-primary">
+          <a href="tel:911" className="btn-emergency">
             🚨 Dial 911 — Emergency
           </a>
-          <a href="tel:9566606543" className="btn-outline">
+          <a href="tel:9566606543" className="btn-primary">
             <FaPhone /> (956) 660-6543
           </a>
-          <a href="https://www.facebook.com/LifeStarEMSRGV/" target="_blank" rel="noreferrer" className="btn-outline" style={{ color: '#7EB3F5', borderColor: 'rgba(126,179,245,0.3)' }}>
+          <a href="https://www.facebook.com/LifeStarEMSRGV/" target="_blank" rel="noreferrer" className="btn-outline">
             <FaFacebook /> Follow Us
           </a>
         </div>

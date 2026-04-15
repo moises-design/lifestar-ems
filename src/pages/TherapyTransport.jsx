@@ -13,12 +13,14 @@ const therapyTypes = [
 
 const insurance = ['Medicare', 'Medicaid', 'BlueCross BlueShield', 'Molina Healthcare', 'Ambetter', 'United Healthcare', 'Cigna', 'Humana', 'Wellcare / Allwell', 'Aetna', 'Private Insurance']
 
-const stars = Array.from({ length: 22 }, (_, i) => ({
+// Tiny star field
+const starDots = Array.from({ length: 60 }, (_, i) => ({
   id: i,
   left: `${Math.random() * 100}%`,
   top: `${Math.random() * 100}%`,
-  delay: `${Math.random() * 3}s`,
-  size: `${Math.random() * 10 + 8}px`,
+  size: `${Math.random() * 2 + 1}px`,
+  delay: `${Math.random() * 4}s`,
+  duration: `${2 + Math.random() * 3}s`,
 }))
 
 export default function TherapyTransport() {
@@ -26,12 +28,27 @@ export default function TherapyTransport() {
     <div className="service-page therapy-page">
       <section className="sp-hero therapy-hero">
         <div className="sp-hero-bg" />
-        <div className="therapy-stars">
-          {stars.map(s => (
-            <div key={s.id} className="therapy-star" style={{ left: s.left, top: s.top, animationDelay: s.delay, fontSize: s.size }}>✦</div>
+        <div className="therapy-nebula" />
+        {/* Star field */}
+        <div className="therapy-starfield">
+          {starDots.map(s => (
+            <div key={s.id} className="therapy-star-dot" style={{
+              left: s.left, top: s.top,
+              width: s.size, height: s.size,
+              background: 'white',
+              animationDelay: s.delay,
+              animationDuration: s.duration,
+            }} />
           ))}
         </div>
+        {/* Orbiting element */}
+        <div className="therapy-orb">
+          <div className="therapy-orb-ring">
+            <div className="therapy-orb-dot" />
+          </div>
+        </div>
         <div className="therapy-float">🩺</div>
+
         <div className="container sp-hero-inner">
           <div className="sp-eyebrow"><span className="sp-dot" /> Specialty Medical Transportation</div>
           <h1 className="sp-title">
@@ -39,7 +56,7 @@ export default function TherapyTransport() {
             <span className="sp-accent">Specialty</span><br />
             Transportation
           </h1>
-          <p className="sp-desc">Whether it's weekly physical therapy, cancer treatments, or wound care — Life Star EMS provides reliable, on-time transportation so you never miss a critical appointment. Professional, compassionate staff every ride.</p>
+          <p className="sp-desc">Whether it's weekly physical therapy, cancer treatments, or wound care — Life Star EMS provides reliable, on-time transportation. Professional, compassionate staff every ride — so you never miss a critical appointment.</p>
           <div className="sp-actions">
             <a href="tel:9566606543" className="sp-btn-primary"><FaPhone /> Call (956) 660-6543</a>
             <div className="sp-free-badge">⭐ FREE Evaluation — No Obligation</div>

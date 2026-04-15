@@ -1,47 +1,101 @@
-/* Space/stars theme matching Pediatrics */
+/* 🌠 LONG DISTANCE — GALAXY HIGHWAY: Moving stars, warp speed, journey through space */
 .ld-hero {
-  background: linear-gradient(135deg, #060D14 0%, #091828 50%, #060D14 100%);
+  background: linear-gradient(160deg, #030608 0%, #050D18 40%, #060F1E 70%, #030608 100%);
   overflow: hidden;
+  min-height: 85vh;
 }
 
-/* Floating stars like pediatrics */
-.ld-stars { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
-.ld-star {
+/* Warp speed star trails */
+.ld-warp { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+.ld-trail {
   position: absolute;
-  animation: twinkle 2s ease infinite alternate;
-  opacity: 0.6;
-  font-size: 14px;
-  color: var(--blue-light);
+  background: linear-gradient(90deg, transparent, rgba(11,158,217,0.6), transparent);
+  height: 1px;
+  animation: warpTrail 3s linear infinite;
+  transform-origin: left center;
 }
-@keyframes twinkle { from { opacity: 0.2; transform: scale(0.7); } to { opacity: 0.9; transform: scale(1.3); } }
+@keyframes warpTrail {
+  0%   { opacity: 0; transform: scaleX(0) translateX(0); width: 0; }
+  20%  { opacity: 1; }
+  100% { opacity: 0; width: 300px; transform: scaleX(1); }
+}
 
-/* Rocket on the right */
-.ld-rocket { position: absolute; right: 6%; bottom: 8%; font-size: 5rem; z-index: 1; animation: rocketFloat 3s ease-in-out infinite; }
-@keyframes rocketFloat { 0%, 100% { transform: translateY(0) rotate(45deg); } 50% { transform: translateY(-20px) rotate(45deg); } }
+/* Milky way background */
+.ld-galaxy {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 120% 60% at 50% 50%, rgba(11,158,217,0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 80% at 80% 30%, rgba(100,150,255,0.03) 0%, transparent 50%);
+}
 
-.ld-hero .sp-accent { color: var(--blue-light) !important; text-shadow: 0 0 60px rgba(11,158,217,0.6) !important; }
-.ld-hero .sp-dot { background: var(--blue-light); }
+/* Star dots — moving from right to left */
+.ld-stars-move { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.ld-star-move {
+  position: absolute; border-radius: 50%;
+  background: white; opacity: 0;
+  animation: starMove linear infinite;
+}
+@keyframes starMove {
+  0%   { opacity: 0; transform: translateX(0); }
+  10%  { opacity: 0.8; }
+  90%  { opacity: 0.6; }
+  100% { opacity: 0; transform: translateX(-150vw); }
+}
+
+/* Earth/globe icon on the right */
+.ld-globe {
+  position: absolute; right: 6%; top: 20%;
+  font-size: 7rem; z-index: 2;
+  animation: globeSpin 20s linear infinite;
+  opacity: 0.25;
+  filter: blur(0.5px);
+}
+@keyframes globeSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* Distance arrow trail */
+.ld-path {
+  position: absolute; bottom: 25%; left: 0; right: 0; z-index: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(11,158,217,0.3) 30%, rgba(11,158,217,0.6) 60%, rgba(11,158,217,0.1) 100%);
+  animation: pathPulse 3s ease-in-out infinite;
+}
+@keyframes pathPulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.8; } }
+
+.ld-hero .sp-accent { color: var(--blue-light) !important; text-shadow: 0 0 60px rgba(11,158,217,0.6), 0 0 100px rgba(11,158,217,0.2) !important; }
 
 /* Cities */
-.ld-cities { padding: 80px 0; background: var(--navy2); }
-.ld-cities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 40px 0 20px; }
-.ld-city-card { background: var(--card); border: 1px solid var(--border-blue); padding: 24px 20px; display: flex; flex-direction: column; gap: 6px; transition: all 0.2s; }
-.ld-city-card:hover { border-color: var(--blue); transform: translateY(-3px); background: var(--navy3); }
+.ld-cities { padding: 80px 0; background: #050A14; }
+.ld-cities-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 40px 0 20px; }
+.ld-city-card {
+  background: rgba(11,158,217,0.04);
+  border: 1px solid rgba(11,158,217,0.15);
+  padding: 22px 18px; display: flex; flex-direction: column; gap: 6px;
+  position: relative; overflow: hidden;
+  transition: all 0.25s;
+}
+.ld-city-card::after {
+  content: '';
+  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--blue), transparent);
+  transform: scaleX(0); transition: transform 0.3s;
+}
+.ld-city-card:hover::after { transform: scaleX(1); }
+.ld-city-card:hover { background: rgba(11,158,217,0.1); border-color: rgba(11,158,217,0.35); transform: translateY(-3px); }
 .ld-city-icon { font-size: 1.8rem; }
-.ld-city-name { font-family: var(--font-display); font-weight: 700; font-size: 1.1rem; text-transform: uppercase; }
-.ld-city-miles { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.1em; }
-.ld-anywhere { display: flex; align-items: center; gap: 10px; background: rgba(11,158,217,0.08); border: 1px solid var(--border-blue); padding: 14px 24px; font-family: var(--font-display); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue-light); width: fit-content; }
+.ld-city-name { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; text-transform: uppercase; }
+.ld-city-miles { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em; }
+.ld-anywhere { display: flex; align-items: center; gap: 10px; background: rgba(11,158,217,0.06); border: 1px solid rgba(11,158,217,0.2); padding: 14px 22px; font-family: var(--font-display); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue-light); width: fit-content; }
 
-/* Quote form */
+/* Form */
 .ld-quote-section { padding: 90px 0; background: var(--navy); }
 .ld-quote-grid { display: grid; grid-template-columns: 1fr 480px; gap: 64px; align-items: start; }
-.ld-form-box { background: var(--card); border: 1px solid var(--border-blue); padding: 40px 36px; }
+.ld-form-box { background: rgba(11,158,217,0.04); border: 1px solid rgba(11,158,217,0.2); padding: 40px 36px; }
 .ld-form-title { font-family: var(--font-display); font-weight: 900; font-size: 1.3rem; text-transform: uppercase; margin-bottom: 24px; }
 .ld-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .ld-form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
 .ld-form-group label { font-family: var(--font-display); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
-.ld-form-group input, .ld-form-group textarea { background: var(--navy2); border: 1px solid var(--border); color: var(--white); font-family: var(--font-body); font-size: 0.9rem; padding: 11px 14px; outline: none; transition: border-color 0.2s; resize: none; }
-.ld-form-group input:focus, .ld-form-group textarea:focus { border-color: var(--blue); }
+.ld-form-group input, .ld-form-group textarea { background: rgba(11,158,217,0.04); border: 1px solid rgba(11,158,217,0.15); color: var(--white); font-family: var(--font-body); font-size: 0.9rem; padding: 11px 14px; outline: none; transition: border-color 0.2s; resize: none; }
+.ld-form-group input:focus, .ld-form-group textarea:focus { border-color: var(--blue); background: rgba(11,158,217,0.08); }
 .ld-needs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 6px; }
 .ld-need-check { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.85rem; color: var(--light-text); }
 .ld-need-check input { accent-color: var(--blue); width: 16px; height: 16px; }
@@ -54,5 +108,5 @@
 .ld-success p { color: var(--muted); max-width: 260px; line-height: 1.6; font-size: 0.9rem; }
 .ld-error { color: #F87171; font-size: 0.82rem; margin-bottom: 8px; padding: 8px 12px; background: rgba(248,113,113,0.1); border: 1px solid rgba(248,113,113,0.3); }
 
-@media (max-width: 960px) { .ld-quote-grid { grid-template-columns: 1fr; } .ld-cities-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 500px) { .ld-form-row { grid-template-columns: 1fr; } .ld-form-box { padding: 24px 20px; } .ld-rocket { font-size: 3rem; } }
+@media (max-width: 960px) { .ld-quote-grid { grid-template-columns: 1fr; } .ld-cities-grid { grid-template-columns: repeat(2, 1fr); } .ld-globe { opacity: 0.1; font-size: 4rem; } }
+@media (max-width: 500px) { .ld-form-row { grid-template-columns: 1fr; } .ld-form-box { padding: 24px 20px; } }

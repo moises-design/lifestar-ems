@@ -12,16 +12,27 @@ const cities = [
   { name: 'Austin', miles: '~320 mi', icon: '🎸' },
   { name: 'Laredo', miles: '~155 mi', icon: '🌵' },
 ]
-
 const needs = ['Wheelchair', 'Stretcher', 'Oxygen', 'IV Access', 'Special Equipment', 'Bariatric']
 
-// Generate random star positions
-const stars = Array.from({ length: 25 }, (_, i) => ({
+// Warp speed trails
+const trails = Array.from({ length: 20 }, (_, i) => ({
   id: i,
-  left: `${Math.random() * 100}%`,
   top: `${Math.random() * 100}%`,
   delay: `${Math.random() * 3}s`,
-  size: `${Math.random() * 10 + 8}px`,
+  duration: `${1.5 + Math.random() * 2}s`,
+  left: `${Math.random() * 60}%`,
+  width: `${80 + Math.random() * 200}px`,
+  opacity: 0.3 + Math.random() * 0.4,
+}))
+
+// Moving stars
+const moveStars = Array.from({ length: 50 }, (_, i) => ({
+  id: i,
+  top: `${Math.random() * 100}%`,
+  right: `${Math.random() * 100}%`,
+  size: `${Math.random() * 2 + 1}px`,
+  delay: `${Math.random() * 4}s`,
+  duration: `${2 + Math.random() * 3}s`,
 }))
 
 export default function LongDistanceTransport() {
@@ -29,7 +40,6 @@ export default function LongDistanceTransport() {
   const [status, setStatus] = useState('idle')
 
   const handleCheck = (need) => setForm(f => ({ ...f, patient_needs: f.patient_needs.includes(need) ? f.patient_needs.filter(n => n !== need) : [...f.patient_needs, need] }))
-
   const submit = async e => {
     e.preventDefault(); setStatus('sending')
     try {
@@ -43,13 +53,21 @@ export default function LongDistanceTransport() {
     <div className="service-page ld-page">
       <section className="sp-hero ld-hero">
         <div className="sp-hero-bg" />
-        {/* Stars like pediatrics */}
-        <div className="ld-stars">
-          {stars.map(s => (
-            <div key={s.id} className="ld-star" style={{ left: s.left, top: s.top, animationDelay: s.delay, fontSize: s.size }}>✦</div>
+        <div className="ld-galaxy" />
+        {/* Warp trails */}
+        <div className="ld-warp">
+          {trails.map(t => (
+            <div key={t.id} className="ld-trail" style={{ top: t.top, left: t.left, animationDelay: t.delay, animationDuration: t.duration, width: t.width, opacity: t.opacity }} />
           ))}
         </div>
-        <div className="ld-rocket">🚀</div>
+        {/* Moving stars */}
+        <div className="ld-stars-move">
+          {moveStars.map(s => (
+            <div key={s.id} className="ld-star-move" style={{ top: s.top, right: s.right, width: s.size, height: s.size, animationDelay: s.delay, animationDuration: s.duration }} />
+          ))}
+        </div>
+        <div className="ld-path" />
+        <div className="ld-globe">🌍</div>
         <div className="container sp-hero-inner">
           <div className="sp-eyebrow"><span className="sp-dot" /> Statewide Medical Transport</div>
           <h1 className="sp-title">
@@ -112,9 +130,7 @@ export default function LongDistanceTransport() {
                   <div className="ld-form-group"><label>Travel Date</label><input type="date" value={form.travel_date} onChange={e => setForm(f => ({...f, travel_date: e.target.value}))} /></div>
                   <div className="ld-form-group">
                     <label>Patient Needs</label>
-                    <div className="ld-needs-grid">
-                      {needs.map(n => (<label key={n} className="ld-need-check"><input type="checkbox" checked={form.patient_needs.includes(n)} onChange={() => handleCheck(n)} /><span>{n}</span></label>))}
-                    </div>
+                    <div className="ld-needs-grid">{needs.map(n => (<label key={n} className="ld-need-check"><input type="checkbox" checked={form.patient_needs.includes(n)} onChange={() => handleCheck(n)} /><span>{n}</span></label>))}</div>
                   </div>
                   <div className="ld-form-group"><label>Additional Notes</label><textarea rows={3} placeholder="Any special requirements..." value={form.notes} onChange={e => setForm(f => ({...f, notes: e.target.value}))} /></div>
                   {status === 'error' && <p className="ld-error">Something went wrong. Please call us at (956) 660-6543.</p>}
@@ -125,8 +141,7 @@ export default function LongDistanceTransport() {
           </div>
         </div>
       </section>
-
-      <section className="sp-cta"><div className="container"><h2>Need Transport Today?</h2><p>Call us directly for immediate assistance.</p><a href="tel:9566606543" className="sp-btn-primary large"><FaPhone /> Call (956) 660-6543 Now</a></div></section>
+      <section className="sp-cta"><div className="container"><h2>Need Transport Today?</h2><p>Call us directly for immediate assistance with long distance medical transport.</p><a href="tel:9566606543" className="sp-btn-primary large"><FaPhone /> Call (956) 660-6543 Now</a></div></section>
     </div>
   )
 }

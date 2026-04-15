@@ -8,7 +8,7 @@ const serviceLinks = [
   { label: '🧑‍⚕️ Therapy Transport', href: '/services/therapy' },
   { label: '👶 Pediatrics Transport', href: '/services/pediatrics' },
   { label: '🚑 Long Distance Transport', href: '/services/long-distance' },
-  { label: '🎪 Event Standby', href: '/services/event-standby' },
+  { label: '🏆 Event Standby', href: '/services/event-standby' },
 ]
 
 export default function Navbar() {
@@ -37,12 +37,11 @@ export default function Navbar() {
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="nav-inner container">
+
+        {/* LOGO — just icon + LIFE STAR EMS, no subtitle */}
         <Link to="/" className="nav-logo">
-          <img src="/images/logo-transparent.png" alt="Life Star EMS" className="nav-logo-img" />
-          <span className="nav-logo-text">
-            LIFE STAR <span className="purple">EMS</span>
-            <span className="nav-logo-sub">Emergency Medical Services</span>
-          </span>
+          <img src="/images/logo-icon.png" alt="Life Star EMS" className="nav-logo-img" />
+          <span className="nav-brand">LIFE STAR <span className="nav-brand-ems">EMS</span></span>
         </Link>
 
         <ul className={`nav-links ${open ? 'open' : ''}`}>
