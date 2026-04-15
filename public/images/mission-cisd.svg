@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 80">
+  <rect width="160" height="80" fill="#8B0000" rx="6"/>
+  <rect x="0" y="58" width="160" height="22" fill="#FFD700" rx="0 0 6 6"/>
+  <text x="80" y="32" font-family="Arial Black" font-size="15" fill="white" text-anchor="middle" font-weight="900">MISSION</text>
+  <text x="80" y="50" font-family="Arial Black" font-size="15" fill="white" text-anchor="middle" font-weight="900">CISD</text>
+  <text x="80" y="72" font-family="Arial" font-size="8" fill="#8B0000" text-anchor="middle" font-weight="700">CONSOLIDATED ISD</text>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 80">
+  <rect width="160" height="80" fill="#1a1a6e" rx="6"/>
+  <rect x="0" y="58" width="160" height="22" fill="#FFD700" rx="0 0 6 6"/>
+  <text x="80" y="36" font-family="Arial Black" font-size="28" fill="white" text-anchor="middle" font-weight="900">PSJA</text>
+  <text x="80" y="72" font-family="Arial" font-size="8" fill="#1a1a6e" text-anchor="middle" font-weight="700">PHARR-SAN JUAN-ALAMO ISD</text>
+</svg>

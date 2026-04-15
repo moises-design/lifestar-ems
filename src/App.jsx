@@ -10,7 +10,7 @@ import Footer from './components/Footer'
 import Hero from './components/Hero'
 import Services from './components/Services'
 import About from './components/About'
-import Coverage from './components/Coverage'
+import CoverageMap from './components/CoverageMap'
 import Contact from './components/Contact'
 
 // Pages
@@ -28,7 +28,7 @@ function HomePage() {
       <Hero />
       <Services />
       <About />
-      <Coverage />
+      <CoverageMap />
       <Contact />
     </>
   )

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 80">
+  <rect width="160" height="80" fill="#005030" rx="6"/>
+  <rect x="0" y="58" width="160" height="22" fill="#C0A020" rx="0 0 6 6"/>
+  <text x="80" y="32" font-family="Arial Black" font-size="13" fill="white" text-anchor="middle" font-weight="900">SHARYLAND</text>
+  <text x="80" y="50" font-family="Arial Black" font-size="15" fill="#C0A020" text-anchor="middle" font-weight="900">ISD</text>
+  <text x="80" y="72" font-family="Arial" font-size="8" fill="#005030" text-anchor="middle" font-weight="700">INDEPENDENT SCHOOL DIST.</text>
+</svg>
