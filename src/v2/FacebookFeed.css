@@ -1,0 +1,29 @@
+.v2fb {
+  max-width: 520px;
+}
+
+.v2fb-facade {
+  display: grid;
+  gap: var(--v2-s-4);
+  padding: var(--v2-s-6);
+}
+
+.v2fb-name {
+  font-family: var(--v2-font-serif);
+  font-size: var(--v2-fs-h4);
+  font-weight: 600;
+}
+
+.v2fb-note { color: var(--v2-ink-2); }
+
+.v2fb-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--v2-s-3);
+}
+
+.v2fb-frame {
+  display: block;
+  width: 100%;
+  height: 640px;
+}

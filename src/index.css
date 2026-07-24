@@ -25,6 +25,25 @@
 
 html { scroll-behavior: smooth; }
 
+/* Global skip link (V1 and V2 pages) */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 999;
+  background: #FFFFFF;
+  color: #0E1B26;
+  font-weight: 600;
+  padding: 12px 20px;
+  border-radius: 8px;
+}
+.skip-link:focus {
+  left: 12px;
+  top: 12px;
+  outline: 2px solid #0B9ED9;
+  outline-offset: 2px;
+}
+
 body {
   font-family: var(--font-body);
   background: var(--navy);

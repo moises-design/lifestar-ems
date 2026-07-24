@@ -1,18 +1,18 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import './App.css'
 
 import ScrollToTop from './components/ScrollToTop'
 import Seo from './components/Seo'
+
+// V1 chrome (service pages keep it until Mission 7)
 import Navbar from './components/Navbar'
 import FloatingNav from './components/FloatingNav'
 import Footer from './components/Footer'
 
-// Homepage sections
-import Hero from './components/Hero'
-import Services from './components/Services'
-import About from './components/About'
-import CoverageMap from './components/CoverageMap'
-import Contact from './components/Contact'
+// V2 chrome + homepage shell
+import HeaderV2 from './v2/Header'
+import FooterV2 from './v2/Footer'
+import HomeV2 from './v2/HomeV2'
 
 // Pages
 import DialysisTransport from './pages/DialysisTransport'
@@ -24,28 +24,21 @@ import CoveragePage from './pages/CoveragePage'
 import ContactPage from './pages/ContactPage'
 import NotFound from './pages/NotFound'
 
-function HomePage() {
-  return (
-    <>
-      <Hero />
-      <Services />
-      <About />
-      <CoverageMap />
-      <Contact />
-    </>
-  )
-}
-
 function App() {
+  const { pathname } = useLocation()
+  // The homepage runs on the V2 shell; every other route keeps the V1
+  // chrome untouched until Mission 7 migrates them.
+  const isV2Route = pathname === '/'
+
   return (
     <>
       <ScrollToTop />
       <Seo />
-      <Navbar />
-      <FloatingNav />
-      <main>
+      <a href="#main" className="skip-link">Skip to main content</a>
+      {isV2Route ? <HeaderV2 /> : <><Navbar /><FloatingNav /></>}
+      <main id="main">
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomeV2 />} />
           <Route path="/services/dialysis" element={<DialysisTransport />} />
           <Route path="/services/therapy" element={<TherapyTransport />} />
           <Route path="/services/pediatrics" element={<PediatricsTransport />} />
@@ -56,7 +49,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
-      <Footer />
+      {isV2Route ? <FooterV2 /> : <Footer />}
     </>
   )
 }
