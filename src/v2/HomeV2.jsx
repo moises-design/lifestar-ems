@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { content } from './content'
-import FacebookFeed from './FacebookFeed'
+import CommunityShowcase from './CommunityShowcase'
 import './HomeV2.css'
 
 const { brand, nav, home } = content
@@ -144,17 +144,8 @@ export default function HomeV2() {
       {/* 10 · Reviews: hidden until real, verified reviews exist */}
       <section id="reviews" hidden aria-hidden="true" />
 
-      {/* 11 · Community: Facebook feed (click-to-load) */}
-      <section className="v2-section v2-hairline-top" id={home.facebook.id} aria-labelledby="fb-h">
-        <div className="v2-container v2home-split">
-          <div>
-            <span className="v2-label">{home.facebook.label}</span>
-            <h2 id="fb-h" className="v2home-split-h">{home.facebook.heading}</h2>
-            <p className="v2-lead">{home.facebook.line}</p>
-          </div>
-          <FacebookFeed />
-        </div>
-      </section>
+      {/* 11 · Life Star in the Community: Facebook media showcase */}
+      <CommunityShowcase />
 
       {/* 12 · FAQ */}
       <section className="v2-section v2-hairline-top" id={home.faq.id} aria-labelledby="faq-h">

@@ -139,14 +139,17 @@ export const en = {
     facebook: {
       id: 'community',
       label: '08 · Community',
-      heading: 'Follow Life Star EMS',
+      heading: 'Life Star in the Community',
       line:
-        'See our latest updates, events, and community moments on our Facebook page.',
-      loadLabel: 'Show our Facebook feed',
-      openLabel: 'Open our Facebook page',
-      iframeTitle: 'Life Star EMS Facebook page feed',
-      privacyNote:
-        'The feed loads from Facebook when you choose to view it.',
+        'See recent transports, event standby coverage, crew activity, and community involvement from Life Star EMS.',
+      followLabel: 'Follow Life Star EMS',
+      openPostLabel: 'View on Facebook',
+      liveRegionLabel: 'Recent posts from the Life Star EMS Facebook page',
+      liveCaption: 'Live from our Facebook page',
+      playLabel: 'Play video',
+      photoBadge: 'Photo',
+      videoBadge: 'Video',
+      featuredBadge: 'Featured',
     },
 
     faq: {
