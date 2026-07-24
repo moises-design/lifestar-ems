@@ -142,8 +142,19 @@ Sitemap: https://www.lifestaremsrgv.com/sitemap.xml
 
 ## 9. Preview deployment
 
-See final mission report (URL recorded after push). Production (`master`) was
-not modified; no `--prod` deploy was run; DNS and Vercel settings untouched.
+Pushing `claude/lifestar-seo-foundation` triggered a Git **Preview**
+deployment on the `lifestar-ems` Vercel project (confirmed via the Vercel API:
+`target: null`, state READY, commit 29e22e5):
+
+- Stable branch URL: https://lifestar-ems-git-claude-lifestar-s-ec4bcf-moises-2458s-projects.vercel.app
+- Deployment inspector: https://vercel.com/moises-2458s-projects/lifestar-ems/3xWBqZS4HZq2dYEq68inYSP2NMLx
+
+Note: the project's default Deployment Protection (Vercel Authentication) is
+enabled, so preview URLs ask for a Vercel login; the owner sees them directly
+when logged in, or can generate a share link from the deployment page. Preview
+responses carry `x-robots-tag: noindex` (previews are not indexable).
+Production (`master`) was not modified; no `--prod` deploy was run; DNS and
+Vercel settings untouched.
 
 ## 10. Remaining owner confirmations (unchanged, tracked in SEO-FACT-VERIFICATION.md)
 
