@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import './App.css'
 
 import ScrollToTop from './components/ScrollToTop'
+import Seo from './components/Seo'
 import Navbar from './components/Navbar'
 import FloatingNav from './components/FloatingNav'
 import Footer from './components/Footer'
@@ -21,6 +22,7 @@ import EventStandby from './pages/EventStandby'
 import RequestCoverage from './pages/RequestCoverage'
 import CoveragePage from './pages/CoveragePage'
 import ContactPage from './pages/ContactPage'
+import NotFound from './pages/NotFound'
 
 function HomePage() {
   return (
@@ -38,6 +40,7 @@ function App() {
   return (
     <>
       <ScrollToTop />
+      <Seo />
       <Navbar />
       <FloatingNav />
       <main>
@@ -50,6 +53,7 @@ function App() {
           <Route path="/request" element={<RequestCoverage />} />
           <Route path="/coverage" element={<CoveragePage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

@@ -35,6 +35,14 @@ const shootingStars = Array.from({length: 5}, (_, i) => ({
   delay: `${i * 1.8}s`,
 }))
 
+// CTA banner star field, precomputed at module level so render stays pure
+const bannerStars = Array.from({length: 30}, () => ({
+  left: `${Math.random()*100}%`,
+  top: `${Math.random()*100}%`,
+  size: `${Math.random()*3+1}px`,
+  delay: `${Math.random()*3}s`,
+}))
+
 export default function TherapyTransport() {
   return (
     <div className="sp therapy-sp">
@@ -211,13 +219,13 @@ export default function TherapyTransport() {
       {/* ===== CTA BANNER ===== */}
       <section className="sp-cta-banner therapy-banner">
         <div className="therapy-banner-stars">
-          {[...Array(30)].map((_, i) => (
+          {bannerStars.map((s, i) => (
             <div key={i} className="tb-star" style={{
-              left: `${Math.random()*100}%`,
-              top: `${Math.random()*100}%`,
-              width: `${Math.random()*3+1}px`,
-              height: `${Math.random()*3+1}px`,
-              animationDelay: `${Math.random()*3}s`,
+              left: s.left,
+              top: s.top,
+              width: s.size,
+              height: s.size,
+              animationDelay: s.delay,
             }} />
           ))}
         </div>

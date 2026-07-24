@@ -29,7 +29,7 @@ const trustItems = [
 
 // Multi-color stars for background
 const starColors = ['#3DC8FF','#48DBFB','#A8E6CF','#FFFFFF','#E8F4FF','#FCD34D']
-const bgStars = Array.from({length:55},(_,i)=>({
+const bgStars = Array.from({length:55},()=>({
   left:`${Math.random()*100}%`, top:`${Math.random()*100}%`,
   size:`${Math.random()*3+1}px`,
   color: starColors[Math.floor(Math.random()*starColors.length)],

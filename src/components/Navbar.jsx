@@ -23,11 +23,15 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', fn)
   }, [])
 
-  // Close menu on route change
-  useEffect(() => {
+  // Close menus when the route changes. State is adjusted during render
+  // with a previous-value guard instead of inside an effect, per React's
+  // recommended pattern, so no extra render cascade is triggered.
+  const [prevLocation, setPrevLocation] = useState(location)
+  if (location !== prevLocation) {
+    setPrevLocation(location)
     setOpen(false)
     setDropdown(false)
-  }, [location])
+  }
 
   // Close dropdown when clicking outside
   useEffect(() => {
