@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { content } from './content'
+import { gov } from './content/government'
 import CommunityShowcase from './CommunityShowcase'
 import './HomeV2.css'
 
@@ -137,6 +138,20 @@ export default function HomeV2() {
                 <Link to={p.href} className="v2home-quiet-link">{p.linkLabel}</Link>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Government and institutional services (quiet band) */}
+      <section className="v2-section-dense v2-hairline-top" id="government" aria-labelledby="gov-h">
+        <div className="v2-container v2home-gov v2-panel">
+          <div>
+            <h2 id="gov-h" className="v2home-gov-h">{gov.homepage.heading}</h2>
+            <p className="v2-lead v2home-gov-line">{gov.homepage.line}</p>
+          </div>
+          <div className="v2home-gov-btns">
+            <Link to={gov.route} className="v2-btn v2-btn-secondary">{gov.homepage.viewLabel}</Link>
+            <a href={gov.pdfPublicPath} download className="v2home-quiet-link">{gov.homepage.downloadLabel}</a>
           </div>
         </div>
       </section>

@@ -46,6 +46,7 @@ export default function EventStandby() {
         <>
           <a href="#event-form" className="v2-btn v2-btn-primary">Request Event Coverage</a>
           <a href="tel:+19566606543" className="v2-btn v2-btn-secondary">Call dispatch (956) 660-6543</a>
+          <Link to="/government-contracting" className="v2home-quiet-link">Government or institutional buyer? View Government Contracting</Link>
         </>
       }
     >

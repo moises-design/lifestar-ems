@@ -18,6 +18,7 @@ import RequestCoverage from './pages/RequestCoverage'
 import CoveragePage from './pages/CoveragePage'
 import ContactPage from './pages/ContactPage'
 import NotFound from './pages/NotFound'
+import GovernmentContracting from './pages/GovernmentContracting'
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/request" element={<RequestCoverage />} />
           <Route path="/coverage" element={<CoveragePage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/government-contracting" element={<GovernmentContracting />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

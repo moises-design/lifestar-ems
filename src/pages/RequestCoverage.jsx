@@ -86,6 +86,12 @@ export default function RequestCoverage() {
               </div>
 
               <div className="req-info-box">
+                <h3>Government and Institutional Buyers</h3>
+                <p>Agencies, districts, and prime contractors can review identifiers and download our capability statement.</p>
+                <Link to="/government-contracting" className="btn btn-outline req-event-link">View Government Contracting</Link>
+              </div>
+
+              <div className="req-info-box">
                 <h3>Services Available</h3>
                 <ul className="req-svc-list">
                   {['Adult Dialysis Transportation','Pediatric Therapy Transportation','Pediatric & Long-Distance Transport','Event EMS Standby'].map((s,i)=>(<li key={i}><FaCheckCircle className="req-dot"/>{s}</li>))}

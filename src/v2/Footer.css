@@ -56,7 +56,10 @@
 .v2f-legal { color: var(--v2-night-muted); font-size: var(--v2-fs-small); }
 
 @media (min-width: 768px) {
-  .v2f-grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
+  .v2f-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 1024px) {
+  .v2f-grid { grid-template-columns: 1.4fr 1fr 1fr 1.2fr 1fr; }
 }
 @media (min-width: 1024px) {
   .v2f-bottom { padding-bottom: var(--v2-s-5); }

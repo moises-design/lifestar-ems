@@ -147,3 +147,17 @@
 
 /* clearance above the fixed mobile bar on short pages */
 .v2-home { padding-bottom: 0; }
+
+/* ---------- government quiet band ---------- */
+.v2home-gov {
+  display: grid;
+  gap: var(--v2-s-5);
+  padding: var(--v2-s-7) var(--v2-s-6);
+  align-items: center;
+}
+.v2home-gov-h { font-size: var(--v2-fs-h3); }
+.v2home-gov-line { margin-top: var(--v2-s-3); max-width: 56ch; }
+.v2home-gov-btns { display: flex; flex-wrap: wrap; align-items: center; gap: var(--v2-s-4); }
+@media (min-width: 1024px) {
+  .v2home-gov { grid-template-columns: 1fr auto; }
+}

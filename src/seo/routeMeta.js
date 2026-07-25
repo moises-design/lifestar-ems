@@ -47,6 +47,11 @@ const routeMeta = {
     description:
       'Life Star EMS serves Edinburg, McAllen, Mission, Pharr, Weslaco, Harlingen, Brownsville, and nearby Rio Grande Valley communities. Call (956) 660-6543.',
   },
+  '/government-contracting': {
+    title: 'Government Contracting | Life Star EMS',
+    description:
+      'Life Star EMS Inc. provides ambulance transportation, event EMS standby, and disaster response support for agencies, school districts, universities, and primes.',
+  },
   '/contact': {
     title: 'Contact Life Star EMS | Medical Transportation in the RGV',
     description:

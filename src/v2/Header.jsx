@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { content } from './content'
+import { gov } from './content/government'
 import './Header.css'
 
 const { brand, nav, emergencyNotice } = content
@@ -109,6 +110,7 @@ function MobileMenu({ open, onClose }) {
         ))}
         <div className="v2h-sheet-rule" />
         <Link to={nav.coverage.href} className="v2h-sheet-link" onClick={onClose}>{nav.coverage.label}</Link>
+        <Link to={gov.route} className="v2h-sheet-link" onClick={onClose}>Government Contracting</Link>
         <Link to={nav.why.href} className="v2h-sheet-link" onClick={onClose}>{nav.why.label}</Link>
         <Link to={nav.contact.href} className="v2h-sheet-link" onClick={onClose}>{nav.contact.label}</Link>
       </nav>
@@ -147,6 +149,7 @@ export default function HeaderV2() {
           <nav className="v2h-nav" aria-label="Primary">
             <ServicesDropdown />
             <Link to={nav.coverage.href} className="v2h-link">{nav.coverage.label}</Link>
+            <Link to={gov.route} className="v2h-link">{gov.navLabel}</Link>
             <Link to={nav.why.href} className="v2h-link">{nav.why.label}</Link>
             <Link to={nav.contact.href} className="v2h-link">{nav.contact.label}</Link>
           </nav>

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { content } from './content'
+import { gov } from './content/government'
 import './Footer.css'
 
 const { brand, nav, footer, emergencyNotice } = content
@@ -43,6 +44,19 @@ export default function FooterV2() {
                   {footer.facebookLabel}
                 </a>
               </li>
+            </ul>
+          </nav>
+
+          <nav className="v2f-col" aria-label="Footer government contracting">
+            <h4 className="v2f-title">{gov.footer.title}</h4>
+            <ul>
+              {gov.footer.links.map(l => (
+                <li key={l.href}>
+                  {l.external
+                    ? <a href={l.href}>{l.label}</a>
+                    : <Link to={l.href}>{l.label}</Link>}
+                </li>
+              ))}
             </ul>
           </nav>
 
