@@ -109,7 +109,7 @@ function MobileMenu({ open, onClose }) {
         ))}
         <div className="v2h-sheet-rule" />
         <Link to={nav.coverage.href} className="v2h-sheet-link" onClick={onClose}>{nav.coverage.label}</Link>
-        <a href={nav.why.href} className="v2h-sheet-link" onClick={onClose}>{nav.why.label}</a>
+        <Link to={nav.why.href} className="v2h-sheet-link" onClick={onClose}>{nav.why.label}</Link>
         <Link to={nav.contact.href} className="v2h-sheet-link" onClick={onClose}>{nav.contact.label}</Link>
       </nav>
 
@@ -147,7 +147,7 @@ export default function HeaderV2() {
           <nav className="v2h-nav" aria-label="Primary">
             <ServicesDropdown />
             <Link to={nav.coverage.href} className="v2h-link">{nav.coverage.label}</Link>
-            <a href={nav.why.href} className="v2h-link">{nav.why.label}</a>
+            <Link to={nav.why.href} className="v2h-link">{nav.why.label}</Link>
             <Link to={nav.contact.href} className="v2h-link">{nav.contact.label}</Link>
           </nav>
 
@@ -176,11 +176,14 @@ export default function HeaderV2() {
 
       <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
 
-      {/* Persistent mobile action bar (retained V1 conversion pattern, restyled) */}
-      <div className="v2h-mobilebar">
-        <a href={brand.phoneHref} className="v2h-mobilebar-call">{brand.phoneDisplay}</a>
-        <Link to={nav.requestCta.href} className="v2h-mobilebar-request">{nav.requestCta.label}</Link>
-      </div>
+      {/* Persistent mobile action bar (retained V1 conversion pattern,
+          restyled). Hidden on /request, where it would duplicate the form. */}
+      {location.pathname !== '/request' && (
+        <div className="v2h-mobilebar">
+          <a href={brand.phoneHref} className="v2h-mobilebar-call">{brand.phoneDisplay}</a>
+          <Link to={nav.requestCta.href} className="v2h-mobilebar-request">{nav.requestCta.label}</Link>
+        </div>
+      )}
     </div>
   )
 }

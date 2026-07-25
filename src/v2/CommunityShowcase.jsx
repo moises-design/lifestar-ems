@@ -140,31 +140,40 @@ function CuratedShowcase() {
 }
 
 // Fallback until curated posts are approved: the official live page
-// timeline (photos and videos), framed editorially, loaded only when
-// the section approaches the viewport. The page link below the frame
-// keeps the section useful even if Facebook fails to render.
+// timeline (photos and videos), framed editorially and centered, loaded
+// only when the section approaches the viewport. The always-visible page
+// button keeps the section useful even if Facebook fails to render.
 function LiveTimeline() {
   const [ref, near] = useNearViewport()
+  const [loaded, setLoaded] = useState(false)
   return (
     <div className="v2cs-live" ref={ref}>
       <figure className="v2cs-live-frame v2-panel">
-        {near ? (
-          <iframe
-            src={TIMELINE_SRC}
-            title={fb.liveRegionLabel}
-            className="v2cs-live-iframe"
-            style={{ border: 'none', overflow: 'hidden' }}
-            scrolling="no"
-            allow="encrypted-media"
-            loading="lazy"
-          />
-        ) : (
-          <div className="v2cs-live-wait" aria-hidden="true">
-            <img src="/icon-192.png" alt="" />
-          </div>
-        )}
+        <div className="v2cs-live-stage">
+          {!loaded && (
+            <div className="v2cs-live-wait">
+              <img src="/icon-192.png" alt="" aria-hidden="true" />
+              {near && <p className="v2-small v2cs-live-loading">{fb.loadingLabel}</p>}
+            </div>
+          )}
+          {near && (
+            <iframe
+              src={TIMELINE_SRC}
+              title={fb.liveRegionLabel}
+              className={`v2cs-live-iframe ${loaded ? 'is-loaded' : ''}`}
+              style={{ border: 'none', overflow: 'hidden' }}
+              scrolling="no"
+              allow="encrypted-media"
+              loading="lazy"
+              onLoad={() => setLoaded(true)}
+            />
+          )}
+        </div>
         <figcaption className="v2cs-live-caption">{fb.liveCaption}</figcaption>
       </figure>
+      <a href={brand.facebookUrl} target="_blank" rel="noreferrer" className="v2-btn v2-btn-secondary v2cs-live-open">
+        {fb.openPageLabel}
+      </a>
     </div>
   )
 }

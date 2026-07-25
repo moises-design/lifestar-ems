@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaClock, FaFacebook } from 'react-icons/fa'
+import { FaPhone, FaMapMarkerAlt, FaFacebook } from 'react-icons/fa'
 import { supabase } from '../lib/supabase'
 import { Link } from 'react-router-dom'
 import './Contact.css'
@@ -27,11 +27,11 @@ export default function Contact() {
             <h2 className="title">Contact<br /><em>Life Star EMS</em></h2>
 
             <div className="contact-details">
+              {/* Email, street address, and office hours withheld until the
+                  owner verifies them (docs/SEO-FACT-VERIFICATION.md §3-5). */}
               {[
-                { icon: <FaPhone />, label: 'Dispatch Line', val: '(956) 660-6543', href: 'tel:9566606543' },
-                { icon: <FaEnvelope />, label: 'Email', val: 'lifestarems.rgv@gmail.com', href: 'mailto:lifestarems.rgv@gmail.com' },
-                { icon: <FaMapMarkerAlt />, label: 'Address', val: '2526 W. Freddy Gonzalez, Edinburg TX 78539' },
-                { icon: <FaClock />, label: 'Office Hours', val: 'Mon–Sat · Flexible Scheduling' },
+                { icon: <FaPhone />, label: 'Dispatch Line', val: '(956) 660-6543', href: 'tel:+19566606543' },
+                { icon: <FaMapMarkerAlt />, label: 'Service Region', val: 'Rio Grande Valley, based in Edinburg, Texas' },
               ].map((item, i) => (
                 <div key={i} className="contact-detail">
                   <div className="cd-icon">{item.icon}</div>
@@ -62,19 +62,19 @@ export default function Contact() {
               <div className="form-done">
                 <span>✅</span>
                 <h3>Message Received!</h3>
-                <p>We'll contact you shortly.</p>
+                <p>Our team will review your message and follow up with you.</p>
                 <button className="btn btn-blue" onClick={() => setStatus('idle')}>Send Another</button>
               </div>
             ) : (
               <form onSubmit={submit} className="contact-form">
                 <h3 className="form-title">Send a Message</h3>
                 <div className="fg-row">
-                  <div className="fg"><label>Full Name *</label><input name="name" type="text" placeholder="John Doe" required value={form.name} onChange={handle}/></div>
-                  <div className="fg"><label>Phone</label><input name="phone" type="tel" placeholder="(956) 000-0000" value={form.phone} onChange={handle}/></div>
+                  <div className="fg"><label htmlFor="ct-name">Full Name *</label><input id="ct-name" name="name" type="text" autoComplete="name" placeholder="Your name" required value={form.name} onChange={handle}/></div>
+                  <div className="fg"><label htmlFor="ct-phone">Phone</label><input id="ct-phone" name="phone" type="tel" autoComplete="tel" placeholder="(956) 000-0000" value={form.phone} onChange={handle}/></div>
                 </div>
-                <div className="fg"><label>Email *</label><input name="email" type="email" placeholder="you@example.com" required value={form.email} onChange={handle}/></div>
-                <div className="fg"><label>Message *</label><textarea name="message" rows={5} placeholder="How can we help?" required value={form.message} onChange={handle}/></div>
-                {status==='error' && <p className="form-err">Something went wrong. Please call us directly.</p>}
+                <div className="fg"><label htmlFor="ct-email">Email *</label><input id="ct-email" name="email" type="email" autoComplete="email" placeholder="you@example.com" required value={form.email} onChange={handle}/></div>
+                <div className="fg"><label htmlFor="ct-message">Message *</label><textarea id="ct-message" name="message" rows={5} placeholder="How can we help?" required value={form.message} onChange={handle}/></div>
+                {status==='error' && <p className="form-err" role="alert">Something went wrong. Please call us at (956) 660-6543.</p>}
                 <button type="submit" className="btn btn-blue form-submit-btn" disabled={status==='sending'}>{status==='sending'?'Sending…':'Send Message →'}</button>
               </form>
             )}

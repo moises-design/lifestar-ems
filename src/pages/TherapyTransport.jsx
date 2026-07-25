@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { FaPhone, FaChild, FaClock, FaHeart, FaComments, FaShieldAlt, FaCheckCircle, FaStar, FaRocket } from 'react-icons/fa'
+import InnerPage from '../v2/InnerPage'
+import { content } from '../v2/content'
 import './ServicePage.css'
 import './TherapyTransport.css'
 
@@ -16,25 +18,6 @@ const feats = [
   { Icon: FaShieldAlt, color: '#34D399', title: 'Safe Transport',          desc: 'Clean vehicles with child safety features every single trip.' },
 ]
 
-// Dense colorful star field
-const starColors = ['#3DC8FF','#48DBFB','#A8E6CF','#FFFFFF','#E8F4FF','#FCD34D','#FB7185','#A78BFA']
-const stars = Array.from({length:80}, (_, i) => ({
-  id: i,
-  left: `${Math.random() * 100}%`,
-  top: `${Math.random() * 100}%`,
-  size: `${Math.random() * 3 + 1}px`,
-  color: starColors[Math.floor(Math.random() * starColors.length)],
-  delay: `${Math.random() * 4}s`,
-  dur: `${1.5 + Math.random() * 2.5}s`,
-}))
-
-// Shooting stars
-const shootingStars = Array.from({length: 5}, (_, i) => ({
-  id: i,
-  top: `${10 + i * 15}%`,
-  delay: `${i * 1.8}s`,
-}))
-
 // CTA banner star field, precomputed at module level so render stays pure
 const bannerStars = Array.from({length: 30}, () => ({
   left: `${Math.random()*100}%`,
@@ -45,86 +28,18 @@ const bannerStars = Array.from({length: 30}, () => ({
 
 export default function TherapyTransport() {
   return (
+    <InnerPage
+      {...content.pages.therapy}
+      breadcrumb={[{ label: 'Services' }, { label: 'Pediatric therapy transportation' }]}
+      legacy
+      cta={
+        <>
+          <Link to="/request" className="v2-btn v2-btn-primary">Request Therapy Transport</Link>
+          <a href="tel:+19566606543" className="v2-btn v2-btn-secondary">Call dispatch (956) 660-6543</a>
+        </>
+      }
+    >
     <div className="sp therapy-sp">
-
-      {/* ===== HERO ===== */}
-      <section className="sp-hero therapy-hero">
-        <div className="sp-hero-bg therapy-space-bg">
-
-          {/* Rich star field */}
-          <div className="therapy-stars">
-            {stars.map(s => (
-              <div key={s.id} className="th-star" style={{
-                left: s.left, top: s.top,
-                width: s.size, height: s.size,
-                background: s.color,
-                boxShadow: `0 0 ${parseInt(s.size) * 3}px ${s.color}`,
-                animationDelay: s.delay,
-                animationDuration: s.dur,
-              }} />
-            ))}
-          </div>
-
-          {/* Shooting stars */}
-          <div className="therapy-shooting">
-            {shootingStars.map(s => (
-              <div key={s.id} className="shooting-star" style={{ top: s.top, animationDelay: s.delay }} />
-            ))}
-          </div>
-
-          {/* Nebula glow blobs */}
-          <div className="nebula nebula-1" />
-          <div className="nebula nebula-2" />
-          <div className="nebula nebula-3" />
-
-          {/* Floating space icons */}
-          <div className="th-floaters">
-            <div className="th-float th-rocket">🚀</div>
-            <div className="th-float th-planet1" />
-            <div className="th-float th-planet2" />
-            <div className="th-float th-star-icon"><FaStar /></div>
-            <div className="th-float th-star-icon2"><FaStar /></div>
-            <div className="th-float th-moon">🌙</div>
-            <div className="th-float th-alien">👾</div>
-            <div className="th-float th-sparkle">✨</div>
-          </div>
-
-          {/* Orbiting ring */}
-          <div className="orbit-ring">
-            <div className="orbit-dot" />
-          </div>
-        </div>
-
-        <div className="container sp-inner therapy-hero-content">
-          <div className="sp-badge therapy-badge">
-            <FaChild style={{marginRight: 6}} /> Pediatric Therapy Transportation
-          </div>
-          <h1 className="sp-h1">
-            Pediatric Therapy<br />
-            <span className="sp-accent therapy-accent">Transportation</span>
-          </h1>
-          <p className="sp-lead">
-            Reliable, compassionate transportation for children attending physical therapy,
-            occupational therapy, and speech therapy across the Rio Grande Valley.
-          </p>
-          <div className="sp-btns">
-            <Link to="/request" className="btn therapy-btn">
-              <FaChild /> Request Therapy Transport
-            </Link>
-            <a href="tel:9566606543" className="btn btn-outline">
-              <FaPhone /> (956) 660-6543
-            </a>
-          </div>
-
-          {/* Fun space badges */}
-          <div className="therapy-trust-badges">
-            <div className="ttb">🛸 Safe Rides</div>
-            <div className="ttb">⭐ On Time</div>
-            <div className="ttb">💙 Kid Friendly</div>
-            <div className="ttb">🌟 Trusted Families</div>
-          </div>
-        </div>
-      </section>
 
       {/* ===== THERAPY TYPES ===== */}
       <section className="therapy-types-section section">
@@ -205,12 +120,9 @@ export default function TherapyTransport() {
               <Link to="/request" className="btn therapy-btn" style={{display:'flex',justifyContent:'center',marginBottom:'10px'}}>
                 <FaChild /> Request Therapy Transport
               </Link>
-              <a href="tel:9566606543" className="btn btn-outline" style={{display:'flex',justifyContent:'center',alignItems:'center',gap:'8px',marginBottom:'16px'}}>
+              <a href="tel:+19566606543" className="btn btn-outline" style={{display:'flex',justifyContent:'center',alignItems:'center',gap:'8px',marginBottom:'16px'}}>
                 <FaPhone /> (956) 660-6543
               </a>
-              <div className="sp-addr">
-                📍 2526 W. Freddy Gonzalez<br />Edinburg, TX 78539
-              </div>
             </div>
           </div>
         </div>
@@ -236,12 +148,13 @@ export default function TherapyTransport() {
           <Link to="/request" className="btn therapy-btn btn-lg">
             <FaChild /> Request Therapy Transport
           </Link>
-          <a href="tel:9566606543" className="btn btn-outline btn-lg">
+          <a href="tel:+19566606543" className="btn btn-outline btn-lg">
             <FaPhone /> (956) 660-6543
           </a>
         </div>
       </section>
 
     </div>
+    </InnerPage>
   )
 }

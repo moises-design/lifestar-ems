@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
-import { FaPhone, FaRocket, FaStar, FaGlobe, FaSmile, FaChild, FaRoute, FaCheckCircle, FaHeart, FaShieldAlt, FaComments } from 'react-icons/fa'
+import { FaPhone, FaRocket, FaSmile, FaChild, FaRoute, FaCheckCircle, FaHeart, FaShieldAlt, FaComments } from 'react-icons/fa'
+import InnerPage from '../v2/InnerPage'
+import { content } from '../v2/content'
 import './ServicePage.css'
 import './PediatricsTransport.css'
 
@@ -27,69 +29,20 @@ const trustItems = [
   { Icon: FaComments, color: '#FB923C',  title: 'Clear Parent Communication', desc: 'We keep families informed before, during, and after every transport.' },
 ]
 
-// Multi-color stars for background
-const starColors = ['#3DC8FF','#48DBFB','#A8E6CF','#FFFFFF','#E8F4FF','#FCD34D']
-const bgStars = Array.from({length:55},()=>({
-  left:`${Math.random()*100}%`, top:`${Math.random()*100}%`,
-  size:`${Math.random()*3+1}px`,
-  color: starColors[Math.floor(Math.random()*starColors.length)],
-  delay:`${Math.random()*4}s`, dur:`${1.5+Math.random()*2.5}s`
-}))
-
 export default function PediatricsTransport() {
   return (
+    <InnerPage
+      {...content.pages.pediatrics}
+      breadcrumb={[{ label: 'Services' }, { label: 'Pediatric and long-distance transportation' }]}
+      legacy
+      cta={
+        <>
+          <Link to="/request" className="v2-btn v2-btn-primary">Request Pediatric Transport</Link>
+          <a href="tel:+19566606543" className="v2-btn v2-btn-secondary">Call dispatch (956) 660-6543</a>
+        </>
+      }
+    >
     <div className="sp peds-sp">
-
-      {/* HERO */}
-      <section className="sp-hero peds-hero">
-        <div className="sp-hero-bg peds-bg">
-          {/* Animated star field */}
-          <div className="peds-stars">
-            {bgStars.map((s,i)=>(
-              <div key={i} className="p-star" style={{
-                left:s.left, top:s.top,
-                width:s.size, height:s.size,
-                background:s.color,
-                boxShadow:`0 0 ${parseInt(s.size)*3}px ${s.color}`,
-                animationDelay:s.delay,
-                animationDuration:s.dur,
-              }} />
-            ))}
-          </div>
-          {/* Planets */}
-          <div className="peds-planet1" />
-          <div className="peds-planet2" />
-          {/* Animated FA icons floating */}
-          <div className="peds-float-icons">
-            <FaRocket  className="pf-icon pf-rocket"  style={{color:'#3DC8FF'}} />
-            <FaStar    className="pf-icon pf-star1"   style={{color:'#FCD34D'}} />
-            <FaStar    className="pf-icon pf-star2"   style={{color:'#A78BFA'}} />
-            <FaGlobe   className="pf-icon pf-globe"   style={{color:'#48DBFB'}} />
-          </div>
-        </div>
-
-        <div className="container sp-inner">
-          <div className="sp-badge peds-badge">
-            <FaRocket style={{color:'#3DC8FF'}} /> Pediatric Transportation
-          </div>
-          <h1 className="sp-h1">
-            Safe, Friendly<br />
-            <span className="sp-accent peds-accent">Pediatric Transportation</span>
-          </h1>
-          <p className="sp-lead">
-            Helping children get to therapy safely, comfortably, and on time.
-            Our staff is trained to work with kids — making every ride calm, friendly, and stress-free for the whole family.
-          </p>
-          <div className="sp-btns">
-            <Link to="/request" className="btn btn-blue peds-btn">
-              <FaChild /> Request Pediatric Transport
-            </Link>
-            <a href="tel:9566606543" className="btn btn-outline">
-              <FaPhone /> Call Dispatch
-            </a>
-          </div>
-        </div>
-      </section>
 
       {/* SERVICES */}
       <section className="peds-services section">
@@ -174,10 +127,9 @@ export default function PediatricsTransport() {
               <Link to="/request" className="btn btn-blue peds-btn">
                 <FaChild /> Request Pediatric Transport
               </Link>
-              <a href="tel:9566606543" className="btn btn-outline">
+              <a href="tel:+19566606543" className="btn btn-outline">
                 <FaPhone /> Call Dispatch
               </a>
-              <div className="sp-addr">📍 2526 W. Freddy Gonzalez<br />Edinburg, TX 78539</div>
             </div>
           </div>
         </div>
@@ -192,12 +144,13 @@ export default function PediatricsTransport() {
           <Link to="/request" className="btn btn-blue peds-btn btn-lg">
             <FaChild /> Request Pediatric Transport
           </Link>
-          <a href="tel:9566606543" className="btn btn-outline btn-lg">
+          <a href="tel:+19566606543" className="btn btn-outline btn-lg">
             <FaPhone /> (956) 660-6543
           </a>
         </div>
       </section>
 
     </div>
+    </InnerPage>
   )
 }

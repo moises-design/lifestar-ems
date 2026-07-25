@@ -50,9 +50,7 @@ export default function FooterV2() {
             <h4 className="v2f-title">{footer.contactTitle}</h4>
             <ul>
               <li><a href={brand.phoneHref} className="v2f-phone">{brand.phoneDisplay}</a></li>
-              {footer.addressLines.map(line => (
-                <li key={line} className="v2f-muted">{line}</li>
-              ))}
+              <li className="v2f-muted">{footer.regionLine}</li>
             </ul>
           </div>
         </div>

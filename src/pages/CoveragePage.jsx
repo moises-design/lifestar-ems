@@ -1,4 +1,11 @@
 import CoverageMap from '../components/CoverageMap'
+import InnerPage from '../v2/InnerPage'
+import { content } from '../v2/content'
+
 export default function CoveragePage() {
-  return <div style={{paddingTop:'68px'}}><CoverageMap /></div>
+  return (
+    <InnerPage {...content.pages.coverage} legacy>
+      <CoverageMap />
+    </InnerPage>
+  )
 }

@@ -188,8 +188,7 @@ export default function CoverageMap() {
               <FaPhone className="cc-icon"/>
               <div>
                 <div className="cc-label">Call to Schedule</div>
-                <a href="tel:9566606543" className="cc-num">(956) 660-6543</a>
-                <div className="cc-sub">lifestarems.rgv@gmail.com</div>
+                <a href="tel:+19566606543" className="cc-num">(956) 660-6543</a>
               </div>
             </div>
           </div>

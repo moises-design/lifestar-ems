@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import { FaPhone, FaWheelchair, FaClock, FaHeart, FaCalendarAlt, FaHospitalUser, FaCheckCircle } from 'react-icons/fa'
+import InnerPage from '../v2/InnerPage'
+import { content } from '../v2/content'
 import './ServicePage.css'
 import './DialysisTransport.css'
 
@@ -12,25 +14,18 @@ const feats = [
 
 export default function DialysisTransport() {
   return (
+    <InnerPage
+      {...content.pages.dialysis}
+      breadcrumb={[{ label: 'Services' }, { label: 'Dialysis transportation' }]}
+      legacy
+      cta={
+        <>
+          <Link to="/request" className="v2-btn v2-btn-primary">Request Transport</Link>
+          <a href="tel:+19566606543" className="v2-btn v2-btn-secondary">Call dispatch (956) 660-6543</a>
+        </>
+      }
+    >
     <div className="sp dialysis-sp">
-      <section className="sp-hero dialysis-hero">
-        <div className="sp-hero-bg dialysis-bg" />
-        <div className="container sp-inner">
-          <div className="sp-badge">
-            <FaWheelchair /> Adult Dialysis Transportation
-          </div>
-          <h1 className="sp-h1">
-            Reliable Dialysis<br />
-            <span className="sp-accent">Transport Specialists</span>
-          </h1>
-          <p className="sp-lead">Dialysis patients need consistent, dependable transport — three times a week, every week. Life Star EMS is your trusted partner for on-time, compassionate dialysis transportation across the Rio Grande Valley.</p>
-          <div className="sp-btns">
-            <Link to="/request" className="btn btn-blue"><FaWheelchair /> Request Transport</Link>
-            <a href="tel:9566606543" className="btn btn-outline"><FaPhone /> (956) 660-6543</a>
-          </div>
-        </div>
-      </section>
-
       <section className="sp-features">
         <div className="container">
           <span className="label">Why Families Trust Us</span>
@@ -59,7 +54,7 @@ export default function DialysisTransport() {
               <span className="label">Our Promise</span>
               <h2 className="title">Punctual.<br /><em>Professional. Caring.</em></h2>
               <ul className="sp-list">
-                {['Door-to-door pickup and drop-off','Wheelchair and stretcher accessible vehicles','Trained and friendly EMT staff','Coordinated with your dialysis center','Consistent, familiar drivers you recognize','Available 7 days a week','Bilingual staff — English & Spanish','Insurance verified before your first trip'].map((item,i)=>(
+                {['Door-to-door pickup and drop-off','Wheelchair and stretcher accessible vehicles','Trained and friendly EMT staff','Coordinated with your dialysis center','Consistent, familiar drivers you recognize','Bilingual staff — English & Spanish','Insurance verified before your first trip'].map((item,i)=>(
                   <li key={i}><FaCheckCircle className="sp-list-check" />{item}</li>
                 ))}
               </ul>
@@ -68,8 +63,7 @@ export default function DialysisTransport() {
               <h3>Free Evaluation</h3>
               <p>We'll verify your insurance and set up your transport schedule at no cost to you.</p>
               <Link to="/request" className="btn btn-blue"><FaWheelchair /> Request Transport</Link>
-              <a href="tel:9566606543" className="btn btn-outline"><FaPhone /> Call Dispatch</a>
-              <div className="sp-addr">📍 2526 W. Freddy Gonzalez<br />Edinburg, TX 78539<br />Available Scheduled</div>
+              <a href="tel:+19566606543" className="btn btn-outline"><FaPhone /> Call Dispatch</a>
             </div>
           </div>
         </div>
@@ -80,9 +74,10 @@ export default function DialysisTransport() {
           <h2>Ready to Get Started?</h2>
           <p>Call us today for your free evaluation. We'll handle everything.</p>
           <Link to="/request" className="btn btn-blue btn-lg"><FaWheelchair /> Request Transport</Link>
-          <a href="tel:9566606543" className="btn btn-outline btn-lg"><FaPhone /> (956) 660-6543</a>
+          <a href="tel:+19566606543" className="btn btn-outline btn-lg"><FaPhone /> (956) 660-6543</a>
         </div>
       </section>
     </div>
+    </InnerPage>
   )
 }

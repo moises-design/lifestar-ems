@@ -51,7 +51,7 @@ export default function About() {
             </div>
             <div className="about-contact-card">
               <div className="acc-label">Call Dispatch Directly</div>
-              <a href="tel:9566606543" className="acc-phone">(956) 660-6543</a>
+              <a href="tel:+19566606543" className="acc-phone">(956) 660-6543</a>
               <div className="acc-sub">2526 W. Freddy Gonzalez, Edinburg TX</div>
             </div>
           </div>

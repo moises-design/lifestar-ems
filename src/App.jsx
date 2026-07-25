@@ -1,15 +1,10 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import './App.css'
 
 import ScrollToTop from './components/ScrollToTop'
 import Seo from './components/Seo'
 
-// V1 chrome (service pages keep it until Mission 7)
-import Navbar from './components/Navbar'
-import FloatingNav from './components/FloatingNav'
-import Footer from './components/Footer'
-
-// V2 chrome + homepage shell
+// V2 chrome (all routes)
 import HeaderV2 from './v2/Header'
 import FooterV2 from './v2/Footer'
 import HomeV2 from './v2/HomeV2'
@@ -25,17 +20,12 @@ import ContactPage from './pages/ContactPage'
 import NotFound from './pages/NotFound'
 
 function App() {
-  const { pathname } = useLocation()
-  // The homepage runs on the V2 shell; every other route keeps the V1
-  // chrome untouched until Mission 7 migrates them.
-  const isV2Route = pathname === '/'
-
   return (
     <>
       <ScrollToTop />
       <Seo />
       <a href="#main" className="skip-link">Skip to main content</a>
-      {isV2Route ? <HeaderV2 /> : <><Navbar /><FloatingNav /></>}
+      <HeaderV2 />
       <main id="main">
         <Routes>
           <Route path="/" element={<HomeV2 />} />
@@ -49,7 +39,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
-      {isV2Route ? <FooterV2 /> : <Footer />}
+      <FooterV2 />
     </>
   )
 }

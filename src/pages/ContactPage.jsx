@@ -1,2 +1,11 @@
 import Contact from '../components/Contact'
-export default function ContactPage() { return <div style={{paddingTop:'68px'}}><Contact /></div> }
+import InnerPage from '../v2/InnerPage'
+import { content } from '../v2/content'
+
+export default function ContactPage() {
+  return (
+    <InnerPage {...content.pages.contact} legacy>
+      <Contact />
+    </InnerPage>
+  )
+}

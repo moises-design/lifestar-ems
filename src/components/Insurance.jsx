@@ -40,7 +40,7 @@ export default function Insurance() {
         </div>
         <div className="insurance-cta">
           <p>Don't see your insurance? Call us — we'll verify your coverage for FREE</p>
-          <a href="tel:9566606543" className="ins-btn">
+          <a href="tel:+19566606543" className="ins-btn">
             📞 Call (956) 660-6543 — Free Evaluation
           </a>
         </div>

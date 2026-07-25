@@ -42,7 +42,7 @@ export default function Footer() {
           <div className="footer-col">
             <div className="fcol-title">Contact</div>
             <ul>
-              <li><a href="tel:9566606543" className="footer-phone"><FaPhone /> (956) 660-6543</a></li>
+              <li><a href="tel:+19566606543" className="footer-phone"><FaPhone /> (956) 660-6543</a></li>
               <li><a href="mailto:lifestarems.rgv@gmail.com">lifestarems.rgv@gmail.com</a></li>
               <li>2526 W. Freddy Gonzalez</li>
               <li>Edinburg, TX 78539</li>

@@ -77,7 +77,7 @@ export default function LongDistanceTransport() {
           </h1>
           <p className="sp-desc">Need to reach a specialist in Houston or transfer to a hospital in San Antonio? Life Star EMS provides safe, monitored long-distance medical transport with certified BLS/ALS crews — anywhere in Texas.</p>
           <div className="sp-actions">
-            <a href="tel:9566606543" className="sp-btn-primary"><FaPhone /> Call (956) 660-6543</a>
+            <a href="tel:+19566606543" className="sp-btn-primary"><FaPhone /> Call (956) 660-6543</a>
             <div className="sp-free-badge">🗺️ FREE Quote — No Obligation</div>
           </div>
         </div>
@@ -114,7 +114,7 @@ export default function LongDistanceTransport() {
             </div>
             <div className="ld-form-box">
               {status === 'sent' ? (
-                <div className="ld-success"><span>✅</span><h3>Request Received!</h3><p>We'll contact you within 2 hours to confirm your transport details.</p><a href="tel:9566606543" className="sp-btn-primary" style={{ display:'flex', justifyContent:'center', marginTop:16 }}><FaPhone /> Call Now to Confirm</a></div>
+                <div className="ld-success"><span>✅</span><h3>Request Received!</h3><p>We'll contact you within 2 hours to confirm your transport details.</p><a href="tel:+19566606543" className="sp-btn-primary" style={{ display:'flex', justifyContent:'center', marginTop:16 }}><FaPhone /> Call Now to Confirm</a></div>
               ) : (
                 <form onSubmit={submit}>
                   <h3 className="ld-form-title">🗺️ Request a Free Quote</h3>
@@ -141,7 +141,7 @@ export default function LongDistanceTransport() {
           </div>
         </div>
       </section>
-      <section className="sp-cta"><div className="container"><h2>Need Transport Today?</h2><p>Call us directly for immediate assistance with long distance medical transport.</p><a href="tel:9566606543" className="sp-btn-primary large"><FaPhone /> Call (956) 660-6543 Now</a></div></section>
+      <section className="sp-cta"><div className="container"><h2>Need Transport Today?</h2><p>Call us directly for immediate assistance with long distance medical transport.</p><a href="tel:+19566606543" className="sp-btn-primary large"><FaPhone /> Call (956) 660-6543 Now</a></div></section>
     </div>
   )
 }

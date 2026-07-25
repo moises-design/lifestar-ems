@@ -11,7 +11,7 @@ export const en = {
     name: 'Life Star EMS',
     region: 'Rio Grande Valley, Texas',
     phoneDisplay: '(956) 660-6543',
-    phoneHref: 'tel:9566606543',
+    phoneHref: 'tel:+19566606543',
     facebookUrl: 'https://www.facebook.com/LifeStarEMSRGV/',
     facebookLabel: 'Life Star EMS on Facebook',
   },
@@ -144,6 +144,8 @@ export const en = {
         'See recent transports, event standby coverage, crew activity, and community involvement from Life Star EMS.',
       followLabel: 'Follow Life Star EMS',
       openPostLabel: 'View on Facebook',
+      openPageLabel: 'Open our Facebook page',
+      loadingLabel: 'Loading posts from Facebook',
       liveRegionLabel: 'Recent posts from the Life Star EMS Facebook page',
       liveCaption: 'Live from our Facebook page',
       playLabel: 'Play video',
@@ -180,6 +182,57 @@ export const en = {
     },
   },
 
+  // Inner-page V2 intros (used by src/v2/InnerPage.jsx). H1s live here;
+  // the legacy page bodies below them keep their own content until the
+  // full service-page redesign mission.
+  pages: {
+    dialysis: {
+      label: '01 · Dialysis transportation',
+      title: 'Dialysis transportation across the Rio Grande Valley',
+      lead:
+        'Scheduled rides to and from dialysis treatment, coordinated around your center’s calendar and your treatment days.',
+    },
+    therapy: {
+      label: '02 · Pediatric therapy transportation',
+      title: 'Pediatric therapy transportation',
+      lead:
+        'Dependable transportation for children attending physical, occupational, and speech therapy appointments across the Valley.',
+    },
+    pediatrics: {
+      label: '03 · Pediatric and long-distance transportation',
+      title: 'Safe, friendly pediatric transportation',
+      lead:
+        'Helping children get to care safely and on time, with long-distance trips across Texas planned together with families and providers.',
+    },
+    events: {
+      label: '04 · Event EMS standby',
+      title: 'Sports and event medical standby',
+      lead:
+        'On-site EMS standby for school sports, tournaments, concerts, and community events across the Rio Grande Valley.',
+    },
+    request: {
+      label: 'Get started',
+      title: 'Request Transport',
+      lead:
+        'Submit your transportation or event standby request. Our team will review the details and contact you to confirm availability.',
+      eventNote: 'Planning an event? Event standby requests have their own form.',
+      eventLinkLabel: 'Go to the event standby form',
+      eventHref: '/services/events',
+    },
+    coverage: {
+      label: 'Service area',
+      title: 'Where we serve',
+      lead:
+        'Scheduled transportation and event standby across the Rio Grande Valley, with long-distance trips available throughout Texas. Contact us to confirm availability for your location and schedule.',
+    },
+    contact: {
+      label: 'Contact',
+      title: 'Contact Life Star EMS',
+      lead:
+        'Call dispatch for scheduling, or send us a message and our team will follow up with you.',
+    },
+  },
+
   footer: {
     description:
       'Scheduled non-emergency medical transportation and event EMS standby services across the Rio Grande Valley.',
@@ -191,7 +244,9 @@ export const en = {
       { label: 'Contact', href: '/contact' },
       { label: 'Request Transport', href: '/request' },
     ],
-    addressLines: ['2526 W. Freddy Gonzalez', 'Edinburg, TX 78539'],
+    // Street address withheld from the footer until the owner verifies it
+    // as the correct public business address (docs/SEO-FACT-VERIFICATION.md 4.x).
+    regionLine: 'Serving the Rio Grande Valley from Edinburg, Texas',
     privacyLabel: 'Privacy policy',
     sitemapLabel: 'Sitemap',
     facebookLabel: 'Facebook',
