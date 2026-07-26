@@ -37,7 +37,7 @@
 
 .req-sidebar { display: flex; flex-direction: column; gap: 16px; }
 .req-info-box { background: var(--v2-paper-2); border: 1px solid var(--v2-hairline); border-radius: var(--v2-radius-l); padding: 24px 22px; }
-.req-info-box h3 { font-family: var(--v2-font-sans); font-weight: 600; font-size: var(--v2-fs-small); letter-spacing: 0.02em; text-transform: none; margin-bottom: 14px; color: var(--v2-ink); }
+.req-info-box h2 { font-family: var(--v2-font-sans); font-weight: 600; font-size: var(--v2-fs-small); letter-spacing: 0.02em; text-transform: none; margin-bottom: 14px; color: var(--v2-ink); }
 .req-info-box p { font-size: var(--v2-fs-small); color: var(--v2-ink-2); line-height: 1.65; }
 .req-call { width: 100%; justify-content: center; margin-bottom: 10px; }
 .req-svc-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
