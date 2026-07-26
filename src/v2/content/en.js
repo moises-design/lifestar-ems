@@ -29,6 +29,7 @@ export const en = {
     ],
     coverage: { label: 'Coverage', href: '/coverage' },
     why: { label: 'Why Life Star', href: '/#why-life-star' },
+    about: { label: 'About', href: '/about' },
     contact: { label: 'Contact', href: '/contact' },
     requestCta: { label: 'Request Transport', href: '/request' },
     callLabel: 'Call dispatch',
