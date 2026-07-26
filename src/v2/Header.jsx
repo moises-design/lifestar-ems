@@ -57,7 +57,10 @@ function ServicesDropdown() {
   )
 }
 
-function MobileMenu({ open, onClose }) {
+// `onClose` just closes the sheet (used by nav-link clicks, where focus should
+// move on naturally with the route change). `onDismiss` closes AND returns
+// keyboard focus to the trigger button (used by Escape and the X button).
+function MobileMenu({ open, onClose, onDismiss }) {
   const sheetRef = useRef(null)
 
   // body scroll lock
@@ -68,7 +71,7 @@ function MobileMenu({ open, onClose }) {
     return () => { document.body.style.overflow = prev }
   }, [open])
 
-  // escape to close + simple focus trap
+  // escape to close (+ restore focus to the trigger) + simple focus trap
   useEffect(() => {
     if (!open) return
     const sheet = sheetRef.current
@@ -76,7 +79,7 @@ function MobileMenu({ open, onClose }) {
       sheet ? [...sheet.querySelectorAll('a[href], button:not([disabled])')] : []
     focusables()[0]?.focus()
     const onKey = e => {
-      if (e.key === 'Escape') { onClose(); return }
+      if (e.key === 'Escape') { onDismiss(); return }
       if (e.key !== 'Tab') return
       const items = focusables()
       if (!items.length) return
@@ -87,18 +90,18 @@ function MobileMenu({ open, onClose }) {
     }
     document.addEventListener('keydown', onKey)
     return () => document.removeEventListener('keydown', onKey)
-  }, [open, onClose])
+  }, [open, onDismiss])
 
   if (!open) return null
 
   return (
-    <div className="v2h-sheet" role="dialog" aria-modal="true" aria-label="Site menu" ref={sheetRef}>
+    <div className="v2 v2h-sheet" role="dialog" aria-modal="true" aria-label="Site menu" ref={sheetRef}>
       <div className="v2h-sheet-top">
         <span className="v2h-sheet-brand">
           <img src="/icon-192.png" alt="" aria-hidden="true" />
           {brand.name}
         </span>
-        <button type="button" className="v2h-iconbtn" onClick={onClose} aria-label={nav.menuClose}>
+        <button type="button" className="v2h-iconbtn" onClick={onDismiss} aria-label={nav.menuClose}>
           <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 2l14 14M16 2L2 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
         </button>
       </div>
@@ -129,6 +132,7 @@ function MobileMenu({ open, onClose }) {
 export default function HeaderV2() {
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
+  const burgerRef = useRef(null)
 
   // Close the sheet when the route changes (guarded render-time adjust)
   const [prevLocation, setPrevLocation] = useState(location)
@@ -137,9 +141,20 @@ export default function HeaderV2() {
     if (menuOpen) setMenuOpen(false)
   }
 
+  const closeMenu = () => setMenuOpen(false)
+  const dismissMenu = () => {
+    setMenuOpen(false)
+    burgerRef.current?.focus()
+  }
+
   return (
-    <div className="v2">
-      <header className="v2h" role="banner">
+    <>
+      {/* The header itself carries the .v2 design-system scope and is a
+          direct sibling of <main>, so its containing block for `position:
+          sticky` spans the full page height instead of a shrink-wrapped
+          wrapper (which previously stopped the header from staying pinned
+          past its own height). */}
+      <header className="v2 v2h" role="banner">
         <div className="v2h-bar v2-container-wide">
           <Link to="/" className="v2h-brand">
             <img src="/icon-192.png" alt="" aria-hidden="true" />
@@ -160,6 +175,7 @@ export default function HeaderV2() {
             </a>
             <Link to={nav.requestCta.href} className="v2-btn v2-btn-primary v2h-cta">{nav.requestCta.label}</Link>
             <button
+              ref={burgerRef}
               type="button"
               className="v2h-iconbtn v2h-burger"
               aria-label={nav.menuOpen}
@@ -177,16 +193,16 @@ export default function HeaderV2() {
         </p>
       </header>
 
-      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
+      <MobileMenu open={menuOpen} onClose={closeMenu} onDismiss={dismissMenu} />
 
       {/* Persistent mobile action bar (retained V1 conversion pattern,
           restyled). Hidden on /request, where it would duplicate the form. */}
       {location.pathname !== '/request' && (
-        <div className="v2h-mobilebar">
+        <div className="v2 v2h-mobilebar">
           <a href={brand.phoneHref} className="v2h-mobilebar-call">{brand.phoneDisplay}</a>
           <Link to={nav.requestCta.href} className="v2h-mobilebar-request">{nav.requestCta.label}</Link>
         </div>
       )}
-    </div>
+    </>
   )
 }
