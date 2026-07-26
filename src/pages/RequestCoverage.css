@@ -34,6 +34,6 @@
 .req-svc-list li { display:flex; align-items:center; gap:10px; font-size:0.84rem; color:var(--light-text); }
 .req-dot { color:var(--blue); flex-shrink:0; font-size:0.8rem; }
 
-@media(max-width:900px){ .req-grid{grid-template-columns:minmax(0,1fr);} .req-form-row{grid-template-columns:1fr;} .req-form-wrap{padding:24px 20px;} }
+@media(max-width:900px){ .req-grid{grid-template-columns:minmax(0,1fr);} .req-form-row{grid-template-columns:1fr;} .req-form-wrap{padding:24px 20px;} .req-event-link{display:flex; width:100%; justify-content:center; text-align:center; white-space:normal;} }
 
 .req-event-link { display: inline-flex; margin-top: 10px; }
