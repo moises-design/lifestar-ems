@@ -13,15 +13,28 @@
 .v2home-hero-media {
   margin-top: var(--v2-s-7);
   aspect-ratio: 3 / 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
-.v2home-hero-mark { width: clamp(72px, 10vw, 120px); opacity: 0.35; }
+.v2home-hero-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
 .v2home-hero-local { color: var(--v2-ink-2); margin-top: var(--v2-s-4); }
 
 @media (min-width: 768px) {
   .v2home-hero-media { aspect-ratio: 21 / 9; }
+}
+
+/* ---------- real operations photo strip ---------- */
+.v2home-realops-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--v2-s-4);
+}
+.v2home-realops-frame { aspect-ratio: 1 / 1; }
+.v2home-realops-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+@media (min-width: 768px) {
+  .v2home-realops-grid { grid-template-columns: repeat(4, 1fr); gap: var(--v2-s-5); }
 }
 
 /* ---------- numbered service index ---------- */

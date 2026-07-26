@@ -126,6 +126,35 @@
 .gc-note { color: var(--v2-ink-2); margin-top: var(--v2-s-6); max-width: 72ch; }
 .gc-card-title { font-size: var(--v2-fs-h4); font-family: var(--v2-font-serif); font-weight: 600; margin-bottom: var(--v2-s-4); }
 
+/* Woman-Owned Leadership */
+.gc-lead-split {
+  display: grid;
+  gap: var(--v2-s-6);
+  align-items: center;
+}
+@media (min-width: 1024px) {
+  .gc-lead-split { grid-template-columns: minmax(0, 340px) 1fr; gap: var(--v2-s-8); }
+}
+.gc-lead-photo-frame {
+  aspect-ratio: 4 / 5;
+  max-width: 340px;
+  margin-inline: auto;
+}
+@media (min-width: 1024px) {
+  .gc-lead-photo-frame { margin-inline: 0; }
+}
+.gc-lead-photo { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+.gc-lead-p { margin-top: var(--v2-s-4); }
+.gc-lead-p:first-of-type { margin-top: var(--v2-s-4); }
+.gc-lead-name {
+  font-family: var(--v2-font-serif);
+  font-weight: 600;
+  font-size: var(--v2-fs-h4);
+  margin-top: var(--v2-s-6);
+}
+.gc-lead-title { color: var(--v2-ink-2); margin-top: 2px; }
+.gc-lead-safeguard { margin-top: var(--v2-s-5); }
+
 /* buyers panel */
 .gc-buyers { padding: var(--v2-s-6); }
 .gc-buyers-title { font-size: var(--v2-fs-h4); font-family: var(--v2-font-serif); font-weight: 600; margin-bottom: var(--v2-s-4); }

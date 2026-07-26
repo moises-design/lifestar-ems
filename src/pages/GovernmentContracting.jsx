@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import { gov } from '../v2/content/government'
 import { SITE } from '../seo/routeMeta'
+import Picture from '../v2/Picture'
 import './GovernmentContracting.css'
 
 // ---------- accessible copy-to-clipboard for short identifiers ----------
@@ -83,6 +84,13 @@ const jsonLd = {
       provider: { '@id': `${ORIGIN}/#organization` },
       areaServed: 'South Texas',
       url: PAGE_URL,
+    },
+    {
+      '@type': 'Person',
+      '@id': `${ORIGIN}/about#heather-ayala-segovia`,
+      name: 'Heather Ayala-Segovia',
+      jobTitle: 'CEO',
+      worksFor: { '@id': `${ORIGIN}/#organization` },
     },
     {
       '@type': 'BreadcrumbList',
@@ -295,6 +303,30 @@ export default function GovernmentContracting() {
             <ul className="gc-plainlist">
               {c.overview.buyers.map(b => <li key={b}>{b}</li>)}
             </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Woman-Owned Leadership */}
+      <section className="v2-section v2-hairline-top" aria-labelledby="gc-lead-h">
+        <div className="v2-container gc-lead-split">
+          <div className="gc-lead-photo-frame v2-panel">
+            <Picture
+              src="/images/company/optimized/heather-ayala-segovia-seated-close.jpg"
+              webp="/images/company/optimized/heather-ayala-segovia-seated-close.webp"
+              alt="Heather Ayala-Segovia, CEO of Life Star EMS, seated portrait."
+              width={1100}
+              height={1375}
+              loading="lazy"
+              className="gc-lead-photo"
+            />
+          </div>
+          <div>
+            <h2 id="gc-lead-h" className="gc-h2">{c.leadership.heading}</h2>
+            {c.leadership.body.map(p => <p key={p} className="v2-lead gc-lead-p">{p}</p>)}
+            <p className="gc-lead-name">{c.leadership.name}</p>
+            <p className="v2-small gc-lead-title">{c.leadership.title}</p>
+            <p className="gc-note v2-small gc-lead-safeguard">{c.leadership.safeguard}</p>
           </div>
         </div>
       </section>

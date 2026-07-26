@@ -52,6 +52,11 @@ const routeMeta = {
     description:
       'Life Star EMS Inc. provides ambulance transportation, event EMS standby, and disaster response support for agencies, school districts, universities, and primes.',
   },
+  '/about': {
+    title: 'About Life Star EMS | Family-Owned EMS in the Rio Grande Valley',
+    description:
+      'Life Star EMS Inc. is a family-owned, woman-owned ambulance and medical transportation company serving the Rio Grande Valley since 2009, led by CEO Heather Ayala-Segovia.',
+  },
   '/contact': {
     title: 'Contact Life Star EMS | Medical Transportation in the RGV',
     description:

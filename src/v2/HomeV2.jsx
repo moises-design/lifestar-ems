@@ -2,9 +2,38 @@ import { Link } from 'react-router-dom'
 import { content } from './content'
 import { gov } from './content/government'
 import CommunityShowcase from './CommunityShowcase'
+import Picture from './Picture'
 import './HomeV2.css'
 
 const { brand, nav, home } = content
+
+// Real-operations strip: a restrained selection of authentic Life Star EMS
+// photography (three new event/fleet photos plus one existing ambulance
+// photo), not a gallery. Alt text describes what each photo shows without
+// claiming a fleet count, unit status, or event relationship beyond what
+// the photo itself shows.
+const realOpsPhotos = [
+  {
+    src: '/images/company/optimized/ambulance-sunset.jpg',
+    webp: '/images/company/optimized/ambulance-sunset.webp',
+    alt: 'A Life Star EMS ambulance parked at a school stadium track at sunset.',
+  },
+  {
+    src: '/images/company/optimized/event-mission-stadium.jpg',
+    webp: '/images/company/optimized/event-mission-stadium.webp',
+    alt: 'Life Star EMS personnel and medical transport equipment supporting an athletic event at Tom Landry Stadium.',
+  },
+  {
+    src: '/images/company/optimized/medical-transport-van.jpg',
+    webp: '/images/company/optimized/medical-transport-van.webp',
+    alt: 'A Life Star EMS medical transport van parked at a roadside stop in South Texas.',
+  },
+  {
+    src: '/images/optimized/photo-2.jpg',
+    webp: '/images/optimized/photo-2.webp',
+    alt: 'A Life Star EMS ambulance parked near a South Texas medical facility.',
+  },
+]
 
 // V2 homepage shell: establishes section order, rhythm, IDs, and
 // responsive structure. Sections carry real, verified copy at minimal
@@ -23,9 +52,17 @@ export default function HomeV2() {
             <Link to={nav.requestCta.href} className="v2-btn v2-btn-primary">{nav.requestCta.label}</Link>
             <a href={brand.phoneHref} className="v2-btn v2-btn-secondary">{nav.callLabel} {brand.phoneDisplay}</a>
           </div>
-          {/* Media panel slot: PH-01 documentary photograph arrives in Mission 3 */}
-          <div className="v2-panel v2-panel-tint v2home-hero-media" aria-hidden="true">
-            <img src="/icon-192.png" alt="" className="v2home-hero-mark" />
+          <div className="v2-panel v2home-hero-media">
+            <Picture
+              src="/images/company/optimized/ambulance-american-flag.jpg"
+              webp="/images/company/optimized/ambulance-american-flag.webp"
+              alt="A Life Star EMS ambulance parked beneath a large American flag at dusk."
+              width={414}
+              height={414}
+              loading="eager"
+              fetchPriority="high"
+              className="v2home-hero-photo"
+            />
           </div>
           <p className="v2-small v2home-hero-local">{home.hero.local}</p>
         </div>
@@ -84,6 +121,31 @@ export default function HomeV2() {
           </div>
           {/* Photo slot: PH-02 arrives in Mission 5 */}
           <div className="v2-panel v2home-photo-slot" aria-hidden="true" />
+        </div>
+      </section>
+
+      {/* Real operations: authentic photography strip (restrained, not a gallery) */}
+      <section className="v2-section v2-hairline-top" id={home.realOps.id} aria-labelledby="realops-h">
+        <div className="v2-container">
+          <div className="v2-section-head">
+            <h2 id="realops-h">{home.realOps.heading}</h2>
+            <p className="v2-lead">{home.realOps.line}</p>
+          </div>
+          <ul className="v2home-realops-grid">
+            {realOpsPhotos.map(p => (
+              <li key={p.src} className="v2home-realops-frame v2-panel">
+                <Picture
+                  src={p.src}
+                  webp={p.webp}
+                  alt={p.alt}
+                  width={414}
+                  height={414}
+                  loading="lazy"
+                  className="v2home-realops-photo"
+                />
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 

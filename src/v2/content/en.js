@@ -98,6 +98,13 @@ export const en = {
         'We are a local team serving Valley families, clinics, and schools with scheduled transportation that treats every rider with dignity.',
     },
 
+    realOps: {
+      id: 'real-operations',
+      heading: 'Real people. Real units. Ready to serve.',
+      line:
+        'Life Star EMS provides ambulance transportation, medical transportation, event EMS coverage, and operational support across South Texas.',
+    },
+
     operations: {
       id: 'operations',
       label: '04 · Crew and operations',
@@ -231,6 +238,24 @@ export const en = {
       lead:
         'Call dispatch for scheduling, or send us a message and our team will follow up with you.',
     },
+    about: {
+      label: 'About us',
+      title: 'About Life Star EMS',
+      lead:
+        'A family-owned EMS provider serving the Rio Grande Valley since 2009, with scheduled medical transportation, event standby, and disaster response support.',
+      story: {
+        heading: 'Who we are',
+        body:
+          'Life Star EMS Inc. is a family-owned, woman-owned ambulance and medical transportation company headquartered in Edinburg, Texas. Since 2009, our crews have provided scheduled medical transportation, event EMS standby, and disaster response medical support across the Rio Grande Valley and South Texas.',
+      },
+      leadership: {
+        heading: 'Leadership',
+        name: 'Heather Ayala-Segovia',
+        title: 'CEO, Life Star EMS Inc.',
+        bio:
+          'Heather Ayala-Segovia serves as CEO of Life Star EMS Inc. She leads the company with a focus on patient care, dependable operations, and service to South Texas communities. Under her leadership, Life Star EMS provides ambulance transportation, medical transportation, event EMS coverage, and disaster-response support.',
+      },
+    },
   },
 
   footer: {
@@ -240,6 +265,7 @@ export const en = {
     companyTitle: 'Company',
     contactTitle: 'Contact',
     companyLinks: [
+      { label: 'About', href: '/about' },
       { label: 'Coverage', href: '/coverage' },
       { label: 'Contact', href: '/contact' },
       { label: 'Request Transport', href: '/request' },

@@ -77,6 +77,18 @@ export const gov = {
     ],
   },
 
+  leadership: {
+    heading: 'Woman-Owned Leadership',
+    body: [
+      'Life Star EMS Inc. is a woman-owned and family-operated EMS provider based in Edinburg, Texas. Since 2009, the company has supported patients, healthcare facilities, schools, universities, public agencies, and community events throughout South Texas.',
+      'Under Heather Ayala-Segovia’s leadership, Life Star EMS focuses on dependable service, operational readiness, bilingual patient support, and long-term relationships with the communities it serves.',
+    ],
+    name: 'Heather Ayala-Segovia',
+    title: 'CEO, Life Star EMS Inc.',
+    safeguard:
+      'Woman-owned status is based on company-provided information. Certification requirements should be verified for each solicitation.',
+  },
+
   capabilities: {
     label: '02 · Core capabilities',
     heading: 'Transportation and EMS services',

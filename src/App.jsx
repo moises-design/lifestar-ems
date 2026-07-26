@@ -10,6 +10,7 @@ import FooterV2 from './v2/Footer'
 import HomeV2 from './v2/HomeV2'
 
 // Pages
+import About from './pages/About'
 import DialysisTransport from './pages/DialysisTransport'
 import TherapyTransport from './pages/TherapyTransport'
 import PediatricsTransport from './pages/PediatricsTransport'
@@ -35,6 +36,7 @@ function App() {
           <Route path="/services/pediatrics" element={<PediatricsTransport />} />
           <Route path="/services/events" element={<EventStandby />} />
           <Route path="/request" element={<RequestCoverage />} />
+          <Route path="/about" element={<About />} />
           <Route path="/coverage" element={<CoveragePage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/government-contracting" element={<GovernmentContracting />} />
