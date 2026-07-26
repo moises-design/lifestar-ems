@@ -101,7 +101,7 @@ export default function RequestCoverage() {
               <div className="req-info-box">
                 <h3>Service Area</h3>
                 <p>Edinburg · McAllen · Mission · Pharr · Weslaco · Harlingen · Brownsville and surrounding communities.</p>
-                <p style={{marginTop:'8px', color:'var(--blue-light)'}}>Long-distance trips available across Texas. Contact us to confirm availability for your location.</p>
+                <p style={{marginTop:'8px', color:'var(--v2-blue-ink)'}}>Long-distance trips available across Texas. Contact us to confirm availability for your location.</p>
               </div>
             </div>
           </div>

@@ -3,9 +3,10 @@ import './InnerPage.css'
 
 // Reusable V2 inner-page wrapper. Renders the editorial page intro
 // (breadcrumb, section label, the route's single h1, lead, optional CTA
-// and media slot) on V2 paper, then hosts the page body below. Legacy V1
-// content is passed as children with legacy={true} so it keeps its own
-// dark styling inside a contained band until the full page redesign.
+// and media slot) on V2 paper, then hosts the page body below. Content
+// passed with legacy={true} keeps its own page-specific section classes
+// (.sp-*, .req-*, etc.) but still renders inside the .v2 scope so it
+// picks up V2 typography, buttons, links, and focus styles.
 export default function InnerPage({
   label,
   title,
@@ -38,7 +39,7 @@ export default function InnerPage({
           {media && <div className="v2page-media">{media}</div>}
         </div>
       </div>
-      {legacy ? <div className="v2page-legacy">{children}</div> : <div className="v2">{children}</div>}
+      {legacy ? <div className="v2 v2page-legacy">{children}</div> : <div className="v2">{children}</div>}
     </>
   )
 }

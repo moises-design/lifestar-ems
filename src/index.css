@@ -44,10 +44,13 @@ html { scroll-behavior: smooth; }
   outline-offset: 2px;
 }
 
+/* Base surface is the V2 paper theme sitewide; the single "night" chapter
+   pattern (CTA banners, the coverage map panel) opts back into dark via
+   .v2-night rather than the page defaulting to dark. */
 body {
-  font-family: var(--font-body);
-  background: var(--navy);
-  color: var(--white);
+  font-family: var(--v2-font-sans, var(--font-body));
+  background: var(--v2-paper, #F8F6F2);
+  color: var(--v2-ink, #0E1B26);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
@@ -61,32 +64,48 @@ button { cursor: pointer; font-family: inherit; }
 .container { max-width: 1140px; margin: 0 auto; padding: 0 40px; }
 @media (max-width: 768px) { .container { padding: 0 18px; } }
 
+/* ---------- legacy V1 typography classes, reskinned to V2 tokens ----------
+   These class names (.label/.title/.subtitle/.btn*) are still used by the
+   page bodies under InnerPage's "legacy" band; redefining them here brings
+   every page onto the current V2 look without touching each page's JSX. */
 .label {
   display: inline-block;
-  font-family: var(--font-display); font-weight: 700;
-  font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase;
-  color: var(--blue-light); margin-bottom: 10px;
+  font-family: var(--v2-font-sans, var(--font-body)); font-weight: 600;
+  font-size: var(--v2-fs-label, 0.8125rem); letter-spacing: var(--v2-tracking-label, 0.12em); text-transform: uppercase;
+  color: var(--v2-ink-2, #3D4E5C); margin-bottom: 10px;
 }
+.v2-night .label, .sp-cta-banner .label { color: var(--v2-night-muted, #93A6B5); }
+
 .title {
-  font-family: var(--font-display); font-weight: 900;
-  font-size: clamp(1.9rem, 3.5vw, 2.8rem);
-  text-transform: uppercase; line-height: 1.05;
+  font-family: var(--v2-font-serif, var(--font-display)); font-weight: 600;
+  font-size: var(--v2-fs-h2, clamp(1.75rem, 1.4rem + 1.75vw, 2.5rem));
+  text-transform: none; line-height: var(--v2-lh-tight, 1.12);
+  color: var(--v2-ink, #0E1B26);
 }
-.title em { font-style: italic; color: var(--light-text); font-weight: 300; }
-.subtitle { font-size: 0.95rem; color: var(--muted); line-height: 1.75; font-weight: 300; max-width: 520px; margin-top: 12px; }
+.title em { font-style: italic; color: var(--v2-ink-2, #3D4E5C); font-weight: 400; }
+.v2-night .title, .sp-cta-banner .title { color: var(--v2-night-text, #E9EEF3); }
+.v2-night .title em, .sp-cta-banner .title em { color: var(--v2-night-muted, #93A6B5); }
+
+.subtitle { font-size: var(--v2-fs-body, 1rem); color: var(--v2-ink-2, #3D4E5C); line-height: var(--v2-lh-body, 1.6); font-weight: 400; max-width: 520px; margin-top: 12px; }
+.v2-night .subtitle { color: var(--v2-night-muted, #93A6B5); }
 
 .btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--font-display); font-weight: 700;
-  font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase;
-  padding: 13px 26px; border: none; transition: all 0.2s; cursor: pointer;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: var(--v2-tap-min, 48px);
+  font-family: var(--v2-font-sans, var(--font-body)); font-weight: 600;
+  font-size: 1rem; letter-spacing: 0; text-transform: none;
+  padding: 12px 26px; border: 1.5px solid transparent; border-radius: var(--v2-radius-m, 10px);
+  transition: background-color 150ms var(--v2-ease, ease), border-color 150ms var(--v2-ease, ease), color 150ms var(--v2-ease, ease);
+  cursor: pointer;
   white-space: nowrap;
 }
-.btn-blue { background: var(--blue); color: var(--white); }
-.btn-blue:hover { background: var(--blue-bright); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(11,158,217,0.3); }
-.btn-outline { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.3); }
-.btn-outline:hover { border-color: var(--blue-light); transform: translateY(-2px); }
-.btn-lg { padding: 16px 32px; font-size: 1rem; }
+.btn-blue { background: var(--v2-blue, var(--blue)); color: var(--v2-ink, #0E1B26); }
+.btn-blue:hover { background: #0C90C5; }
+.btn-outline { background: transparent; color: var(--v2-ink, #0E1B26); border-color: var(--v2-hairline-strong, rgba(14,27,38,0.28)); }
+.btn-outline:hover { border-color: var(--v2-ink, #0E1B26); }
+.v2-night .btn-outline, .sp-cta-banner .btn-outline { color: var(--v2-night-text, #E9EEF3); border-color: var(--v2-hairline-night, rgba(233,238,243,0.16)); }
+.v2-night .btn-outline:hover, .sp-cta-banner .btn-outline:hover { border-color: var(--v2-night-text, #E9EEF3); }
+.btn-lg { padding: 16px 32px; font-size: 1.05rem; }
 
 .section { padding: 64px 0; }
 .section-sm { padding: 48px 0; }

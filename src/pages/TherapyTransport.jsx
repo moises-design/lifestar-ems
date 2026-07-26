@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { FaPhone, FaChild, FaClock, FaHeart, FaComments, FaShieldAlt, FaCheckCircle, FaStar, FaRocket } from 'react-icons/fa'
+import { FaPhone, FaChild, FaClock, FaHeart, FaComments, FaShieldAlt, FaCheckCircle } from 'react-icons/fa'
 import InnerPage from '../v2/InnerPage'
 import { content } from '../v2/content'
 import './ServicePage.css'
@@ -12,19 +12,11 @@ const therapies = [
 ]
 
 const feats = [
-  { Icon: FaClock,     color: '#3DC8FF', title: 'On Time, Every Time',    desc: 'We track every appointment — your child never misses a session.' },
-  { Icon: FaHeart,     color: '#FB7185', title: 'Patient & Kind',          desc: 'Our staff is calm, gentle, and experienced working with children.' },
-  { Icon: FaComments,  color: '#A78BFA', title: 'Family Updates',          desc: 'We keep parents informed before, during, and after every ride.' },
-  { Icon: FaShieldAlt, color: '#34D399', title: 'Safe Transport',          desc: 'Clean vehicles with child safety features every single trip.' },
+  { Icon: FaClock,     color: '#0B9ED9', title: 'On Time, Every Time',    desc: 'We track every appointment — your child never misses a session.' },
+  { Icon: FaHeart,     color: '#E8618C', title: 'Patient & Kind',          desc: 'Our staff is calm, gentle, and experienced working with children.' },
+  { Icon: FaComments,  color: '#7C6FE0', title: 'Family Updates',          desc: 'We keep parents informed before, during, and after every ride.' },
+  { Icon: FaShieldAlt, color: '#2E9E6B', title: 'Safe Transport',          desc: 'Clean vehicles with child safety features every single trip.' },
 ]
-
-// CTA banner star field, precomputed at module level so render stays pure
-const bannerStars = Array.from({length: 30}, () => ({
-  left: `${Math.random()*100}%`,
-  top: `${Math.random()*100}%`,
-  size: `${Math.random()*3+1}px`,
-  delay: `${Math.random()*3}s`,
-}))
 
 export default function TherapyTransport() {
   return (
@@ -108,13 +100,6 @@ export default function TherapyTransport() {
             </div>
 
             <div className="sp-cta-box therapy-cta-box">
-              {/* Space header */}
-              <div className="therapy-cta-space-header">
-                <span className="tcsh-rocket">🚀</span>
-                <div className="tcsh-stars">
-                  {[...Array(8)].map((_, i) => <FaStar key={i} className="tcsh-star" style={{animationDelay: `${i*0.3}s`}} />)}
-                </div>
-              </div>
               <h3>Schedule Therapy Transport</h3>
               <p>We'll verify insurance and coordinate with your child's therapy team — at no cost to you.</p>
               <Link to="/request" className="btn therapy-btn" style={{display:'flex',justifyContent:'center',marginBottom:'10px'}}>
@@ -130,19 +115,7 @@ export default function TherapyTransport() {
 
       {/* ===== CTA BANNER ===== */}
       <section className="sp-cta-banner therapy-banner">
-        <div className="therapy-banner-stars">
-          {bannerStars.map((s, i) => (
-            <div key={i} className="tb-star" style={{
-              left: s.left,
-              top: s.top,
-              width: s.size,
-              height: s.size,
-              animationDelay: s.delay,
-            }} />
-          ))}
-        </div>
-        <div className="container" style={{position:'relative',zIndex:2}}>
-          <FaRocket className="therapy-banner-rocket" />
+        <div className="container">
           <h2>Ready to Schedule?</h2>
           <p>We make it simple — submit a request and we handle insurance, scheduling, and coordination.</p>
           <Link to="/request" className="btn therapy-btn btn-lg">

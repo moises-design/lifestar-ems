@@ -218,6 +218,12 @@ export const en = {
       lead:
         'On-site EMS standby for school sports, tournaments, concerts, and community events across the Rio Grande Valley.',
     },
+    longDistance: {
+      label: 'Statewide · Long-distance medical transport',
+      title: 'Long-distance medical transport across Texas',
+      lead:
+        'Safe, monitored medical transport with certified BLS crews for trips beyond the Rio Grande Valley — coordinated with the receiving facility and the family every step of the way.',
+    },
     request: {
       label: 'Get started',
       title: 'Request Transport',

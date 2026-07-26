@@ -35,11 +35,10 @@
 
 .v2page-media { margin-top: var(--v2-s-5); }
 
-/* Legacy V1 content band: keeps the original dark styling contained and
-   readable beneath the V2 intro until the page is fully redesigned. It
-   deliberately sits OUTSIDE the .v2 scope so V1 CSS behaves unchanged. */
+/* Content band below the V2 intro. Keeps each page's own section classes
+   (.sp-*, .req-*, etc.) but renders on the V2 paper surface, inside the
+   .v2 scope, so typography/buttons/links/focus match the rest of the site. */
 .v2page-legacy {
-  background: var(--navy, #060D14);
-  color: var(--white, #FFFFFF);
-  font-family: var(--font-body, 'Barlow', sans-serif);
+  background: var(--v2-paper);
+  color: var(--v2-ink);
 }

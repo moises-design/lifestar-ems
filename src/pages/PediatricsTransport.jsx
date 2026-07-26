@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { FaPhone, FaRocket, FaSmile, FaChild, FaRoute, FaCheckCircle, FaHeart, FaShieldAlt, FaComments } from 'react-icons/fa'
+import { FaPhone, FaRocket, FaStar, FaSmile, FaChild, FaRoute, FaCheckCircle, FaHeart, FaShieldAlt, FaComments } from 'react-icons/fa'
 import InnerPage from '../v2/InnerPage'
 import { content } from '../v2/content'
 import './ServicePage.css'
@@ -8,14 +8,14 @@ import './PediatricsTransport.css'
 const pServices = [
   {
     Icon: FaChild,
-    color: '#48DBFB',
+    color: '#0B9ED9',
     title: 'Therapy Transport',
     items: ['Physical therapy', 'Occupational therapy', 'Speech therapy'],
     desc: 'We transport children to all types of therapy appointments with patience, care, and reliability.',
   },
   {
     Icon: FaRoute,
-    color: '#A78BFA',
+    color: '#7C6FE0',
     title: 'Long-Distance Pediatric',
     items: ['Transport across Texas', 'Houston, SA, Dallas, Corpus', 'Coordinated with families'],
     desc: 'Safe, monitored long-distance transport for children needing care beyond the Rio Grande Valley.',
@@ -23,11 +23,25 @@ const pServices = [
 ]
 
 const trustItems = [
-  { Icon: FaSmile,    color: '#48DBFB', title: 'Friendly & Patient Staff',    desc: 'Our team is trained and experienced working with children — calm, kind, and always professional.' },
-  { Icon: FaShieldAlt, color: '#A78BFA', title: 'Clean & Safe Vehicles',      desc: 'Well-maintained, fully equipped vehicles with child safety features for every trip.' },
-  { Icon: FaCheckCircle, color: '#34D399', title: 'Reliable & On-Time',       desc: 'We track every appointment so children never miss a therapy session.' },
-  { Icon: FaComments, color: '#FB923C',  title: 'Clear Parent Communication', desc: 'We keep families informed before, during, and after every transport.' },
+  { Icon: FaSmile,    color: '#0B9ED9', title: 'Friendly & Patient Staff',    desc: 'Our team is trained and experienced working with children — calm, kind, and always professional.' },
+  { Icon: FaShieldAlt, color: '#7C6FE0', title: 'Clean & Safe Vehicles',      desc: 'Well-maintained, fully equipped vehicles with child safety features for every trip.' },
+  { Icon: FaCheckCircle, color: '#2E9E6B', title: 'Reliable & On-Time',       desc: 'We track every appointment so children never miss a therapy session.' },
+  { Icon: FaComments, color: '#E0954F',  title: 'Clear Parent Communication', desc: 'We keep families informed before, during, and after every transport.' },
 ]
+
+// Decorative rocket/star/planet motif for the page intro — purely visual,
+// hidden from assistive tech. See PediatricsTransport.css for the restrained,
+// reduced-motion-aware treatment.
+const pedsSkyArt = (
+  <div className="peds-sky-art" aria-hidden="true">
+    <span className="peds-sky-planet peds-sky-planet-1" />
+    <span className="peds-sky-planet peds-sky-planet-2" />
+    <span className="peds-sky-path" />
+    <FaStar className="peds-sky-star peds-sky-star-1" />
+    <FaStar className="peds-sky-star peds-sky-star-2" />
+    <FaRocket className="peds-sky-rocket" />
+  </div>
+)
 
 export default function PediatricsTransport() {
   return (
@@ -35,6 +49,7 @@ export default function PediatricsTransport() {
       {...content.pages.pediatrics}
       breadcrumb={[{ label: 'Services' }, { label: 'Pediatric and long-distance transportation' }]}
       legacy
+      media={pedsSkyArt}
       cta={
         <>
           <Link to="/request" className="v2-btn v2-btn-primary">Request Pediatric Transport</Link>
@@ -120,7 +135,7 @@ export default function PediatricsTransport() {
             </div>
             <div className="sp-cta-box peds-cta-box">
               <div className="peds-cta-icon">
-                <FaHeart className="peds-heart" />
+                <FaHeart className="peds-heart" aria-hidden="true" />
               </div>
               <h3>Free Evaluation</h3>
               <p>Let's discuss your child's needs. We'll handle insurance verification and scheduling.</p>
@@ -138,7 +153,7 @@ export default function PediatricsTransport() {
       {/* CTA */}
       <section className="sp-cta-banner peds-cta-banner">
         <div className="container">
-          <FaRocket className="peds-banner-rocket" />
+          <FaRocket className="peds-banner-rocket" aria-hidden="true" />
           <h2>Schedule Safe Transport for Your Child</h2>
           <p>Call us or submit a request — we make the process simple so you can focus on your child.</p>
           <Link to="/request" className="btn btn-blue peds-btn btn-lg">
