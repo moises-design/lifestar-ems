@@ -39,6 +39,7 @@
 .sp-list { list-style: none; margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
 .sp-list li { display: flex; align-items: flex-start; gap: 10px; font-size: var(--v2-fs-small); color: var(--v2-ink-2); line-height: 1.5; }
 .sp-list-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--v2-blue); flex-shrink: 0; margin-top: 7px; }
+.sp-list-check { color: var(--v2-blue-ink); flex-shrink: 0; font-size: 0.85rem; margin-top: 2px; }
 
 .sp-cta-box { background: var(--v2-paper); border: 1px solid var(--v2-hairline); border-radius: var(--v2-radius-l); padding: 32px 28px; }
 .sp-cta-box h3 { font-family: var(--v2-font-serif); font-weight: 600; font-size: var(--v2-fs-h4); text-transform: none; margin-bottom: 10px; color: var(--v2-ink); }
@@ -46,9 +47,14 @@
 .sp-cta-box .btn { width: 100%; justify-content: center; margin-bottom: 10px; }
 .sp-addr { font-size: var(--v2-fs-small); color: var(--v2-ink-2); margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--v2-hairline); line-height: 1.7; }
 
-/* CTA banner: the one deliberately dark "night" chapter, matching the
-   pattern already established on the homepage's operations/CTA bands. */
-.sp-cta-banner { padding: 70px 0; background: var(--v2-night); text-align: center; }
+/* CTA banner: a compact dark-accent card on a light section, not a
+   full-bleed dark band — the section itself stays on V2 paper, and only
+   the inner .container becomes the card. Page-specific classes
+   (.peds-cta-banner, .therapy-banner, .event-cta-banner) can override the
+   card's background for their own accent without reintroducing a
+   full-width dark section. */
+.sp-cta-banner { padding: var(--v2-s-9) 0; background: var(--v2-paper); text-align: center; }
+.sp-cta-banner .container { background: var(--v2-night); border-radius: var(--v2-radius-l); padding: 56px 40px; max-width: 800px; }
 .sp-cta-banner h2 { font-family: var(--v2-font-serif); font-weight: 600; font-size: var(--v2-fs-h2); text-transform: none; margin-bottom: 10px; color: var(--v2-night-text); }
 .sp-cta-banner p { color: var(--v2-night-muted); margin-bottom: 28px; }
 .sp-cta-banner .btn { margin: 0 6px; }
@@ -60,10 +66,9 @@
   .sp-hero { padding: 60px 0 50px; }
 }
 @media (max-width: 500px) { .sp-feat-grid { grid-template-columns: 1fr; } }
+@media (max-width: 600px) {
+  .sp-cta-banner .container { padding: 40px 24px; }
+}
 @media (max-width: 380px) {
   .sp-cta-banner .btn { display: flex; width: 100%; justify-content: center; white-space: normal; margin: 6px 0; }
 }
-
-/* FA check icon in lists */
-.sp-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.88rem; color: var(--light-text); line-height: 1.5; }
-.sp-list-check { color: var(--blue); flex-shrink: 0; font-size: 0.85rem; margin-top: 2px; }

@@ -391,7 +391,7 @@ export default function GovernmentContracting() {
       </section>
 
       {/* 6 · Identifiers and codes */}
-      <section className="v2-night v2-section" id={c.identifiers.id} aria-labelledby="gc-id-h">
+      <section className="v2-section v2-hairline-top" id={c.identifiers.id} aria-labelledby="gc-id-h">
         <div className="v2-container">
           <div className="v2-section-head">
             <span className="v2-label">{c.identifiers.label}</span>
@@ -515,21 +515,23 @@ export default function GovernmentContracting() {
         </div>
       </section>
 
-      {/* 13 · Final CTA */}
-      <section className="v2-night v2-section-dense" aria-labelledby="gc-cta-h">
-        <div className="v2-container gc-final">
-          <div>
-            <h2 id="gc-cta-h" className="gc-h2">{c.finalCta.heading}</h2>
-            <p className="v2-lead">{c.finalCta.line}</p>
-          </div>
-          <div className="gc-final-btns">
-            <a href={c.contact.phoneHref} className="v2-btn v2-btn-primary">
-              {c.contact.phoneLabel.split(' and ')[0]}: {c.contact.phoneDisplay}
-            </a>
-            <a href={c.pdfPublicPath} download className="v2-btn v2-btn-secondary">{c.hero.downloadLabel}</a>
-            <p className="v2-small gc-final-dispatch">
-              {c.contact.dispatchLabel}: <a href={c.contact.dispatchHref}>{c.contact.dispatchDisplay}</a>
-            </p>
+      {/* 13 · Final CTA — a compact dark-accent card, not a full-bleed band */}
+      <section className="v2-section-dense" aria-labelledby="gc-cta-h">
+        <div className="v2-container">
+          <div className="v2-night v2-cta-card gc-final">
+            <div>
+              <h2 id="gc-cta-h" className="gc-h2">{c.finalCta.heading}</h2>
+              <p className="v2-lead">{c.finalCta.line}</p>
+            </div>
+            <div className="gc-final-btns">
+              <a href={c.contact.phoneHref} className="v2-btn v2-btn-primary">
+                {c.contact.phoneLabel.split(' and ')[0]}: {c.contact.phoneDisplay}
+              </a>
+              <a href={c.pdfPublicPath} download className="v2-btn v2-btn-secondary">{c.hero.downloadLabel}</a>
+              <p className="v2-small gc-final-dispatch">
+                {c.contact.dispatchLabel}: <a href={c.contact.dispatchHref}>{c.contact.dispatchDisplay}</a>
+              </p>
+            </div>
           </div>
         </div>
       </section>

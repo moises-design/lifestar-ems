@@ -52,7 +52,8 @@
 .form-success h3 { font-family: var(--v2-font-serif); font-weight: 600; font-size: var(--v2-fs-h4); margin: 10px 0 6px; color: var(--v2-ink); }
 .form-success p { color: var(--v2-ink-2); font-size: var(--v2-fs-small); }
 
-.event-cta-banner { background: var(--v2-night) !important; }
+/* Shared .sp-cta-banner is already a light section with a dark compact
+   card inside (see ServicePage.css) — no page-specific override needed. */
 
 @media (max-width: 900px) { .ev-type-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 500px) { .form-row { grid-template-columns: 1fr; } }

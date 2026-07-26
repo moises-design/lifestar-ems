@@ -1,4 +1,6 @@
-/* ===== THERAPY — V2 theme with a light blue accent ===== */
+/* ===== THERAPY — V2 theme with a soft aqua accent =====
+   Coordinates visually with the pediatric ocean theme (a related shade of
+   teal) without reusing its wave/bubble/coral decoration. */
 
 .therapy-hero { min-height: 60vh; }
 .therapy-hero-content { position: relative; z-index: 2; }
@@ -6,11 +8,11 @@
 .therapy-badge {
   background: var(--v2-sky-tint) !important;
   border-color: var(--v2-hairline-strong) !important;
-  color: var(--v2-blue-ink) !important;
+  color: #0C7B84 !important;
 }
-.therapy-accent { color: var(--v2-blue-ink) !important; }
-.therapy-btn { background: var(--v2-blue) !important; color: var(--v2-ink) !important; }
-.therapy-btn:hover { background: #0C90C5 !important; }
+.therapy-accent { color: #0C7B84 !important; }
+.therapy-btn { background: #12A3AD !important; color: var(--v2-ink) !important; }
+.therapy-btn:hover { background: #0F8F98 !important; }
 
 /* Trust badges */
 .therapy-trust-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
@@ -21,7 +23,7 @@
   color: var(--v2-ink-2); padding: 7px 14px; border-radius: 20px;
   transition: all 0.2s;
 }
-.ttb:hover { border-color: var(--v2-blue); color: var(--v2-blue-ink); }
+.ttb:hover { border-color: #12A3AD; color: var(--v2-blue-ink); }
 
 /* Therapy type cards */
 .therapy-types-section { background: var(--v2-paper-2); }
@@ -31,7 +33,7 @@
 .therapy-type-card {
   background: var(--v2-paper);
   border: 1px solid var(--v2-hairline);
-  border-top: 3px solid var(--v2-blue);
+  border-top: 3px solid #12A3AD;
   border-radius: var(--v2-radius-l);
   padding: 32px 24px; position: relative; overflow: hidden;
   transition: all 0.25s;
@@ -49,10 +51,10 @@
 .therapy-feat-card {
   background: var(--v2-paper-2);
   border: 1px solid var(--v2-hairline);
-  border-top: 2px solid var(--fc, var(--v2-blue));
+  border-top: 2px solid var(--fc, #12A3AD);
   transition: all 0.25s;
 }
-.therapy-feat-card:hover { border-color: var(--fc, var(--v2-blue)); transform: translateY(-5px); box-shadow: var(--v2-shadow-float); }
+.therapy-feat-card:hover { border-color: var(--fc, #12A3AD); transform: translateY(-5px); box-shadow: var(--v2-shadow-float); }
 .therapy-feat-icon-wrap {
   width: 52px; height: 52px; border-radius: var(--v2-radius-m);
   background: var(--v2-paper);
@@ -68,7 +70,8 @@
 .therapy-cta-box { border: 1px solid var(--v2-hairline-strong) !important; }
 
 /* Banner */
-.therapy-banner { background: var(--v2-night) !important; }
+/* Shared .sp-cta-banner is already a light section with a dark compact
+   card inside (see ServicePage.css) — no page-specific override needed. */
 
 @media (max-width: 768px) {
   .therapy-cards-grid { grid-template-columns: 1fr; }

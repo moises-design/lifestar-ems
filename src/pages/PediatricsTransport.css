@@ -1,47 +1,55 @@
-/* ===== PEDIATRICS — restrained rocket & star motif =====
-   A small set of decorative shapes (rocket, stars, two small "planets",
-   a dashed flight path) evoke the page's earlier space-adventure identity
-   without a full dark hero takeover. Everything here is aria-hidden and
-   purely decorative — service information lives in real text below.
-   Motion is a single slow float on the rocket icon; the site-wide
-   .v2 reduced-motion rule (src/v2/v2.css) disables it automatically for
-   users who prefer reduced motion. */
+/* ===== PEDIATRICS — restrained ocean motif =====
+   Original, hand-authored decoration only: CSS-shape bubbles and coral,
+   an inline SVG wave, and the existing FaFish/FaLifeRing icons already
+   used elsewhere in this codebase. Nothing here is copied from any
+   reference image or third-party artwork. Everything is aria-hidden;
+   the only animation is a slow, subtle bubble rise (site-wide
+   prefers-reduced-motion handling in src/v2/v2.css disables it
+   automatically). Fish and coral shapes are static. */
 
-.peds-sky-art {
+.peds-ocean-art {
   position: relative;
-  height: 128px;
+  height: 136px;
   border-radius: var(--v2-radius-l);
-  background: linear-gradient(135deg, var(--v2-paper-2) 0%, var(--v2-sky-tint) 100%);
+  background: linear-gradient(160deg, #EAF7F6 0%, #DCF1EF 55%, #CFEDEA 100%);
   border: 1px solid var(--v2-hairline);
   overflow: hidden;
 }
-.peds-sky-path {
-  position: absolute; left: 6%; right: 24%; top: 60%;
-  height: 0; border-top: 2px dashed var(--v2-hairline-strong);
-  transform: rotate(-6deg);
-  opacity: 0.7;
+
+.peds-wave { position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 34px; fill: #9FDAD3; opacity: 0.8; }
+
+.peds-bubble {
+  position: absolute; border-radius: 50%;
+  background: rgba(14,165,176,0.18);
+  border: 1px solid rgba(14,165,176,0.3);
+  animation: pedsBubbleRise 8s ease-in infinite;
 }
-.peds-sky-planet { position: absolute; border-radius: 50%; opacity: 0.55; }
-.peds-sky-planet-1 { width: 44px; height: 44px; left: 8%; top: 18%; background: radial-gradient(circle at 35% 35%, #F3B98A, #E0954F); }
-.peds-sky-planet-2 { width: 22px; height: 22px; left: 21%; bottom: 18%; background: radial-gradient(circle at 35% 35%, #A8D8C9, #2E9E6B); }
-.peds-sky-star { position: absolute; color: #D9A441; opacity: 0.75; }
-.peds-sky-star-1 { left: 33%; top: 26%; font-size: 0.85rem; }
-.peds-sky-star-2 { left: 41%; bottom: 20%; font-size: 0.6rem; }
-.peds-sky-rocket {
-  position: absolute; right: 9%; top: 50%;
-  transform: translateY(-50%) rotate(-18deg);
-  font-size: 2.6rem; color: var(--v2-blue-ink);
-  animation: pedsRocketFloat 6s ease-in-out infinite;
+.peds-bubble-1 { width: 14px; height: 14px; left: 12%; bottom: 20%; animation-delay: 0s; }
+.peds-bubble-2 { width: 9px;  height: 9px;  left: 20%; bottom: 15%; animation-delay: 2.2s; }
+.peds-bubble-3 { width: 11px; height: 11px; left: 62%; bottom: 24%; animation-delay: 4.1s; }
+.peds-bubble-4 { width: 7px;  height: 7px;  left: 70%; bottom: 18%; animation-delay: 1.2s; }
+@keyframes pedsBubbleRise {
+  0%   { transform: translateY(0); opacity: 0; }
+  15%  { opacity: 0.9; }
+  85%  { opacity: 0.4; }
+  100% { transform: translateY(-70px); opacity: 0; }
 }
-@keyframes pedsRocketFloat {
-  0%, 100% { transform: translateY(-50%) rotate(-18deg); }
-  50% { transform: translateY(calc(-50% - 8px)) rotate(-18deg); }
-}
+
+.peds-coral { position: absolute; bottom: 8px; border-radius: 60% 40% 55% 45% / 45% 55% 40% 60%; opacity: 0.85; }
+.peds-coral-1 { width: 26px; height: 30px; left: 6%; background: #FF9E80; }
+.peds-coral-2 { width: 16px; height: 20px; left: 11%; background: #FFB199; }
+.peds-coral-3 { width: 20px; height: 24px; right: 8%; background: #FF9E80; }
+
+.peds-fish { position: absolute; color: #2D7DA6; opacity: 0.9; }
+.peds-fish-1 { font-size: 1.5rem; right: 22%; top: 32%; transform: scaleX(-1) rotate(-6deg); }
+.peds-fish-2 { font-size: 1rem; right: 34%; top: 52%; color: #0EA5B0; transform: scaleX(-1) rotate(4deg); opacity: 0.7; }
+
 @media (max-width: 600px) {
-  .peds-sky-art { height: 88px; }
-  .peds-sky-rocket { font-size: 1.9rem; }
-  .peds-sky-planet-1 { width: 30px; height: 30px; }
-  .peds-sky-planet-2 { width: 16px; height: 16px; }
+  .peds-ocean-art { height: 96px; }
+  .peds-fish-1 { font-size: 1.15rem; }
+  .peds-fish-2 { font-size: 0.8rem; }
+  .peds-coral-1 { width: 20px; height: 24px; }
+  .peds-coral-3 { width: 16px; height: 20px; }
 }
 
 /* Services section */
@@ -51,7 +59,7 @@
 .peds-svc-card {
   background: var(--v2-paper);
   border: 1px solid var(--v2-hairline);
-  border-top: 3px solid var(--psvc-color, var(--v2-blue));
+  border-top: 3px solid var(--psvc-color, #0EA5B0);
   border-radius: var(--v2-radius-l);
   padding: 32px 26px; transition: all 0.24s;
 }
@@ -64,16 +72,16 @@
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 16px;
 }
-.psvc-fa-icon { font-size: 1.6rem; color: var(--psvc-color, var(--v2-blue-ink)); }
+.psvc-fa-icon { font-size: 1.6rem; color: var(--psvc-color, #0EA5B0); }
 
 .peds-svc-card h3 { font-family: var(--v2-font-sans); font-weight: 600; font-size: var(--v2-fs-h4); text-transform: none; margin-bottom: 10px; color: var(--v2-ink); }
 .psvc-desc { font-size: var(--v2-fs-small); color: var(--v2-ink-2); line-height: 1.6; margin-bottom: 14px; }
 .peds-svc-card ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
 .peds-svc-card li { display: flex; align-items: center; gap: 8px; font-size: var(--v2-fs-small); color: var(--v2-ink-2); }
-.psvc-check { color: var(--psvc-color, var(--v2-blue-ink)); font-size: 0.75rem; flex-shrink: 0; }
+.psvc-check { color: var(--psvc-color, #0EA5B0); font-size: 0.75rem; flex-shrink: 0; }
 
 /* Feature cards */
-.peds-feat:hover { border-top-color: var(--tfeat-color, var(--v2-blue)) !important; }
+.peds-feat:hover { border-top-color: var(--tfeat-color, #0EA5B0) !important; }
 .peds-feat-icon-wrap {
   width: 48px; height: 48px; border-radius: var(--v2-radius-m);
   background: var(--v2-paper-2);
@@ -81,17 +89,18 @@
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 14px;
 }
-.peds-feat-icon { font-size: 1.5rem; color: var(--tfeat-color, var(--v2-blue-ink)); }
+.peds-feat-icon { font-size: 1.5rem; color: var(--tfeat-color, #0EA5B0); }
 
 /* CTA box */
 .peds-cta-box { border: 1px solid var(--v2-hairline-strong) !important; }
 .peds-cta-icon { text-align: center; margin-bottom: 12px; }
-.peds-heart { font-size: 2.2rem; color: #E8618C; animation: heartbeat 2s ease infinite; }
+.peds-heart { font-size: 2.2rem; color: #FF8A65; animation: heartbeat 2s ease infinite; }
 @keyframes heartbeat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.15)} }
 
-/* Banner — the deliberate dark "night" chapter, matching sp-cta-banner */
-.peds-cta-banner { background: var(--v2-night) !important; }
-.peds-banner-rocket { font-size: 2.4rem; color: var(--v2-blue); margin-bottom: 14px; display: block; animation: pedsRocketFloat 4s ease-in-out infinite; }
+/* Banner — a deep-ocean-teal compact card (see ServicePage.css for the
+   shared light-section + contained-card pattern this overrides). */
+.peds-cta-banner .container { background: #0B4650 !important; }
+.peds-banner-ring { font-size: 2.3rem; color: #6FD7CE; margin-bottom: 14px; display: block; }
 
 @media (max-width: 768px) {
   .peds-svc-grid { grid-template-columns: 1fr; }

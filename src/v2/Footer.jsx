@@ -8,7 +8,7 @@ const { brand, nav, footer, emergencyNotice } = content
 export default function FooterV2() {
   return (
     <div className="v2">
-      <footer className="v2f v2-night" role="contentinfo">
+      <footer className="v2f" role="contentinfo">
         <div className="v2-container v2f-grid">
           <div className="v2f-brand-col">
             <Link to="/" className="v2f-brand">

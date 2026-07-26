@@ -5,7 +5,15 @@ Ran on branch `claude/lifestar-real-photography-leadership` while PR #2
 pre-merge, at the owner's request. **PR #2 was not merged, master was not
 touched, and the source branch was not deleted.**
 
-## 1. Route inventory — before / after
+This document covers two missions on the same branch:
+- **Part 1** (§1–§15 below): converted every legacy-dark page body onto
+  V2 tokens and restored a rocket/star/planet pediatric identity.
+- **Part 2** (§16 at the end): a full visual migration removing the
+  remaining large dark-navy sections sitewide (footer, homepage and
+  Government Contracting CTA/content bands) and replacing the pediatric
+  rocket theme with an ocean theme per revised owner direction.
+
+## 1. Route inventory — before / after (Part 1)
 
 Every route registered in `src/App.jsx`, plus everything reachable from
 desktop nav, mobile nav, homepage, service cards, footer, and forms.
@@ -267,3 +275,194 @@ CSS-token-only changes to shared layout widths.)
 - PR #2: remains open, unmerged, `mergeable_state: clean`.
 - Source branch `claude/lifestar-real-photography-leadership`: not
   deleted; this mission's commits were pushed to it.
+
+---
+
+## 16. Part 2 — full visual migration + pediatric ocean theme
+
+A follow-up mission on the same branch. The owner's finding: even after
+Part 1, the site still mixed light V2 chrome with several large dark-navy
+sections (footer, a couple of full-bleed CTA/content bands on the
+homepage and Government Contracting), and asked for the pediatric page's
+rocket/space treatment to be replaced with an ocean theme instead.
+**PR #2 was not merged, master was not touched, source branch not
+deleted.**
+
+### 16.1 Route inventory — before / after (Part 2)
+
+| Route | Before this pass | After |
+|---|---|---|
+| `/` | Fully V2 chrome, but two full-width `var(--v2-night)` sections: the "Crew and operations" content band and the bottom CTA band | Operations section now light paper (matches surrounding sections); CTA band is a compact rounded dark card inside a light section, not a full-bleed band |
+| `/government-contracting` | Fully V2 chrome, but two full-width `var(--v2-night)` sections: the "Identifiers and codes" content band and the final CTA band | Identifiers section now light paper (its card grid reskinned to light tokens); final CTA is a compact dark card, same pattern as home |
+| `/services/dialysis`, `/services/therapy`, `/services/pediatrics`, `/services/events`, `/services/long-distance` | Each had a full-width `var(--v2-night)` CTA banner section | Shared `.sp-cta-banner` redesigned once (`src/pages/ServicePage.css`): the section itself is now light paper, and only the inner `.container` becomes a compact rounded dark card — applies to all five pages automatically |
+| `/coverage` | Sidebar/header already light from Part 1; SVG map panel and its small contact chip still intentionally dark | Unchanged — see §16.4 for why; also fixed a real `320px` horizontal-overflow bug in `.covmap-layout`'s mobile grid (bare `1fr` → `minmax(0,1fr)`, the same "grid auto-min-content" bug class fixed elsewhere in this codebase before) |
+| Sitewide footer | Full-width dark "brand block" (`v2-night`), present on every route | Redesigned light — see §16.2 |
+| `/services/therapy` | Blue accent (`--v2-blue`) | Shifted to a soft aqua accent (`#12A3AD`) to visually coordinate with the new pediatric ocean palette, without adding any ocean decoration to Therapy itself (§16.5) |
+
+All other routes from the Part 1 table are unaffected by this pass.
+
+### 16.2 Footer redesign
+
+`src/v2/Footer.jsx` no longer wraps itself in `.v2-night` — `src/v2/Footer.css`
+was rewritten from dark tokens (`--v2-night-text`, `--v2-night-muted`,
+`--v2-hairline-night`) to light ones (`--v2-paper-2` background, `--v2-hairline`
+top border, `--v2-ink`/`--v2-ink-2` text, `--v2-blue-ink` for the phone
+number and link hovers). All link groups, the dispatch phone, the
+Government Contracting links, and the emergency disclaimer are unchanged
+in content — only color tokens moved. The mobile-bar clearance padding
+(`calc(var(--v2-s-5) + 56px)` on `.v2f-bottom`, dropped back to `--v2-s-5`
+at ≥1024px where the bar is hidden) was left exactly as-is; it's
+independent of color and still correct (verified in §16.7).
+
+### 16.3 The "compact CTA card" pattern
+
+Rather than inventing a bespoke fix per page, one small utility class was
+added to `src/v2/v2.css`:
+
+```css
+.v2 .v2-cta-card { border-radius: var(--v2-radius-l); padding: var(--v2-s-8) var(--v2-s-6); }
+```
+
+Paired with the existing `.v2-night` class on the same element, this
+reuses all of `.v2-night`'s already-defined text/link/button-color
+cascade for free — the section around it just needs to be a normal light
+`.v2-section`. Applied to: the homepage CTA, Government Contracting's
+final CTA, and (via a CSS-only change, no JSX needed) every service
+page's shared `.sp-cta-banner`, by making `.sp-cta-banner .container` the
+card instead of the whole section. `/services/pediatrics` overrides the
+card's background to a deep ocean teal (`#0B4650`) instead of the default
+`var(--v2-night)`, to stay in its own palette (§16.5).
+
+### 16.4 What was deliberately left dark, and why
+
+Per the mission's own allowance ("dark navy may still be used sparingly
+for small accents, text, or a compact CTA, but not as the dominant
+background for large sections"):
+
+- `.covmap-svg-wrap` (the inline SVG map on `/coverage`) — its dot/label/
+  gradient colors are hand-tuned for a dark background; it's an
+  illustration, not a text content section, and re-theming its internals
+  risked breaking contrast for no real gain. Same reasoning as Part 1.
+- `.covmap-contact` — a small phone-number chip, explicitly a "compact
+  CTA."
+- `.gc-doc-sheet` — the small cover-mockup header of the capability
+  statement "document card" on `/government-contracting`; a compact,
+  self-contained decorative card, not a section background.
+- Every `.v2-cta-card` (§16.3) — explicitly allowed as a "compact CTA."
+
+Everything else that was a large `var(--v2-night)` section background is
+now light.
+
+### 16.5 Pediatric ocean theme
+
+**Replaces** the rocket/star/planet motif restored in Part 1, per the
+owner's revised direction. Built entirely from original, hand-authored
+CSS shapes plus icons already available in this codebase's existing
+`react-icons/fa` dependency (`FaFish`, `FaLifeRing` — both part of the
+Font Awesome 5 Free set already in use elsewhere in this repo; no new
+package was added). **Nothing was copied from any reference image,
+competitor site, or third-party artwork** — every shape (wave path,
+bubbles, coral blobs) is original CSS/SVG authored for this page.
+
+Decorative band (`.peds-ocean-art`, in `src/pages/PediatricsTransport.jsx`/`.css`):
+- A pale turquoise gradient panel (`#EAF7F6` → `#CFEDEA`)
+- One inline SVG wave divider along the bottom edge (a single hand-drawn
+  cubic-bezier path, no external file)
+- Four small CSS-circle "bubbles" with a slow (8s), fading rise —
+  the only animation on the page, and it collapses to ~0ms under
+  `prefers-reduced-motion` via the sitewide `.v2 *` rule (verified in
+  §16.7)
+- Three small CSS "coral" blobs (asymmetric `border-radius`, coral/peach
+  color), fully static
+- Two `FaFish` icons, fully static, no swimming animation
+
+Palette used across the page: aqua/teal (`#0EA5B0`), a deeper sea blue
+(`#2D7DA6`, `#3E8FB0`) for the second service card and one trust card, a
+coral accent (`#FF8A65`) for the "Clear Parent Communication" card and
+the "Free Evaluation" heart icon, and the deep ocean teal (`#0B4650`) for
+the compact CTA card, with a light aqua `FaLifeRing` icon rather than the
+old rocket. All colors were chosen for a calm, professional read — muted
+rather than saturated/neon — consistent with the mission's "not a
+daycare, not a cartoon, professional enough for hospitals and government
+buyers" constraint.
+
+Section labels were lightly renamed to track the brief's suggested flow
+without restructuring or duplicating already-verified content: "Safety
+and Communication" (was "Why Parents Trust Us") and "Family and Facility
+Coordination" (was "Our Commitment") — same cards and copy underneath,
+already reviewed for factual safety in Part 1 §11 (no neonatal, ALS,
+response-time, or guaranteed-coverage claims; nothing in this pass
+touched pediatric copy beyond those two section labels).
+
+All decorative ocean elements are `aria-hidden="true"`; all service
+information remains real HTML text.
+
+### 16.6 Therapy page
+
+Per the mission's "should coordinate visually with Pediatrics, but should
+not duplicate the full ocean theme" instruction: `/services/therapy`
+keeps its plain V2 card layout (no waves, bubbles, or coral) but its
+accent color shifted from the site's default blue (`--v2-blue`) to a
+related soft aqua (`#12A3AD`), so the two pediatric-adjacent pages read as
+part of the same family without Therapy getting its own decorative motif.
+
+### 16.7 Accessibility and mobile-bar verification
+
+- Heading order: re-swept all 12 routes after every change in this pass —
+  unaffected; still 11/12 clean, 404 still has its documented minor gap
+  (Part 1 §8).
+- Reduced motion: verified with Playwright's `reducedMotion: 'reduce'`
+  emulation that `.peds-bubble-1`'s animation duration and the CTA-box
+  heartbeat both collapse to ~0ms.
+- `aria-hidden`: confirmed `true` on `.peds-ocean-art` and the CTA
+  banner's `FaLifeRing` icon.
+- Mobile fixed action bar: scrolled a long page (`/`) to the true bottom
+  at a 390×844 viewport and measured the bar's and the footer legal
+  text's bounding rects directly — no overlap (footer content ends ~80px
+  above the bar's top edge). Screenshot confirms a clean visual
+  separation between the light footer and the fixed bar.
+
+### 16.8 Responsive results (Part 2)
+
+Full sweep at 320/375/390/768/1440/1920px across all 12 live routes.
+Found and fixed one real bug: `/coverage` overflowed horizontally at
+320px because `.covmap-layout`'s mobile breakpoint used a bare `1fr`
+grid track (doesn't shrink below its content's min-content width — the
+same overflow-trap bug class fixed multiple times elsewhere in this
+codebase's history). Changed to `minmax(0, 1fr)`. After the fix: **zero
+horizontal overflow across all 72 route/width combinations.**
+
+### 16.9 Performance
+
+No new dependencies, no animation library, no video/Lottie. The ocean
+decoration is CSS shapes + one inline SVG path + two already-imported FA
+icon components. The pediatric bubble animation is the only new
+animation on the site and is a plain CSS `@keyframes` rule.
+
+### 16.10 Lint, build, and console errors
+
+`npm run lint` — 0 problems. `npm run build` — succeeds (same pre-existing
+>500 KB chunk-size notice, unrelated). No new console errors on any route
+during the full sweep (the only console entries observed were from the
+test harness's own deliberate block of `fonts.googleapis.com`, used to
+route around the pre-existing font-loading network flake noted in Part 1
+§14 — unrelated to any code in this pass).
+
+### 16.11 Remaining unreachable legacy files
+
+Unchanged from Part 1 §14 — the same set of orphaned `src/components/*`
+V1 components remains, untouched, not imported by anything reachable from
+`App.jsx`.
+
+### 16.12 Future cleanup recommendations
+
+- `/services/long-distance` still has no in-app link (Part 1 §5) — still
+  unresolved, still requires an owner decision, not something this
+  visual-migration pass was scoped to fix.
+- The dead `.v2-night .gc-copy` rule in `GovernmentContracting.css` is
+  now unreachable (its only two usages are both in sections that are
+  light after this pass) — harmless, but a candidate for a future
+  cleanup pass.
+- The confirmed-dead CSS blocks documented in Part 1 (`EventStandby.css`,
+  `RequestCoverage.css` orphaned hero rules) are untouched and still
+  exactly as documented.

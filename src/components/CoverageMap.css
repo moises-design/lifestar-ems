@@ -45,4 +45,4 @@
 .cc-num:hover { color: var(--v2-blue); }
 .cc-sub { font-size: 0.72rem; color: var(--v2-night-muted); margin-top: 2px; }
 
-@media (max-width: 900px) { .covmap-layout { grid-template-columns: 1fr; } .covmap-header { flex-direction: column; align-items: flex-start; } }
+@media (max-width: 900px) { .covmap-layout { grid-template-columns: minmax(0, 1fr); } .covmap-header { flex-direction: column; align-items: flex-start; } }

@@ -149,8 +149,8 @@ export default function HomeV2() {
         </div>
       </section>
 
-      {/* 06 · Crew and operations: the single dark chapter (deepened in Mission 5) */}
-      <section className="v2-night v2-section" id={home.operations.id} aria-labelledby="ops-h">
+      {/* 06 · Crew and operations */}
+      <section className="v2-section v2-hairline-top" id={home.operations.id} aria-labelledby="ops-h">
         <div className="v2-container">
           <div className="v2-section-head">
             <span className="v2-label">{home.operations.label}</span>
@@ -242,16 +242,18 @@ export default function HomeV2() {
         </div>
       </section>
 
-      {/* 13 · CTA band */}
-      <section className="v2-night v2-section-dense" id={home.cta.id} aria-labelledby="cta-h">
-        <div className="v2-container v2home-cta">
-          <div>
-            <h2 id="cta-h">{home.cta.heading}</h2>
-            <p className="v2-lead">{home.cta.line}</p>
-          </div>
-          <div className="v2home-cta-btns">
-            <Link to={nav.requestCta.href} className="v2-btn v2-btn-primary">{home.cta.requestLabel}</Link>
-            <a href={brand.phoneHref} className="v2-btn v2-btn-secondary">{brand.phoneDisplay}</a>
+      {/* 13 · CTA band — a compact dark-accent card, not a full-bleed band */}
+      <section className="v2-section-dense" id={home.cta.id} aria-labelledby="cta-h">
+        <div className="v2-container">
+          <div className="v2-night v2-cta-card v2home-cta">
+            <div>
+              <h2 id="cta-h">{home.cta.heading}</h2>
+              <p className="v2-lead">{home.cta.line}</p>
+            </div>
+            <div className="v2home-cta-btns">
+              <Link to={nav.requestCta.href} className="v2-btn v2-btn-primary">{home.cta.requestLabel}</Link>
+              <a href={brand.phoneHref} className="v2-btn v2-btn-secondary">{brand.phoneDisplay}</a>
+            </div>
           </div>
         </div>
       </section>
