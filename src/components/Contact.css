@@ -32,4 +32,4 @@ a.cd-val:hover { color: var(--blue-light); }
 .form-done h3 { font-family: var(--font-display); font-weight: 900; font-size: 1.4rem; text-transform: uppercase; }
 .form-done p { color: var(--muted); font-size: 0.88rem; }
 
-@media (max-width: 900px) { .contact-inner { grid-template-columns: 1fr; } .fg-row { grid-template-columns: 1fr; } .contact-form-col { padding: 24px 18px; } }
+@media (max-width: 900px) { .contact-inner { grid-template-columns: minmax(0, 1fr); } .fg-row { grid-template-columns: minmax(0, 1fr); } .contact-form-col { padding: 24px 18px; } }
