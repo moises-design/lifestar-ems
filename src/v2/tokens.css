@@ -1,0 +1,104 @@
+/* ============================================================
+   Life Star EMS V2 design tokens ("Calm Response")
+   Single source of truth. Components must reference these
+   custom properties; no raw values scattered in component CSS.
+   Contrast pairs validated in docs/V2-MISSION-2-HOMEPAGE-SHELL.md
+   ============================================================ */
+
+:root {
+  /* ---- color: surfaces ---- */
+  --v2-paper:        #F8F6F2;  /* warm paper base */
+  --v2-paper-2:      #EFEBE4;  /* alternate band / cards on paper */
+  --v2-night:        #0A1622;  /* the single dark operational chapter + footer */
+
+  /* ---- color: text ---- */
+  --v2-ink:          #0E1B26;  /* primary text on paper (14.6:1) */
+  --v2-ink-2:        #3D4E5C;  /* secondary text on paper (7.0:1) */
+  --v2-night-text:   #E9EEF3;  /* primary text on night (13.5:1) */
+  --v2-night-muted:  #93A6B5;  /* secondary text on night (7.2:1) */
+
+  /* ---- color: brand + action ---- */
+  --v2-blue:         #0B9ED9;  /* brand accent: buttons, large accents only */
+  --v2-blue-ink:     #066A9C;  /* text-level links on paper (5.4:1) */
+  --v2-sky-tint:     #E3F2FA;  /* quiet tinted panels, hover fills */
+
+  /* ---- color: lines + focus ---- */
+  --v2-hairline:        rgba(14, 27, 38, 0.14);
+  --v2-hairline-strong: rgba(14, 27, 38, 0.28);
+  --v2-hairline-night:  rgba(233, 238, 243, 0.16);
+  --v2-focus:           #0B9ED9;
+
+  /* ---- typography ---- */
+  --v2-font-serif: 'Source Serif 4 Variable', Georgia, 'Times New Roman', serif;
+  --v2-font-sans:  'Inter Variable', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* fluid type scale (320px -> 1440px), safe at 320 */
+  --v2-fs-display: clamp(2.375rem, 1.55rem + 4.1vw, 4.25rem);
+  --v2-fs-h1:      clamp(2.125rem, 1.55rem + 2.9vw, 3.5rem);
+  --v2-fs-h2:      clamp(1.75rem, 1.4rem + 1.75vw, 2.5rem);
+  --v2-fs-h3:      clamp(1.375rem, 1.2rem + 0.9vw, 1.75rem);
+  --v2-fs-h4:      clamp(1.125rem, 1.05rem + 0.4vw, 1.25rem);
+  --v2-fs-body:    clamp(1.0625rem, 1.03rem + 0.15vw, 1.125rem);
+  --v2-fs-small:   0.9375rem;
+  --v2-fs-label:   0.8125rem;
+
+  --v2-lh-tight: 1.12;
+  --v2-lh-heading: 1.2;
+  --v2-lh-body: 1.6;
+  --v2-tracking-label: 0.12em;
+
+  /* ---- spacing scale (8px base) ---- */
+  --v2-s-1: 4px;
+  --v2-s-2: 8px;
+  --v2-s-3: 12px;
+  --v2-s-4: 16px;
+  --v2-s-5: 24px;
+  --v2-s-6: 32px;
+  --v2-s-7: 48px;
+  --v2-s-8: 64px;
+  --v2-s-9: 96px;
+  --v2-s-10: 128px;
+  --v2-s-11: 160px;
+
+  /* section rhythm */
+  --v2-section-pad: clamp(64px, 5vw + 40px, 128px);
+  --v2-section-pad-dense: clamp(48px, 4vw + 28px, 96px);
+
+  /* ---- containers ---- */
+  --v2-container-text: 720px;
+  --v2-container-content: 1200px;
+  --v2-container-wide: 1440px;
+  --v2-gutter: clamp(20px, 4vw, 32px);
+
+  /* ---- radii ---- */
+  --v2-radius-s: 8px;
+  --v2-radius-m: 10px;   /* buttons */
+  --v2-radius-l: 16px;   /* cards, media panels */
+
+  /* ---- shadow (single ambient token, floating UI only) ---- */
+  --v2-shadow-float: 0 8px 24px rgba(14, 27, 38, 0.08);
+
+  /* ---- motion ---- */
+  --v2-ease: cubic-bezier(0.2, 0, 0, 1);
+  --v2-t-fast: 150ms;
+  --v2-t-reveal: 250ms;
+  --v2-t-page: 400ms;
+
+  /* ---- z-index layers ---- */
+  --v2-z-header: 100;
+  --v2-z-overlay: 200;
+  --v2-z-sheet: 210;
+  --v2-z-toast: 300;
+
+  /* ---- component metrics ---- */
+  --v2-tap-min: 48px;
+  --v2-header-h: 72px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --v2-t-fast: 0ms;
+    --v2-t-reveal: 0ms;
+    --v2-t-page: 0ms;
+  }
+}

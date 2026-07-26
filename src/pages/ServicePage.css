@@ -52,10 +52,13 @@
 
 @media (max-width: 900px) {
   .sp-feat-grid { grid-template-columns: 1fr 1fr; }
-  .sp-two-grid { grid-template-columns: 1fr; gap: 36px; }
+  .sp-two-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
   .sp-hero { padding: 60px 0 50px; }
 }
 @media (max-width: 500px) { .sp-feat-grid { grid-template-columns: 1fr; } }
+@media (max-width: 380px) {
+  .sp-cta-banner .btn { display: flex; width: 100%; justify-content: center; white-space: normal; margin: 6px 0; }
+}
 
 /* FA check icon in lists */
 .sp-list li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.88rem; color: var(--light-text); line-height: 1.5; }

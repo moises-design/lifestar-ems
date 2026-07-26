@@ -1,0 +1,163 @@
+/* V2 homepage shell layout */
+
+/* ---------- hero ---------- */
+.v2home-hero { padding-top: clamp(48px, 6vw, 96px); }
+.v2home-hero-h { max-width: 16ch; margin-top: var(--v2-s-4); }
+.v2home-hero-lead { margin-top: var(--v2-s-5); }
+.v2home-hero-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--v2-s-3);
+  margin-top: var(--v2-s-6);
+}
+.v2home-hero-media {
+  margin-top: var(--v2-s-7);
+  aspect-ratio: 3 / 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.v2home-hero-mark { width: clamp(72px, 10vw, 120px); opacity: 0.35; }
+.v2home-hero-local { color: var(--v2-ink-2); margin-top: var(--v2-s-4); }
+
+@media (min-width: 768px) {
+  .v2home-hero-media { aspect-ratio: 21 / 9; }
+}
+
+/* ---------- numbered service index ---------- */
+.v2home-index { list-style: none; margin: 0; padding: 0; }
+.v2home-index-row { border-top: 1px solid var(--v2-hairline); }
+.v2home-index-row:last-child { border-bottom: 1px solid var(--v2-hairline); }
+.v2 .v2home-index-link {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: var(--v2-s-5);
+  padding: var(--v2-s-5) var(--v2-s-2);
+  color: var(--v2-ink);
+  border-radius: var(--v2-radius-s);
+  transition: background-color var(--v2-t-fast) var(--v2-ease);
+}
+.v2 .v2home-index-link:hover { background: var(--v2-sky-tint); text-decoration: none; }
+.v2home-index-num {
+  font-size: var(--v2-fs-label);
+  font-weight: 600;
+  letter-spacing: var(--v2-tracking-label);
+  color: var(--v2-blue-ink);
+  font-variant-numeric: tabular-nums;
+}
+.v2home-index-body { display: grid; gap: 6px; }
+.v2home-index-title { font-family: var(--v2-font-serif); font-size: var(--v2-fs-h3); font-weight: 600; line-height: var(--v2-lh-heading); }
+.v2home-index-line { color: var(--v2-ink-2); max-width: 60ch; }
+.v2home-index-cta { color: var(--v2-blue-ink); font-size: 1.25rem; }
+
+/* ---------- steps ---------- */
+.v2home-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--v2-s-6);
+}
+.v2home-step { display: grid; gap: var(--v2-s-2); align-content: start; }
+.v2home-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--v2-hairline-strong);
+  border-radius: 50%;
+  font-weight: 600;
+  color: var(--v2-ink);
+  margin-bottom: var(--v2-s-2);
+}
+.v2home-step-title { font-size: var(--v2-fs-h4); font-family: var(--v2-font-sans); font-weight: 600; }
+.v2home-step-line { color: var(--v2-ink-2); max-width: 36ch; }
+
+@media (min-width: 768px) {
+  .v2home-steps { grid-template-columns: repeat(3, 1fr); gap: var(--v2-s-7); }
+}
+
+/* ---------- split rows ---------- */
+.v2home-split {
+  display: grid;
+  gap: var(--v2-s-6);
+  align-items: center;
+}
+.v2home-split-h { margin-block: var(--v2-s-4); max-width: 20ch; }
+.v2home-photo-slot { aspect-ratio: 4 / 3; }
+
+@media (min-width: 1024px) {
+  .v2home-split { grid-template-columns: 5fr 6fr; gap: var(--v2-s-8); }
+}
+
+/* ---------- quiet link ---------- */
+.v2home-quiet-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--v2-tap-min);
+  font-weight: 600;
+  color: var(--v2-blue-ink);
+}
+
+/* ---------- audience paths ---------- */
+.v2home-paths { display: grid; gap: var(--v2-s-5); }
+.v2home-path-card {
+  border: 1px solid var(--v2-hairline);
+  border-radius: var(--v2-radius-l);
+  background: var(--v2-paper-2);
+  padding: var(--v2-s-6);
+  display: grid;
+  gap: var(--v2-s-3);
+  align-content: start;
+}
+.v2home-path-title { font-size: var(--v2-fs-h4); font-family: var(--v2-font-serif); font-weight: 600; }
+.v2home-path-line { color: var(--v2-ink-2); }
+
+@media (min-width: 768px) {
+  .v2home-paths { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* ---------- FAQ ---------- */
+.v2home-faq-wrap { max-width: 820px; }
+.v2home-faq { display: grid; }
+.v2home-faq-item { border-top: 1px solid var(--v2-hairline); }
+.v2home-faq-item:last-child { border-bottom: 1px solid var(--v2-hairline); }
+.v2home-faq-q {
+  cursor: pointer;
+  font-family: var(--v2-font-serif);
+  font-size: var(--v2-fs-h4);
+  font-weight: 600;
+  padding: var(--v2-s-5) var(--v2-s-2);
+  list-style-position: outside;
+}
+.v2home-faq-q:hover { color: var(--v2-blue-ink); }
+.v2home-faq-a { color: var(--v2-ink-2); padding: 0 var(--v2-s-2) var(--v2-s-5); max-width: 65ch; }
+
+/* ---------- CTA band ---------- */
+.v2home-cta { display: grid; gap: var(--v2-s-6); align-items: center; }
+.v2home-cta h2 { max-width: 18ch; }
+.v2home-cta .v2-lead { margin-top: var(--v2-s-3); }
+.v2home-cta-btns { display: flex; flex-wrap: wrap; gap: var(--v2-s-3); }
+
+@media (min-width: 1024px) {
+  .v2home-cta { grid-template-columns: 1fr auto; }
+}
+
+/* clearance above the fixed mobile bar on short pages */
+.v2-home { padding-bottom: 0; }
+
+/* ---------- government quiet band ---------- */
+.v2home-gov {
+  display: grid;
+  gap: var(--v2-s-5);
+  padding: var(--v2-s-7) var(--v2-s-6);
+  align-items: center;
+}
+.v2home-gov-h { font-size: var(--v2-fs-h3); }
+.v2home-gov-line { margin-top: var(--v2-s-3); max-width: 56ch; }
+.v2home-gov-btns { display: flex; flex-wrap: wrap; align-items: center; gap: var(--v2-s-4); }
+@media (min-width: 1024px) {
+  .v2home-gov { grid-template-columns: 1fr auto; }
+}

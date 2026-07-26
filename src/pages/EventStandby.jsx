@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { FaPhone, FaCheckCircle, FaBriefcaseMedical, FaUserNurse, FaAmbulance } from 'react-icons/fa'
+import { FaPhone, FaBriefcaseMedical } from 'react-icons/fa'
 import { supabase } from '../lib/supabase'
+import InnerPage from '../v2/InnerPage'
+import { content } from '../v2/content'
 import './ServicePage.css'
 import './EventStandby.css'
 
@@ -16,15 +18,9 @@ const eventTypes = [
   {icon:'🌟',label:'Community Events',desc:'City events, parades, non-profit gatherings'},
 ]
 
-const clients = [
-  {name:'Boys & Girls Club of McAllen',logo:'/images/boys-girls-club.svg'},
-  {name:'PSJA ISD',logo:'/images/psja.svg'},
-  {name:'Mission CISD',logo:'/images/mission-cisd.svg'},
-  {name:'Sharyland ISD',logo:'/images/sharyland.svg'},
-  {name:'Edinburg CISD',logo:'/images/edinburg-cisd.svg'},
-  {name:'UTRGV',logo:'/images/utrgv.svg'},
-  {name:'Special Olympics Texas',logo:'/images/special-olympics.svg'},
-]
+// Community-partner logos removed per owner decision 8: partner
+// organization claims stay hidden until relationships and naming
+// permission are verified (docs/SEO-FACT-VERIFICATION.md §12).
 
 export default function EventStandby() {
   const [form, setForm] = useState({name:'',phone:'',email:'',event_name:'',event_date:'',event_location:'',attendance:'',event_type:'',notes:''})
@@ -42,32 +38,19 @@ export default function EventStandby() {
   }
 
   return (
+    <InnerPage
+      {...content.pages.events}
+      breadcrumb={[{ label: 'Services' }, { label: 'Event EMS standby' }]}
+      legacy
+      cta={
+        <>
+          <a href="#event-form" className="v2-btn v2-btn-primary">Request Event Coverage</a>
+          <a href="tel:+19566606543" className="v2-btn v2-btn-secondary">Call dispatch (956) 660-6543</a>
+          <Link to="/government-contracting" className="v2home-quiet-link">Government or institutional buyer? View Government Contracting</Link>
+        </>
+      }
+    >
     <div className="sp event-sp">
-      <section className="sp-hero event-hero">
-        <div className="sp-hero-bg event-bg">
-          <div className="event-field" />
-          <div className="event-sports-row">
-            {['🏈','⚽','🏃','🏀','🎵','🏆'].map((icon,i)=>(
-              <span key={i} className="ev-sport" style={{left:`${8+i*16}%`,animationDelay:`${i*0.5}s`}}>{icon}</span>
-            ))}
-          </div>
-        </div>
-        <div className="container sp-inner">
-          <div className="sp-badge event-badge"><FaBriefcaseMedical style={{marginRight:6}}/>EMS On-Site Coverage</div>
-          <h1 className="sp-h1">Sports &<br /><span className="sp-accent event-accent">Event Medical Standby</span></h1>
-          <p className="sp-lead">Life Star EMS keeps athletes, fans, and attendees safe. Professional EMT and paramedic crews on-site — from Friday night football to 5K runs, concerts, and community events across the Rio Grande Valley.</p>
-          <div className="sp-btns">
-            <Link to="/request" className="btn btn-blue"><FaBriefcaseMedical /> Request Event Coverage</Link>
-            <a href="tel:9566606543" className="btn btn-outline"><FaPhone /> (956) 660-6543</a>
-          </div>
-        </div>
-        <div className="event-scoreboard">
-          {[['EMT','Certified'],['BLS/ALS','Licensed'],['RGV','Coverage']].map(([v,l],i)=>(
-            <div key={i} className="sb-item"><span className="sb-val">{v}</span><span className="sb-lbl">{l}</span></div>
-          ))}
-        </div>
-      </section>
-
       {/* Event types */}
       <section className="event-types section">
         <div className="container">
@@ -85,25 +68,8 @@ export default function EventStandby() {
         </div>
       </section>
 
-      {/* Community Partners */}
-      <section className="event-clients section">
-        <div className="container">
-          <span className="label">Trusted By</span>
-          <h2 className="title">Community<br /><em>Partners</em></h2>
-          <p className="subtitle">Proud to support and serve these organizations across the Rio Grande Valley.</p>
-          <div className="clients-grid">
-            {clients.map((c,i)=>(
-              <div key={i} className="client-card">
-                <img src={c.logo} alt={c.name} className="client-logo" />
-                <span className="client-name">{c.name}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* What we provide + form */}
-      <section className="sp-two">
+      <section className="sp-two" id="event-form">
         <div className="container">
           <div className="sp-two-grid">
             <div>
@@ -115,7 +81,7 @@ export default function EventStandby() {
             </div>
             <div className="sp-cta-box event-form-box">
               {status==='sent' ? (
-                <div className="form-success"><span>✅</span><h3>Request Received!</h3><p>We'll contact you within 24 hours with a custom quote.</p></div>
+                <div className="form-success"><span>✅</span><h3>Request Received!</h3><p>Our team will review your event details and contact you to confirm availability and pricing.</p></div>
               ) : (
                 <form onSubmit={submit}>
                   <h3 className="form-title">🏆 Request Event Coverage</h3>
@@ -154,9 +120,10 @@ export default function EventStandby() {
           <h2>Let's Cover Your Event</h2>
           <p>Call us for a free quote — we'll build a plan around your event needs.</p>
           <Link to="/request" className="btn btn-blue"><FaBriefcaseMedical /> Request Event Coverage</Link>
-          <a href="tel:9566606543" className="btn btn-outline"><FaPhone /> Call Now</a>
+          <a href="tel:+19566606543" className="btn btn-outline"><FaPhone /> Call Now</a>
         </div>
       </section>
     </div>
+    </InnerPage>
   )
 }

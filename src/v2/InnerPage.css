@@ -1,0 +1,45 @@
+/* V2 inner-page intro + legacy content band */
+
+.v2page-intro-wrap {
+  border-bottom: 1px solid var(--v2-hairline);
+}
+
+.v2page-intro {
+  padding-top: clamp(40px, 5vw, 72px);
+  padding-bottom: clamp(40px, 5vw, 72px);
+  display: grid;
+  gap: var(--v2-s-4);
+}
+
+.v2page-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  color: var(--v2-ink-2);
+}
+.v2page-crumb-sep { margin-inline: 6px; color: var(--v2-ink-2); }
+
+.v2page-h1 {
+  font-size: var(--v2-fs-h1);
+  max-width: 22ch;
+}
+
+.v2page-lead { max-width: 62ch; }
+
+.v2page-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--v2-s-3);
+  margin-top: var(--v2-s-2);
+}
+
+.v2page-media { margin-top: var(--v2-s-5); }
+
+/* Legacy V1 content band: keeps the original dark styling contained and
+   readable beneath the V2 intro until the page is fully redesigned. It
+   deliberately sits OUTSIDE the .v2 scope so V1 CSS behaves unchanged. */
+.v2page-legacy {
+  background: var(--navy, #060D14);
+  color: var(--white, #FFFFFF);
+  font-family: var(--font-body, 'Barlow', sans-serif);
+}

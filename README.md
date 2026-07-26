@@ -65,8 +65,9 @@ Then on github.com: New repository → `lifestar-ems` → follow push instructio
 
 Drop photos in `public/images/` then update `src/components/Gallery.jsx`
 
-## 📞 Update Your Info
+## 📞 Contact Info
 
-Search for these and replace with your real details:
-- `9566489774` → your phone
-- `info@lifestaremsrgv.com` → your email
+The verified dispatch number is **(956) 660-6543**. Page titles, meta
+descriptions, and canonical URLs are managed centrally in
+`src/seo/routeMeta.js`. The old template placeholder number (956) 648-9774
+has been removed and must not be reintroduced.

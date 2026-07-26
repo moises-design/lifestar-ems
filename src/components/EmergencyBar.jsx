@@ -9,7 +9,7 @@ export default function EmergencyBar() {
       <a href="tel:911" className="eb-911">Call 911</a>
       <span className="eb-divider">|</span>
       <span className="eb-text">Non-Emergency Dispatch:</span>
-      <a href="tel:9566606543" className="eb-phone">
+      <a href="tel:+19566606543" className="eb-phone">
         <FaPhone className="eb-phone-icon" />
         (956) 660-6543
       </a>

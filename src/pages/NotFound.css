@@ -1,0 +1,36 @@
+.nf-page {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  padding: var(--v2-s-9) 0;
+}
+
+.nf-inner {
+  text-align: center;
+  max-width: 620px;
+  display: grid;
+  justify-items: center;
+  gap: var(--v2-s-4);
+}
+
+.nf-logo {
+  width: 72px;
+  height: auto;
+  opacity: 0.85;
+}
+
+.nf-title {
+  font-size: var(--v2-fs-h1);
+}
+
+.nf-text {
+  margin-inline: auto;
+}
+
+.nf-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--v2-s-3);
+  justify-content: center;
+  margin-top: var(--v2-s-3);
+}

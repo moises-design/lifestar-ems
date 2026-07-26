@@ -49,7 +49,7 @@ export default function Hero() {
           <Link to="/request" className="btn btn-blue btn-lg">
             <FaFileAlt /> Request Transport
           </Link>
-          <a href="tel:9566606543" className="btn btn-outline btn-lg">
+          <a href="tel:+19566606543" className="btn btn-outline btn-lg">
             <FaPhone /> Call Dispatch
           </a>
         </div>

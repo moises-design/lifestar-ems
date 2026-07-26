@@ -7,7 +7,8 @@
 .req-lead { font-size:1rem; color:var(--light-text); line-height:1.75; max-width:500px; font-weight:300; }
 
 .req-body { padding: 60px 0 80px; background: var(--navy2); }
-.req-grid { display:grid; grid-template-columns:1.5fr 1fr; gap:40px; align-items:start; }
+.req-grid { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(0,1fr); gap:40px; align-items:start; }
+.req-grid > * { min-width: 0; }
 .req-form-wrap { background:var(--card); border:1px solid var(--border-blue); padding:40px 36px; }
 .req-form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
 .req-group { display:flex; flex-direction:column; gap:6px; margin-bottom:14px; }
@@ -33,4 +34,6 @@
 .req-svc-list li { display:flex; align-items:center; gap:10px; font-size:0.84rem; color:var(--light-text); }
 .req-dot { color:var(--blue); flex-shrink:0; font-size:0.8rem; }
 
-@media(max-width:900px){ .req-grid{grid-template-columns:1fr;} .req-form-row{grid-template-columns:1fr;} .req-form-wrap{padding:24px 20px;} }
+@media(max-width:900px){ .req-grid{grid-template-columns:minmax(0,1fr);} .req-form-row{grid-template-columns:1fr;} .req-form-wrap{padding:24px 20px;} .req-event-link{display:flex; width:100%; justify-content:center; text-align:center; white-space:normal;} }
+
+.req-event-link { display: inline-flex; margin-top: 10px; }

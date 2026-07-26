@@ -23,11 +23,15 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', fn)
   }, [])
 
-  // Close menu on route change
-  useEffect(() => {
+  // Close menus when the route changes. State is adjusted during render
+  // with a previous-value guard instead of inside an effect, per React's
+  // recommended pattern, so no extra render cascade is triggered.
+  const [prevLocation, setPrevLocation] = useState(location)
+  if (location !== prevLocation) {
+    setPrevLocation(location)
     setOpen(false)
     setDropdown(false)
-  }, [location])
+  }
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -83,7 +87,7 @@ export default function Navbar() {
 
           {/* Right side */}
           <div className="nav-right">
-            <a href="tel:9566606543" className="nav-phone nav-desktop-only">
+            <a href="tel:+19566606543" className="nav-phone nav-desktop-only">
               <FaPhone /> (956) 660-6543
             </a>
             <Link to="/request" className="btn btn-blue nav-cta nav-desktop-only">
@@ -138,7 +142,7 @@ export default function Navbar() {
         </div>
 
         <div className="mobile-menu-footer">
-          <a href="tel:9566606543" className="mm-call">
+          <a href="tel:+19566606543" className="mm-call">
             <FaPhone /> Call (956) 660-6543
           </a>
         </div>
@@ -149,7 +153,7 @@ export default function Navbar() {
 
       {/* ===== STICKY BOTTOM BAR — mobile only ===== */}
       <div className="mobile-bar">
-        <a href="tel:9566606543" className="mobile-bar-call">
+        <a href="tel:+19566606543" className="mobile-bar-call">
           <FaPhone /> (956) 660-6543
         </a>
         <Link to="/request" className="mobile-bar-request">
