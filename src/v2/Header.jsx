@@ -110,7 +110,7 @@ function MobileMenu({ open, onClose }) {
         ))}
         <div className="v2h-sheet-rule" />
         <Link to={nav.coverage.href} className="v2h-sheet-link" onClick={onClose}>{nav.coverage.label}</Link>
-        <Link to={gov.route} className="v2h-sheet-link" onClick={onClose}>Government Contracting</Link>
+        <Link to={gov.route} className="v2h-sheet-link" onClick={onClose}>{gov.navLabel}</Link>
         <Link to={nav.why.href} className="v2h-sheet-link" onClick={onClose}>{nav.why.label}</Link>
         <Link to={nav.contact.href} className="v2h-sheet-link" onClick={onClose}>{nav.contact.label}</Link>
       </nav>
