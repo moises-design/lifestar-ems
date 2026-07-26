@@ -15,6 +15,7 @@ import DialysisTransport from './pages/DialysisTransport'
 import TherapyTransport from './pages/TherapyTransport'
 import PediatricsTransport from './pages/PediatricsTransport'
 import EventStandby from './pages/EventStandby'
+import LongDistanceTransport from './pages/LongDistanceTransport'
 import RequestCoverage from './pages/RequestCoverage'
 import CoveragePage from './pages/CoveragePage'
 import ContactPage from './pages/ContactPage'
@@ -35,6 +36,7 @@ function App() {
           <Route path="/services/therapy" element={<TherapyTransport />} />
           <Route path="/services/pediatrics" element={<PediatricsTransport />} />
           <Route path="/services/events" element={<EventStandby />} />
+          <Route path="/services/long-distance" element={<LongDistanceTransport />} />
           <Route path="/request" element={<RequestCoverage />} />
           <Route path="/about" element={<About />} />
           <Route path="/coverage" element={<CoveragePage />} />

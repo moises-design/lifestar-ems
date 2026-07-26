@@ -75,7 +75,7 @@ export default function LongDistanceTransport() {
             <span className="sp-accent">Medical Transport</span><br />
             Across Texas
           </h1>
-          <p className="sp-desc">Need to reach a specialist in Houston or transfer to a hospital in San Antonio? Life Star EMS provides safe, monitored long-distance medical transport with certified BLS/ALS crews — anywhere in Texas.</p>
+          <p className="sp-desc">Need to reach a specialist in Houston or transfer to a hospital in San Antonio? Life Star EMS provides safe, monitored long-distance medical transport with certified BLS crews — anywhere in Texas.</p>
           <div className="sp-actions">
             <a href="tel:+19566606543" className="sp-btn-primary"><FaPhone /> Call (956) 660-6543</a>
             <div className="sp-free-badge">🗺️ FREE Quote — No Obligation</div>
@@ -107,14 +107,14 @@ export default function LongDistanceTransport() {
               <span className="section-label">Why Choose Us</span>
               <h2 className="section-title">Safe. Monitored.<br /><em>Professional.</em></h2>
               <ul className="sp-checklist">
-                {['BLS / ALS certified crews on every trip','Continuous patient monitoring during transport','Wheelchair and stretcher accessible vehicles','Oxygen, IV, and special equipment available','Coordinated with receiving facility','Family member can ride along','Insurance accepted — we verify before trip','Available 24 hours / 7 days a week'].map((item, i) => (
+                {['BLS-certified crews on every trip','Continuous patient monitoring during transport','Wheelchair and stretcher accessible vehicles','Oxygen, IV, and special equipment available','Coordinated with receiving facility','Family member can ride along','Insurance accepted — we verify before trip','Available 24 hours / 7 days a week'].map((item, i) => (
                   <li key={i}><FaCheckCircle className="check" /> {item}</li>
                 ))}
               </ul>
             </div>
             <div className="ld-form-box">
               {status === 'sent' ? (
-                <div className="ld-success"><span>✅</span><h3>Request Received!</h3><p>We'll contact you within 2 hours to confirm your transport details.</p><a href="tel:+19566606543" className="sp-btn-primary" style={{ display:'flex', justifyContent:'center', marginTop:16 }}><FaPhone /> Call Now to Confirm</a></div>
+                <div className="ld-success"><span>✅</span><h3>Request Received!</h3><p>Our team will review your request and contact you to confirm your transport details. If anything is time sensitive, please call us directly.</p><a href="tel:+19566606543" className="sp-btn-primary" style={{ display:'flex', justifyContent:'center', marginTop:16 }}><FaPhone /> Call Now to Confirm</a></div>
               ) : (
                 <form onSubmit={submit}>
                   <h3 className="ld-form-title">🗺️ Request a Free Quote</h3>

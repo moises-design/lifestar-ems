@@ -37,6 +37,11 @@ const routeMeta = {
     description:
       'On-site EMS standby coverage for school sports, tournaments, concerts, and community events in the Rio Grande Valley. Call (956) 660-6543 for a quote.',
   },
+  '/services/long-distance': {
+    title: 'Long-Distance Medical Transport Across Texas | Life Star EMS',
+    description:
+      'Safe, monitored long-distance medical transport across Texas with BLS-certified crews. Life Star EMS coordinates trips to Houston, San Antonio, Dallas, and beyond. Call (956) 660-6543.',
+  },
   '/request': {
     title: 'Request Medical Transportation | Life Star EMS',
     description:
