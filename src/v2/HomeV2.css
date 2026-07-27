@@ -10,15 +10,24 @@
   gap: var(--v2-s-3);
   margin-top: var(--v2-s-6);
 }
+/* The source photo is a 1:1 square (the full flag-and-ambulance
+   composition). Aspect ratios here are kept close to that native ratio
+   at every breakpoint so object-fit: cover crops as little of the flag
+   and ambulance as possible, instead of the old 21/9 desktop ratio,
+   which cropped away most of the image's height. */
 .v2home-hero-media {
   margin-top: var(--v2-s-7);
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 1 / 1;
 }
-.v2home-hero-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
+.v2home-hero-photo { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
 .v2home-hero-local { color: var(--v2-ink-2); margin-top: var(--v2-s-4); }
 
 @media (min-width: 768px) {
-  .v2home-hero-media { aspect-ratio: 21 / 9; }
+  .v2home-hero-media { aspect-ratio: 4 / 3; }
+}
+
+@media (min-width: 1024px) {
+  .v2home-hero-media { aspect-ratio: 3 / 2; }
 }
 
 /* ---------- real operations photo strip ---------- */

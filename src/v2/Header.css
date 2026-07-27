@@ -117,21 +117,6 @@
   cursor: pointer;
 }
 
-/* notice strip */
-.v2h-notice {
-  margin: 0;
-  padding: 8px 0;
-  background: var(--v2-paper-2);
-  border-top: 1px solid var(--v2-hairline);
-  color: var(--v2-ink-2);
-}
-.v2h-notice-full { display: none; }
-.v2h-notice-short { display: block; }
-@media (min-width: 640px) {
-  .v2h-notice-full { display: block; }
-  .v2h-notice-short { display: none; }
-}
-
 /* ---------- mobile sheet ---------- */
 .v2h-sheet {
   position: fixed;

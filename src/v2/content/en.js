@@ -18,7 +18,6 @@ export const en = {
 
   emergencyNotice:
     'For a medical emergency, call 911. Life Star EMS provides scheduled transportation and event standby services.',
-  emergencyNoticeShort: 'Emergency? Call 911. We provide scheduled transport, not emergency response.',
 
   nav: {
     services: 'Services',

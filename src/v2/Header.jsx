@@ -5,7 +5,7 @@ import { content } from './content'
 import { gov } from './content/government'
 import './Header.css'
 
-const { brand, nav, emergencyNotice, emergencyNoticeShort } = content
+const { brand, nav, emergencyNotice } = content
 
 function ServicesDropdown({ active = false }) {
   const [open, setOpen] = useState(false)
@@ -204,14 +204,6 @@ export default function HeaderV2() {
             </button>
           </div>
         </div>
-
-        {/* Emergency notice: discreet strip under the header bar. Full
-            wording on larger screens, a compact version on mobile where
-            horizontal space is tight. */}
-        <p className="v2h-notice v2-small">
-          <span className="v2-container-wide v2h-notice-full">{emergencyNotice}</span>
-          <span className="v2-container-wide v2h-notice-short">{emergencyNoticeShort}</span>
-        </p>
       </header>
 
       <MobileMenu open={menuOpen} onClose={closeMenu} onDismiss={dismissMenu} />
