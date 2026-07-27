@@ -19,7 +19,7 @@ a.cd-val:hover { color: var(--v2-blue-ink); }
 /* Form */
 .contact-form-col { background: var(--v2-paper-2); border: 1px solid var(--v2-hairline); border-radius: var(--v2-radius-l); padding: 32px; }
 .form-title { font-family: var(--v2-font-serif); font-weight: 600; font-size: var(--v2-fs-h4); text-transform: none; margin-bottom: 20px; color: var(--v2-ink); }
-.fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.fg-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
 .fg { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
 .fg label { font-family: var(--v2-font-sans); font-size: var(--v2-fs-label); font-weight: 600; letter-spacing: var(--v2-tracking-label); text-transform: uppercase; color: var(--v2-ink-2); }
 .fg input, .fg textarea {

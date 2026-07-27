@@ -12,7 +12,7 @@
 
 .event-form-box { border: 1px solid var(--v2-hairline-strong) !important; }
 .form-title { font-family: var(--v2-font-serif); font-weight: 600; font-size: var(--v2-fs-h4); text-transform: none; margin-bottom: 22px; color: var(--v2-ink); }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
 .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
 .form-group label { font-family: var(--v2-font-sans); font-size: var(--v2-fs-label); font-weight: 600; letter-spacing: var(--v2-tracking-label); text-transform: uppercase; color: var(--v2-ink-2); }
 .form-group input, .form-group textarea, .ev-select {

@@ -4,7 +4,7 @@
 .req-grid { display: grid; grid-template-columns: minmax(0,1.5fr) minmax(0,1fr); gap: 40px; align-items: start; }
 .req-grid > * { min-width: 0; }
 .req-form-wrap { background: var(--v2-paper-2); border: 1px solid var(--v2-hairline); border-radius: var(--v2-radius-l); padding: 40px 36px; }
-.req-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.req-form-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 14px; }
 .req-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
 .req-group label { font-family: var(--v2-font-sans); font-size: var(--v2-fs-label); font-weight: 600; letter-spacing: var(--v2-tracking-label); text-transform: uppercase; color: var(--v2-ink-2); }
 .req-group input, .req-group textarea, .req-select {
