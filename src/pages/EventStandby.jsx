@@ -140,6 +140,7 @@ export default function EventStandby() {
                     </FormStatus>
                   )}
                   <button type="submit" className="btn btn-blue ev-submit" disabled={status==='sending'}>{status==='sending'?'Sending…':'Request Free Quote →'}</button>
+                  <p className="ev-note">Submitting this request does not confirm staffing, pricing, or event coverage — our team will follow up to confirm availability. For a medical emergency, call 911.</p>
                 </form>
               )}
             </div>

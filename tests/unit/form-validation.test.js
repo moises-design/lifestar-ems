@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { validateInquiry, isRateLimited, INQUIRY_TYPES } from '../../supabase/functions/submit-inquiry/validate.js'
+import { validateInquiry, isRateLimited, INQUIRY_TYPES, buildRecord } from '../../supabase/functions/submit-inquiry/validate.js'
 
 describe('validateInquiry', () => {
   it('accepts a well-formed submission', () => {
@@ -65,6 +65,30 @@ describe('validateInquiry', () => {
   it('exposes the known inquiry types', () => {
     expect(INQUIRY_TYPES).toContain('dialysis')
     expect(INQUIRY_TYPES).toContain('long-distance')
+  })
+})
+
+describe('buildRecord', () => {
+  it('drops message and inquiry_type from long-distance records, storing the text under notes', () => {
+    const body = { table: 'long_distance_requests', message: 'Please call about a trip to Houston.', pickup_city: 'McAllen' }
+    const validated = validateInquiry({ name: 'Jane Doe', email: 'jane@example.com', message: body.message })
+    expect(validated.ok).toBe(true)
+    expect(validated.data.message).toBe(body.message) // sanity: validation output does contain `message`
+
+    const record = buildRecord('long_distance_requests', validated.data, body, 'test-agent')
+
+    expect(record).not.toHaveProperty('message')
+    expect(record).not.toHaveProperty('inquiry_type')
+    expect(record.notes).toBe(body.message)
+  })
+
+  it('keeps message (and drops nothing) for contact_submissions records', () => {
+    const body = { message: 'General inquiry.' }
+    const validated = validateInquiry({ name: 'Jane Doe', email: 'jane@example.com', message: body.message })
+    const record = buildRecord('contact_submissions', validated.data, body, 'test-agent')
+
+    expect(record.message).toBe(body.message)
+    expect(record.inquiry_type).toBe('general')
   })
 })
 

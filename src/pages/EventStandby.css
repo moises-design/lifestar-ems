@@ -11,6 +11,7 @@
 .ev-type-card p { font-size: var(--v2-fs-small); color: var(--v2-ink-2); line-height: 1.55; }
 
 .event-form-box { border: 1px solid var(--v2-hairline-strong) !important; }
+.ev-note { font-size: var(--v2-fs-small); color: var(--v2-ink-2); text-align: center; margin-top: 12px; }
 .form-title { font-family: var(--v2-font-serif); font-weight: 600; font-size: var(--v2-fs-h4); text-transform: none; margin-bottom: 22px; color: var(--v2-ink); }
 .form-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
 .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }

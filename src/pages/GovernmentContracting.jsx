@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabase'
 import { gov } from '../v2/content/government'
 import { SITE } from '../seo/routeMeta'
 import Picture from '../v2/Picture'
+import { PrivacyNotice } from '../v2/components'
 import './GovernmentContracting.css'
 
 // ---------- accessible copy-to-clipboard for short identifiers ----------
@@ -243,6 +244,11 @@ function InquiryForm() {
           </select>
         </div>
       </div>
+
+      <PrivacyNotice sensitive />
+      <p className="v2-privacy-notice">
+        This form is for procurement and contracting inquiries only — please do not include Social Security numbers, insurance member IDs, medical records, or other sensitive patient information.
+      </p>
 
       {status === 'error' && <p className="gc-form-error" role="alert">{gov.inquiry.errorLine}</p>}
       <button type="submit" className="v2-btn v2-btn-primary gc-submit" disabled={status === 'sending'}>

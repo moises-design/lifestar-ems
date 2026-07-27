@@ -19,7 +19,7 @@
 //
 // deno-lint-ignore-file no-explicit-any
 import { createClient } from 'jsr:@supabase/supabase-js@2'
-import { validateInquiry, isRateLimited } from './validate.js'
+import { validateInquiry, isRateLimited, buildRecord } from './validate.js'
 
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': Deno.env.get('ALLOWED_ORIGIN') ?? 'https://www.lifestaremsrgv.com',
@@ -133,17 +133,7 @@ Deno.serve(async (req) => {
   if (!validated.ok) return json({ error: validated.errors.join(' ') }, 400)
   if (validated.honeypot) return json({ ok: true }) // silently accept, insert nothing
 
-  const record = { ...validated.data, user_agent: userAgent.slice(0, 300) }
-  if (table === 'long_distance_requests') {
-    delete (record as any).inquiry_type
-    Object.assign(record, {
-      pickup_city: body.pickup_city ?? 'McAllen/RGV',
-      destination_city: body.destination_city ?? null,
-      travel_date: body.travel_date || null,
-      patient_needs: body.patient_needs ?? null,
-      notes: body.message,
-    })
-  }
+  const record = buildRecord(table, validated.data, body, userAgent)
 
   const { error: insertError } = await supabase.from(table).insert([record])
   if (insertError) return json({ error: 'Could not save your request. Please call (956) 660-6543.' }, 500)

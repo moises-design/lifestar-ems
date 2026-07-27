@@ -65,3 +65,24 @@ export function validateInquiry(body) {
 export function isRateLimited({ countInWindow, limit = 5 }) {
   return countInWindow >= limit
 }
+
+// Shapes the validated submission into the exact record to insert for
+// `table`, kept pure (no Deno APIs) so the long-distance shaping —
+// previously left a stray `message` key that `long_distance_requests`
+// has no column for, causing every such insert to fail — is directly
+// unit-testable.
+export function buildRecord(table, data, body, userAgent) {
+  const record = { ...data, user_agent: userAgent.slice(0, 300) }
+  if (table === 'long_distance_requests') {
+    delete record.inquiry_type
+    delete record.message
+    Object.assign(record, {
+      pickup_city: body.pickup_city ?? 'McAllen/RGV',
+      destination_city: body.destination_city ?? null,
+      travel_date: body.travel_date || null,
+      patient_needs: body.patient_needs ?? null,
+      notes: body.message,
+    })
+  }
+  return record
+}
