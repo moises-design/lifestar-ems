@@ -451,11 +451,17 @@ export default function GovernmentContracting() {
             <p className="gc-note v2-small">{c.download.disclaimer}</p>
           </div>
           <div className="gc-doc-card v2-panel">
-            <div className="gc-doc-sheet" aria-hidden="true">
-              <img src="/icon-192.png" alt="" />
-              <span className="gc-doc-sheet-title">LIFE STAR EMS INC.</span>
-              <span className="gc-doc-sheet-sub">Capability Statement</span>
-            </div>
+            <a href={c.pdfPublicPath} target="_blank" rel="noreferrer" className="gc-doc-thumb-link">
+              <Picture
+                src="/images/capability-statement-page-1.jpg"
+                webp="/images/capability-statement-page-1.webp"
+                alt="Page one of the Life Star EMS Inc. capability statement PDF."
+                width={1200}
+                height={1553}
+                loading="lazy"
+                className="gc-doc-thumb"
+              />
+            </a>
             <div className="gc-doc-body">
               <h3 className="gc-card-title">{c.pdfTitle}</h3>
               <p className="v2-small gc-doc-meta">{c.pdfMeta}</p>

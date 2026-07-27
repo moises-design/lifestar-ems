@@ -237,20 +237,8 @@
 
 /* document card */
 .gc-doc-card { display: grid; overflow: hidden; }
-.gc-doc-sheet {
-  background: var(--v2-night);
-  color: var(--v2-night-text);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--v2-s-2);
-  padding: var(--v2-s-8) var(--v2-s-6);
-  text-align: center;
-}
-.gc-doc-sheet img { width: 56px; }
-.gc-doc-sheet-title { font-weight: 700; letter-spacing: 0.08em; font-size: var(--v2-fs-small); }
-.gc-doc-sheet-sub { font-family: var(--v2-font-serif); font-size: var(--v2-fs-h4); color: var(--v2-night-muted); }
+.gc-doc-thumb-link { display: block; background: var(--v2-paper-2); border-bottom: 1px solid var(--v2-hairline); }
+.gc-doc-thumb { display: block; width: 100%; height: auto; max-height: 420px; object-fit: cover; object-position: top; }
 .gc-doc-body { padding: var(--v2-s-6); display: grid; gap: var(--v2-s-3); }
 .gc-doc-meta { color: var(--v2-ink-2); }
 .gc-doc-btns { display: flex; flex-wrap: wrap; gap: var(--v2-s-3); }
