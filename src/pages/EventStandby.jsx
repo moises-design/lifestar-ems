@@ -8,7 +8,7 @@ import { supabase } from '../lib/supabase'
 import InnerPage from '../v2/InnerPage'
 import Picture from '../v2/Picture'
 import { content } from '../v2/content'
-import { AccessibleIcon, FormStatus } from '../v2/components'
+import { AccessibleIcon, FormStatus, PrivacyNotice } from '../v2/components'
 import './ServicePage.css'
 import './EventStandby.css'
 
@@ -28,12 +28,15 @@ const eventTypes = [
 // permission are verified (docs/SEO-FACT-VERIFICATION.md §12).
 
 export default function EventStandby() {
-  const [form, setForm] = useState({name:'',phone:'',email:'',event_name:'',event_date:'',event_location:'',attendance:'',event_type:'',notes:''})
+  const [form, setForm] = useState({name:'',phone:'',email:'',event_name:'',event_date:'',event_location:'',attendance:'',event_type:'',notes:'',website:''})
   const [status, setStatus] = useState('idle')
   const handle = e => setForm(f=>({...f,[e.target.name]:e.target.value}))
 
   const submit = async e => {
-    e.preventDefault(); setStatus('sending')
+    e.preventDefault()
+    // Honeypot: real users never see or fill this field.
+    if (form.website) return
+    setStatus('sending')
     try {
       const message = `EVENT: ${form.event_name} | Date: ${form.event_date} | Location: ${form.event_location} | Attendance: ${form.attendance} | Type: ${form.event_type} | Notes: ${form.notes}`
       const {error} = await supabase.from('contact_submissions').insert([{name:form.name,phone:form.phone,email:form.email,message,created_at:new Date().toISOString()}])
@@ -126,6 +129,11 @@ export default function EventStandby() {
                     </select>
                   </div>
                   <div className="form-group"><label>Additional Notes</label><textarea name="notes" rows={3} placeholder="Any special requirements..." value={form.notes} onChange={handle}/></div>
+                  <div className="v2-visually-hidden" aria-hidden="true">
+                    <label htmlFor="ev-website">Leave this field blank</label>
+                    <input id="ev-website" name="website" type="text" tabIndex={-1} autoComplete="off" value={form.website} onChange={handle} />
+                  </div>
+                  <PrivacyNotice sensitive />
                   {status==='error'&&(
                     <FormStatus state="error" title="Something went wrong.">
                       Please call us at (956) 660-6543 and we'll take your event details by phone.

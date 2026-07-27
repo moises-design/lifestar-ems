@@ -156,3 +156,16 @@
 
 /* ---------- PrivacyNotice ---------- */
 .v2 .v2-privacy-notice { font-size: var(--v2-fs-small); color: var(--v2-ink-2); max-width: 60ch; }
+
+/* ---------- shared a11y utility: visually-hidden honeypot fields ---------- */
+.v2-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
