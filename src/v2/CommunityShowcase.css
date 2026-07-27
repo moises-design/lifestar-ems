@@ -2,16 +2,19 @@
 
 .v2cs-head { margin-bottom: var(--v2-s-6); }
 
-.v2 .v2cs-follow {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: var(--v2-tap-min);
-  font-weight: 600;
-  color: var(--v2-blue-ink);
-  align-self: start;
+/* ---------- quiet (default) state: no embed, real copy + real links ---------- */
+.v2cs-quiet {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: var(--v2-s-4);
+  padding: var(--v2-s-8) var(--v2-s-6);
+  max-width: 560px;
+  margin-inline: auto;
 }
-.v2cs-fbicon { color: var(--v2-ink-2); }
+.v2cs-quiet-icon { color: var(--v2-ink-2); }
+.v2cs-quiet-text { color: var(--v2-ink-2); max-width: 40ch; }
+.v2cs-quiet-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--v2-s-3); }
 
 /* ---------- curated mode ---------- */
 .v2cs-grid { display: grid; gap: var(--v2-s-6); }

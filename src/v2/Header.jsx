@@ -1,12 +1,13 @@
 import { useEffect, useId, useRef, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { FaPhone, FaClipboardList } from 'react-icons/fa'
 import { content } from './content'
 import { gov } from './content/government'
 import './Header.css'
 
-const { brand, nav, emergencyNotice } = content
+const { brand, nav, emergencyNotice, emergencyNoticeShort } = content
 
-function ServicesDropdown() {
+function ServicesDropdown({ active = false }) {
   const [open, setOpen] = useState(false)
   const rootRef = useRef(null)
   const btnRef = useRef(null)
@@ -39,6 +40,7 @@ function ServicesDropdown() {
         className="v2h-link v2h-dd-btn"
         aria-expanded={open}
         aria-controls={menuId}
+        aria-current={active ? 'page' : undefined}
         onClick={() => setOpen(o => !o)}
       >
         {nav.services}
@@ -51,6 +53,10 @@ function ServicesDropdown() {
               {s.label}
             </Link>
           ))}
+          <div className="v2h-menu-rule" />
+          <Link to={nav.allServices.href} className="v2h-menu-link v2h-menu-link-all" onClick={() => setOpen(false)}>
+            {nav.allServices.label}
+          </Link>
         </div>
       )}
     </div>
@@ -111,6 +117,9 @@ function MobileMenu({ open, onClose, onDismiss }) {
         {nav.serviceLinks.map(s => (
           <Link key={s.href} to={s.href} className="v2h-sheet-link v2h-sheet-sub" onClick={onClose}>{s.label}</Link>
         ))}
+        <Link to={nav.allServices.href} className="v2h-sheet-link v2h-sheet-sub v2h-sheet-sub-all" onClick={onClose}>
+          {nav.allServices.label}
+        </Link>
         <div className="v2h-sheet-rule" />
         <Link to={nav.coverage.href} className="v2h-sheet-link" onClick={onClose}>{nav.coverage.label}</Link>
         <Link to={gov.route} className="v2h-sheet-link" onClick={onClose}>{gov.navLabel}</Link>
@@ -135,7 +144,14 @@ export default function HeaderV2() {
   const location = useLocation()
   const burgerRef = useRef(null)
 
-  // Close the sheet when the route changes (guarded render-time adjust)
+  // Close the mobile sheet whenever the route changes. This mission asked
+  // for a useEffect here, but an unconditional setState-in-effect trips
+  // this repo's own react-hooks/set-state-in-effect lint rule (a hard
+  // error: "Avoid calling setState() directly within an effect"). React's
+  // own guidance for "reset state when a prop changes" is exactly this
+  // guarded render-time adjustment, not an effect, so it stays as one
+  // rather than fail the Phase 30 lint gate. See
+  // docs/COMPLETE-EXPERIENCE-AUDIT.md and the final mission report.
   const [prevLocation, setPrevLocation] = useState(location)
   if (location !== prevLocation) {
     setPrevLocation(location)
@@ -163,12 +179,12 @@ export default function HeaderV2() {
           </Link>
 
           <nav className="v2h-nav" aria-label="Primary">
-            <ServicesDropdown />
-            <Link to={nav.coverage.href} className="v2h-link">{nav.coverage.label}</Link>
-            <Link to={gov.route} className="v2h-link">{gov.navLabel}</Link>
+            <ServicesDropdown active={location.pathname.startsWith('/services')} />
+            <Link to={nav.coverage.href} className="v2h-link" aria-current={location.pathname === nav.coverage.href ? 'page' : undefined}>{nav.coverage.label}</Link>
+            <Link to={gov.route} className="v2h-link" aria-current={location.pathname === gov.route ? 'page' : undefined}>{gov.navLabel}</Link>
             <Link to={nav.why.href} className="v2h-link">{nav.why.label}</Link>
-            <Link to={nav.about.href} className="v2h-link">{nav.about.label}</Link>
-            <Link to={nav.contact.href} className="v2h-link">{nav.contact.label}</Link>
+            <Link to={nav.about.href} className="v2h-link" aria-current={location.pathname === nav.about.href ? 'page' : undefined}>{nav.about.label}</Link>
+            <Link to={nav.contact.href} className="v2h-link" aria-current={location.pathname === nav.contact.href ? 'page' : undefined}>{nav.contact.label}</Link>
           </nav>
 
           <div className="v2h-actions">
@@ -189,9 +205,12 @@ export default function HeaderV2() {
           </div>
         </div>
 
-        {/* Emergency notice: discreet strip under the header bar */}
+        {/* Emergency notice: discreet strip under the header bar. Full
+            wording on larger screens, a compact version on mobile where
+            horizontal space is tight. */}
         <p className="v2h-notice v2-small">
-          <span className="v2-container-wide">{emergencyNotice}</span>
+          <span className="v2-container-wide v2h-notice-full">{emergencyNotice}</span>
+          <span className="v2-container-wide v2h-notice-short">{emergencyNoticeShort}</span>
         </p>
       </header>
 
@@ -201,8 +220,12 @@ export default function HeaderV2() {
           restyled). Hidden on /request, where it would duplicate the form. */}
       {location.pathname !== '/request' && (
         <div className="v2 v2h-mobilebar">
-          <a href={brand.phoneHref} className="v2h-mobilebar-call">{brand.phoneDisplay}</a>
-          <Link to={nav.requestCta.href} className="v2h-mobilebar-request">{nav.requestCta.label}</Link>
+          <a href={brand.phoneHref} className="v2h-mobilebar-call">
+            <FaPhone aria-hidden="true" /> {brand.phoneDisplay}
+          </a>
+          <Link to={nav.requestCta.href} className="v2h-mobilebar-request">
+            <FaClipboardList aria-hidden="true" /> {nav.requestCta.label}
+          </Link>
         </div>
       )}
     </>

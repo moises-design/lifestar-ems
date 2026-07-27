@@ -18,15 +18,18 @@ export const en = {
 
   emergencyNotice:
     'For a medical emergency, call 911. Life Star EMS provides scheduled transportation and event standby services.',
+  emergencyNoticeShort: 'Emergency? Call 911. We provide scheduled transport, not emergency response.',
 
   nav: {
     services: 'Services',
     serviceLinks: [
       { label: 'Dialysis transportation', href: '/services/dialysis' },
       { label: 'Pediatric therapy transportation', href: '/services/therapy' },
-      { label: 'Pediatric and long-distance transportation', href: '/services/pediatrics' },
+      { label: 'Pediatric transportation', href: '/services/pediatrics' },
       { label: 'Event EMS standby', href: '/services/events' },
+      { label: 'Long-distance medical transport', href: '/services/long-distance' },
     ],
+    allServices: { label: 'All services', href: '/services' },
     coverage: { label: 'Coverage', href: '/coverage' },
     why: { label: 'Why Life Star', href: '/#why-life-star' },
     about: { label: 'About', href: '/about' },
@@ -50,7 +53,7 @@ export const en = {
     services: {
       id: 'services',
       label: '01 · What we do',
-      heading: 'Four services, one standard of care',
+      heading: 'Five services, one standard of care',
       items: [
         {
           num: '01',
@@ -66,8 +69,8 @@ export const en = {
         },
         {
           num: '03',
-          title: 'Pediatric and long-distance transportation',
-          line: 'Coordinated trips across Texas, planned with families and providers.',
+          title: 'Pediatric transportation',
+          line: 'Safe, friendly transport for children, planned together with families and providers.',
           href: '/services/pediatrics',
         },
         {
@@ -76,8 +79,16 @@ export const en = {
           line: 'On-site medical standby for school sports, tournaments, concerts, and community events.',
           href: '/services/events',
         },
+        {
+          num: '05',
+          title: 'Long-distance medical transport',
+          line: 'Coordinated interstate and cross-Texas trips with BLS crews.',
+          href: '/services/long-distance',
+        },
       ],
       linkLabel: 'Learn more',
+      allLabel: 'View all services',
+      allHref: '/services',
     },
 
     how: {
@@ -110,7 +121,7 @@ export const en = {
       id: 'operations',
       label: '04 · Crew and operations',
       heading: 'Who shows up when you call',
-      line: 'The people behind every ride, and the preparation that goes into each trip.',
+      line: 'Here is a look at the people behind every ride and the preparation that goes into each trip.',
     },
 
     coverage: {
@@ -121,6 +132,7 @@ export const en = {
         'Edinburg, McAllen, Mission, Pharr, San Juan, Alamo, Donna, Weslaco, Mercedes, Harlingen, Los Fresnos, Brownsville, and Rio Grande City, with long-distance trips across Texas.',
       linkLabel: 'See our full service area',
       href: '/coverage',
+      cities: ['Edinburg', 'McAllen', 'Mission', 'Pharr', 'San Juan', 'Alamo', 'Donna', 'Weslaco', 'Mercedes', 'Harlingen', 'Los Fresnos', 'Brownsville', 'Rio Grande City'],
     },
 
     events: {
@@ -150,9 +162,10 @@ export const en = {
       heading: 'Life Star in the Community',
       line:
         'See recent transports, event standby coverage, crew activity, and community involvement from Life Star EMS.',
-      followLabel: 'Follow Life Star EMS',
+      followLabel: 'Follow Life Star EMS on Facebook for recent updates from the field.',
       openPostLabel: 'View on Facebook',
       openPageLabel: 'Open our Facebook page',
+      showTimelineLabel: 'Show recent posts here',
       loadingLabel: 'Loading posts from Facebook',
       liveRegionLabel: 'Recent posts from the Life Star EMS Facebook page',
       liveCaption: 'Live from our Facebook page',
@@ -194,6 +207,25 @@ export const en = {
   // the legacy page bodies below them keep their own content until the
   // full service-page redesign mission.
   pages: {
+    services: {
+      label: 'What we do',
+      title: 'Our services',
+      lead:
+        'Life Star EMS provides scheduled, non-emergency medical transportation and event EMS standby across the Rio Grande Valley, with long-distance trips coordinated across Texas and interstate. For a medical emergency, call 911.',
+      capabilities: [
+        'Ground BLS ambulance transportation',
+        'Family-owned, serving South Texas since 2009',
+        'Scheduled dialysis, therapy, and pediatric transport',
+        'Event EMS standby for school, community, and sporting events',
+        'Long-distance and interstate patient transport',
+        'Government and institutional contracting available',
+      ],
+      audience: {
+        heading: 'Start where you are',
+      },
+      ctaHeading: 'Ready to schedule?',
+      ctaLine: 'Send a request online, or call dispatch to talk through your transport needs.',
+    },
     dialysis: {
       label: '01 · Dialysis transportation',
       title: 'Dialysis transportation across the Rio Grande Valley',
@@ -271,9 +303,18 @@ export const en = {
     servicesTitle: 'Services',
     companyTitle: 'Company',
     contactTitle: 'Contact',
+    serviceLinks: [
+      { label: 'All services', href: '/services' },
+      { label: 'Dialysis transportation', href: '/services/dialysis' },
+      { label: 'Pediatric therapy transportation', href: '/services/therapy' },
+      { label: 'Pediatric transportation', href: '/services/pediatrics' },
+      { label: 'Event EMS standby', href: '/services/events' },
+      { label: 'Long-distance medical transport', href: '/services/long-distance' },
+    ],
     companyLinks: [
       { label: 'About', href: '/about' },
       { label: 'Coverage', href: '/coverage' },
+      { label: 'Government contracting', href: '/government-contracting' },
       { label: 'Contact', href: '/contact' },
       { label: 'Request Transport', href: '/request' },
     ],
@@ -281,7 +322,9 @@ export const en = {
     // as the correct public business address (docs/SEO-FACT-VERIFICATION.md 4.x).
     regionLine: 'Serving the Rio Grande Valley from Edinburg, Texas',
     privacyLabel: 'Privacy policy',
+    privacyHref: '/privacy',
     sitemapLabel: 'Sitemap',
+    sitemapHref: '/sitemap',
     facebookLabel: 'Facebook',
     rights: 'All rights reserved.',
   },

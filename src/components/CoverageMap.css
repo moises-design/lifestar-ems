@@ -1,15 +1,31 @@
 .covmap { background: var(--v2-paper); border-top: 1px solid var(--v2-hairline); }
 
-.covmap-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 32px; flex-wrap: wrap; gap: 16px; }
+.covmap-layout { display: grid; grid-template-columns: 1.6fr 1fr; gap: 24px; align-items: start; margin-top: var(--v2-s-7); }
 
-.covmap-layout { display: grid; grid-template-columns: 1.6fr 1fr; gap: 24px; align-items: start; }
-
-/* SVG Map — kept as a contained dark "night" panel; its internal gradient,
-   dot, and label colors are tuned for a dark background and would lose
-   contrast on paper, so this is the one deliberate dark chapter here,
-   matching the pattern already used for .sp-cta-banner. */
-.covmap-svg-wrap { background: var(--v2-night); border: 1px solid var(--v2-hairline-night); border-radius: var(--v2-radius-m); overflow: hidden; }
-.covmap-svg { width: 100%; height: auto; display: block; }
+/* Primary service area: a real, verified city list on the light V2
+   surface (no fabricated map coordinates). */
+.covmap-zone-primary { padding: 24px; }
+.cz-city-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px 16px;
+}
+@media (min-width: 480px) {
+  .cz-city-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.cz-city {
+  font-family: var(--v2-font-serif);
+  font-size: var(--v2-fs-h4);
+  color: var(--v2-ink);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.cz-city-hq { color: var(--v2-blue-ink); font-weight: 600; }
+.cz-city-hq svg { font-size: 0.75em; }
 
 /* Sidebar */
 .covmap-info { display: flex; flex-direction: column; gap: 16px; }
@@ -21,19 +37,16 @@
 .cz-dot.ld { background: #7C6FE0; }
 .cz-title { font-family: var(--v2-font-sans); font-weight: 600; font-size: var(--v2-fs-small); letter-spacing: 0.06em; text-transform: uppercase; color: var(--v2-ink); }
 
-.cz-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+.cz-chips { list-style: none; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; padding: 0; }
 .cz-chip {
   background: var(--v2-paper); border: 1px solid var(--v2-hairline-strong);
-  font-family: var(--v2-font-sans); font-weight: 600; font-size: 0.7rem;
-  letter-spacing: 0.02em; text-transform: none; padding: 5px 9px; border-radius: var(--v2-radius-s);
-  color: var(--v2-ink-2); transition: all 0.18s; cursor: default;
-  display: inline-flex; align-items: center;
+  font-family: var(--v2-font-sans); font-weight: 600; font-size: 0.75rem;
+  letter-spacing: 0.02em; padding: 6px 10px; border-radius: var(--v2-radius-s);
+  color: var(--v2-ink-2);
+  display: inline-flex; align-items: center; gap: 6px;
 }
-.cz-chip:hover, .cz-chip.active { background: var(--v2-blue); border-color: var(--v2-blue); color: var(--v2-ink); }
-.cz-chip.hq { border-color: var(--v2-blue); color: var(--v2-blue-ink); }
 .cz-chip.ld { border-color: rgba(124,111,224,0.4); color: #6355C7; }
-.cz-chip.ld:hover { background: #7C6FE0; border-color: #7C6FE0; color: #FFFFFF; }
-.cz-chip.all { background: var(--v2-sky-tint); border-color: var(--v2-hairline-strong); color: var(--v2-blue-ink); }
+.cz-chip-miles { color: var(--v2-ink-2); font-weight: 500; font-size: 0.7rem; }
 
 .cz-note { font-size: var(--v2-fs-small); color: var(--v2-ink-2); line-height: 1.6; margin-bottom: 12px; }
 .cz-cta { font-size: 0.85rem; padding: 9px 14px; }
@@ -43,6 +56,5 @@
 .cc-label { font-family: var(--v2-font-sans); font-size: var(--v2-fs-label); font-weight: 600; letter-spacing: var(--v2-tracking-label); text-transform: uppercase; color: var(--v2-night-muted); margin-bottom: 3px; }
 .cc-num { font-family: var(--v2-font-serif); font-weight: 600; font-size: 1.2rem; color: var(--v2-night-text); display: block; transition: color 0.2s; }
 .cc-num:hover { color: var(--v2-blue); }
-.cc-sub { font-size: 0.72rem; color: var(--v2-night-muted); margin-top: 2px; }
 
-@media (max-width: 900px) { .covmap-layout { grid-template-columns: minmax(0, 1fr); } .covmap-header { flex-direction: column; align-items: flex-start; } }
+@media (max-width: 900px) { .covmap-layout { grid-template-columns: minmax(0, 1fr); } }

@@ -1,27 +1,3 @@
-/* Dead CSS below (.event-hero, .event-bg, .event-field, .event-sports-row,
-   .ev-sport, .event-badge, .event-accent, .event-scoreboard, .sb-*) is not
-   referenced by EventStandby.jsx — no matching hero markup exists. Left
-   in place per the mission's "don't delete without documenting" rule;
-   see docs/THEME-CONSISTENCY-AUDIT.md for the full orphan inventory. */
-.event-hero { background: linear-gradient(160deg, #060D14 0%, #091528 60%, #060D14 100%); min-height:80vh; overflow:hidden; }
-.event-bg { position:absolute; inset:0; }
-.event-field { position:absolute; inset:0; background-image: linear-gradient(rgba(11,158,217,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(11,158,217,0.03) 1px, transparent 1px); background-size:80px 80px; transform:perspective(600px) rotateX(25deg); transform-origin:bottom; opacity:0.5; }
-.event-sports-row { position:absolute; inset:0; pointer-events:none; }
-.ev-sport { position:absolute; top:10%; font-size:2.2rem; opacity:0.2; animation:evfloat 3s ease-in-out infinite alternate; }
-@keyframes evfloat { from{transform:translateY(0) rotate(-5deg)} to{transform:translateY(-14px) rotate(5deg)} }
-.event-badge { background:rgba(52,211,153,0.1) !important; border-color:rgba(52,211,153,0.3) !important; color:#34D399 !important; }
-.event-accent { color:#34D399 !important; text-shadow:0 0 40px rgba(52,211,153,0.4) !important; }
-.event-scoreboard { position:absolute; bottom:0; left:0; right:0; background:rgba(11,158,217,0.08); backdrop-filter:blur(8px); border-top:1px solid var(--border-blue); display:flex; justify-content:center; gap:60px; padding:18px; z-index:2; }
-.sb-item { display:flex; flex-direction:column; align-items:center; gap:3px; }
-.sb-val { font-family:var(--font-display); font-weight:900; font-size:1.5rem; color:var(--blue-light); }
-.sb-lbl { font-family:var(--font-display); font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--muted); }
-.event-clients { background:var(--navy); }
-.clients-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:36px; }
-.client-card { background:var(--card); border:1px solid var(--border-blue); padding:20px 14px; display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center; transition:all 0.2s; }
-.client-card:hover { border-color:var(--blue); transform:translateY(-3px); }
-.client-logo { width:100%; max-width:120px; height:58px; object-fit:contain; border-radius:3px; }
-.client-name { font-family:var(--font-display); font-weight:600; font-size:0.66rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--light-text); line-height:1.4; }
-
 /* ---------- live styles, reskinned to V2 tokens ---------- */
 .event-hero-photo-frame { aspect-ratio: 1 / 1; max-width: 420px; border-radius: var(--v2-radius-l); overflow: hidden; }
 .event-hero-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -30,13 +6,14 @@
 .ev-type-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 40px; }
 .ev-type-card { background: var(--v2-paper); padding: 28px 20px; border-top: 2px solid transparent; transition: all 0.22s; }
 .ev-type-card:hover { border-top-color: var(--v2-blue); transform: translateY(-4px); background: var(--v2-sky-tint); }
-.ev-type-icon { font-size: 2.2rem; display: block; margin-bottom: 12px; }
+.ev-type-icon-wrap { margin-bottom: 12px; background: var(--v2-sky-tint); color: var(--v2-blue-ink); }
 .ev-type-card h3 { font-family: var(--v2-font-sans); font-weight: 600; font-size: var(--v2-fs-small); letter-spacing: 0; text-transform: none; margin-bottom: 6px; color: var(--v2-ink); }
 .ev-type-card p { font-size: var(--v2-fs-small); color: var(--v2-ink-2); line-height: 1.55; }
 
 .event-form-box { border: 1px solid var(--v2-hairline-strong) !important; }
+.ev-note { font-size: var(--v2-fs-small); color: var(--v2-ink-2); text-align: center; margin-top: 12px; }
 .form-title { font-family: var(--v2-font-serif); font-weight: 600; font-size: var(--v2-fs-h4); text-transform: none; margin-bottom: 22px; color: var(--v2-ink); }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.form-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
 .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
 .form-group label { font-family: var(--v2-font-sans); font-size: var(--v2-fs-label); font-weight: 600; letter-spacing: var(--v2-tracking-label); text-transform: uppercase; color: var(--v2-ink-2); }
 .form-group input, .form-group textarea, .ev-select {
@@ -47,10 +24,8 @@
 .form-group input:focus, .form-group textarea:focus, .ev-select:focus { border-color: var(--v2-focus); }
 .ev-submit { width: 100%; justify-content: center; margin-top: 6px; }
 .ev-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-.form-error { color: #B3261E; font-size: var(--v2-fs-small); margin-bottom: 8px; padding: 8px 12px; background: rgba(179,38,30,0.08); border: 1px solid rgba(179,38,30,0.3); border-radius: var(--v2-radius-s); }
-.form-success { text-align: center; padding: 20px 0; }
-.form-success h3 { font-family: var(--v2-font-serif); font-weight: 600; font-size: var(--v2-fs-h4); margin: 10px 0 6px; color: var(--v2-ink); }
-.form-success p { color: var(--v2-ink-2); font-size: var(--v2-fs-small); }
+/* Form success/error states are rendered by the shared FormStatus
+   component (src/v2/components/shared.css); no page-local rules needed. */
 
 /* Shared .sp-cta-banner is already a light section with a dark compact
    card inside (see ServicePage.css) — no page-specific override needed. */

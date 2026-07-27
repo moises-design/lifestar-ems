@@ -3,26 +3,6 @@
    each page's own CSS only overrides accent colors and unique content. */
 .sp { padding-top: 0; }
 
-.sp-hero {
-  min-height: 65vh; display: flex; align-items: center;
-  position: relative; overflow: hidden; padding: 80px 0 60px;
-}
-.sp-hero-bg { position: absolute; inset: 0; }
-.sp-inner { position: relative; z-index: 2; max-width: 680px; }
-
-.sp-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: var(--v2-sky-tint); border: 1px solid var(--v2-hairline-strong);
-  color: var(--v2-blue-ink); padding: 7px 16px; margin-bottom: 18px;
-  font-family: var(--v2-font-sans); font-weight: 600;
-  font-size: var(--v2-fs-label); letter-spacing: var(--v2-tracking-label); text-transform: uppercase;
-}
-.sp-h1 { font-family: var(--v2-font-serif); font-weight: 600; font-size: var(--v2-fs-h1); text-transform: none; line-height: var(--v2-lh-tight); margin-bottom: 20px; }
-.sp-accent { display: block; color: var(--v2-blue-ink); }
-.sp-lead { font-size: var(--v2-fs-body); font-weight: 400; line-height: var(--v2-lh-body); color: var(--v2-ink-2); max-width: 540px; margin-bottom: 32px; }
-.sp-btns { display: flex; flex-wrap: wrap; gap: 12px; }
-.sp-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--v2-blue); flex-shrink: 0; animation: pulse 2s ease infinite; }
-
 /* Features grid */
 .sp-features { padding: 80px 0; background: var(--v2-paper); }
 .sp-feat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: var(--v2-s-4); margin-top: 44px; }
@@ -45,7 +25,6 @@
 .sp-cta-box h3 { font-family: var(--v2-font-serif); font-weight: 600; font-size: var(--v2-fs-h4); text-transform: none; margin-bottom: 10px; color: var(--v2-ink); }
 .sp-cta-box p { font-size: var(--v2-fs-small); color: var(--v2-ink-2); line-height: 1.65; margin-bottom: 20px; }
 .sp-cta-box .btn { width: 100%; justify-content: center; margin-bottom: 10px; }
-.sp-addr { font-size: var(--v2-fs-small); color: var(--v2-ink-2); margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--v2-hairline); line-height: 1.7; }
 
 /* CTA banner: a compact dark-accent card on a light section, not a
    full-bleed dark band — the section itself stays on V2 paper, and only
@@ -63,7 +42,6 @@
 @media (max-width: 900px) {
   .sp-feat-grid { grid-template-columns: 1fr 1fr; }
   .sp-two-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
-  .sp-hero { padding: 60px 0 50px; }
 }
 @media (max-width: 500px) { .sp-feat-grid { grid-template-columns: 1fr; } }
 @media (max-width: 600px) {

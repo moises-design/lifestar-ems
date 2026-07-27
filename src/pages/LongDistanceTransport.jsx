@@ -4,6 +4,7 @@ import { FaPhone, FaCheckCircle, FaMapMarkerAlt } from 'react-icons/fa'
 import { supabase } from '../lib/supabase'
 import InnerPage from '../v2/InnerPage'
 import { content } from '../v2/content'
+import { PrivacyNotice, FormStatus } from '../v2/components'
 import './ServicePage.css'
 import './LongDistanceTransport.css'
 
@@ -18,14 +19,18 @@ const cities = [
 const needs = ['Wheelchair', 'Stretcher', 'Oxygen', 'IV Access', 'Special Equipment', 'Bariatric']
 
 export default function LongDistanceTransport() {
-  const [form, setForm] = useState({ name: '', phone: '', email: '', pickup_city: 'McAllen/RGV', destination_city: '', travel_date: '', notes: '', patient_needs: [] })
+  const [form, setForm] = useState({ name: '', phone: '', email: '', pickup_city: 'McAllen/RGV', destination_city: '', travel_date: '', notes: '', patient_needs: [], website: '' })
   const [status, setStatus] = useState('idle')
 
   const handleCheck = (need) => setForm(f => ({ ...f, patient_needs: f.patient_needs.includes(need) ? f.patient_needs.filter(n => n !== need) : [...f.patient_needs, need] }))
   const submit = async e => {
-    e.preventDefault(); setStatus('sending')
+    e.preventDefault()
+    // Honeypot: real users never see or fill this field.
+    if (form.website) return
+    setStatus('sending')
     try {
-      const { error } = await supabase.from('long_distance_requests').insert([{ ...form, patient_needs: form.patient_needs.join(', '), created_at: new Date().toISOString() }])
+      const { website: _website, ...submission } = form
+      const { error } = await supabase.from('long_distance_requests').insert([{ ...submission, patient_needs: form.patient_needs.join(', '), created_at: new Date().toISOString() }])
       if (error) throw error
       setStatus('sent')
     } catch { setStatus('error') }
@@ -77,9 +82,9 @@ export default function LongDistanceTransport() {
             <div className="sp-cta-box ld-form-box">
               {status === 'sent' ? (
                 <div className="ld-success">
-                  <FaCheckCircle className="ld-success-check" aria-hidden="true" />
-                  <h3>Request Received!</h3>
-                  <p>Our team will review your transport needs and contact you to confirm staffing, equipment, and scheduling details. If anything is time sensitive, please call us directly.</p>
+                  <FormStatus state="success" title="Request Received!">
+                    Our team will review your transport needs and contact you to confirm staffing, equipment, and scheduling details. If anything is time sensitive, please call us directly.
+                  </FormStatus>
                   <a href="tel:+19566606543" className="btn btn-blue"><FaPhone /> Call Now to Confirm</a>
                 </div>
               ) : (
@@ -100,7 +105,16 @@ export default function LongDistanceTransport() {
                     <div className="ld-needs-grid">{needs.map(n => (<label key={n} className="ld-need-check"><input type="checkbox" checked={form.patient_needs.includes(n)} onChange={() => handleCheck(n)} /><span>{n}</span></label>))}</div>
                   </div>
                   <div className="ld-form-group"><label>Additional Notes</label><textarea rows={3} placeholder="Any special requirements..." value={form.notes} onChange={e => setForm(f => ({...f, notes: e.target.value}))} /></div>
-                  {status === 'error' && <p className="ld-error" role="alert">Something went wrong. Please call us at (956) 660-6543.</p>}
+                  <div className="v2-visually-hidden" aria-hidden="true">
+                    <label htmlFor="ld-website">Leave this field blank</label>
+                    <input id="ld-website" type="text" tabIndex={-1} autoComplete="off" value={form.website} onChange={e => setForm(f => ({...f, website: e.target.value}))} />
+                  </div>
+                  <PrivacyNotice sensitive />
+                  {status === 'error' && (
+                    <FormStatus state="error" title="Something went wrong.">
+                      Please call us at (956) 660-6543.
+                    </FormStatus>
+                  )}
                   <button type="submit" className="btn btn-blue" style={{width:'100%',justifyContent:'center'}} disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Request Free Quote →'}</button>
                   <p className="ld-note">This form starts the conversation about your trip. Submitting a request does not confirm scheduling — our team will confirm staffing, equipment, and clinical requirements before your transport is scheduled. For a medical emergency, call 911.</p>
                 </form>

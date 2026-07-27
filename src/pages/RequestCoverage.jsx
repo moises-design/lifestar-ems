@@ -4,17 +4,30 @@ import { FaPhone, FaCheckCircle } from 'react-icons/fa'
 import { supabase } from '../lib/supabase'
 import InnerPage from '../v2/InnerPage'
 import { content } from '../v2/content'
+import { PrivacyNotice, FormStatus } from '../v2/components'
 import './RequestCoverage.css'
 
 const page = content.pages.request
 
+const SERVICE_OPTIONS = [
+  'Dialysis Transport',
+  'Pediatric Therapy Transport',
+  'Pediatric Transport',
+  'Long-Distance Medical Transport',
+  'Event EMS Standby',
+  'Other / Not Sure',
+]
+
 export default function RequestCoverage() {
-  const [form, setForm] = useState({ name:'', company:'', phone:'', email:'', service:'', date:'', location:'', details:'' })
+  const [form, setForm] = useState({ name:'', company:'', phone:'', email:'', service:'', date:'', location:'', details:'', website:'' })
   const [status, setStatus] = useState('idle')
   const handle = e => setForm(f=>({...f,[e.target.name]:e.target.value}))
 
   const submit = async e => {
-    e.preventDefault(); setStatus('sending')
+    e.preventDefault()
+    // Honeypot: real users never see or fill this field.
+    if (form.website) return
+    setStatus('sending')
     try {
       const message = `SERVICE: ${form.service} | Company: ${form.company} | Date: ${form.date} | Location: ${form.location} | Details: ${form.details}`
       const {error} = await supabase.from('contact_submissions').insert([{name:form.name,phone:form.phone,email:form.email,message,created_at:new Date().toISOString()}])
@@ -53,10 +66,7 @@ export default function RequestCoverage() {
                     <label htmlFor="req-service">Type of Service *</label>
                     <select id="req-service" name="service" required value={form.service} onChange={handle} className="req-select">
                       <option value="">Select a service...</option>
-                      <option>Dialysis Transport</option>
-                      <option>Pediatric Therapy Transport</option>
-                      <option>Pediatric / Long-Distance Transport</option>
-                      <option>Event EMS Standby</option>
+                      {SERVICE_OPTIONS.map(s => <option key={s}>{s}</option>)}
                     </select>
                   </div>
                   <div className="req-form-row">
@@ -64,7 +74,16 @@ export default function RequestCoverage() {
                     <div className="req-group"><label htmlFor="req-location">Location / City</label><input id="req-location" name="location" type="text" placeholder="Edinburg, McAllen..." value={form.location} onChange={handle}/></div>
                   </div>
                   <div className="req-group"><label htmlFor="req-details">Details *</label><textarea id="req-details" name="details" rows={5} placeholder="Please describe your transportation or standby needs..." required value={form.details} onChange={handle}/></div>
-                  {status==='error'&&<p className="req-error" role="alert">Something went wrong. Please call us at (956) 660-6543.</p>}
+                  <div className="v2-visually-hidden" aria-hidden="true">
+                    <label htmlFor="req-website">Leave this field blank</label>
+                    <input id="req-website" name="website" type="text" tabIndex={-1} autoComplete="off" value={form.website} onChange={handle} />
+                  </div>
+                  <PrivacyNotice sensitive />
+                  {status==='error' && (
+                    <FormStatus state="error" title="Something went wrong.">
+                      Please call us at (956) 660-6543.
+                    </FormStatus>
+                  )}
                   <button type="submit" className="btn btn-blue req-submit" disabled={status==='sending'}>{status==='sending'?'Submitting…':'Submit Request →'}</button>
                   <p className="req-note">This form is for scheduled, non-emergency requests only. Submitting a request does not confirm scheduling; our team will contact you to confirm. For a medical emergency, call 911.</p>
                 </form>

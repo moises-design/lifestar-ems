@@ -11,11 +11,16 @@ export const SITE = {
   ogImageAlt: 'Life Star EMS logo with the text Non-Emergency Medical Transportation in the Rio Grande Valley',
 }
 
-const routeMeta = {
+export const routeMeta = {
   '/': {
     title: 'Non-Emergency Medical Transportation in the RGV | Life Star EMS',
     description:
       'Life Star EMS provides scheduled non-emergency medical transportation and event EMS standby services across the Rio Grande Valley. Call (956) 660-6543.',
+  },
+  '/services': {
+    title: 'Our Services | Life Star EMS',
+    description:
+      'Dialysis, pediatric, and therapy transportation, event EMS standby, and long-distance transport from Life Star EMS in the Rio Grande Valley. Call (956) 660-6543.',
   },
   '/services/dialysis': {
     title: 'Dialysis Transportation in the Rio Grande Valley | Life Star EMS',
@@ -40,7 +45,7 @@ const routeMeta = {
   '/services/long-distance': {
     title: 'Long-Distance Medical Transport Across Texas | Life Star EMS',
     description:
-      'Safe, monitored long-distance medical transport across Texas with BLS-certified crews. Life Star EMS coordinates trips to Houston, San Antonio, Dallas, and beyond. Call (956) 660-6543.',
+      'Safe, coordinated long-distance and interstate medical transport with BLS crews. Life Star EMS plans trips across Texas and out of state. Call (956) 660-6543.',
   },
   '/request': {
     title: 'Request Medical Transportation | Life Star EMS',
@@ -60,12 +65,21 @@ const routeMeta = {
   '/about': {
     title: 'About Life Star EMS | Family-Owned EMS in the Rio Grande Valley',
     description:
-      'Life Star EMS Inc. is a family-owned, woman-owned ambulance and medical transportation company serving the Rio Grande Valley since 2009, led by CEO Heather Ayala-Segovia.',
+      'Life Star EMS Inc. is a family-owned, woman-owned ambulance company serving the Rio Grande Valley since 2009, led by CEO Heather Ayala-Segovia.',
   },
   '/contact': {
     title: 'Contact Life Star EMS | Medical Transportation in the RGV',
     description:
       'Contact Life Star EMS in Edinburg, Texas for scheduled medical transportation in the Rio Grande Valley. Call (956) 660-6543 or send a message online.',
+  },
+  '/privacy': {
+    title: 'Privacy Notice | Life Star EMS',
+    description:
+      'How Life Star EMS handles information submitted through its website forms.',
+  },
+  '/sitemap': {
+    title: 'Sitemap | Life Star EMS',
+    description: 'Every page on the Life Star EMS website, in one place.',
   },
 }
 

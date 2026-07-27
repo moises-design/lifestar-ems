@@ -63,6 +63,7 @@
 .v2home-index-title { font-family: var(--v2-font-serif); font-size: var(--v2-fs-h3); font-weight: 600; line-height: var(--v2-lh-heading); }
 .v2home-index-line { color: var(--v2-ink-2); max-width: 60ch; }
 .v2home-index-cta { color: var(--v2-blue-ink); font-size: 1.25rem; }
+.v2home-services-all { margin-top: var(--v2-s-6); }
 
 /* ---------- steps ---------- */
 .v2home-steps {
@@ -100,6 +101,19 @@
 }
 .v2home-split-h { margin-block: var(--v2-s-4); max-width: 20ch; }
 .v2home-photo-slot { aspect-ratio: 4 / 3; }
+.v2home-photo-slot-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.v2home-cities {
+  list-style: none;
+  margin: 0;
+  padding: var(--v2-s-6);
+  aspect-ratio: 4 / 3;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-content: center;
+  gap: var(--v2-s-3) var(--v2-s-5);
+}
+.v2home-cities li { font-family: var(--v2-font-serif); font-size: var(--v2-fs-h4); color: var(--v2-ink); }
 
 @media (min-width: 1024px) {
   .v2home-split { grid-template-columns: 5fr 6fr; gap: var(--v2-s-8); }

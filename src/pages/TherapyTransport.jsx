@@ -1,21 +1,22 @@
 import { Link } from 'react-router-dom'
-import { FaPhone, FaChild, FaClock, FaHeart, FaComments, FaShieldAlt, FaCheckCircle } from 'react-icons/fa'
+import { FaPhone, FaChild, FaClock, FaHeart, FaComments, FaComment, FaShieldAlt, FaCheckCircle, FaWalking, FaHandsHelping } from 'react-icons/fa'
 import InnerPage from '../v2/InnerPage'
 import { content } from '../v2/content'
+import { AccessibleIcon } from '../v2/components'
 import './ServicePage.css'
 import './TherapyTransport.css'
 
 const therapies = [
-  { icon: '🦵', emoji: '🏃', title: 'Physical Therapy', desc: 'Post-injury recovery, mobility, rehabilitation' },
-  { icon: '✋', emoji: '🎨', title: 'Occupational Therapy', desc: 'Daily living skills, fine motor development' },
-  { icon: '🗣️', emoji: '💬', title: 'Speech Therapy', desc: 'Communication, language, swallowing therapy' },
+  { Icon: FaWalking,     title: 'Physical Therapy', desc: 'Post-injury recovery, mobility, rehabilitation' },
+  { Icon: FaHandsHelping, title: 'Occupational Therapy', desc: 'Daily living skills, fine motor development' },
+  { Icon: FaComment,     title: 'Speech Therapy', desc: 'Communication, language, swallowing therapy' },
 ]
 
 const feats = [
-  { Icon: FaClock,     color: '#0B9ED9', title: 'On Time, Every Time',    desc: 'We track every appointment — your child never misses a session.' },
+  { Icon: FaClock,     color: '#0B9ED9', title: 'Careful, Reliable Scheduling', desc: 'We coordinate closely with your therapy provider to keep appointments on track.' },
   { Icon: FaHeart,     color: '#E8618C', title: 'Patient & Kind',          desc: 'Our staff is calm, gentle, and experienced working with children.' },
   { Icon: FaComments,  color: '#7C6FE0', title: 'Family Updates',          desc: 'We keep parents informed before, during, and after every ride.' },
-  { Icon: FaShieldAlt, color: '#2E9E6B', title: 'Safe Transport',          desc: 'Clean vehicles with child safety features every single trip.' },
+  { Icon: FaShieldAlt, color: '#2E9E6B', title: 'Safe Transport',          desc: 'Clean vehicles with child safety features for every trip.' },
 ]
 
 export default function TherapyTransport() {
@@ -42,8 +43,7 @@ export default function TherapyTransport() {
             {therapies.map((t, i) => (
               <div key={i} className="therapy-type-card">
                 <div className="ttc-top">
-                  <span className="ttc-icon">{t.icon}</span>
-                  <span className="ttc-emoji">{t.emoji}</span>
+                  <AccessibleIcon icon={t.Icon} className="ttc-icon-wrap" size={24} />
                 </div>
                 <h3>{t.title}</h3>
                 <p>{t.desc}</p>
@@ -85,10 +85,10 @@ export default function TherapyTransport() {
               <h2 className="title">Every Child's Journey<br /><em>Matters to Us</em></h2>
               <ul className="sp-list">
                 {[
-                  'On-time pickup for every therapy session',
+                  'Careful, on-time pickup for therapy sessions',
                   'Parent or guardian always welcome to ride along',
                   'Bilingual staff — English & Spanish',
-                  'Consistent, familiar drivers your child will know',
+                  'Caring, professional drivers focused on your child’s comfort',
                   'Direct coordination with therapy providers',
                   'Flexible scheduling around treatment plans',
                   'Insurance verified before first ride',
@@ -101,7 +101,7 @@ export default function TherapyTransport() {
 
             <div className="sp-cta-box therapy-cta-box">
               <h3>Schedule Therapy Transport</h3>
-              <p>We'll verify insurance and coordinate with your child's therapy team — at no cost to you.</p>
+              <p>We'll verify insurance and coordinate directly with your child's therapy team.</p>
               <Link to="/request" className="btn therapy-btn" style={{display:'flex',justifyContent:'center',marginBottom:'10px'}}>
                 <FaChild /> Request Therapy Transport
               </Link>

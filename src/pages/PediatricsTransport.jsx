@@ -11,7 +11,7 @@ const pServices = [
     color: '#0EA5B0',
     title: 'Therapy Transport',
     items: ['Physical therapy', 'Occupational therapy', 'Speech therapy'],
-    desc: 'We transport children to all types of therapy appointments with patience, care, and reliability.',
+    desc: 'We transport children to therapy appointments with patience, care, and reliability.',
   },
   {
     Icon: FaRoute,
@@ -25,7 +25,7 @@ const pServices = [
 const trustItems = [
   { Icon: FaSmile,    color: '#0EA5B0', title: 'Friendly & Patient Staff',    desc: 'Our team is trained and experienced working with children — calm, kind, and always professional.' },
   { Icon: FaShieldAlt, color: '#3E8FB0', title: 'Clean & Safe Vehicles',      desc: 'Well-maintained, fully equipped vehicles with child safety features for every trip.' },
-  { Icon: FaCheckCircle, color: '#2E9E6B', title: 'Reliable & On-Time',       desc: 'We track every appointment so children never miss a therapy session.' },
+  { Icon: FaCheckCircle, color: '#2E9E6B', title: 'Reliable & On-Time',       desc: 'We track appointments closely and coordinate with your therapy provider.' },
   { Icon: FaComments, color: '#FF8A65',  title: 'Clear Parent Communication', desc: 'We keep families informed before, during, and after every transport.' },
 ]
 
@@ -55,7 +55,7 @@ export default function PediatricsTransport() {
   return (
     <InnerPage
       {...content.pages.pediatrics}
-      breadcrumb={[{ label: 'Services' }, { label: 'Pediatric and long-distance transportation' }]}
+      breadcrumb={[{ label: 'Services' }, { label: 'Pediatric transportation' }]}
       legacy
       media={pedsOceanArt}
       cta={
@@ -131,8 +131,8 @@ export default function PediatricsTransport() {
                   'Parent or guardian always welcome to ride along',
                   'Child safety seats and wheelchair accessibility',
                   'Bilingual staff — English & Spanish',
-                  'Consistent, familiar drivers',
-                  'On-time pickup — every appointment',
+                  'Caring, professional drivers',
+                  'Careful, on-time pickup for appointments',
                   'Coordination with therapy centers & providers',
                   'Long-distance transport across all of Texas',
                   'Insurance accepted — verified before first trip',
@@ -145,8 +145,8 @@ export default function PediatricsTransport() {
               <div className="peds-cta-icon">
                 <FaHeart className="peds-heart" aria-hidden="true" />
               </div>
-              <h3>Free Evaluation</h3>
-              <p>Let's discuss your child's needs. We'll handle insurance verification and scheduling.</p>
+              <h3>Let's Get Started</h3>
+              <p>Let's discuss your child's needs. We'll verify insurance and coordinate scheduling with you.</p>
               <Link to="/request" className="btn btn-blue peds-btn">
                 <FaChild /> Request Pediatric Transport
               </Link>

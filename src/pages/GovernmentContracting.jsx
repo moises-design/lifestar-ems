@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabase'
 import { gov } from '../v2/content/government'
 import { SITE } from '../seo/routeMeta'
 import Picture from '../v2/Picture'
+import { PrivacyNotice } from '../v2/components'
 import './GovernmentContracting.css'
 
 // ---------- accessible copy-to-clipboard for short identifiers ----------
@@ -244,6 +245,11 @@ function InquiryForm() {
         </div>
       </div>
 
+      <PrivacyNotice sensitive />
+      <p className="v2-privacy-notice">
+        This form is for procurement and contracting inquiries only — please do not include Social Security numbers, insurance member IDs, medical records, or other sensitive patient information.
+      </p>
+
       {status === 'error' && <p className="gc-form-error" role="alert">{gov.inquiry.errorLine}</p>}
       <button type="submit" className="v2-btn v2-btn-primary gc-submit" disabled={status === 'sending'}>
         {status === 'sending' ? 'Sending...' : 'Submit Inquiry'}
@@ -451,11 +457,17 @@ export default function GovernmentContracting() {
             <p className="gc-note v2-small">{c.download.disclaimer}</p>
           </div>
           <div className="gc-doc-card v2-panel">
-            <div className="gc-doc-sheet" aria-hidden="true">
-              <img src="/icon-192.png" alt="" />
-              <span className="gc-doc-sheet-title">LIFE STAR EMS INC.</span>
-              <span className="gc-doc-sheet-sub">Capability Statement</span>
-            </div>
+            <a href={c.pdfPublicPath} target="_blank" rel="noreferrer" className="gc-doc-thumb-link">
+              <Picture
+                src="/images/capability-statement-page-1.jpg"
+                webp="/images/capability-statement-page-1.webp"
+                alt="Page one of the Life Star EMS Inc. capability statement PDF."
+                width={1200}
+                height={1553}
+                loading="lazy"
+                className="gc-doc-thumb"
+              />
+            </a>
             <div className="gc-doc-body">
               <h3 className="gc-card-title">{c.pdfTitle}</h3>
               <p className="v2-small gc-doc-meta">{c.pdfMeta}</p>

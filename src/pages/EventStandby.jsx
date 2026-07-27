@@ -1,22 +1,26 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { FaPhone, FaBriefcaseMedical } from 'react-icons/fa'
+import {
+  FaPhone, FaBriefcaseMedical, FaFootballBall, FaFutbol, FaRunning,
+  FaMusic, FaBasketballBall, FaGraduationCap, FaTrophy, FaUsers,
+} from 'react-icons/fa'
 import { supabase } from '../lib/supabase'
 import InnerPage from '../v2/InnerPage'
 import Picture from '../v2/Picture'
 import { content } from '../v2/content'
+import { AccessibleIcon, FormStatus, PrivacyNotice } from '../v2/components'
 import './ServicePage.css'
 import './EventStandby.css'
 
 const eventTypes = [
-  {icon:'🏈',label:'Football Games',desc:'Friday night lights, varsity, JV, playoff games'},
-  {icon:'⚽',label:'Soccer Matches',desc:'League games, tournaments, championships'},
-  {icon:'🏃',label:'5K & Fun Runs',desc:'Community races, charity runs, marathons'},
-  {icon:'🎵',label:'Concerts & Festivals',desc:'Music events, outdoor festivals, fairs'},
-  {icon:'🏀',label:'Basketball Events',desc:'Indoor/outdoor tournaments and games'},
-  {icon:'🎓',label:'School Events',desc:'Graduations, track meets, field days'},
-  {icon:'🏆',label:'Sports Tournaments',desc:'Multi-team events, championships'},
-  {icon:'🌟',label:'Community Events',desc:'City events, parades, non-profit gatherings'},
+  {Icon:FaFootballBall,label:'Football Games',desc:'Friday night lights, varsity, JV, playoff games'},
+  {Icon:FaFutbol,label:'Soccer Matches',desc:'League games, tournaments, championships'},
+  {Icon:FaRunning,label:'5K & Fun Runs',desc:'Community races, charity runs, marathons'},
+  {Icon:FaMusic,label:'Concerts & Festivals',desc:'Music events, outdoor festivals, fairs'},
+  {Icon:FaBasketballBall,label:'Basketball Events',desc:'Indoor/outdoor tournaments and games'},
+  {Icon:FaGraduationCap,label:'School Events',desc:'Graduations, track meets, field days'},
+  {Icon:FaTrophy,label:'Sports Tournaments',desc:'Multi-team events, championships'},
+  {Icon:FaUsers,label:'Community Events',desc:'City events, parades, non-profit gatherings'},
 ]
 
 // Community-partner logos removed per owner decision 8: partner
@@ -24,12 +28,15 @@ const eventTypes = [
 // permission are verified (docs/SEO-FACT-VERIFICATION.md §12).
 
 export default function EventStandby() {
-  const [form, setForm] = useState({name:'',phone:'',email:'',event_name:'',event_date:'',event_location:'',attendance:'',event_type:'',notes:''})
+  const [form, setForm] = useState({name:'',phone:'',email:'',event_name:'',event_date:'',event_location:'',attendance:'',event_type:'',notes:'',website:''})
   const [status, setStatus] = useState('idle')
   const handle = e => setForm(f=>({...f,[e.target.name]:e.target.value}))
 
   const submit = async e => {
-    e.preventDefault(); setStatus('sending')
+    e.preventDefault()
+    // Honeypot: real users never see or fill this field.
+    if (form.website) return
+    setStatus('sending')
     try {
       const message = `EVENT: ${form.event_name} | Date: ${form.event_date} | Location: ${form.event_location} | Attendance: ${form.attendance} | Type: ${form.event_type} | Notes: ${form.notes}`
       const {error} = await supabase.from('contact_submissions').insert([{name:form.name,phone:form.phone,email:form.email,message,created_at:new Date().toISOString()}])
@@ -69,11 +76,11 @@ export default function EventStandby() {
       <section className="event-types section">
         <div className="container">
           <span className="label">Events We Cover</span>
-          <h2 className="title">Any Sport.<br /><em>Any Event. Any Size.</em></h2>
+          <h2 className="title">Medical Standby<br /><em>For Your Event</em></h2>
           <div className="ev-type-grid">
             {eventTypes.map((t,i)=>(
               <div key={i} className="ev-type-card">
-                <span className="ev-type-icon">{t.icon}</span>
+                <AccessibleIcon icon={t.Icon} className="ev-type-icon-wrap" size={22} />
                 <h3>{t.label}</h3>
                 <p>{t.desc}</p>
               </div>
@@ -90,15 +97,17 @@ export default function EventStandby() {
               <span className="label">What We Provide</span>
               <h2 className="title">Full On-Site<br /><em>Medical Coverage</em></h2>
               <ul className="sp-list">
-                {['Certified EMT and Paramedic crews on standby','Fully equipped ambulance on site','Fast on-site medical response','AED, oxygen, and medical equipment','Bilingual staff — English & Spanish','Coordination with local EMS and hospitals','Post-event incident reports available','Flexible packages for any event size'].map((item,i)=>(<li key={i}><span className="sp-list-dot"/>{item}</li>))}
+                {['Certified EMT and Paramedic crews on standby','Fully equipped ambulance on site','On-site medical response for your attendees','AED, oxygen, and medical equipment','Bilingual staff — English & Spanish','Coordination with local EMS and hospitals','Post-event incident reports available','Event coverage experience for crowds of up to approximately 5,000'].map((item,i)=>(<li key={i}><span className="sp-list-dot"/>{item}</li>))}
               </ul>
             </div>
             <div className="sp-cta-box event-form-box">
               {status==='sent' ? (
-                <div className="form-success"><span>✅</span><h3>Request Received!</h3><p>Our team will review your event details and contact you to confirm availability and pricing.</p></div>
+                <FormStatus state="success" title="Request Received!">
+                  Our team will review your event details and contact you to confirm availability and pricing.
+                </FormStatus>
               ) : (
                 <form onSubmit={submit}>
-                  <h3 className="form-title">🏆 Request Event Coverage</h3>
+                  <h3 className="form-title">Request Event Coverage</h3>
                   <div className="form-row">
                     <div className="form-group"><label>Your Name *</label><input name="name" type="text" placeholder="John Doe" required value={form.name} onChange={handle}/></div>
                     <div className="form-group"><label>Phone *</label><input name="phone" type="tel" placeholder="(956) 000-0000" required value={form.phone} onChange={handle}/></div>
@@ -120,8 +129,18 @@ export default function EventStandby() {
                     </select>
                   </div>
                   <div className="form-group"><label>Additional Notes</label><textarea name="notes" rows={3} placeholder="Any special requirements..." value={form.notes} onChange={handle}/></div>
-                  {status==='error'&&<p className="form-error">Something went wrong. Please call us at (956) 660-6543.</p>}
+                  <div className="v2-visually-hidden" aria-hidden="true">
+                    <label htmlFor="ev-website">Leave this field blank</label>
+                    <input id="ev-website" name="website" type="text" tabIndex={-1} autoComplete="off" value={form.website} onChange={handle} />
+                  </div>
+                  <PrivacyNotice sensitive />
+                  {status==='error'&&(
+                    <FormStatus state="error" title="Something went wrong.">
+                      Please call us at (956) 660-6543 and we'll take your event details by phone.
+                    </FormStatus>
+                  )}
                   <button type="submit" className="btn btn-blue ev-submit" disabled={status==='sending'}>{status==='sending'?'Sending…':'Request Free Quote →'}</button>
+                  <p className="ev-note">Submitting this request does not confirm staffing, pricing, or event coverage — our team will follow up to confirm availability. For a medical emergency, call 911.</p>
                 </form>
               )}
             </div>
