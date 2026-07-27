@@ -3,7 +3,7 @@ import { content } from './content'
 import { gov } from './content/government'
 import './Footer.css'
 
-const { brand, nav, footer, emergencyNotice } = content
+const { brand, nav, footer } = content
 
 export default function FooterV2() {
   return (
@@ -69,7 +69,6 @@ export default function FooterV2() {
         </div>
 
         <div className="v2-container v2f-bottom">
-          <p className="v2f-notice">{emergencyNotice}</p>
           <p className="v2f-legal">
             © {new Date().getFullYear()} {brand.name} · {brand.region}. {footer.rights}
           </p>

@@ -12,7 +12,7 @@
 }
 .therapy-accent { color: #0C7B84 !important; }
 .therapy-btn { background: #12A3AD !important; color: var(--v2-ink) !important; }
-.therapy-btn:hover { background: #0F8F98 !important; }
+.therapy-btn:hover { background: #1097A0 !important; }
 
 /* Trust badges */
 .therapy-trust-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }

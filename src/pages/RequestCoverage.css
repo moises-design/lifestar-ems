@@ -14,7 +14,7 @@
 }
 .req-group input:focus, .req-group textarea:focus, .req-select:focus { border-color: var(--v2-focus); }
 .req-submit { width: 100%; justify-content: center; margin-top: 4px; }
-.req-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+.req-submit:disabled { opacity: 0.85; cursor: not-allowed; }
 .req-note { font-size: var(--v2-fs-small); color: var(--v2-ink-2); text-align: center; margin-top: 12px; }
 .req-error { color: #B3261E; font-size: var(--v2-fs-small); margin-bottom: 8px; padding: 8px 12px; background: rgba(179,38,30,0.08); border: 1px solid rgba(179,38,30,0.3); border-radius: var(--v2-radius-s); }
 

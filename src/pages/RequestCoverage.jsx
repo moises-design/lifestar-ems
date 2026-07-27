@@ -85,7 +85,7 @@ export default function RequestCoverage() {
                     </FormStatus>
                   )}
                   <button type="submit" className="btn btn-blue req-submit" disabled={status==='sending'}>{status==='sending'?'Submitting…':'Submit Request →'}</button>
-                  <p className="req-note">This form is for scheduled, non-emergency requests only. Submitting a request does not confirm scheduling; our team will contact you to confirm. For a medical emergency, call 911.</p>
+                  <p className="req-note">Submitting this form does not confirm transportation, crew availability, pricing, or scheduling. Our team will contact you to review and confirm the request. Call dispatch for immediate coordination.</p>
                 </form>
               )}
             </div>
@@ -95,7 +95,7 @@ export default function RequestCoverage() {
               <div className="req-info-box">
                 <h2>Contact Dispatch Directly</h2>
                 <a href="tel:+19566606543" className="btn btn-blue req-call"><FaPhone /> (956) 660-6543</a>
-                <p>For a medical emergency, call 911. Life Star EMS provides scheduled transportation and event standby services.</p>
+                <p>For immediate coordination or time-sensitive requests, call dispatch directly.</p>
               </div>
 
               <div className="req-info-box">
@@ -113,7 +113,7 @@ export default function RequestCoverage() {
               <div className="req-info-box">
                 <h2>Services Available</h2>
                 <ul className="req-svc-list">
-                  {['Adult Dialysis Transportation','Pediatric Therapy Transportation','Pediatric & Long-Distance Transport','Event EMS Standby'].map((s,i)=>(<li key={i}><FaCheckCircle className="req-dot"/>{s}</li>))}
+                  {['Adult Dialysis Transportation','Pediatric Therapy Transportation','Pediatric Transportation','Long-Distance Medical Transport','Event EMS Standby'].map((s,i)=>(<li key={i}><FaCheckCircle className="req-dot"/>{s}</li>))}
                 </ul>
               </div>
 

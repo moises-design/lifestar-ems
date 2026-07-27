@@ -23,10 +23,10 @@ const pServices = [
 ]
 
 const trustItems = [
-  { Icon: FaSmile,    color: '#0EA5B0', title: 'Friendly & Patient Staff',    desc: 'Our team is trained and experienced working with children — calm, kind, and always professional.' },
-  { Icon: FaShieldAlt, color: '#3E8FB0', title: 'Clean & Safe Vehicles',      desc: 'Well-maintained, fully equipped vehicles with child safety features for every trip.' },
-  { Icon: FaCheckCircle, color: '#2E9E6B', title: 'Reliable & On-Time',       desc: 'We track appointments closely and coordinate with your therapy provider.' },
-  { Icon: FaComments, color: '#FF8A65',  title: 'Clear Parent Communication', desc: 'We keep families informed before, during, and after every transport.' },
+  { Icon: FaSmile,    color: '#0EA5B0', title: 'Friendly & Patient Staff',    desc: 'Our team is trained and experienced working with children — calm, kind, and professional.' },
+  { Icon: FaShieldAlt, color: '#3E8FB0', title: 'Clean & Safe Vehicles',      desc: 'Well-maintained vehicles with child safety features.' },
+  { Icon: FaCheckCircle, color: '#2E9E6B', title: 'Coordinated Scheduling',   desc: 'We track appointments closely and coordinate with your therapy provider.' },
+  { Icon: FaComments, color: '#FF8A65',  title: 'Clear Parent Communication', desc: 'We keep families informed before, during, and after each transport.' },
 ]
 
 // Restrained, original ocean-themed decorative band for the page intro —
@@ -128,14 +128,14 @@ export default function PediatricsTransport() {
               <h2 className="title">Every Child Deserves<br /><em>Safe, Caring Transport</em></h2>
               <ul className="sp-list">
                 {[
-                  'Parent or guardian always welcome to ride along',
+                  'Parent or guardian welcome to ride along, space permitting',
                   'Child safety seats and wheelchair accessibility',
                   'Bilingual staff — English & Spanish',
                   'Caring, professional drivers',
-                  'Careful, on-time pickup for appointments',
+                  'Pickup planned around your appointment time',
                   'Coordination with therapy centers & providers',
-                  'Long-distance transport across all of Texas',
-                  'Insurance accepted — verified before first trip',
+                  'Long-distance transport coordinated across Texas',
+                  'Insurance details confirmed before first trip',
                 ].map((item,i)=>(
                   <li key={i}><span className="sp-list-dot"/>{item}</li>
                 ))}

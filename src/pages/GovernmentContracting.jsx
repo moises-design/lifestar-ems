@@ -422,7 +422,7 @@ export default function GovernmentContracting() {
       </section>
 
       {/* 7 · Operational readiness */}
-      <section className="v2-section" aria-labelledby="gc-ready-h">
+      <section className="v2-section v2-hairline-top" aria-labelledby="gc-ready-h">
         <div className="v2-container gc-split">
           <div>
             <span className="v2-label">{c.readiness.label}</span>

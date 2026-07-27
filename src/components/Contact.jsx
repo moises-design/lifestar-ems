@@ -84,6 +84,9 @@ export default function Contact() {
                   <input id="ct-website" name="website" type="text" tabIndex={-1} autoComplete="off" value={form.website} onChange={handle} />
                 </div>
                 <PrivacyNotice sensitive className="contact-privacy-notice" />
+                <p className="v2-privacy-notice contact-sensitive-warning">
+                  Do not include medical records, diagnoses, Social Security numbers, insurance member IDs, or other sensitive patient information in this form.
+                </p>
                 {status==='error' && (
                   <FormStatus state="error" title="Something went wrong.">
                     Please call us at (956) 660-6543.

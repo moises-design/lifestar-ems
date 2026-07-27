@@ -97,7 +97,7 @@ export default function EventStandby() {
               <span className="label">What We Provide</span>
               <h2 className="title">Full On-Site<br /><em>Medical Coverage</em></h2>
               <ul className="sp-list">
-                {['Certified EMT and Paramedic crews on standby','Fully equipped ambulance on site','On-site medical response for your attendees','AED, oxygen, and medical equipment','Bilingual staff — English & Spanish','Coordination with local EMS and hospitals','Post-event incident reports available','Event coverage experience for crowds of up to approximately 5,000'].map((item,i)=>(<li key={i}><span className="sp-list-dot"/>{item}</li>))}
+                {['BLS ambulance and trained EMS personnel configured according to the approved event coverage plan','On-site medical response for your attendees','AED, oxygen, and medical equipment','Bilingual staff — English & Spanish','Coordination with local EMS and hospitals','Post-event incident reports available','Event coverage experience for crowds of up to approximately 5,000'].map((item,i)=>(<li key={i}><span className="sp-list-dot"/>{item}</li>))}
               </ul>
             </div>
             <div className="sp-cta-box event-form-box">
@@ -139,8 +139,8 @@ export default function EventStandby() {
                       Please call us at (956) 660-6543 and we'll take your event details by phone.
                     </FormStatus>
                   )}
-                  <button type="submit" className="btn btn-blue ev-submit" disabled={status==='sending'}>{status==='sending'?'Sending…':'Request Free Quote →'}</button>
-                  <p className="ev-note">Submitting this request does not confirm staffing, pricing, or event coverage — our team will follow up to confirm availability. For a medical emergency, call 911.</p>
+                  <button type="submit" className="btn btn-blue ev-submit" disabled={status==='sending'}>{status==='sending'?'Sending…':'Request Event Coverage →'}</button>
+                  <p className="ev-note">Submitting this request does not confirm staffing, pricing, or event coverage — our team will follow up to confirm availability. Call dispatch for immediate coordination.</p>
                 </form>
               )}
             </div>
@@ -151,7 +151,7 @@ export default function EventStandby() {
       <section className="sp-cta-banner event-cta-banner">
         <div className="container">
           <h2>Let's Cover Your Event</h2>
-          <p>Call us for a free quote — we'll build a plan around your event needs.</p>
+          <p>Call us to discuss your event — we'll build a coverage plan around your needs.</p>
           <Link to="/request" className="btn btn-blue"><FaBriefcaseMedical /> Request Event Coverage</Link>
           <a href="tel:+19566606543" className="btn btn-outline"><FaPhone /> Call Now</a>
         </div>

@@ -6,10 +6,10 @@ import './ServicePage.css'
 import './DialysisTransport.css'
 
 const feats = [
-  { Icon: FaClock,        title: 'Built Around Your Schedule', desc: 'Dialysis has strict schedules. We plan pickups to get you to treatment on time.' },
+  { Icon: FaClock,        title: 'Built Around Your Schedule', desc: 'Dialysis has strict schedules. Pickups are planned around your treatment times.' },
   { Icon: FaHeart,        title: 'Compassionate Care',      desc: 'We treat every patient with dignity, patience, and genuine respect.' },
   { Icon: FaCalendarAlt,  title: 'Flexible Scheduling',     desc: 'We coordinate directly with your dialysis center to match your treatment schedule.' },
-  { Icon: FaHospitalUser, title: 'Provider Coordination',   desc: 'Direct communication with your healthcare team for seamless transport.' },
+  { Icon: FaHospitalUser, title: 'Provider Coordination',   desc: 'Direct communication with your healthcare team to coordinate transport.' },
 ]
 
 export default function DialysisTransport() {
@@ -51,17 +51,17 @@ export default function DialysisTransport() {
         <div className="container">
           <div className="sp-two-grid">
             <div>
-              <span className="label">Our Promise</span>
-              <h2 className="title">Punctual.<br /><em>Professional. Caring.</em></h2>
+              <span className="label">Our Approach</span>
+              <h2 className="title">Reliable.<br /><em>Professional. Caring.</em></h2>
               <ul className="sp-list">
-                {['Door-to-door pickup and drop-off','Wheelchair and stretcher accessible vehicles','Trained and friendly EMT staff','Coordinated with your dialysis center','Caring, professional drivers','Bilingual staff — English & Spanish','Insurance verified before your first trip'].map((item,i)=>(
+                {['Door-to-door pickup and drop-off','Wheelchair and stretcher accessible vehicles','Trained and friendly EMT staff','Coordinated with your dialysis center','Caring, professional drivers','Bilingual staff — English & Spanish','Insurance details confirmed before your first trip'].map((item,i)=>(
                   <li key={i}><FaCheckCircle className="sp-list-check" />{item}</li>
                 ))}
               </ul>
             </div>
             <div className="sp-cta-box">
               <h3>Get Started</h3>
-              <p>We'll verify your insurance and set up your transport schedule with your dialysis center.</p>
+              <p>We'll confirm your insurance details and set up your transport schedule with your dialysis center.</p>
               <Link to="/request" className="btn btn-blue"><FaWheelchair /> Request Transport</Link>
               <a href="tel:+19566606543" className="btn btn-outline"><FaPhone /> Call Dispatch</a>
             </div>
