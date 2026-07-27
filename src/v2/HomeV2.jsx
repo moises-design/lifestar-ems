@@ -6,6 +6,7 @@ import Picture from './Picture'
 import './HomeV2.css'
 
 const { brand, nav, home } = content
+const coverageCities = home.coverage.cities
 
 // Real-operations strip: a restrained selection of authentic Life Star EMS
 // photography (three new event/fleet photos plus one existing ambulance
@@ -89,6 +90,7 @@ export default function HomeV2() {
               </li>
             ))}
           </ul>
+          <Link to={home.services.allHref} className="v2home-quiet-link v2home-services-all">{home.services.allLabel} &rarr;</Link>
         </div>
       </section>
 
@@ -111,7 +113,7 @@ export default function HomeV2() {
         </div>
       </section>
 
-      {/* 05 · Human trust story (deepened in Mission 5) */}
+      {/* 05 · Human trust story, backed by a real leadership photo */}
       <section className="v2-section v2-hairline-top" id={home.why.id} aria-labelledby="why-h">
         <div className="v2-container v2home-split">
           <div>
@@ -119,19 +121,30 @@ export default function HomeV2() {
             <h2 id="why-h" className="v2home-split-h">{home.why.heading}</h2>
             <p className="v2-lead">{home.why.line}</p>
           </div>
-          {/* Photo slot: PH-02 arrives in Mission 5 */}
-          <div className="v2-panel v2home-photo-slot" aria-hidden="true" />
+          <div className="v2-panel v2home-photo-slot">
+            <Picture
+              src="/images/company/optimized/heather-ayala-segovia-seated-full.jpg"
+              webp="/images/company/optimized/heather-ayala-segovia-seated-full.webp"
+              alt="Heather Ayala-Segovia, CEO of Life Star EMS, seated portrait."
+              width={1050}
+              height={1400}
+              loading="lazy"
+              className="v2home-photo-slot-img"
+            />
+          </div>
         </div>
       </section>
 
-      {/* Real operations: authentic photography strip (restrained, not a gallery) */}
-      <section className="v2-section v2-hairline-top" id={home.realOps.id} aria-labelledby="realops-h">
+      {/* 06 · Real operations + crew, one photo-led section (previously two
+          thin back-to-back sections: a photo strip and a text-only block) */}
+      <section className="v2-section v2-hairline-top" id={home.operations.id} aria-labelledby="ops-h">
         <div className="v2-container">
           <div className="v2-section-head">
-            <h2 id="realops-h">{home.realOps.heading}</h2>
-            <p className="v2-lead">{home.realOps.line}</p>
+            <span className="v2-label">{home.operations.label}</span>
+            <h2 id="ops-h">{home.operations.heading}</h2>
+            <p className="v2-lead">{home.realOps.line} {home.operations.line}</p>
           </div>
-          <ul className="v2home-realops-grid">
+          <ul className="v2home-realops-grid" aria-label={home.realOps.heading}>
             {realOpsPhotos.map(p => (
               <li key={p.src} className="v2home-realops-frame v2-panel">
                 <Picture
@@ -149,18 +162,8 @@ export default function HomeV2() {
         </div>
       </section>
 
-      {/* 06 · Crew and operations */}
-      <section className="v2-section v2-hairline-top" id={home.operations.id} aria-labelledby="ops-h">
-        <div className="v2-container">
-          <div className="v2-section-head">
-            <span className="v2-label">{home.operations.label}</span>
-            <h2 id="ops-h">{home.operations.heading}</h2>
-            <p className="v2-lead">{home.operations.line}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* 07 · Coverage (map treatment arrives in Mission 5) */}
+      {/* 07 · Coverage: a real, verified list of cities served (not an
+          abstract or placeholder map graphic) */}
       <section className="v2-section" id={home.coverage.id} aria-labelledby="cov-h">
         <div className="v2-container v2home-split">
           <div>
@@ -169,7 +172,9 @@ export default function HomeV2() {
             <p className="v2-lead">{home.coverage.line}</p>
             <Link to={home.coverage.href} className="v2home-quiet-link">{home.coverage.linkLabel}</Link>
           </div>
-          <div className="v2-panel v2-panel-tint v2home-photo-slot" aria-hidden="true" />
+          <ul className="v2home-cities v2-panel v2-panel-tint" aria-label="Cities we serve">
+            {coverageCities.map(city => <li key={city}>{city}</li>)}
+          </ul>
         </div>
       </section>
 
@@ -217,9 +222,6 @@ export default function HomeV2() {
           </div>
         </div>
       </section>
-
-      {/* 10 · Reviews: hidden until real, verified reviews exist */}
-      <section id="reviews" hidden aria-hidden="true" />
 
       {/* 11 · Life Star in the Community: Facebook media showcase */}
       <CommunityShowcase />

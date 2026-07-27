@@ -121,7 +121,7 @@ export const en = {
       id: 'operations',
       label: '04 · Crew and operations',
       heading: 'Who shows up when you call',
-      line: 'The people behind every ride, and the preparation that goes into each trip.',
+      line: 'Here is a look at the people behind every ride and the preparation that goes into each trip.',
     },
 
     coverage: {
@@ -132,6 +132,7 @@ export const en = {
         'Edinburg, McAllen, Mission, Pharr, San Juan, Alamo, Donna, Weslaco, Mercedes, Harlingen, Los Fresnos, Brownsville, and Rio Grande City, with long-distance trips across Texas.',
       linkLabel: 'See our full service area',
       href: '/coverage',
+      cities: ['Edinburg', 'McAllen', 'Mission', 'Pharr', 'San Juan', 'Alamo', 'Donna', 'Weslaco', 'Mercedes', 'Harlingen', 'Los Fresnos', 'Brownsville', 'Rio Grande City'],
     },
 
     events: {
@@ -161,9 +162,10 @@ export const en = {
       heading: 'Life Star in the Community',
       line:
         'See recent transports, event standby coverage, crew activity, and community involvement from Life Star EMS.',
-      followLabel: 'Follow Life Star EMS',
+      followLabel: 'Follow Life Star EMS on Facebook for recent updates from the field.',
       openPostLabel: 'View on Facebook',
       openPageLabel: 'Open our Facebook page',
+      showTimelineLabel: 'Show recent posts here',
       loadingLabel: 'Loading posts from Facebook',
       liveRegionLabel: 'Recent posts from the Life Star EMS Facebook page',
       liveCaption: 'Live from our Facebook page',
