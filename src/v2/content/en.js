@@ -219,10 +219,10 @@ export const en = {
         'On-site EMS standby for school sports, tournaments, concerts, and community events across the Rio Grande Valley.',
     },
     longDistance: {
-      label: 'Statewide · Long-distance medical transport',
-      title: 'Long-distance medical transport across Texas',
+      label: 'Long-distance patient transport',
+      title: 'Long-distance patient transport across Texas and interstate',
       lead:
-        'Safe, monitored medical transport with certified BLS crews for trips beyond the Rio Grande Valley — coordinated with the receiving facility and the family every step of the way.',
+        'Life Star EMS coordinates long-distance patient transportation across Texas and interstate destinations, with BLS crews. Transport availability, staffing, equipment, and clinical requirements are confirmed for each trip.',
     },
     request: {
       label: 'Get started',

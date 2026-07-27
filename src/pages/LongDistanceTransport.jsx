@@ -34,7 +34,7 @@ export default function LongDistanceTransport() {
   return (
     <InnerPage
       {...content.pages.longDistance}
-      breadcrumb={[{ label: 'Services' }, { label: 'Long-distance medical transport' }]}
+      breadcrumb={[{ label: 'Services' }, { label: 'Long-distance patient transport' }]}
       legacy
       cta={
         <>
@@ -48,7 +48,7 @@ export default function LongDistanceTransport() {
       <section className="ld-cities section">
         <div className="container">
           <span className="label">Where We Go</span>
-          <h2 className="title">From RGV To<br /><em>All of Texas</em></h2>
+          <h2 className="title">From RGV To<br /><em>Texas and Beyond</em></h2>
           <div className="ld-cities-grid">
             {cities.map(c => (
               <div className="ld-city-card" key={c.name}>
@@ -57,7 +57,7 @@ export default function LongDistanceTransport() {
               </div>
             ))}
           </div>
-          <div className="ld-anywhere"><FaMapMarkerAlt aria-hidden="true" /> We transport to any city in Texas — just call us</div>
+          <div className="ld-anywhere"><FaMapMarkerAlt aria-hidden="true" /> We coordinate trips across Texas and have transported patients interstate, including to Michigan and California — call to discuss your destination</div>
         </div>
       </section>
 
@@ -66,19 +66,20 @@ export default function LongDistanceTransport() {
           <div className="sp-two-grid">
             <div>
               <span className="label">Why Choose Us</span>
-              <h2 className="title">Safe, Monitored<br /><em>Transport</em></h2>
+              <h2 className="title">Safe, Coordinated<br /><em>Transport</em></h2>
               <ul className="sp-list">
-                {['BLS-certified crews on every trip', 'Continuous patient monitoring during transport', 'Wheelchair and stretcher accessible vehicles', 'Oxygen, IV, and special equipment available', 'Coordinated with the receiving facility', 'Family member can ride along', 'Insurance accepted — verified before the trip', 'Available 24 hours a day, 7 days a week'].map((item, i) => (
+                {['BLS-certified crews on every trip', 'Patient monitoring and care throughout the trip, provided by our BLS crews', 'Wheelchair and stretcher accessible vehicles', 'Oxygen, IV, and special equipment available', 'Coordinated with the receiving facility', 'Family member can ride along, space permitting', 'Insurance accepted — verified before the trip', '24/7 dispatch, every day of the week'].map((item, i) => (
                   <li key={i}><FaCheckCircle className="sp-list-check" />{item}</li>
                 ))}
               </ul>
+              <p className="ld-scope-note">Transport availability, staffing, equipment, and clinical requirements are confirmed for each trip before it's scheduled — not every request can be automatically accepted.</p>
             </div>
             <div className="sp-cta-box ld-form-box">
               {status === 'sent' ? (
                 <div className="ld-success">
                   <FaCheckCircle className="ld-success-check" aria-hidden="true" />
                   <h3>Request Received!</h3>
-                  <p>Our team will review your request and contact you to confirm your transport details. If anything is time sensitive, please call us directly.</p>
+                  <p>Our team will review your transport needs and contact you to confirm staffing, equipment, and scheduling details. If anything is time sensitive, please call us directly.</p>
                   <a href="tel:+19566606543" className="btn btn-blue"><FaPhone /> Call Now to Confirm</a>
                 </div>
               ) : (
@@ -101,6 +102,7 @@ export default function LongDistanceTransport() {
                   <div className="ld-form-group"><label>Additional Notes</label><textarea rows={3} placeholder="Any special requirements..." value={form.notes} onChange={e => setForm(f => ({...f, notes: e.target.value}))} /></div>
                   {status === 'error' && <p className="ld-error" role="alert">Something went wrong. Please call us at (956) 660-6543.</p>}
                   <button type="submit" className="btn btn-blue" style={{width:'100%',justifyContent:'center'}} disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Request Free Quote →'}</button>
+                  <p className="ld-note">This form starts the conversation about your trip. Submitting a request does not confirm scheduling — our team will confirm staffing, equipment, and clinical requirements before your transport is scheduled. For a medical emergency, call 911.</p>
                 </form>
               )}
             </div>
@@ -110,9 +112,9 @@ export default function LongDistanceTransport() {
 
       <section className="sp-cta-banner">
         <div className="container">
-          <h2>Need Transport Today?</h2>
-          <p>Call us directly for immediate assistance with long-distance medical transport.</p>
-          <a href="tel:+19566606543" className="btn btn-blue btn-lg"><FaPhone /> Call (956) 660-6543 Now</a>
+          <h2>Planning a Long-Distance Trip?</h2>
+          <p>Call us to discuss your destination, timing, and transport needs — we'll confirm what's needed before scheduling.</p>
+          <a href="tel:+19566606543" className="btn btn-blue btn-lg"><FaPhone /> Call (956) 660-6543</a>
           <Link to="/request" className="btn btn-outline btn-lg">Submit a Request</Link>
         </div>
       </section>
