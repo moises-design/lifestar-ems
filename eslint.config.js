@@ -27,8 +27,11 @@ export default defineConfig([
     },
   },
   {
-    // Node-context files: build/CI scripts and config files.
-    files: ['scripts/**/*.{js,mjs}', '*.config.{js,mjs}'],
+    // Node-context files: build/CI scripts, config files, and the
+    // framework-agnostic parts of the Supabase Edge Function (the
+    // function's own index.ts is Deno-only and intentionally not linted
+    // by this Vite/Node toolchain's config).
+    files: ['scripts/**/*.{js,mjs}', '*.config.{js,mjs}', 'supabase/functions/**/*.js'],
     extends: [js.configs.recommended],
     languageOptions: {
       ecmaVersion: 'latest',
