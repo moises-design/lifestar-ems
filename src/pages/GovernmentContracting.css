@@ -87,8 +87,6 @@
   cursor: pointer;
 }
 .v2 .gc-copy:hover { border-color: var(--v2-blue-ink); }
-.v2-night .gc-copy { color: var(--v2-night-text); border-color: var(--v2-hairline-night); }
-.v2-night .gc-copy:hover { border-color: var(--v2-night-text); }
 
 /* ---------- shared layout ---------- */
 .gc-split {

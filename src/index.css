@@ -1,30 +1,4 @@
-/* Note: this V1 token block is kept only because a handful of confirmed-
-   orphaned, unreachable components under src/components/ still reference
-   it (see docs/THEME-CONSISTENCY-AUDIT.md for the full list). No live
-   route uses these anymore — the Google Fonts @import for the old
-   condensed display face was removed as part of the theme-consistency
-   migration, since every live element now renders through the V2 token
-   fonts (Source Serif 4 / Inter) instead. */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --blue:        #0B9ED9;
-  --blue-bright: #12AEEE;
-  --blue-light:  #3DC8FF;
-  --blue-dark:   #0770A8;
-  --blue-deeper: #054F7A;
-  --navy:        #060D14;
-  --navy2:       #091220;
-  --navy3:       #0C1828;
-  --card:        #0F2035;
-  --card2:       #102540;
-  --white:       #FFFFFF;
-  --off-white:   #E8F4FF;
-  --light-text:  #A8C8DC;
-  --muted:       #567080;
-  --border:      rgba(255,255,255,0.06);
-  --border-blue: rgba(11,158,217,0.25);
-}
 
 html { scroll-behavior: smooth; }
 
@@ -113,6 +87,3 @@ button { cursor: pointer; font-family: inherit; }
 .section { padding: 64px 0; }
 .section-sm { padding: 48px 0; }
 @media (max-width: 768px) { .section { padding: 44px 0; } }
-
-@keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(11,158,217,0.4)} 50%{box-shadow:0 0 0 8px rgba(11,158,217,0)} }
-@keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
