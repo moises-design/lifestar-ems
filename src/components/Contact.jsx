@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { FaPhone, FaMapMarkerAlt, FaFacebook } from 'react-icons/fa'
 import { supabase } from '../lib/supabase'
 import { Link } from 'react-router-dom'
+import { FormStatus, PrivacyNotice } from '../v2/components'
 import './Contact.css'
 
 export default function Contact() {
@@ -60,9 +61,9 @@ export default function Contact() {
           <div className="contact-form-col">
             {status === 'sent' ? (
               <div className="form-done">
-                <span>✅</span>
-                <h3>Message Received!</h3>
-                <p>Our team will review your message and follow up with you.</p>
+                <FormStatus state="success" title="Message Received!">
+                  Our team will review your message and follow up with you.
+                </FormStatus>
                 <button className="btn btn-blue" onClick={() => setStatus('idle')}>Send Another</button>
               </div>
             ) : (
@@ -74,7 +75,12 @@ export default function Contact() {
                 </div>
                 <div className="fg"><label htmlFor="ct-email">Email *</label><input id="ct-email" name="email" type="email" autoComplete="email" placeholder="you@example.com" required value={form.email} onChange={handle}/></div>
                 <div className="fg"><label htmlFor="ct-message">Message *</label><textarea id="ct-message" name="message" rows={5} placeholder="How can we help?" required value={form.message} onChange={handle}/></div>
-                {status==='error' && <p className="form-err" role="alert">Something went wrong. Please call us at (956) 660-6543.</p>}
+                <PrivacyNotice sensitive className="contact-privacy-notice" />
+                {status==='error' && (
+                  <FormStatus state="error" title="Something went wrong.">
+                    Please call us at (956) 660-6543.
+                  </FormStatus>
+                )}
                 <button type="submit" className="btn btn-blue form-submit-btn" disabled={status==='sending'}>{status==='sending'?'Sending…':'Send Message →'}</button>
               </form>
             )}

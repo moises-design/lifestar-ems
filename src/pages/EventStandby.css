@@ -30,7 +30,7 @@
 .ev-type-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; margin-top: 40px; }
 .ev-type-card { background: var(--v2-paper); padding: 28px 20px; border-top: 2px solid transparent; transition: all 0.22s; }
 .ev-type-card:hover { border-top-color: var(--v2-blue); transform: translateY(-4px); background: var(--v2-sky-tint); }
-.ev-type-icon { font-size: 2.2rem; display: block; margin-bottom: 12px; }
+.ev-type-icon-wrap { margin-bottom: 12px; background: var(--v2-sky-tint); color: var(--v2-blue-ink); }
 .ev-type-card h3 { font-family: var(--v2-font-sans); font-weight: 600; font-size: var(--v2-fs-small); letter-spacing: 0; text-transform: none; margin-bottom: 6px; color: var(--v2-ink); }
 .ev-type-card p { font-size: var(--v2-fs-small); color: var(--v2-ink-2); line-height: 1.55; }
 
@@ -47,10 +47,8 @@
 .form-group input:focus, .form-group textarea:focus, .ev-select:focus { border-color: var(--v2-focus); }
 .ev-submit { width: 100%; justify-content: center; margin-top: 6px; }
 .ev-submit:disabled { opacity: 0.6; cursor: not-allowed; }
-.form-error { color: #B3261E; font-size: var(--v2-fs-small); margin-bottom: 8px; padding: 8px 12px; background: rgba(179,38,30,0.08); border: 1px solid rgba(179,38,30,0.3); border-radius: var(--v2-radius-s); }
-.form-success { text-align: center; padding: 20px 0; }
-.form-success h3 { font-family: var(--v2-font-serif); font-weight: 600; font-size: var(--v2-fs-h4); margin: 10px 0 6px; color: var(--v2-ink); }
-.form-success p { color: var(--v2-ink-2); font-size: var(--v2-fs-small); }
+/* Form success/error states are rendered by the shared FormStatus
+   component (src/v2/components/shared.css); no page-local rules needed. */
 
 /* Shared .sp-cta-banner is already a light section with a dark compact
    card inside (see ServicePage.css) — no page-specific override needed. */

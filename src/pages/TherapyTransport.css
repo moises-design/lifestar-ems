@@ -39,9 +39,8 @@
   transition: all 0.25s;
 }
 .therapy-type-card:hover { transform: translateY(-6px); box-shadow: var(--v2-shadow-float); border-color: var(--v2-hairline-strong); }
-.ttc-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 16px; }
-.ttc-icon { font-size: 2.6rem; }
-.ttc-emoji { font-size: 1.8rem; opacity: 0.4; }
+.ttc-top { display: flex; align-items: flex-start; margin-bottom: 16px; }
+.ttc-icon-wrap { background: var(--v2-sky-tint); color: #0C7B84; }
 .therapy-type-card h3 { font-family: var(--v2-font-sans); font-weight: 600; font-size: var(--v2-fs-h4); letter-spacing: 0; text-transform: none; margin-bottom: 8px; color: var(--v2-ink); }
 .therapy-type-card p { font-size: var(--v2-fs-small); color: var(--v2-ink-2); line-height: 1.6; }
 
