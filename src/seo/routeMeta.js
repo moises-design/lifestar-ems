@@ -37,6 +37,11 @@ const routeMeta = {
     description:
       'On-site EMS standby coverage for school sports, tournaments, concerts, and community events in the Rio Grande Valley. Call (956) 660-6543 for a quote.',
   },
+  '/services/long-distance': {
+    title: 'Long-Distance Medical Transport Across Texas | Life Star EMS',
+    description:
+      'Safe, monitored long-distance medical transport across Texas with BLS-certified crews. Life Star EMS coordinates trips to Houston, San Antonio, Dallas, and beyond. Call (956) 660-6543.',
+  },
   '/request': {
     title: 'Request Medical Transportation | Life Star EMS',
     description:
@@ -51,6 +56,11 @@ const routeMeta = {
     title: 'Government Contracting | Life Star EMS',
     description:
       'Life Star EMS Inc. provides ambulance transportation, event EMS standby, and disaster response support for agencies, school districts, universities, and primes.',
+  },
+  '/about': {
+    title: 'About Life Star EMS | Family-Owned EMS in the Rio Grande Valley',
+    description:
+      'Life Star EMS Inc. is a family-owned, woman-owned ambulance and medical transportation company serving the Rio Grande Valley since 2009, led by CEO Heather Ayala-Segovia.',
   },
   '/contact': {
     title: 'Contact Life Star EMS | Medical Transportation in the RGV',

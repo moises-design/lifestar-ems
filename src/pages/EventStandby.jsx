@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { FaPhone, FaBriefcaseMedical } from 'react-icons/fa'
 import { supabase } from '../lib/supabase'
 import InnerPage from '../v2/InnerPage'
+import Picture from '../v2/Picture'
 import { content } from '../v2/content'
 import './ServicePage.css'
 import './EventStandby.css'
@@ -48,6 +49,19 @@ export default function EventStandby() {
           <a href="tel:+19566606543" className="v2-btn v2-btn-secondary">Call dispatch (956) 660-6543</a>
           <Link to="/government-contracting" className="v2home-quiet-link">Government or institutional buyer? View Government Contracting</Link>
         </>
+      }
+      media={
+        <div className="event-hero-photo-frame v2-panel">
+          <Picture
+            src="/images/company/optimized/event-mission-stadium.jpg"
+            webp="/images/company/optimized/event-mission-stadium.webp"
+            alt="Life Star EMS personnel and medical transport equipment supporting an athletic event at Tom Landry Stadium."
+            width={414}
+            height={414}
+            loading="lazy"
+            className="event-hero-photo"
+          />
+        </div>
       }
     >
     <div className="sp event-sp">

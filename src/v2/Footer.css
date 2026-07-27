@@ -1,6 +1,12 @@
-/* V2 footer (single dark brand block) */
+/* V2 footer — light, matching the rest of the site (see
+   docs/THEME-CONSISTENCY-AUDIT.md for why the old dark "brand block"
+   footer was retired). */
 
-.v2f { padding-top: var(--v2-section-pad-dense); }
+.v2f {
+  padding-top: var(--v2-section-pad-dense);
+  background: var(--v2-paper-2);
+  border-top: 1px solid var(--v2-hairline);
+}
 
 .v2f-grid {
   display: grid;
@@ -15,13 +21,13 @@
   font-family: var(--v2-font-serif);
   font-size: 1.375rem;
   font-weight: 600;
-  color: var(--v2-night-text);
+  color: var(--v2-ink);
 }
 .v2f-brand:hover { text-decoration: none; }
 .v2f-brand img { width: 36px; height: auto; }
 
 .v2f-desc {
-  color: var(--v2-night-muted);
+  color: var(--v2-ink-2);
   max-width: 34ch;
   margin-top: var(--v2-s-4);
 }
@@ -31,7 +37,7 @@
   font-size: var(--v2-fs-label);
   letter-spacing: var(--v2-tracking-label);
   text-transform: uppercase;
-  color: var(--v2-night-muted);
+  color: var(--v2-ink-2);
   margin-bottom: var(--v2-s-4);
 }
 
@@ -40,20 +46,21 @@
   display: inline-flex;
   align-items: center;
   min-height: 40px;
-  color: var(--v2-night-text);
+  color: var(--v2-ink);
   font-size: 0.9375rem;
 }
-.v2f-phone { font-weight: 600; font-variant-numeric: tabular-nums; }
-.v2f-muted { color: var(--v2-night-muted); font-size: 0.9375rem; line-height: 2; }
+.v2f-col a:hover { color: var(--v2-blue-ink); }
+.v2f-phone { font-weight: 600; font-variant-numeric: tabular-nums; color: var(--v2-blue-ink); }
+.v2f-muted { color: var(--v2-ink-2); font-size: 0.9375rem; line-height: 2; }
 
 .v2f-bottom {
-  border-top: 1px solid var(--v2-hairline-night);
+  border-top: 1px solid var(--v2-hairline);
   padding-block: var(--v2-s-5) calc(var(--v2-s-5) + 56px); /* clearance for mobile bar */
   display: grid;
   gap: var(--v2-s-3);
 }
-.v2f-notice { color: var(--v2-night-muted); font-size: var(--v2-fs-small); max-width: 72ch; }
-.v2f-legal { color: var(--v2-night-muted); font-size: var(--v2-fs-small); }
+.v2f-notice { color: var(--v2-ink-2); font-size: var(--v2-fs-small); max-width: 72ch; }
+.v2f-legal { color: var(--v2-ink-2); font-size: var(--v2-fs-small); }
 
 @media (min-width: 768px) {
   .v2f-grid { grid-template-columns: 1fr 1fr; }

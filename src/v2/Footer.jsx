@@ -8,7 +8,7 @@ const { brand, nav, footer, emergencyNotice } = content
 export default function FooterV2() {
   return (
     <div className="v2">
-      <footer className="v2f v2-night" role="contentinfo">
+      <footer className="v2f" role="contentinfo">
         <div className="v2-container v2f-grid">
           <div className="v2f-brand-col">
             <Link to="/" className="v2f-brand">
@@ -22,7 +22,7 @@ export default function FooterV2() {
           </div>
 
           <nav className="v2f-col" aria-label="Footer services">
-            <h4 className="v2f-title">{footer.servicesTitle}</h4>
+            <h3 className="v2f-title">{footer.servicesTitle}</h3>
             <ul>
               {nav.serviceLinks.map(s => (
                 <li key={s.href}><Link to={s.href}>{s.label}</Link></li>
@@ -31,7 +31,7 @@ export default function FooterV2() {
           </nav>
 
           <nav className="v2f-col" aria-label="Footer company">
-            <h4 className="v2f-title">{footer.companyTitle}</h4>
+            <h3 className="v2f-title">{footer.companyTitle}</h3>
             <ul>
               {footer.companyLinks.map(l => (
                 <li key={l.href}><Link to={l.href}>{l.label}</Link></li>
@@ -48,7 +48,7 @@ export default function FooterV2() {
           </nav>
 
           <nav className="v2f-col" aria-label="Footer government contracting">
-            <h4 className="v2f-title">{gov.footer.title}</h4>
+            <h3 className="v2f-title">{gov.footer.title}</h3>
             <ul>
               {gov.footer.links.map(l => (
                 <li key={l.href}>
@@ -61,7 +61,7 @@ export default function FooterV2() {
           </nav>
 
           <div className="v2f-col">
-            <h4 className="v2f-title">{footer.contactTitle}</h4>
+            <h3 className="v2f-title">{footer.contactTitle}</h3>
             <ul>
               <li><a href={brand.phoneHref} className="v2f-phone">{brand.phoneDisplay}</a></li>
               <li className="v2f-muted">{footer.regionLine}</li>

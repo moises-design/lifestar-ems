@@ -181,7 +181,7 @@ export default function CoverageMap() {
                 <span className="cz-chip all">+ All of Texas</span>
               </div>
               <p className="cz-note">Long-distance pediatric transport statewide — coordinated with families and providers.</p>
-              <Link to="/services/pediatrics" className="btn btn-blue cz-cta">Long-Distance Transport →</Link>
+              <Link to="/services/pediatrics" className="btn btn-blue cz-cta">Pediatric Long-Distance Transport →</Link>
             </div>
 
             <div className="covmap-contact">

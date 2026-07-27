@@ -9,7 +9,8 @@ should be treated as true because the website says it. Where the site
 contradicts itself, both versions are shown.
 
 Legend: 🔴 = conflicting or high-risk claim, 🟡 = unverified claim currently
-live, ⚪ = needed but not yet published anywhere.
+live, ⚪ = needed but not yet published anywhere, ✅ = resolved against a
+verified company-provided source (see the row for which source and how).
 
 ---
 
@@ -83,7 +84,7 @@ live, ⚪ = needed but not yet published anywhere.
 |---|---|---|---|
 | 9.1 | Four services: dialysis (adults), pediatric therapy (PT/OT/speech), pediatric long-distance (Texas), event EMS standby | 🟡 Confirm this is the complete, current catalog |
 | 9.2 | Long-distance scope: "across Texas", named Houston, San Antonio, Dallas, Corpus Christi, Austin, El Paso; "+ All of Texas" (`CoverageMap.jsx:22-29,181`) | 🟡 Confirm statewide service is truly offered, adults vs. pediatric-only, and any mileage/border limits |
-| 9.3 | Long-distance is labeled pediatric-only in places ("Long-distance pediatric transport statewide", `CoverageMap.jsx:183`) but the orphaned LongDistanceTransport page implies general | 🔴 Clarify: pediatric-only or all ages? |
+| 9.3 | Long-distance transport scope — pediatric-only, or also general (all-ages)? | ✅ Resolved. `docs/source/Life_Star_EMS_Capability_Statement.pdf` lists "Pediatric, neonatal, dialysis, hospice and nursing-home transport" and "Hospital discharges and long-distance interstate patient transport" as two separate CORE CAPABILITIES bullets, and "Long-distance experience to Michigan and California" as a DIFFERENTIATOR. Long-distance patient transport is therefore a supported capability independent of pediatric transport, not limited to pediatric patients. `/services/long-distance` (general/all-ages, Texas and interstate) and `/services/pediatrics` (pediatric-specific, including pediatric long-distance) remain separately represented; `/services/long-distance` copy was revised to cautious, per-trip-confirmation language ("availability, staffing, equipment, and clinical requirements are confirmed for each trip") with no guaranteed-acceptance, unrestricted-availability, or ALS-provider wording. |
 | 9.4 | Wheelchair capability: "Wheelchair accessible" (`Services.jsx:12`), "Wheelchair and stretcher accessible vehicles" (`DialysisTransport.jsx:62`) | 🟡 Confirm wheelchair AND stretcher capability per vehicle type |
 | 9.5 | Child safety seats (`PediatricsTransport.jsx:157`) | 🟡 Confirm |
 | 9.6 | "Parent or guardian always welcome to ride along" (Therapy/Pediatrics) | 🟡 Confirm policy |

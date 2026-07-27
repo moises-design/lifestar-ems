@@ -115,6 +115,7 @@ function MobileMenu({ open, onClose, onDismiss }) {
         <Link to={nav.coverage.href} className="v2h-sheet-link" onClick={onClose}>{nav.coverage.label}</Link>
         <Link to={gov.route} className="v2h-sheet-link" onClick={onClose}>{gov.navLabel}</Link>
         <Link to={nav.why.href} className="v2h-sheet-link" onClick={onClose}>{nav.why.label}</Link>
+        <Link to={nav.about.href} className="v2h-sheet-link" onClick={onClose}>{nav.about.label}</Link>
         <Link to={nav.contact.href} className="v2h-sheet-link" onClick={onClose}>{nav.contact.label}</Link>
       </nav>
 
@@ -166,6 +167,7 @@ export default function HeaderV2() {
             <Link to={nav.coverage.href} className="v2h-link">{nav.coverage.label}</Link>
             <Link to={gov.route} className="v2h-link">{gov.navLabel}</Link>
             <Link to={nav.why.href} className="v2h-link">{nav.why.label}</Link>
+            <Link to={nav.about.href} className="v2h-link">{nav.about.label}</Link>
             <Link to={nav.contact.href} className="v2h-link">{nav.contact.label}</Link>
           </nav>
 

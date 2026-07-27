@@ -74,34 +74,34 @@ export default function RequestCoverage() {
             {/* Sidebar */}
             <div className="req-sidebar">
               <div className="req-info-box">
-                <h3>Contact Dispatch Directly</h3>
+                <h2>Contact Dispatch Directly</h2>
                 <a href="tel:+19566606543" className="btn btn-blue req-call"><FaPhone /> (956) 660-6543</a>
                 <p>For a medical emergency, call 911. Life Star EMS provides scheduled transportation and event standby services.</p>
               </div>
 
               <div className="req-info-box">
-                <h3>Planning an Event?</h3>
+                <h2>Planning an Event?</h2>
                 <p>{page.eventNote}</p>
                 <Link to={page.eventHref} className="btn btn-outline req-event-link">{page.eventLinkLabel}</Link>
               </div>
 
               <div className="req-info-box">
-                <h3>Government and Institutional Buyers</h3>
+                <h2>Government and Institutional Buyers</h2>
                 <p>Agencies, districts, and prime contractors can review identifiers and download our capability statement.</p>
                 <Link to="/government-contracting" className="btn btn-outline req-event-link">View Government Contracting</Link>
               </div>
 
               <div className="req-info-box">
-                <h3>Services Available</h3>
+                <h2>Services Available</h2>
                 <ul className="req-svc-list">
                   {['Adult Dialysis Transportation','Pediatric Therapy Transportation','Pediatric & Long-Distance Transport','Event EMS Standby'].map((s,i)=>(<li key={i}><FaCheckCircle className="req-dot"/>{s}</li>))}
                 </ul>
               </div>
 
               <div className="req-info-box">
-                <h3>Service Area</h3>
+                <h2>Service Area</h2>
                 <p>Edinburg · McAllen · Mission · Pharr · Weslaco · Harlingen · Brownsville and surrounding communities.</p>
-                <p style={{marginTop:'8px', color:'var(--blue-light)'}}>Long-distance trips available across Texas. Contact us to confirm availability for your location.</p>
+                <p style={{marginTop:'8px', color:'var(--v2-blue-ink)'}}>Long-distance trips available across Texas. Contact us to confirm availability for your location.</p>
               </div>
             </div>
           </div>

@@ -1,39 +1,21 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { FaPhone, FaCheckCircle, FaMapMarkerAlt } from 'react-icons/fa'
 import { supabase } from '../lib/supabase'
+import InnerPage from '../v2/InnerPage'
+import { content } from '../v2/content'
 import './ServicePage.css'
 import './LongDistanceTransport.css'
 
 const cities = [
-  { name: 'Houston', miles: '~340 mi', icon: '🏙️' },
-  { name: 'San Antonio', miles: '~250 mi', icon: '🌉' },
-  { name: 'Corpus Christi', miles: '~165 mi', icon: '⚓' },
-  { name: 'Dallas', miles: '~490 mi', icon: '🏢' },
-  { name: 'Austin', miles: '~320 mi', icon: '🎸' },
-  { name: 'Laredo', miles: '~155 mi', icon: '🌵' },
+  { name: 'Houston', miles: '~340 mi' },
+  { name: 'San Antonio', miles: '~250 mi' },
+  { name: 'Corpus Christi', miles: '~165 mi' },
+  { name: 'Dallas', miles: '~490 mi' },
+  { name: 'Austin', miles: '~320 mi' },
+  { name: 'Laredo', miles: '~155 mi' },
 ]
 const needs = ['Wheelchair', 'Stretcher', 'Oxygen', 'IV Access', 'Special Equipment', 'Bariatric']
-
-// Warp speed trails
-const trails = Array.from({ length: 20 }, (_, i) => ({
-  id: i,
-  top: `${Math.random() * 100}%`,
-  delay: `${Math.random() * 3}s`,
-  duration: `${1.5 + Math.random() * 2}s`,
-  left: `${Math.random() * 60}%`,
-  width: `${80 + Math.random() * 200}px`,
-  opacity: 0.3 + Math.random() * 0.4,
-}))
-
-// Moving stars
-const moveStars = Array.from({ length: 50 }, (_, i) => ({
-  id: i,
-  top: `${Math.random() * 100}%`,
-  right: `${Math.random() * 100}%`,
-  size: `${Math.random() * 2 + 1}px`,
-  delay: `${Math.random() * 4}s`,
-  duration: `${2 + Math.random() * 3}s`,
-}))
 
 export default function LongDistanceTransport() {
   const [form, setForm] = useState({ name: '', phone: '', email: '', pickup_city: 'McAllen/RGV', destination_city: '', travel_date: '', notes: '', patient_needs: [] })
@@ -50,74 +32,59 @@ export default function LongDistanceTransport() {
   }
 
   return (
-    <div className="service-page ld-page">
-      <section className="sp-hero ld-hero">
-        <div className="sp-hero-bg" />
-        <div className="ld-galaxy" />
-        {/* Warp trails */}
-        <div className="ld-warp">
-          {trails.map(t => (
-            <div key={t.id} className="ld-trail" style={{ top: t.top, left: t.left, animationDelay: t.delay, animationDuration: t.duration, width: t.width, opacity: t.opacity }} />
-          ))}
-        </div>
-        {/* Moving stars */}
-        <div className="ld-stars-move">
-          {moveStars.map(s => (
-            <div key={s.id} className="ld-star-move" style={{ top: s.top, right: s.right, width: s.size, height: s.size, animationDelay: s.delay, animationDuration: s.duration }} />
-          ))}
-        </div>
-        <div className="ld-path" />
-        <div className="ld-globe">🌍</div>
-        <div className="container sp-hero-inner">
-          <div className="sp-eyebrow"><span className="sp-dot" /> Statewide Medical Transport</div>
-          <h1 className="sp-title">
-            Long Distance<br />
-            <span className="sp-accent">Medical Transport</span><br />
-            Across Texas
-          </h1>
-          <p className="sp-desc">Need to reach a specialist in Houston or transfer to a hospital in San Antonio? Life Star EMS provides safe, monitored long-distance medical transport with certified BLS/ALS crews — anywhere in Texas.</p>
-          <div className="sp-actions">
-            <a href="tel:+19566606543" className="sp-btn-primary"><FaPhone /> Call (956) 660-6543</a>
-            <div className="sp-free-badge">🗺️ FREE Quote — No Obligation</div>
-          </div>
-        </div>
-      </section>
+    <InnerPage
+      {...content.pages.longDistance}
+      breadcrumb={[{ label: 'Services' }, { label: 'Long-distance patient transport' }]}
+      legacy
+      cta={
+        <>
+          <a href="#ld-form" className="v2-btn v2-btn-primary">Request a Free Quote</a>
+          <a href="tel:+19566606543" className="v2-btn v2-btn-secondary">Call dispatch (956) 660-6543</a>
+        </>
+      }
+    >
+    <div className="sp ld-sp">
 
-      <section className="ld-cities">
+      <section className="ld-cities section">
         <div className="container">
-          <span className="section-label">Where We Go</span>
-          <h2 className="section-title">From RGV To<br /><em>All of Texas</em></h2>
+          <span className="label">Where We Go</span>
+          <h2 className="title">From RGV To<br /><em>Texas and Beyond</em></h2>
           <div className="ld-cities-grid">
             {cities.map(c => (
               <div className="ld-city-card" key={c.name}>
-                <span className="ld-city-icon">{c.icon}</span>
                 <span className="ld-city-name">{c.name}</span>
                 <span className="ld-city-miles">{c.miles}</span>
               </div>
             ))}
           </div>
-          <div className="ld-anywhere"><FaMapMarkerAlt /> We transport to ANY city in Texas — just call us</div>
+          <div className="ld-anywhere"><FaMapMarkerAlt aria-hidden="true" /> We coordinate trips across Texas and have transported patients interstate, including to Michigan and California — call to discuss your destination</div>
         </div>
       </section>
 
-      <section className="ld-quote-section">
+      <section className="sp-two" id="ld-form">
         <div className="container">
-          <div className="ld-quote-grid">
+          <div className="sp-two-grid">
             <div>
-              <span className="section-label">Why Choose Us</span>
-              <h2 className="section-title">Safe. Monitored.<br /><em>Professional.</em></h2>
-              <ul className="sp-checklist">
-                {['BLS / ALS certified crews on every trip','Continuous patient monitoring during transport','Wheelchair and stretcher accessible vehicles','Oxygen, IV, and special equipment available','Coordinated with receiving facility','Family member can ride along','Insurance accepted — we verify before trip','Available 24 hours / 7 days a week'].map((item, i) => (
-                  <li key={i}><FaCheckCircle className="check" /> {item}</li>
+              <span className="label">Why Choose Us</span>
+              <h2 className="title">Safe, Coordinated<br /><em>Transport</em></h2>
+              <ul className="sp-list">
+                {['BLS-certified crews on every trip', 'Patient monitoring and care throughout the trip, provided by our BLS crews', 'Wheelchair and stretcher accessible vehicles', 'Oxygen, IV, and special equipment available', 'Coordinated with the receiving facility', 'Family member can ride along, space permitting', 'Insurance accepted — verified before the trip', '24/7 dispatch, every day of the week'].map((item, i) => (
+                  <li key={i}><FaCheckCircle className="sp-list-check" />{item}</li>
                 ))}
               </ul>
+              <p className="ld-scope-note">Transport availability, staffing, equipment, and clinical requirements are confirmed for each trip before it's scheduled — not every request can be automatically accepted.</p>
             </div>
-            <div className="ld-form-box">
+            <div className="sp-cta-box ld-form-box">
               {status === 'sent' ? (
-                <div className="ld-success"><span>✅</span><h3>Request Received!</h3><p>We'll contact you within 2 hours to confirm your transport details.</p><a href="tel:+19566606543" className="sp-btn-primary" style={{ display:'flex', justifyContent:'center', marginTop:16 }}><FaPhone /> Call Now to Confirm</a></div>
+                <div className="ld-success">
+                  <FaCheckCircle className="ld-success-check" aria-hidden="true" />
+                  <h3>Request Received!</h3>
+                  <p>Our team will review your transport needs and contact you to confirm staffing, equipment, and scheduling details. If anything is time sensitive, please call us directly.</p>
+                  <a href="tel:+19566606543" className="btn btn-blue"><FaPhone /> Call Now to Confirm</a>
+                </div>
               ) : (
                 <form onSubmit={submit}>
-                  <h3 className="ld-form-title">🗺️ Request a Free Quote</h3>
+                  <h3>Request a Free Quote</h3>
                   <div className="ld-form-row">
                     <div className="ld-form-group"><label>Full Name *</label><input type="text" placeholder="John Doe" required value={form.name} onChange={e => setForm(f => ({...f, name: e.target.value}))} /></div>
                     <div className="ld-form-group"><label>Phone *</label><input type="tel" placeholder="(956) 000-0000" required value={form.phone} onChange={e => setForm(f => ({...f, phone: e.target.value}))} /></div>
@@ -133,15 +100,26 @@ export default function LongDistanceTransport() {
                     <div className="ld-needs-grid">{needs.map(n => (<label key={n} className="ld-need-check"><input type="checkbox" checked={form.patient_needs.includes(n)} onChange={() => handleCheck(n)} /><span>{n}</span></label>))}</div>
                   </div>
                   <div className="ld-form-group"><label>Additional Notes</label><textarea rows={3} placeholder="Any special requirements..." value={form.notes} onChange={e => setForm(f => ({...f, notes: e.target.value}))} /></div>
-                  {status === 'error' && <p className="ld-error">Something went wrong. Please call us at (956) 660-6543.</p>}
-                  <button type="submit" className="ld-submit" disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Request Free Quote →'}</button>
+                  {status === 'error' && <p className="ld-error" role="alert">Something went wrong. Please call us at (956) 660-6543.</p>}
+                  <button type="submit" className="btn btn-blue" style={{width:'100%',justifyContent:'center'}} disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Request Free Quote →'}</button>
+                  <p className="ld-note">This form starts the conversation about your trip. Submitting a request does not confirm scheduling — our team will confirm staffing, equipment, and clinical requirements before your transport is scheduled. For a medical emergency, call 911.</p>
                 </form>
               )}
             </div>
           </div>
         </div>
       </section>
-      <section className="sp-cta"><div className="container"><h2>Need Transport Today?</h2><p>Call us directly for immediate assistance with long distance medical transport.</p><a href="tel:+19566606543" className="sp-btn-primary large"><FaPhone /> Call (956) 660-6543 Now</a></div></section>
+
+      <section className="sp-cta-banner">
+        <div className="container">
+          <h2>Planning a Long-Distance Trip?</h2>
+          <p>Call us to discuss your destination, timing, and transport needs — we'll confirm what's needed before scheduling.</p>
+          <a href="tel:+19566606543" className="btn btn-blue btn-lg"><FaPhone /> Call (956) 660-6543</a>
+          <Link to="/request" className="btn btn-outline btn-lg">Submit a Request</Link>
+        </div>
+      </section>
+
     </div>
+    </InnerPage>
   )
 }

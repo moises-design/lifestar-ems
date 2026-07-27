@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { supabase } from '../lib/supabase'
 import { gov } from '../v2/content/government'
 import { SITE } from '../seo/routeMeta'
+import Picture from '../v2/Picture'
 import './GovernmentContracting.css'
 
 // ---------- accessible copy-to-clipboard for short identifiers ----------
@@ -83,6 +84,13 @@ const jsonLd = {
       provider: { '@id': `${ORIGIN}/#organization` },
       areaServed: 'South Texas',
       url: PAGE_URL,
+    },
+    {
+      '@type': 'Person',
+      '@id': `${ORIGIN}/about#heather-ayala-segovia`,
+      name: 'Heather Ayala-Segovia',
+      jobTitle: 'CEO',
+      worksFor: { '@id': `${ORIGIN}/#organization` },
     },
     {
       '@type': 'BreadcrumbList',
@@ -299,6 +307,30 @@ export default function GovernmentContracting() {
         </div>
       </section>
 
+      {/* Woman-Owned Leadership */}
+      <section className="v2-section v2-hairline-top" aria-labelledby="gc-lead-h">
+        <div className="v2-container gc-lead-split">
+          <div className="gc-lead-photo-frame v2-panel">
+            <Picture
+              src="/images/company/optimized/heather-ayala-segovia-seated-close.jpg"
+              webp="/images/company/optimized/heather-ayala-segovia-seated-close.webp"
+              alt="Heather Ayala-Segovia, CEO of Life Star EMS, seated portrait."
+              width={1100}
+              height={1375}
+              loading="lazy"
+              className="gc-lead-photo"
+            />
+          </div>
+          <div>
+            <h2 id="gc-lead-h" className="gc-h2">{c.leadership.heading}</h2>
+            {c.leadership.body.map(p => <p key={p} className="v2-lead gc-lead-p">{p}</p>)}
+            <p className="gc-lead-name">{c.leadership.name}</p>
+            <p className="v2-small gc-lead-title">{c.leadership.title}</p>
+            <p className="gc-note v2-small gc-lead-safeguard">{c.leadership.safeguard}</p>
+          </div>
+        </div>
+      </section>
+
       {/* 3 · Core capabilities */}
       <section className="v2-section v2-hairline-top" aria-labelledby="gc-cap-h">
         <div className="v2-container">
@@ -359,7 +391,7 @@ export default function GovernmentContracting() {
       </section>
 
       {/* 6 · Identifiers and codes */}
-      <section className="v2-night v2-section" id={c.identifiers.id} aria-labelledby="gc-id-h">
+      <section className="v2-section v2-hairline-top" id={c.identifiers.id} aria-labelledby="gc-id-h">
         <div className="v2-container">
           <div className="v2-section-head">
             <span className="v2-label">{c.identifiers.label}</span>
@@ -483,21 +515,23 @@ export default function GovernmentContracting() {
         </div>
       </section>
 
-      {/* 13 · Final CTA */}
-      <section className="v2-night v2-section-dense" aria-labelledby="gc-cta-h">
-        <div className="v2-container gc-final">
-          <div>
-            <h2 id="gc-cta-h" className="gc-h2">{c.finalCta.heading}</h2>
-            <p className="v2-lead">{c.finalCta.line}</p>
-          </div>
-          <div className="gc-final-btns">
-            <a href={c.contact.phoneHref} className="v2-btn v2-btn-primary">
-              {c.contact.phoneLabel.split(' and ')[0]}: {c.contact.phoneDisplay}
-            </a>
-            <a href={c.pdfPublicPath} download className="v2-btn v2-btn-secondary">{c.hero.downloadLabel}</a>
-            <p className="v2-small gc-final-dispatch">
-              {c.contact.dispatchLabel}: <a href={c.contact.dispatchHref}>{c.contact.dispatchDisplay}</a>
-            </p>
+      {/* 13 · Final CTA — a compact dark-accent card, not a full-bleed band */}
+      <section className="v2-section-dense" aria-labelledby="gc-cta-h">
+        <div className="v2-container">
+          <div className="v2-night v2-cta-card gc-final">
+            <div>
+              <h2 id="gc-cta-h" className="gc-h2">{c.finalCta.heading}</h2>
+              <p className="v2-lead">{c.finalCta.line}</p>
+            </div>
+            <div className="gc-final-btns">
+              <a href={c.contact.phoneHref} className="v2-btn v2-btn-primary">
+                {c.contact.phoneLabel.split(' and ')[0]}: {c.contact.phoneDisplay}
+              </a>
+              <a href={c.pdfPublicPath} download className="v2-btn v2-btn-secondary">{c.hero.downloadLabel}</a>
+              <p className="v2-small gc-final-dispatch">
+                {c.contact.dispatchLabel}: <a href={c.contact.dispatchHref}>{c.contact.dispatchDisplay}</a>
+              </p>
+            </div>
           </div>
         </div>
       </section>
