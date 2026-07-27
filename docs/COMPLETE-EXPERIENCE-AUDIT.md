@@ -269,16 +269,36 @@ there is no build-time or server-side per-route head output today. This
 is the concrete problem Phase 26 (and the Phase 22 real-404 work, which
 share a solution — see the architecture note below) needs to fix.
 
-**Planned fix (documented here, implemented in Phase 22/26):** a
-post-build Node script (`scripts/prerender.mjs`) that, for every known
-public route, writes a literal `dist/<route>/index.html` — a copy of the
-built shell with that route's `<head>` tags substituted in — so a
-non-JS request for any known path gets correct static metadata without a
-framework migration. Once every known route has its own file, narrowing
-`vercel.json`'s catch-all rewrite (and shipping a real `dist/404.html`)
-lets Vercel's normal static-file 404 behavior take over for genuinely
-unknown paths, while client-side `pushState` navigation between routes is
-untouched (same JS bundle, same React Router).
+**Implemented (Phases 22/26):** `scripts/prerender.mjs` runs after
+`vite build` (wired into the `build` npm script) and, for every route in
+`src/seo/routeMeta.js`, writes `dist/<route>.html` — the same built shell
+(same hashed JS/CSS bundle) with that route's `<title>`,
+`meta[description]`, `og:*`/`twitter:*` tags, and a `<link
+rel="canonical">` substituted in, plus `dist/404.html` with
+`NOT_FOUND_META`'s noindex tags. `vercel.json` now sets `"cleanUrls":
+true` and no longer carries the blanket `{"source": "/(.*)",
+"destination": "/index.html"}` rewrite, so a request for a known route
+resolves directly to its own static file, and a request for a genuinely
+unknown path has no static-file match and falls through to Vercel's
+default `dist/404.html` behavior with a real HTTP 404 status.
+`src/components/Seo.jsx` is untouched and keeps working exactly as
+before for in-app `pushState` navigation.
+
+**Verification limitation, stated honestly:** `vite preview` (the only
+local server available in this sandbox) does not consult `vercel.json`
+at all — it has its own SPA-fallback behavior and returns 200 for every
+path regardless of this change. What *was* verified locally: every
+`dist/<route>.html` file is generated with the correct route-specific
+title/description/canonical/OG tags (spot-checked across `/`,
+`/services`, `/services/dialysis`, `/privacy`, `/sitemap`, and `404.html`
+— see this mission's session notes). The actual HTTP 404 status and
+`cleanUrls` path resolution can only be confirmed once this branch is
+deployed to a real Vercel preview, which this mission's constraints
+explicitly forbid doing from this session ("do not deploy production").
+This is a concrete owner-actionable follow-up: after this branch is
+reviewed and a preview deployment exists, confirm an unknown path
+returns HTTP 404 and that clean URLs resolve as expected before treating
+this phase as fully closed.
 
 ## 12. Forms inventory (all five, direct read)
 

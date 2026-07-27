@@ -11,7 +11,7 @@ export const SITE = {
   ogImageAlt: 'Life Star EMS logo with the text Non-Emergency Medical Transportation in the Rio Grande Valley',
 }
 
-const routeMeta = {
+export const routeMeta = {
   '/': {
     title: 'Non-Emergency Medical Transportation in the RGV | Life Star EMS',
     description:
