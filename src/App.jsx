@@ -11,6 +11,7 @@ import HomeV2 from './v2/HomeV2'
 
 // Pages
 import About from './pages/About'
+import ServicesOverview from './pages/ServicesOverview'
 import DialysisTransport from './pages/DialysisTransport'
 import TherapyTransport from './pages/TherapyTransport'
 import PediatricsTransport from './pages/PediatricsTransport'
@@ -21,6 +22,8 @@ import CoveragePage from './pages/CoveragePage'
 import ContactPage from './pages/ContactPage'
 import NotFound from './pages/NotFound'
 import GovernmentContracting from './pages/GovernmentContracting'
+import Sitemap from './pages/Sitemap'
+import Privacy from './pages/Privacy'
 
 function App() {
   return (
@@ -32,6 +35,7 @@ function App() {
       <main id="main">
         <Routes>
           <Route path="/" element={<HomeV2 />} />
+          <Route path="/services" element={<ServicesOverview />} />
           <Route path="/services/dialysis" element={<DialysisTransport />} />
           <Route path="/services/therapy" element={<TherapyTransport />} />
           <Route path="/services/pediatrics" element={<PediatricsTransport />} />
@@ -42,6 +46,8 @@ function App() {
           <Route path="/coverage" element={<CoveragePage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/government-contracting" element={<GovernmentContracting />} />
+          <Route path="/sitemap" element={<Sitemap />} />
+          <Route path="/privacy" element={<Privacy />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

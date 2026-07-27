@@ -1,0 +1,14 @@
+.sitemap-grid {
+  display: grid;
+  gap: var(--v2-s-7);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) {
+  .sitemap-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .sitemap-grid { grid-template-columns: repeat(4, 1fr); }
+}
+.sitemap-grid h2 { font-size: var(--v2-fs-h4); margin-bottom: var(--v2-s-4); }
+.sitemap-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--v2-s-3); }
+.sitemap-notice { margin-top: var(--v2-s-8); color: var(--v2-ink-2); font-size: var(--v2-fs-small); }

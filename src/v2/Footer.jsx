@@ -24,7 +24,7 @@ export default function FooterV2() {
           <nav className="v2f-col" aria-label="Footer services">
             <h3 className="v2f-title">{footer.servicesTitle}</h3>
             <ul>
-              {nav.serviceLinks.map(s => (
+              {footer.serviceLinks.map(s => (
                 <li key={s.href}><Link to={s.href}>{s.label}</Link></li>
               ))}
             </ul>
@@ -36,9 +36,8 @@ export default function FooterV2() {
               {footer.companyLinks.map(l => (
                 <li key={l.href}><Link to={l.href}>{l.label}</Link></li>
               ))}
-              <li><a href="/sitemap.xml">{footer.sitemapLabel}</a></li>
-              {/* Placeholder slot: becomes a real link when the privacy page ships */}
-              <li className="v2f-muted">{footer.privacyLabel}</li>
+              <li><Link to={footer.sitemapHref}>{footer.sitemapLabel}</Link></li>
+              <li><Link to={footer.privacyHref}>{footer.privacyLabel}</Link></li>
               <li>
                 <a href={brand.facebookUrl} target="_blank" rel="noreferrer">
                   {footer.facebookLabel}

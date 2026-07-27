@@ -4,6 +4,9 @@
     <loc>https://www.lifestaremsrgv.com/</loc>
   </url>
   <url>
+    <loc>https://www.lifestaremsrgv.com/services</loc>
+  </url>
+  <url>
     <loc>https://www.lifestaremsrgv.com/services/dialysis</loc>
   </url>
   <url>
@@ -32,5 +35,8 @@
   </url>
   <url>
     <loc>https://www.lifestaremsrgv.com/government-contracting</loc>
+  </url>
+  <url>
+    <loc>https://www.lifestaremsrgv.com/privacy</loc>
   </url>
 </urlset>

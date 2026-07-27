@@ -53,6 +53,7 @@
   font-family: var(--v2-font-sans);
 }
 .v2 .v2h-link:hover { background: var(--v2-paper-2); text-decoration: none; }
+.v2 .v2h-link[aria-current="page"] { color: var(--v2-blue-ink); font-weight: 600; }
 
 .v2h-chevron { transition: transform var(--v2-t-fast) var(--v2-ease); }
 .v2h-chevron.is-open { transform: rotate(180deg); }
@@ -81,6 +82,8 @@
   font-weight: 500;
 }
 .v2 .v2h-menu-link:hover { background: var(--v2-sky-tint); text-decoration: none; }
+.v2h-menu-rule { border-top: 1px solid var(--v2-hairline); margin-block: var(--v2-s-2); }
+.v2 .v2h-menu-link-all { font-weight: 600; color: var(--v2-blue-ink); }
 
 .v2h-actions {
   display: flex;
@@ -122,7 +125,12 @@
   border-top: 1px solid var(--v2-hairline);
   color: var(--v2-ink-2);
 }
-.v2h-notice span { display: block; }
+.v2h-notice-full { display: none; }
+.v2h-notice-short { display: block; }
+@media (min-width: 640px) {
+  .v2h-notice-full { display: block; }
+  .v2h-notice-short { display: none; }
+}
 
 /* ---------- mobile sheet ---------- */
 .v2h-sheet {
@@ -171,6 +179,7 @@
 }
 .v2 .v2h-sheet-link:hover { text-decoration: none; color: var(--v2-blue-ink); }
 .v2 .v2h-sheet-sub { font-size: 1.125rem; padding-left: var(--v2-s-4); }
+.v2 .v2h-sheet-sub-all { font-weight: 600; color: var(--v2-blue-ink); }
 .v2h-sheet-rule { border-top: 1px solid var(--v2-hairline); margin-block: var(--v2-s-4); }
 
 .v2h-sheet-actions { display: grid; gap: var(--v2-s-3); margin-top: auto; }
@@ -194,10 +203,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 8px;
   min-height: 56px;
   font-weight: 600;
   font-size: 1rem;
 }
+.v2h-mobilebar a svg { font-size: 0.9em; }
 .v2 .v2h-mobilebar-call { color: var(--v2-ink); font-variant-numeric: tabular-nums; }
 .v2 .v2h-mobilebar-request { background: var(--v2-blue); color: var(--v2-ink); }
 .v2 .v2h-mobilebar a:hover { text-decoration: none; }

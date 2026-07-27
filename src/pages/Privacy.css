@@ -1,0 +1,5 @@
+.privacy-body { display: grid; gap: var(--v2-s-7); }
+.privacy-body section { display: grid; gap: var(--v2-s-3); }
+.privacy-body h2 { font-size: var(--v2-fs-h4); }
+.privacy-body p { color: var(--v2-ink-2); }
+.privacy-updated { color: var(--v2-ink-2); font-style: italic; }
