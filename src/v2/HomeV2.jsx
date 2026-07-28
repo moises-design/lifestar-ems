@@ -9,18 +9,13 @@ import { gov } from './content/government'
 import CommunityShowcase from './CommunityShowcase'
 import Picture from './Picture'
 import { ServiceCard, AccessibleIcon, Reveal } from './components'
+import { splitHeroHeading } from './splitHeroHeading'
 import './HomeV2.css'
 
 const { brand, nav, home } = content
 const coverageCities = home.coverage.cities
 
-// Splits the hero heading around its emphasized phrase (both come from
-// the same content entry, so they can never drift out of sync).
-const heroEmphasisIndex = home.hero.heading.indexOf(home.hero.emphasis)
-const heroHeadingBefore = heroEmphasisIndex >= 0 ? home.hero.heading.slice(0, heroEmphasisIndex) : home.hero.heading
-const heroHeadingAfter = heroEmphasisIndex >= 0
-  ? home.hero.heading.slice(heroEmphasisIndex + home.hero.emphasis.length)
-  : ''
+const heroHeading = splitHeroHeading(home.hero.heading, home.hero.emphasis)
 
 const serviceIcons = {
   '/services/dialysis': FaWheelchair,
@@ -82,9 +77,13 @@ export default function HomeV2() {
         <div className="v2-container v2home-hero-grid">
           <span className="v2-label v2home-hero-eyebrow">{home.hero.eyebrow}</span>
           <h1 id="hero-h" className="v2-display v2home-hero-h">
-            {heroHeadingBefore}
-            <span className="v2home-hero-emphasis">{home.hero.emphasis}</span>
-            {heroHeadingAfter}
+            {heroHeading.found ? (
+              <>
+                {heroHeading.before}
+                <span className="v2home-hero-emphasis">{heroHeading.emphasis}</span>
+                {heroHeading.after}
+              </>
+            ) : heroHeading.before}
           </h1>
           <p className="v2-lead v2home-hero-lead">{home.hero.lead}</p>
           <div className="v2home-hero-btns">
