@@ -168,7 +168,6 @@
 .v2h-sheet-rule { border-top: 1px solid var(--v2-hairline); margin-block: var(--v2-s-4); }
 
 .v2h-sheet-actions { display: grid; gap: var(--v2-s-3); margin-top: auto; }
-.v2h-sheet-notice { color: var(--v2-ink-2); font-size: var(--v2-fs-small); margin-top: var(--v2-s-3); }
 
 /* ---------- persistent mobile bar ---------- */
 .v2h-mobilebar {

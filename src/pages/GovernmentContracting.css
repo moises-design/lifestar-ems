@@ -299,6 +299,7 @@
 .gc-field-compact { max-width: 260px; }
 .gc-form-error { color: #A4262C; font-weight: 500; }
 .gc-submit { justify-self: start; }
+.gc-submit:disabled { opacity: 0.85; cursor: not-allowed; }
 .gc-form-success {
   border: 1px solid var(--v2-hairline);
   border-radius: var(--v2-radius-l);

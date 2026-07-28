@@ -16,17 +16,14 @@ export const en = {
     facebookLabel: 'Life Star EMS on Facebook',
   },
 
-  emergencyNotice:
-    'For a medical emergency, call 911. Life Star EMS provides scheduled transportation and event standby services.',
-
   nav: {
     services: 'Services',
     serviceLinks: [
       { label: 'Dialysis transportation', href: '/services/dialysis' },
+      { label: 'Long-distance medical transport', href: '/services/long-distance' },
+      { label: 'Event EMS standby', href: '/services/events' },
       { label: 'Pediatric therapy transportation', href: '/services/therapy' },
       { label: 'Pediatric transportation', href: '/services/pediatrics' },
-      { label: 'Event EMS standby', href: '/services/events' },
-      { label: 'Long-distance medical transport', href: '/services/long-distance' },
     ],
     allServices: { label: 'All services', href: '/services' },
     coverage: { label: 'Coverage', href: '/coverage' },
@@ -45,7 +42,7 @@ export const en = {
       // The homepage's single h1. Refined in Mission 3; keep one h1 only.
       heading: 'Getting you to care, calmly and on time.',
       lead:
-        'Life Star EMS provides scheduled non-emergency medical transportation and event standby coverage for families, facilities, and schools across the Rio Grande Valley.',
+        'Life Star EMS provides ambulance transportation, scheduled medical transportation, and event EMS standby for families, facilities, and schools across the Rio Grande Valley.',
       local: 'Locally owned and operated in Edinburg, Texas',
     },
 
@@ -62,27 +59,27 @@ export const en = {
         },
         {
           num: '02',
-          title: 'Pediatric therapy transportation',
-          line: 'Dependable transport for children attending physical, occupational, and speech therapy.',
-          href: '/services/therapy',
+          title: 'Long-distance medical transport',
+          line: 'Coordinated interstate and cross-Texas trips with BLS crews.',
+          href: '/services/long-distance',
         },
         {
           num: '03',
-          title: 'Pediatric transportation',
-          line: 'Safe, friendly transport for children, planned together with families and providers.',
-          href: '/services/pediatrics',
-        },
-        {
-          num: '04',
           title: 'Event EMS standby',
           line: 'On-site medical standby for school sports, tournaments, concerts, and community events.',
           href: '/services/events',
         },
         {
+          num: '04',
+          title: 'Pediatric therapy transportation',
+          line: 'Dependable transport for children attending physical, occupational, and speech therapy.',
+          href: '/services/therapy',
+        },
+        {
           num: '05',
-          title: 'Long-distance medical transport',
-          line: 'Coordinated interstate and cross-Texas trips with BLS crews.',
-          href: '/services/long-distance',
+          title: 'Pediatric transportation',
+          line: 'Safe, friendly transport for children, planned together with families and providers.',
+          href: '/services/pediatrics',
         },
       ],
       linkLabel: 'Learn more',
@@ -180,12 +177,12 @@ export const en = {
       heading: 'Good to know before you call',
       items: [
         {
-          q: 'Is Life Star EMS an emergency service?',
-          a: 'No. For a medical emergency, call 911. Life Star EMS provides scheduled non-emergency transportation and event standby services.',
+          q: 'What types of ambulance and medical transportation does Life Star EMS provide?',
+          a: 'Life Star EMS provides BLS ambulance and medical transportation, including dialysis, pediatric, and therapy transportation, wheelchair and stretcher transportation, long-distance and interstate patient transport, and event EMS standby, across the Rio Grande Valley and South Texas.',
         },
         {
           q: 'How do I request a ride?',
-          a: 'Call dispatch at (956) 660-6543 or use the request form on this site. We confirm every request with you before the ride.',
+          a: 'Call dispatch at (956) 660-6543 or use the request form on this site. Our team reviews and confirms each request with you before the ride.',
         },
         {
           q: 'What areas do you serve?',
@@ -210,11 +207,13 @@ export const en = {
       label: 'What we do',
       title: 'Our services',
       lead:
-        'Life Star EMS provides scheduled, non-emergency medical transportation and event EMS standby across the Rio Grande Valley, with long-distance trips coordinated across Texas and interstate. For a medical emergency, call 911.',
+        'Life Star EMS provides ambulance and medical transportation, including dialysis, pediatric, and therapy transport, long-distance trips across Texas and interstate, and event EMS standby across the Rio Grande Valley.',
       capabilities: [
         'Ground BLS ambulance transportation',
         'Family-owned, serving South Texas since 2009',
         'Scheduled dialysis, therapy, and pediatric transport',
+        'Wheelchair, stretcher, and bariatric transportation',
+        'Hospital discharge transportation',
         'Event EMS standby for school, community, and sporting events',
         'Long-distance and interstate patient transport',
         'Government and institutional contracting available',
@@ -268,7 +267,7 @@ export const en = {
       label: 'Service area',
       title: 'Where we serve',
       lead:
-        'Scheduled transportation and event standby across the Rio Grande Valley, with long-distance trips available throughout Texas. Contact us to confirm availability for your location and schedule.',
+        'Scheduled transportation and event standby across the Rio Grande Valley. Long-distance patient transportation is available based on patient needs, scheduling, crew requirements, and destination. Contact us to confirm availability for your location and schedule.',
     },
     contact: {
       label: 'Contact',
@@ -298,17 +297,17 @@ export const en = {
 
   footer: {
     description:
-      'Scheduled non-emergency medical transportation and event EMS standby services across the Rio Grande Valley.',
+      'Life Star EMS provides ambulance transportation, scheduled medical transportation, event EMS standby, and operational support across South Texas.',
     servicesTitle: 'Services',
     companyTitle: 'Company',
     contactTitle: 'Contact',
     serviceLinks: [
       { label: 'All services', href: '/services' },
       { label: 'Dialysis transportation', href: '/services/dialysis' },
+      { label: 'Long-distance medical transport', href: '/services/long-distance' },
+      { label: 'Event EMS standby', href: '/services/events' },
       { label: 'Pediatric therapy transportation', href: '/services/therapy' },
       { label: 'Pediatric transportation', href: '/services/pediatrics' },
-      { label: 'Event EMS standby', href: '/services/events' },
-      { label: 'Long-distance medical transport', href: '/services/long-distance' },
     ],
     companyLinks: [
       { label: 'About', href: '/about' },

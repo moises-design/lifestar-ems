@@ -1,0 +1,29 @@
+.route-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 96px 24px;
+  color: #5B6670;
+  font-family: system-ui, sans-serif;
+  font-size: 0.95rem;
+}
+
+.route-loading-spinner {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #D8DDE1;
+  border-top-color: #5B6670;
+  border-radius: 50%;
+  animation: route-loading-spin 0.7s linear infinite;
+}
+
+@keyframes route-loading-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .route-loading-spinner {
+    animation: none;
+  }
+}

@@ -4,6 +4,7 @@ import './App.css'
 
 import ScrollToTop from './components/ScrollToTop'
 import Seo from './components/Seo'
+import RouteLoading from './components/RouteLoading'
 
 // V2 chrome (all routes) and the homepage stay in the main bundle: this is
 // the most likely landing page, so there is no benefit to splitting it out.
@@ -36,7 +37,7 @@ function App() {
       <a href="#main" className="skip-link">Skip to main content</a>
       <HeaderV2 />
       <main id="main">
-        <Suspense fallback={null}>
+        <Suspense fallback={<RouteLoading />}>
           <Routes>
             <Route path="/" element={<HomeV2 />} />
             <Route path="/services" element={<ServicesOverview />} />

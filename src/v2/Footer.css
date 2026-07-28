@@ -59,7 +59,6 @@
   display: grid;
   gap: var(--v2-s-3);
 }
-.v2f-notice { color: var(--v2-ink-2); font-size: var(--v2-fs-small); max-width: 72ch; }
 .v2f-legal { color: var(--v2-ink-2); font-size: var(--v2-fs-small); }
 
 @media (min-width: 768px) {

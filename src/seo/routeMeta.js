@@ -8,14 +8,19 @@ export const SITE = {
   origin: 'https://www.lifestaremsrgv.com',
   name: 'Life Star EMS',
   ogImage: '/images/og-image.png',
+  // Alt text describes what the image file itself currently shows. The
+  // graphic still has "Non-Emergency Medical Transportation" baked into
+  // its pixels as static text — regenerating that image to match the
+  // site's new positioning is a design-asset task, not a text change,
+  // and is intentionally left for the owner rather than done here.
   ogImageAlt: 'Life Star EMS logo with the text Non-Emergency Medical Transportation in the Rio Grande Valley',
 }
 
 export const routeMeta = {
   '/': {
-    title: 'Non-Emergency Medical Transportation in the RGV | Life Star EMS',
+    title: 'Ambulance and Medical Transportation in the RGV | Life Star EMS',
     description:
-      'Life Star EMS provides scheduled non-emergency medical transportation and event EMS standby services across the Rio Grande Valley. Call (956) 660-6543.',
+      'Life Star EMS provides ambulance transportation, scheduled medical transportation, and event EMS standby across the Rio Grande Valley. Call (956) 660-6543.',
   },
   '/services': {
     title: 'Our Services | Life Star EMS',
@@ -35,7 +40,7 @@ export const routeMeta = {
   '/services/pediatrics': {
     title: 'Pediatric Medical Transportation in the RGV | Life Star EMS',
     description:
-      'Non-emergency pediatric transportation in the Rio Grande Valley, with long-distance trips across Texas coordinated with families and medical providers.',
+      'Scheduled pediatric medical transportation in the Rio Grande Valley, with long-distance trips across Texas coordinated with families and medical providers.',
   },
   '/services/events': {
     title: 'EMS Standby Services for Events in South Texas | Life Star EMS',
@@ -50,7 +55,7 @@ export const routeMeta = {
   '/request': {
     title: 'Request Medical Transportation | Life Star EMS',
     description:
-      'Request scheduled non-emergency medical transportation or event EMS standby from Life Star EMS. Submit the online form or call (956) 660-6543.',
+      'Request scheduled medical transportation or event EMS standby from Life Star EMS. Submit the online form or call (956) 660-6543.',
   },
   '/coverage': {
     title: 'Life Star EMS Service Area in the Rio Grande Valley',

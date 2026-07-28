@@ -10,25 +10,19 @@
   gap: var(--v2-s-3);
   margin-top: var(--v2-s-6);
 }
-/* The source photo is a 1:1 square (the full flag-and-ambulance
-   composition). Aspect ratios here are kept close to that native ratio
-   at every breakpoint so object-fit: cover crops as little of the flag
-   and ambulance as possible, instead of the old 21/9 desktop ratio,
-   which cropped away most of the image's height. */
+/* The source photo is a 1:1 square: sky and flagpole fill roughly the
+   top 60%, with the Life Star ambulance in the bottom 40%. A native 1:1
+   frame (the previous approach) shows that whole square uncropped, which
+   reads as "mostly sky" since the vehicle is a small band at the very
+   bottom. Cropping to a landscape ratio anchored to the bottom of the
+   image removes most of the empty sky and keeps the ambulance as the
+   dominant, clearly legible subject at every breakpoint. */
 .v2home-hero-media {
   margin-top: var(--v2-s-7);
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 3;
 }
-.v2home-hero-photo { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+.v2home-hero-photo { width: 100%; height: 100%; object-fit: cover; object-position: center bottom; display: block; }
 .v2home-hero-local { color: var(--v2-ink-2); margin-top: var(--v2-s-4); }
-
-@media (min-width: 768px) {
-  .v2home-hero-media { aspect-ratio: 4 / 3; }
-}
-
-@media (min-width: 1024px) {
-  .v2home-hero-media { aspect-ratio: 3 / 2; }
-}
 
 /* ---------- real operations photo strip ---------- */
 .v2home-realops-grid {
@@ -112,17 +106,27 @@
 .v2home-photo-slot { aspect-ratio: 4 / 3; }
 .v2home-photo-slot-img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
+/* Coverage panel: adapted from the same real, verified city-list
+   treatment used on /coverage (src/components/CoverageMap.jsx) instead
+   of a flat, empty-looking tinted rectangle. */
+.v2home-coverage-panel { padding: var(--v2-s-6); display: grid; gap: var(--v2-s-5); }
+.v2home-coverage-head { display: flex; align-items: center; gap: 10px; }
+.v2home-coverage-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--v2-blue); flex-shrink: 0; }
+.v2home-coverage-label {
+  font-family: var(--v2-font-sans); font-weight: 600; font-size: var(--v2-fs-small);
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--v2-ink);
+}
 .v2home-cities {
   list-style: none;
   margin: 0;
-  padding: var(--v2-s-6);
-  aspect-ratio: 4 / 3;
+  padding: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  align-content: center;
   gap: var(--v2-s-3) var(--v2-s-5);
 }
-.v2home-cities li { font-family: var(--v2-font-serif); font-size: var(--v2-fs-h4); color: var(--v2-ink); }
+.v2home-cities li { font-family: var(--v2-font-serif); font-size: var(--v2-fs-h4); color: var(--v2-ink); display: flex; align-items: center; gap: 6px; }
+.v2home-city-hq { color: var(--v2-blue-ink); font-weight: 600; }
+.v2home-city-hq svg { font-size: 0.75em; }
 
 @media (min-width: 1024px) {
   .v2home-split { grid-template-columns: 5fr 6fr; gap: var(--v2-s-8); }

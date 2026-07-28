@@ -42,6 +42,10 @@
 
 .v2 a { color: var(--v2-blue-ink); text-decoration: none; }
 .v2 a:hover { text-decoration: underline; text-underline-offset: 3px; }
+/* Links inside a run of body text must be distinguishable by more than
+   color alone (WCAG 1.4.1). Navigation, buttons, and cards style their
+   own links explicitly and are unaffected since they aren't set in <p>. */
+.v2 p a { text-decoration: underline; text-underline-offset: 3px; }
 
 /* ---------- night (dark chapter) scope ---------- */
 .v2 .v2-night {
@@ -62,6 +66,11 @@
 .v2 .v2-section-head  { display: grid; gap: var(--v2-s-4); margin-bottom: var(--v2-s-7); max-width: 720px; }
 
 .v2 .v2-hairline-top { border-top: 1px solid var(--v2-hairline); }
+
+/* Any in-page anchor target (nav "Why Life Star" jump, Government
+   Contracting's #identifiers/#capability-statement/#inquiry, etc.) needs
+   clearance for the sticky header, or the target lands underneath it. */
+.v2 [id] { scroll-margin-top: calc(var(--v2-header-h) + 16px); }
 
 /* ---------- buttons ---------- */
 .v2 .v2-btn {
@@ -98,6 +107,18 @@
 .v2 .v2-night .v2-btn-primary:hover { background: #FFFFFF; }
 .v2 .v2-night .v2-btn-secondary { color: var(--v2-night-text); border-color: var(--v2-hairline-night); }
 .v2 .v2-night .v2-btn-secondary:hover { border-color: var(--v2-night-text); }
+
+/* Legacy .btn-blue anchors/Links (used by several service pages via the
+   InnerPage `legacy` prop) inherit the .v2 a link-color rule above,
+   which overrides their intended dark-ink text with --v2-blue-ink — a
+   link color meant for text on paper, not for text on the blue button
+   fill itself. That drops contrast from ~5.7:1 to ~2:1. Restore the
+   correct text color whenever .btn-blue is rendered as a link. */
+.v2 a.btn-blue,
+.v2 a.btn-blue:hover,
+.v2 a.btn-blue:visited {
+  color: var(--v2-ink);
+}
 
 /* ---------- focus ---------- */
 .v2 :focus-visible {

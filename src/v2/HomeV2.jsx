@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { FaMapMarkerAlt } from 'react-icons/fa'
 import { content } from './content'
 import { gov } from './content/government'
 import CommunityShowcase from './CommunityShowcase'
@@ -172,9 +173,20 @@ export default function HomeV2() {
             <p className="v2-lead">{home.coverage.line}</p>
             <Link to={home.coverage.href} className="v2home-quiet-link">{home.coverage.linkLabel}</Link>
           </div>
-          <ul className="v2home-cities v2-panel v2-panel-tint" aria-label="Cities we serve">
-            {coverageCities.map(city => <li key={city}>{city}</li>)}
-          </ul>
+          <div className="v2-panel v2home-coverage-panel">
+            <div className="v2home-coverage-head">
+              <span className="v2home-coverage-dot" aria-hidden="true" />
+              <span className="v2home-coverage-label">Rio Grande Valley, headquartered in Edinburg</span>
+            </div>
+            <ul className="v2home-cities" aria-label="Cities we serve">
+              {coverageCities.map(city => (
+                <li key={city} className={city === 'Edinburg' ? 'v2home-city-hq' : undefined}>
+                  {city === 'Edinburg' && <FaMapMarkerAlt aria-hidden="true" />}
+                  {city}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 

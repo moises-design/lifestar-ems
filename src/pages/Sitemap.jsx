@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import InnerPage from '../v2/InnerPage'
-import { content } from '../v2/content'
 import { gov } from '../v2/content/government'
 import './Sitemap.css'
 
@@ -60,7 +59,6 @@ export default function Sitemap() {
             </nav>
           ))}
         </div>
-        <p className="sitemap-notice">{content.emergencyNotice}</p>
       </div>
     </InnerPage>
   )

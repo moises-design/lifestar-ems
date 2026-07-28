@@ -43,7 +43,7 @@ export default function LongDistanceTransport() {
       legacy
       cta={
         <>
-          <a href="#ld-form" className="v2-btn v2-btn-primary">Request a Free Quote</a>
+          <a href="#ld-form" className="v2-btn v2-btn-primary">Request Long-Distance Transport</a>
           <a href="tel:+19566606543" className="v2-btn v2-btn-secondary">Call dispatch (956) 660-6543</a>
         </>
       }
@@ -73,7 +73,7 @@ export default function LongDistanceTransport() {
               <span className="label">Why Choose Us</span>
               <h2 className="title">Safe, Coordinated<br /><em>Transport</em></h2>
               <ul className="sp-list">
-                {['BLS-certified crews on every trip', 'Patient monitoring and care throughout the trip, provided by our BLS crews', 'Wheelchair and stretcher accessible vehicles', 'Oxygen, IV, and special equipment available', 'Coordinated with the receiving facility', 'Family member can ride along, space permitting', 'Insurance accepted — verified before the trip', '24/7 dispatch, every day of the week'].map((item, i) => (
+                {['BLS-certified crews', 'Patient monitoring and care throughout the trip, provided by our BLS crews', 'Wheelchair and stretcher accessible vehicles', 'Oxygen, IV, and special equipment available', 'Coordinated with the receiving facility', 'Family member can ride along, space permitting', 'Insurance details confirmed before the trip', '24/7 dispatch'].map((item, i) => (
                   <li key={i}><FaCheckCircle className="sp-list-check" />{item}</li>
                 ))}
               </ul>
@@ -89,7 +89,7 @@ export default function LongDistanceTransport() {
                 </div>
               ) : (
                 <form onSubmit={submit}>
-                  <h3>Request a Free Quote</h3>
+                  <h3>Request Long-Distance Transport</h3>
                   <div className="ld-form-row">
                     <div className="ld-form-group"><label>Full Name *</label><input type="text" placeholder="John Doe" required value={form.name} onChange={e => setForm(f => ({...f, name: e.target.value}))} /></div>
                     <div className="ld-form-group"><label>Phone *</label><input type="tel" placeholder="(956) 000-0000" required value={form.phone} onChange={e => setForm(f => ({...f, phone: e.target.value}))} /></div>
@@ -115,8 +115,8 @@ export default function LongDistanceTransport() {
                       Please call us at (956) 660-6543.
                     </FormStatus>
                   )}
-                  <button type="submit" className="btn btn-blue" style={{width:'100%',justifyContent:'center'}} disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Request Free Quote →'}</button>
-                  <p className="ld-note">This form starts the conversation about your trip. Submitting a request does not confirm scheduling — our team will confirm staffing, equipment, and clinical requirements before your transport is scheduled. For a medical emergency, call 911.</p>
+                  <button type="submit" className="btn btn-blue" style={{width:'100%',justifyContent:'center'}} disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Request Transport →'}</button>
+                  <p className="ld-note">This form starts the conversation about your trip. Submitting a request does not confirm scheduling — our team will confirm staffing, equipment, and clinical requirements before your transport is scheduled. Call dispatch for immediate coordination.</p>
                 </form>
               )}
             </div>

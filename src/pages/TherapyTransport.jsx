@@ -15,8 +15,8 @@ const therapies = [
 const feats = [
   { Icon: FaClock,     color: '#0B9ED9', title: 'Careful, Reliable Scheduling', desc: 'We coordinate closely with your therapy provider to keep appointments on track.' },
   { Icon: FaHeart,     color: '#E8618C', title: 'Patient & Kind',          desc: 'Our staff is calm, gentle, and experienced working with children.' },
-  { Icon: FaComments,  color: '#7C6FE0', title: 'Family Updates',          desc: 'We keep parents informed before, during, and after every ride.' },
-  { Icon: FaShieldAlt, color: '#2E9E6B', title: 'Safe Transport',          desc: 'Clean vehicles with child safety features for every trip.' },
+  { Icon: FaComments,  color: '#7C6FE0', title: 'Family Updates',          desc: 'We keep parents informed before, during, and after each ride.' },
+  { Icon: FaShieldAlt, color: '#2E9E6B', title: 'Safe Transport',          desc: 'Clean vehicles with child safety features.' },
 ]
 
 export default function TherapyTransport() {
@@ -85,13 +85,13 @@ export default function TherapyTransport() {
               <h2 className="title">Every Child's Journey<br /><em>Matters to Us</em></h2>
               <ul className="sp-list">
                 {[
-                  'Careful, on-time pickup for therapy sessions',
-                  'Parent or guardian always welcome to ride along',
+                  'Careful pickup planned around therapy sessions',
+                  'Parent or guardian welcome to ride along, space permitting',
                   'Bilingual staff — English & Spanish',
                   'Caring, professional drivers focused on your child’s comfort',
                   'Direct coordination with therapy providers',
                   'Flexible scheduling around treatment plans',
-                  'Insurance verified before first ride',
+                  'Insurance details confirmed before first ride',
                   'Clean, safe, child-friendly vehicles',
                 ].map((item, i) => (
                   <li key={i}><FaCheckCircle className="sp-list-check" />{item}</li>

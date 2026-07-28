@@ -25,7 +25,7 @@ export default function CoverageMap() {
   return (
     <section className="covmap section" id="coverage">
       <div className="container">
-        <SectionHeader label="Service area" title="Cities we serve" />
+        <SectionHeader title="Cities we serve" />
 
         <div className="covmap-layout">
           <div className="covmap-zone covmap-zone-primary">

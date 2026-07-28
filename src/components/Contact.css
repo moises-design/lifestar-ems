@@ -29,7 +29,7 @@ a.cd-val:hover { color: var(--v2-blue-ink); }
 }
 .fg input:focus, .fg textarea:focus { border-color: var(--v2-focus); }
 .form-submit-btn { width: 100%; justify-content: center; margin-top: 4px; }
-.form-submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.form-submit-btn:disabled { opacity: 0.85; cursor: not-allowed; }
 .form-err { color: #B3261E; font-size: var(--v2-fs-small); margin-bottom: 8px; padding: 8px 12px; background: rgba(179,38,30,0.08); border: 1px solid rgba(179,38,30,0.3); border-radius: var(--v2-radius-s); }
 .form-done { padding: 8px 0; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
 /* .form-done h3/p no longer needed: success state now renders via the

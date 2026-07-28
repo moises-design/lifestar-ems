@@ -5,7 +5,7 @@ import { content } from './content'
 import { gov } from './content/government'
 import './Header.css'
 
-const { brand, nav, emergencyNotice } = content
+const { brand, nav } = content
 
 function ServicesDropdown({ active = false }) {
   const [open, setOpen] = useState(false)
@@ -133,7 +133,6 @@ function MobileMenu({ open, onClose, onDismiss }) {
         <a href={brand.phoneHref} className="v2-btn v2-btn-secondary" onClick={onClose}>
           {nav.callLabel} {brand.phoneDisplay}
         </a>
-        <p className="v2h-sheet-notice">{emergencyNotice}</p>
       </div>
     </div>
   )
