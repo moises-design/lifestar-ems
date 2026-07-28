@@ -46,11 +46,11 @@ test.describe('homepage key image sections render real content', () => {
     await expect.poll(() => img.evaluate(el => el.naturalWidth)).toBeGreaterThan(0)
   })
 
-  test('"Who shows up when you call" section has multiple valid, loaded photos', async ({ page }) => {
+  test('"Real people. Real units. Ready to serve." mosaic has multiple valid, loaded photos', async ({ page }) => {
     await page.goto('/', { waitUntil: 'load' })
     const section = page.locator('#operations')
-    await expect(section.locator('h2')).toHaveText('Who shows up when you call')
-    const photos = section.locator('.v2home-realops-photo')
+    await expect(section.locator('h2')).toHaveText('Real people. Real units. Ready to serve.')
+    const photos = section.locator('.v2home-mosaic-photo')
     const count = await photos.count()
     expect(count).toBeGreaterThan(0)
     for (let i = 0; i < count; i++) {

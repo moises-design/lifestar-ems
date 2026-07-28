@@ -1,72 +1,215 @@
 /* V2 homepage shell layout */
 
 /* ---------- hero ---------- */
-.v2home-hero { padding-top: clamp(48px, 6vw, 96px); }
-.v2home-hero-h { max-width: 16ch; margin-top: var(--v2-s-4); }
-.v2home-hero-lead { margin-top: var(--v2-s-5); }
-.v2home-hero-btns {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--v2-s-3);
-  margin-top: var(--v2-s-6);
-}
-/* The source photo is a 1:1 square: sky and flagpole fill roughly the
-   top 60%, with the Life Star ambulance in the bottom 40%. A native 1:1
-   frame (the previous approach) shows that whole square uncropped, which
-   reads as "mostly sky" since the vehicle is a small band at the very
-   bottom. Cropping to a landscape ratio anchored to the bottom of the
-   image removes most of the empty sky and keeps the ambulance as the
-   dominant, clearly legible subject at every breakpoint. */
-.v2home-hero-media {
-  margin-top: var(--v2-s-7);
-  aspect-ratio: 4 / 3;
-}
-.v2home-hero-photo { width: 100%; height: 100%; object-fit: cover; object-position: center bottom; display: block; }
-.v2home-hero-local { color: var(--v2-ink-2); margin-top: var(--v2-s-4); }
+.v2home-hero { padding-top: clamp(32px, 5vw, 72px); padding-bottom: clamp(16px, 3vw, 32px); overflow: hidden; }
 
-/* ---------- real operations photo strip ---------- */
-.v2home-realops-grid {
+.v2home-hero-grid {
+  display: grid;
+  gap: var(--v2-s-5);
+  grid-template-areas:
+    "eyebrow"
+    "heading"
+    "media"
+    "lead"
+    "cta"
+    "trust";
+}
+.v2home-hero-eyebrow { grid-area: eyebrow; }
+.v2home-hero-h { grid-area: heading; max-width: 18ch; margin-top: 0; }
+.v2home-hero-emphasis { color: var(--v2-blue-ink); }
+.v2home-hero-lead { grid-area: lead; margin-top: 0; }
+.v2home-hero-btns { grid-area: cta; display: flex; flex-wrap: wrap; gap: var(--v2-s-3); }
+.v2home-hero-media { grid-area: media; }
+
+@media (min-width: 1024px) {
+  .v2home-hero-grid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    grid-template-areas:
+      "eyebrow media"
+      "heading media"
+      "lead    media"
+      "cta     media"
+      "trust   media";
+    align-items: start;
+    gap: var(--v2-s-4) var(--v2-s-9);
+  }
+  .v2home-hero-media { align-self: center; }
+}
+
+/* Hero entrance motion is deliberately scoped to the photo only, not
+   the eyebrow/heading/lead/CTA text: an opacity-based fade-in briefly
+   renders text at reduced contrast while it plays, which both fails
+   automated contrast checks and (more importantly) makes the page's
+   most important copy harder to read the instant it's needed. The
+   photo and its badges are supporting/decorative, so animating them
+   carries no such risk. Neutralized by the sitewide
+   prefers-reduced-motion override in v2.css (forces near-zero duration
+   on every .v2 descendant). */
+.v2home-hero-media {
+  animation: v2home-hero-in 0.7s var(--v2-ease) both;
+}
+@keyframes v2home-hero-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ---------- hero trust row ---------- */
+/* A two-column grid keeps this a compact 2x2 block instead of four
+   full-width stacked rows: the hero text column isn't wide enough for
+   flex-wrap's content-based sizing to fit two of the longer labels
+   ("Woman-Owned and Family-Operated") side by side, so each pill's
+   label is left free to wrap to a second line within its own column. */
+.v2home-hero-trust {
+  grid-area: trust;
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--v2-s-4);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--v2-s-3);
 }
-.v2home-realops-frame { aspect-ratio: 1 / 1; }
-.v2home-realops-photo { width: 100%; height: 100%; object-fit: cover; display: block; }
-
-@media (min-width: 768px) {
-  .v2home-realops-grid { grid-template-columns: repeat(4, 1fr); gap: var(--v2-s-5); }
-}
-
-/* ---------- numbered service index ---------- */
-.v2home-index { list-style: none; margin: 0; padding: 0; }
-.v2home-index-row { border-top: 1px solid var(--v2-hairline); }
-.v2home-index-row:last-child { border-bottom: 1px solid var(--v2-hairline); }
-.v2 .v2home-index-link {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: baseline;
-  gap: var(--v2-s-5);
-  padding: var(--v2-s-5) var(--v2-s-2);
-  color: var(--v2-ink);
-  border-radius: var(--v2-radius-s);
-  transition: background-color var(--v2-t-fast) var(--v2-ease);
-}
-.v2 .v2home-index-link:hover { background: var(--v2-sky-tint); text-decoration: none; }
-.v2home-index-num {
-  font-size: var(--v2-fs-label);
+.v2 .v2home-hero-trust-link,
+.v2home-hero-trust-static {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 100%;
+  padding: 8px 14px 8px 10px;
+  border: 1px solid var(--v2-hairline);
+  border-radius: 20px;
+  background: var(--v2-paper-2);
+  font-size: var(--v2-fs-small);
   font-weight: 600;
-  letter-spacing: var(--v2-tracking-label);
-  color: var(--v2-blue-ink);
-  font-variant-numeric: tabular-nums;
+  color: var(--v2-ink);
 }
-.v2home-index-body { display: grid; gap: 6px; }
-.v2home-index-title { font-family: var(--v2-font-serif); font-size: var(--v2-fs-h3); font-weight: 600; line-height: var(--v2-lh-heading); }
-.v2home-index-line { color: var(--v2-ink-2); max-width: 60ch; }
-.v2home-index-cta { color: var(--v2-blue-ink); font-size: 1.25rem; }
-.v2home-services-all { margin-top: var(--v2-s-6); }
+.v2 .v2home-hero-trust-link .v2-icon,
+.v2home-hero-trust-static .v2-icon { width: 26px; height: 26px; background: transparent; color: var(--v2-blue-ink); }
+.v2 .v2home-hero-trust-link { transition: border-color var(--v2-t-fast) var(--v2-ease), background var(--v2-t-fast) var(--v2-ease); }
+.v2 .v2home-hero-trust-link:hover { border-color: var(--v2-hairline-strong); background: var(--v2-sky-tint); text-decoration: none; }
+
+/* ---------- hero media: layered photo with glow + floating badges ---------- */
+.v2home-hero-media { position: relative; }
+.v2home-hero-glow {
+  position: absolute;
+  inset: -10% -8%;
+  background: radial-gradient(closest-side, rgba(11, 158, 217, 0.32), rgba(11, 158, 217, 0) 72%);
+  filter: blur(36px);
+  z-index: 0;
+  pointer-events: none;
+}
+.v2home-hero-photo-frame {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--v2-radius-l);
+  overflow: hidden;
+  border: 1px solid var(--v2-hairline);
+  box-shadow: 0 24px 48px -12px rgba(14, 27, 38, 0.28), 0 4px 16px rgba(14, 27, 38, 0.1);
+}
+.v2home-hero-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  display: block;
+  transition: transform var(--v2-t-page) var(--v2-ease);
+}
+.v2home-hero-media:hover .v2home-hero-photo { transform: scale(1.035); }
+
+.v2home-hero-badge {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--v2-hairline);
+  border-radius: var(--v2-radius-m);
+  box-shadow: var(--v2-shadow-float);
+  padding: 10px 16px;
+  font-size: var(--v2-fs-small);
+  font-weight: 600;
+  color: var(--v2-ink);
+  animation: v2home-badge-in 0.6s var(--v2-ease) both;
+}
+.v2home-hero-badge-1 { top: -14px; left: 20px; animation-delay: 420ms; }
+.v2home-hero-badge-2 { bottom: -14px; right: 20px; animation-delay: 520ms; }
+@keyframes v2home-badge-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.96); }
+  to   { opacity: 1; transform: none; }
+}
+.v2home-hero-local { color: var(--v2-ink-2); margin-top: var(--v2-s-4); position: relative; z-index: 1; }
+
+@media (max-width: 480px) {
+  /* Badges simplify into static chips stacked below the image instead
+     of floating over its corners, so they never crowd a narrow frame
+     or sit on top of the ambulance. */
+  .v2home-hero-media { display: flex; flex-direction: column; gap: var(--v2-s-3); }
+  .v2home-hero-photo-frame { order: 1; }
+  .v2home-hero-badge {
+    position: static;
+    order: 2;
+    align-self: flex-start;
+    animation: none;
+  }
+  .v2home-hero-local { order: 3; margin-top: 0; }
+
+  /* Below 480px the 2-column trust grid leaves too little width per
+     pill, wrapping labels like "Woman-Owned and Family-Operated" to
+     4-5 short lines. A single column keeps each label on one or two
+     lines instead. */
+  .v2home-hero-trust { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 1024px) {
+  .v2home-hero-photo-frame { aspect-ratio: 5 / 4; }
+}
+
+/* ---------- service cards ---------- */
+.v2home-services-grid {
+  display: grid;
+  gap: var(--v2-s-5);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 600px) {
+  .v2home-services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .v2home-services-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.v2home-services-all { margin-top: var(--v2-s-7); display: inline-flex; }
+
+/* ---------- credibility strip ---------- */
+.v2home-credibility { background: var(--v2-paper-2); padding-block: var(--v2-s-6); }
+.v2home-credibility-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--v2-s-3) var(--v2-s-7);
+  justify-content: center;
+  text-align: center;
+}
+.v2home-credibility-list li {
+  font-size: var(--v2-fs-small);
+  font-weight: 600;
+  color: var(--v2-ink-2);
+  position: relative;
+  padding-left: var(--v2-s-4);
+}
+.v2home-credibility-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--v2-blue);
+}
+.v2home-credibility-list li:first-child { padding-left: 0; }
+.v2home-credibility-list li:first-child::before { display: none; }
 
 /* ---------- steps ---------- */
 .v2home-steps {
@@ -132,6 +275,48 @@
   .v2home-split { grid-template-columns: 5fr 6fr; gap: var(--v2-s-8); }
 }
 
+/* ---------- editorial photography mosaic ---------- */
+.v2home-mosaic {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--v2-s-4);
+}
+.v2home-mosaic-item { overflow: hidden; }
+.v2home-mosaic-feature { aspect-ratio: 16 / 10; }
+.v2home-mosaic-b,
+.v2home-mosaic-d { aspect-ratio: 4 / 3; }
+.v2home-mosaic-c { aspect-ratio: 4 / 3; }
+.v2home-mosaic-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--v2-t-page) var(--v2-ease);
+}
+.v2home-mosaic-item:hover .v2home-mosaic-photo { transform: scale(1.04); }
+
+@media (min-width: 640px) {
+  /* Every one of the 4x2 cells below is explicitly claimed by exactly
+     one item (feature: 2x2, b: 1x1, c: 1x2, d: 1x1 = 8 cells total) so
+     there is no reliance on grid auto-placement, which otherwise leaves
+     gaps or strands items when spans aren't fully explicit. */
+  .v2home-mosaic {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, clamp(140px, 12vw, 220px));
+    gap: var(--v2-s-4);
+  }
+  .v2home-mosaic-feature { grid-column: 1 / 3; grid-row: 1 / 3; aspect-ratio: auto; }
+  .v2home-mosaic-b       { grid-column: 3 / 4; grid-row: 1 / 2; aspect-ratio: auto; }
+  .v2home-mosaic-c       { grid-column: 4 / 5; grid-row: 1 / 3; aspect-ratio: auto; }
+  .v2home-mosaic-d       { grid-column: 3 / 4; grid-row: 2 / 3; aspect-ratio: auto; }
+}
+@media (min-width: 1024px) {
+  .v2home-mosaic { gap: var(--v2-s-5); }
+}
+
 /* ---------- quiet link ---------- */
 .v2home-quiet-link {
   display: inline-flex;
@@ -139,6 +324,27 @@
   min-height: var(--v2-tap-min);
   font-weight: 600;
   color: var(--v2-blue-ink);
+}
+
+/* ---------- leadership block ---------- */
+.v2home-leadership {
+  display: grid;
+  gap: var(--v2-s-6);
+  align-items: center;
+}
+.v2home-leadership-photo-frame {
+  aspect-ratio: 4 / 5;
+  max-width: 220px;
+  margin-inline: auto;
+}
+.v2home-leadership-photo { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+.v2home-leadership-h { margin-block: var(--v2-s-3); }
+.v2home-leadership-name { font-family: var(--v2-font-serif); font-weight: 600; font-size: var(--v2-fs-h4); margin-top: var(--v2-s-4); }
+.v2home-leadership-title { color: var(--v2-ink-2); margin-top: 2px; margin-bottom: var(--v2-s-4); }
+
+@media (min-width: 768px) {
+  .v2home-leadership { grid-template-columns: 200px 1fr; gap: var(--v2-s-8); }
+  .v2home-leadership-photo-frame { margin-inline: 0; }
 }
 
 /* ---------- audience paths ---------- */
@@ -151,12 +357,17 @@
   display: grid;
   gap: var(--v2-s-3);
   align-content: start;
+  transition: transform var(--v2-t-fast) var(--v2-ease), box-shadow var(--v2-t-fast) var(--v2-ease), border-color var(--v2-t-fast) var(--v2-ease);
 }
+.v2home-path-card:hover { transform: translateY(-4px); box-shadow: var(--v2-shadow-float); border-color: var(--v2-hairline-strong); }
 .v2home-path-title { font-size: var(--v2-fs-h4); font-family: var(--v2-font-serif); font-weight: 600; }
 .v2home-path-line { color: var(--v2-ink-2); }
 
-@media (min-width: 768px) {
-  .v2home-paths { grid-template-columns: repeat(3, 1fr); }
+@media (min-width: 700px) {
+  .v2home-paths { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .v2home-paths { grid-template-columns: repeat(4, 1fr); }
 }
 
 /* ---------- FAQ ---------- */
@@ -188,16 +399,61 @@
 /* clearance above the fixed mobile bar on short pages */
 .v2-home { padding-bottom: 0; }
 
-/* ---------- government quiet band ---------- */
+/* ---------- government: elevated, contained night chapter ---------- */
 .v2home-gov {
-  display: grid;
-  gap: var(--v2-s-5);
-  padding: var(--v2-s-7) var(--v2-s-6);
-  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--v2-radius-l);
+  padding: var(--v2-s-9) var(--v2-s-7);
 }
-.v2home-gov-h { font-size: var(--v2-fs-h3); }
+.v2home-gov-glow {
+  position: absolute;
+  inset: -20% -10% auto auto;
+  width: 60%;
+  height: 140%;
+  background: radial-gradient(closest-side, rgba(11, 158, 217, 0.28), rgba(11, 158, 217, 0) 70%);
+  pointer-events: none;
+}
+.v2home-gov-content { position: relative; max-width: 720px; }
+.v2home-gov-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--v2-radius-m);
+  background: rgba(233, 238, 243, 0.1);
+  color: var(--v2-night-text);
+  margin-bottom: var(--v2-s-5);
+}
+.v2home-gov-h { font-size: var(--v2-fs-h2); }
 .v2home-gov-line { margin-top: var(--v2-s-3); max-width: 56ch; }
-.v2home-gov-btns { display: flex; flex-wrap: wrap; align-items: center; gap: var(--v2-s-4); }
-@media (min-width: 1024px) {
-  .v2home-gov { grid-template-columns: 1fr auto; }
+.v2home-gov-buyers {
+  list-style: none;
+  margin: var(--v2-s-6) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--v2-s-3) var(--v2-s-5);
+}
+.v2home-gov-buyers li {
+  font-size: var(--v2-fs-small);
+  color: var(--v2-night-muted);
+  padding-left: var(--v2-s-4);
+  position: relative;
+}
+.v2home-gov-buyers li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--v2-blue);
+}
+.v2home-gov-btns { display: flex; flex-wrap: wrap; align-items: center; gap: var(--v2-s-4); margin-top: var(--v2-s-7); }
+
+@media (min-width: 640px) {
+  .v2home-gov-buyers { grid-template-columns: repeat(3, 1fr); }
 }

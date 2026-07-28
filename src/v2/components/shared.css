@@ -64,9 +64,16 @@
   border: 1px solid var(--v2-hairline);
   border-radius: var(--v2-radius-l);
   color: inherit;
-  transition: border-color var(--v2-t-fast) var(--v2-ease), transform var(--v2-t-fast) var(--v2-ease);
+  transition: border-color var(--v2-t-fast) var(--v2-ease),
+              transform var(--v2-t-fast) var(--v2-ease),
+              box-shadow var(--v2-t-fast) var(--v2-ease);
 }
-.v2 .v2-service-card:hover { border-color: var(--v2-hairline-strong); text-decoration: none; }
+.v2 .v2-service-card:hover {
+  border-color: var(--v2-hairline-strong);
+  transform: translateY(-4px);
+  box-shadow: var(--v2-shadow-float);
+  text-decoration: none;
+}
 .v2 .v2-service-card h3 { font-size: var(--v2-fs-h4); }
 .v2 .v2-service-card p { color: var(--v2-ink-2); margin: 0; }
 .v2 .v2-service-card-cta { font-size: var(--v2-fs-small); font-weight: 600; color: var(--v2-blue-ink); }
@@ -156,6 +163,14 @@
 
 /* ---------- PrivacyNotice ---------- */
 .v2 .v2-privacy-notice { font-size: var(--v2-fs-small); color: var(--v2-ink-2); max-width: 60ch; }
+
+/* ---------- Reveal: scroll-triggered fade + rise ---------- */
+.v2 .v2-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--v2-t-reveal) var(--v2-ease), transform var(--v2-t-reveal) var(--v2-ease);
+}
+.v2 .v2-reveal.is-visible { opacity: 1; transform: none; }
 
 /* ---------- shared a11y utility: visually-hidden honeypot fields ---------- */
 .v2-visually-hidden {
