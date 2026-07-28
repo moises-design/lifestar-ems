@@ -39,17 +39,34 @@ export const en = {
   home: {
     hero: {
       eyebrow: 'Scheduled medical transportation',
-      // The homepage's single h1. Refined in Mission 3; keep one h1 only.
-      heading: 'Getting you to care, calmly and on time.',
+      // The homepage's single h1. Keep one h1 only.
+      heading: 'Getting you to care, safely and on time.',
+      emphasis: 'safely and on time',
       lead:
-        'Life Star EMS provides ambulance transportation, scheduled medical transportation, and event EMS standby for families, facilities, and schools across the Rio Grande Valley.',
+        'Life Star EMS provides ambulance transportation, scheduled medical transportation, long-distance transport, and event EMS standby across South Texas.',
       local: 'Locally owned and operated in Edinburg, Texas',
+      // Compact, verified facts shown beside the hero CTAs. The licensing
+      // item deliberately stays BLS-only and links to the exact DSHS
+      // wording on Government Contracting rather than restating or
+      // implying more than "Current, Ground Only, BLS" in a short label.
+      trust: [
+        { label: 'Serving South Texas Since 2009' },
+        { label: 'Texas Licensed EMS Provider', href: '/government-contracting#identifiers' },
+        { label: 'Woman-Owned and Family-Operated', href: '/about' },
+        { label: '24/7 Dispatch' },
+      ],
+      // Floating badges on the hero photo. Capped at two per the design
+      // brief; both restate facts already carried in `trust` above.
+      badges: [
+        { label: 'Serving South Texas Since 2009' },
+        { label: '24/7 Dispatch' },
+      ],
     },
 
     services: {
       id: 'services',
-      label: '01 · What we do',
-      heading: 'Five services, one standard of care',
+      label: '01 · How can we help',
+      heading: 'Choose the transportation or EMS support you need',
       items: [
         {
           num: '01',
@@ -85,6 +102,20 @@ export const en = {
       linkLabel: 'Learn more',
       allLabel: 'View all services',
       allHref: '/services',
+    },
+
+    // Compact credibility strip shown right after the service cards.
+    // Verified facts only, no counters or trip/fleet totals.
+    credibility: {
+      id: 'credibility',
+      items: [
+        'Serving South Texas since 2009',
+        'Edinburg-based',
+        'Scheduled medical transportation',
+        'Event EMS standby',
+        'Government and institutional support',
+        '24/7 dispatch',
+      ],
     },
 
     how: {
@@ -143,13 +174,30 @@ export const en = {
 
     paths: {
       id: 'paths',
-      label: '07 · How can we help',
+      label: '07 · Find your path',
       heading: 'Start where you are',
       items: [
         { title: 'For families', line: 'Schedule recurring or one-time rides for someone you love.', href: '/request', linkLabel: 'Request a ride' },
         { title: 'For facilities and case managers', line: 'Coordinate dependable transport for your patients.', href: '/contact', linkLabel: 'Talk to our team' },
         { title: 'For schools and event organizers', line: 'Arrange EMS standby for games, meets, and events.', href: '/services/events', linkLabel: 'Plan event coverage' },
+        { title: 'For government and institutional buyers', line: 'Review identifiers, capabilities, and the capability statement.', href: '/government-contracting', linkLabel: 'View Government Contracting' },
       ],
+    },
+
+    // Small, tasteful leadership block. Bio text mirrors the verified
+    // wording already used on /about; heading mirrors the verified
+    // "Woman-Owned Leadership" heading already used on Government
+    // Contracting. No new claims are introduced here.
+    leadership: {
+      id: 'leadership',
+      label: 'Leadership',
+      heading: 'Woman-Owned Leadership',
+      body:
+        'Heather Ayala-Segovia serves as CEO of Life Star EMS Inc. She leads the company with a focus on patient care, dependable operations, and service to South Texas communities.',
+      name: 'Heather Ayala-Segovia',
+      title: 'CEO, Life Star EMS Inc.',
+      linkLabel: 'More about Life Star',
+      href: '/about',
     },
 
     facebook: {
