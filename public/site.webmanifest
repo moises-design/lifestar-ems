@@ -1,7 +1,7 @@
 {
   "name": "Life Star EMS",
   "short_name": "Life Star EMS",
-  "description": "Scheduled non-emergency medical transportation and event EMS standby services in the Rio Grande Valley, Texas.",
+  "description": "Ambulance transportation, scheduled medical transportation, and event EMS standby across the Rio Grande Valley, Texas.",
   "icons": [
     { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }

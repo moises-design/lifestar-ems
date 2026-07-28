@@ -8,7 +8,12 @@ export const SITE = {
   origin: 'https://www.lifestaremsrgv.com',
   name: 'Life Star EMS',
   ogImage: '/images/og-image.png',
-  ogImageAlt: 'Life Star EMS logo with the text Ambulance and Medical Transportation in the Rio Grande Valley',
+  // Alt text describes what the image file itself currently shows. The
+  // graphic still has "Non-Emergency Medical Transportation" baked into
+  // its pixels as static text — regenerating that image to match the
+  // site's new positioning is a design-asset task, not a text change,
+  // and is intentionally left for the owner rather than done here.
+  ogImageAlt: 'Life Star EMS logo with the text Non-Emergency Medical Transportation in the Rio Grande Valley',
 }
 
 export const routeMeta = {
