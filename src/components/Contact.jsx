@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { FaPhone, FaMapMarkerAlt, FaFacebook } from 'react-icons/fa'
-import { supabase } from '../lib/supabase'
+import { submitForm, newSubmissionId } from '../lib/submitForm'
 import { Link } from 'react-router-dom'
 import { FormStatus, PrivacyNotice } from '../v2/components'
 import './Contact.css'
@@ -8,19 +8,28 @@ import './Contact.css'
 export default function Contact() {
   const [form, setForm] = useState({ name:'', phone:'', email:'', message:'', website:'' })
   const [status, setStatus] = useState('idle')
+  const [errorMessage, setErrorMessage] = useState('')
+  const submissionId = useRef(newSubmissionId())
+  const submittingRef = useRef(false)
   const handle = e => setForm(f=>({...f,[e.target.name]:e.target.value}))
 
   const submit = async e => {
     e.preventDefault()
     // Honeypot: real users never see or fill this field.
     if (form.website) return
+    if (submittingRef.current) return
+    submittingRef.current = true
     setStatus('sending')
     try {
-      const { website: _website, ...submission } = form
-      const {error} = await supabase.from('contact_submissions').insert([{...submission, created_at: new Date().toISOString()}])
-      if (error) throw error
+      await submitForm('contact', { ...form, submissionId: submissionId.current })
       setStatus('sent')
-    } catch { setStatus('error') }
+      submissionId.current = newSubmissionId()
+    } catch (err) {
+      setErrorMessage(err.message)
+      setStatus('error')
+    } finally {
+      submittingRef.current = false
+    }
   }
 
   return (
@@ -89,7 +98,7 @@ export default function Contact() {
                 </p>
                 {status==='error' && (
                   <FormStatus state="error" title="Something went wrong.">
-                    Please call us at (956) 660-6543.
+                    {errorMessage || 'Please call us at (956) 660-6543.'}
                   </FormStatus>
                 )}
                 <button type="submit" className="btn btn-blue form-submit-btn" disabled={status==='sending'}>{status==='sending'?'Sending…':'Send Message →'}</button>
