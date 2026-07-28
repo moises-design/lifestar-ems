@@ -107,3 +107,44 @@ test('inline links inside body text are distinguishable by more than color alone
   const textDecorationLine = await inlineLink.evaluate(el => getComputedStyle(el).textDecorationLine)
   expect(textDecorationLine).toContain('underline')
 })
+
+// Regression coverage for a bug found during final pre-merge QA: the
+// global `.v2 a { color: var(--v2-blue-ink) }` link-color rule has
+// higher CSS specificity than the legacy `.btn-blue` class alone, so
+// any <a>/<Link> styled with .btn-blue inside the .v2 scope silently
+// lost its intended dark-ink text color and rendered at ~2:1 contrast
+// on the blue button fill instead of the intended ~5.7:1 — a WCAG AA
+// failure that the axe scan did not flag. Checks every rendered
+// .btn-blue element (button or link) on every route for adequate
+// contrast against its own background, computed directly rather than
+// relying on axe alone.
+test('every .btn-blue element has WCAG AA-adequate text contrast on its background', async ({ page }) => {
+  for (const route of ROUTES) {
+    await page.goto(route, { waitUntil: 'load' })
+    const results = await page.evaluate(() => {
+      function toRgb(str) {
+        const m = str.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/)
+        return m ? [Number(m[1]), Number(m[2]), Number(m[3])] : null
+      }
+      function relLum([r, g, b]) {
+        const lin = c => { c /= 255; return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4 }
+        return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b)
+      }
+      function contrast(c1, c2) {
+        const l1 = relLum(c1), l2 = relLum(c2)
+        const [a, b] = l1 > l2 ? [l1, l2] : [l2, l1]
+        return (a + 0.05) / (b + 0.05)
+      }
+      return [...document.querySelectorAll('.btn-blue')].map(el => {
+        const cs = getComputedStyle(el)
+        const fg = toRgb(cs.color)
+        const bg = toRgb(cs.backgroundColor)
+        return { text: el.textContent.trim(), ratio: fg && bg ? contrast(fg, bg) : null }
+      })
+    })
+    for (const r of results) {
+      expect(r.ratio, `${route}: ".btn-blue" (${r.text}) contrast`).not.toBeNull()
+      expect(r.ratio, `${route}: ".btn-blue" (${r.text}) contrast ${r.ratio}`).toBeGreaterThanOrEqual(4.5)
+    }
+  }
+})

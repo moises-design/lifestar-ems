@@ -108,6 +108,18 @@
 .v2 .v2-night .v2-btn-secondary { color: var(--v2-night-text); border-color: var(--v2-hairline-night); }
 .v2 .v2-night .v2-btn-secondary:hover { border-color: var(--v2-night-text); }
 
+/* Legacy .btn-blue anchors/Links (used by several service pages via the
+   InnerPage `legacy` prop) inherit the .v2 a link-color rule above,
+   which overrides their intended dark-ink text with --v2-blue-ink — a
+   link color meant for text on paper, not for text on the blue button
+   fill itself. That drops contrast from ~5.7:1 to ~2:1. Restore the
+   correct text color whenever .btn-blue is rendered as a link. */
+.v2 a.btn-blue,
+.v2 a.btn-blue:hover,
+.v2 a.btn-blue:visited {
+  color: var(--v2-ink);
+}
+
 /* ---------- focus ---------- */
 .v2 :focus-visible {
   outline: 2px solid var(--v2-focus);
