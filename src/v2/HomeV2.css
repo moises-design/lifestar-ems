@@ -54,23 +54,29 @@
 }
 
 /* ---------- hero trust row ---------- */
+/* A two-column grid keeps this a compact 2x2 block instead of four
+   full-width stacked rows: the hero text column isn't wide enough for
+   flex-wrap's content-based sizing to fit two of the longer labels
+   ("Woman-Owned and Family-Operated") side by side, so each pill's
+   label is left free to wrap to a second line within its own column. */
 .v2home-hero-trust {
   grid-area: trust;
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--v2-s-3);
 }
 .v2 .v2home-hero-trust-link,
 .v2home-hero-trust-static {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 8px;
+  height: 100%;
   padding: 8px 14px 8px 10px;
   border: 1px solid var(--v2-hairline);
-  border-radius: 999px;
+  border-radius: 20px;
   background: var(--v2-paper-2);
   font-size: var(--v2-fs-small);
   font-weight: 600;
@@ -146,6 +152,12 @@
     animation: none;
   }
   .v2home-hero-local { order: 3; margin-top: 0; }
+
+  /* Below 480px the 2-column trust grid leaves too little width per
+     pill, wrapping labels like "Woman-Owned and Family-Operated" to
+     4-5 short lines. A single column keeps each label on one or two
+     lines instead. */
+  .v2home-hero-trust { grid-template-columns: 1fr; }
 }
 
 @media (min-width: 1024px) {
