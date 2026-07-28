@@ -2,6 +2,23 @@
 
 Mission: Complete Life Star EMS Website Experience Transformation, Phase 23.
 
+> **Update — form email notifications mission:** four of this page's
+> five forms (Contact, Request Transport, Event EMS Standby, Government
+> Contracting) have since been migrated to a **different** secure
+> server-side implementation than the one this document describes: a
+> shared Vercel serverless endpoint, `POST /api/submit-form` (see
+> `api/submit-form.js` and `api/_lib/`), which validates every
+> submission server-side and emails a staff notification via Resend —
+> deployed and wired to the live forms, not the "not deployed" state
+> described below. See `README.md`'s "Resend Setup" section for the
+> required environment variables. The Supabase Edge Function
+> (`supabase/functions/submit-inquiry/`) described in the rest of this
+> document was **not** used for that migration and remains undeployed;
+> it is still the relevant reference for `LongDistanceTransport.jsx`
+> (`/services/long-distance`), the one form this migration did not
+> touch and which still writes directly to Supabase's
+> `long_distance_requests` table exactly as described below.
+
 ## Current state (live today)
 
 All five forms (Contact, Request Transport, Event EMS, Long-Distance

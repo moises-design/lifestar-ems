@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { supabase } from '../lib/supabase'
+import { submitForm, newSubmissionId } from '../lib/submitForm'
 import { gov } from '../v2/content/government'
 import { SITE } from '../seo/routeMeta'
 import Picture from '../v2/Picture'
@@ -120,6 +120,9 @@ function InquiryForm() {
   }
   const [form, setForm] = useState(blank)
   const [status, setStatus] = useState('idle')
+  const [errorMessage, setErrorMessage] = useState('')
+  const submissionId = useRef(newSubmissionId())
+  const submittingRef = useRef(false)
   const set = e => {
     const { name, type, checked, value } = e.target
     setForm(f => ({ ...f, [name]: type === 'checkbox' ? checked : value }))
@@ -128,27 +131,18 @@ function InquiryForm() {
   const submit = async e => {
     e.preventDefault()
     if (form.website) return // honeypot: silently drop bot submissions
+    if (submittingRef.current) return
+    submittingRef.current = true
     setStatus('sending')
     try {
-      const message = [
-        'GOVERNMENT CONTRACTING INQUIRY',
-        `Organization: ${form.organization}`,
-        `Type: ${form.agencyType}`,
-        `Solicitation: ${form.solicitation || 'n/a'}`,
-        `Service: ${form.service}`,
-        `Location: ${form.location || 'n/a'}`,
-        `Dates: ${form.dates || 'n/a'}`,
-        `Capability statement requested: ${form.wantsPdf ? 'yes' : 'no'}`,
-        `Preferred contact: ${form.contactMethod}`,
-        `Message: ${form.message}`,
-      ].join(' | ')
-      const { error } = await supabase.from('contact_submissions').insert([
-        { name: form.name, phone: form.phone, email: form.email, message, created_at: new Date().toISOString() },
-      ])
-      if (error) throw error
+      await submitForm('government', { ...form, submissionId: submissionId.current })
       setStatus('sent')
-    } catch {
+      submissionId.current = newSubmissionId()
+    } catch (err) {
+      setErrorMessage(err.message)
       setStatus('error')
+    } finally {
+      submittingRef.current = false
     }
   }
 
@@ -250,7 +244,7 @@ function InquiryForm() {
         This form is for procurement and contracting inquiries only — please do not include Social Security numbers, insurance member IDs, medical records, or other sensitive patient information.
       </p>
 
-      {status === 'error' && <p className="gc-form-error" role="alert">{gov.inquiry.errorLine}</p>}
+      {status === 'error' && <p className="gc-form-error" role="alert">{errorMessage || gov.inquiry.errorLine}</p>}
       <button type="submit" className="v2-btn v2-btn-primary gc-submit" disabled={status === 'sending'}>
         {status === 'sending' ? 'Sending...' : 'Submit Inquiry'}
       </button>

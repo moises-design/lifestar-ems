@@ -1,10 +1,10 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
   FaPhone, FaBriefcaseMedical, FaFootballBall, FaFutbol, FaRunning,
   FaMusic, FaBasketballBall, FaGraduationCap, FaTrophy, FaUsers,
 } from 'react-icons/fa'
-import { supabase } from '../lib/supabase'
+import { submitForm, newSubmissionId } from '../lib/submitForm'
 import InnerPage from '../v2/InnerPage'
 import Picture from '../v2/Picture'
 import { content } from '../v2/content'
@@ -30,19 +30,28 @@ const eventTypes = [
 export default function EventStandby() {
   const [form, setForm] = useState({name:'',phone:'',email:'',event_name:'',event_date:'',event_location:'',attendance:'',event_type:'',notes:'',website:''})
   const [status, setStatus] = useState('idle')
+  const [errorMessage, setErrorMessage] = useState('')
+  const submissionId = useRef(newSubmissionId())
+  const submittingRef = useRef(false)
   const handle = e => setForm(f=>({...f,[e.target.name]:e.target.value}))
 
   const submit = async e => {
     e.preventDefault()
     // Honeypot: real users never see or fill this field.
     if (form.website) return
+    if (submittingRef.current) return
+    submittingRef.current = true
     setStatus('sending')
     try {
-      const message = `EVENT: ${form.event_name} | Date: ${form.event_date} | Location: ${form.event_location} | Attendance: ${form.attendance} | Type: ${form.event_type} | Notes: ${form.notes}`
-      const {error} = await supabase.from('contact_submissions').insert([{name:form.name,phone:form.phone,email:form.email,message,created_at:new Date().toISOString()}])
-      if (error) throw error
+      await submitForm('event', { ...form, submissionId: submissionId.current })
       setStatus('sent')
-    } catch { setStatus('error') }
+      submissionId.current = newSubmissionId()
+    } catch (err) {
+      setErrorMessage(err.message)
+      setStatus('error')
+    } finally {
+      submittingRef.current = false
+    }
   }
 
   return (
@@ -136,7 +145,7 @@ export default function EventStandby() {
                   <PrivacyNotice sensitive />
                   {status==='error'&&(
                     <FormStatus state="error" title="Something went wrong.">
-                      Please call us at (956) 660-6543 and we'll take your event details by phone.
+                      {errorMessage || "Please call us at (956) 660-6543 and we'll take your event details by phone."}
                     </FormStatus>
                   )}
                   <button type="submit" className="btn btn-blue ev-submit" disabled={status==='sending'}>{status==='sending'?'Sending…':'Request Event Coverage →'}</button>
