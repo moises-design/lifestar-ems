@@ -18,6 +18,7 @@ vi.mock('resend', () => ({
 
 import handler from '../../api/submit-form.js'
 import { _resetDedupeStoreForTests } from '../../api/_lib/dedupe.js'
+import { _resetRateLimitStoreForTests } from '../../api/_lib/rate-limit.js'
 
 function createMockRes() {
   return {
@@ -40,6 +41,7 @@ beforeEach(() => {
   mockSend.mockReset()
   mockSend.mockResolvedValue({ data: { id: 'email_123' }, error: null })
   _resetDedupeStoreForTests()
+  _resetRateLimitStoreForTests()
   process.env.RESEND_API_KEY = 'test_resend_key'
   process.env.FORM_NOTIFICATION_EMAIL = 'lifestarems.rgv@gmail.com'
   process.env.FORM_FROM_EMAIL = 'Life Star EMS Website <onboarding@resend.dev>'
@@ -173,11 +175,82 @@ describe('POST /api/submit-form', () => {
         expect(mockSend).toHaveBeenCalledTimes(1)
         const sentArgs = mockSend.mock.calls[0][0]
         expect(sentArgs.subject).toBe(subject)
-        expect(sentArgs.reply_to).toBe(body.email)
+        // The Resend Node SDK expects camelCase `replyTo`, not the
+        // API's snake_case `reply_to` — passing the wrong key means
+        // Reply-To silently never applies.
+        expect(sentArgs.replyTo).toBe(body.email)
         expect(sentArgs.to).toBe('lifestarems.rgv@gmail.com')
         expect(sentArgs.from).toBe('Life Star EMS Website <onboarding@resend.dev>')
       })
     }
+  })
+
+  it('allows a retry with the same submissionId after a validation failure (does not misreport it as a duplicate)', async () => {
+    const invalid = createMockReq({ formType: 'contact', email: 'jane@example.com', submissionId: 'sid-retry-validation' })
+    const res1 = createMockRes()
+    await handler(invalid, res1)
+    expect(res1.statusCode).toBe(400)
+    expect(mockSend).not.toHaveBeenCalled()
+
+    // Same submissionId, now with the missing field filled in.
+    const fixed = createMockReq({ ...baseContact, submissionId: 'sid-retry-validation' })
+    const res2 = createMockRes()
+    await handler(fixed, res2)
+    expect(res2.statusCode).toBe(200)
+    expect(res2.body).toEqual({ ok: true })
+    expect(mockSend).toHaveBeenCalledTimes(1)
+  })
+
+  it('allows a retry with the same submissionId after a delivery failure (does not misreport it as a duplicate success)', async () => {
+    mockSend.mockResolvedValueOnce({ data: null, error: { message: 'Resend is down' } })
+    const req1 = createMockReq({ ...baseContact, submissionId: 'sid-retry-delivery' })
+    const res1 = createMockRes()
+    await handler(req1, res1)
+    expect(res1.statusCode).toBe(502)
+
+    // Same submissionId, this time Resend succeeds (the default mock).
+    const req2 = createMockReq({ ...baseContact, submissionId: 'sid-retry-delivery' })
+    const res2 = createMockRes()
+    await handler(req2, res2)
+    expect(res2.statusCode).toBe(200)
+    expect(res2.body).toEqual({ ok: true })
+    expect(res2.body.duplicate).toBeUndefined()
+    expect(mockSend).toHaveBeenCalledTimes(2)
+  })
+
+  describe('rate limiting', () => {
+    function reqFrom(ip, submissionId) {
+      return { method: 'POST', headers: { 'x-forwarded-for': ip }, body: { ...baseContact, submissionId } }
+    }
+
+    it('allows up to 5 submissions from the same IP within the window', async () => {
+      for (let i = 0; i < 5; i++) {
+        const res = createMockRes()
+        await handler(reqFrom('203.0.113.5', `sid-rl-${i}`), res)
+        expect(res.statusCode).toBe(200)
+      }
+      expect(mockSend).toHaveBeenCalledTimes(5)
+    })
+
+    it('rejects the 6th submission from the same IP within the window', async () => {
+      for (let i = 0; i < 5; i++) {
+        await handler(reqFrom('203.0.113.9', `sid-rl6-${i}`), createMockRes())
+      }
+      const res = createMockRes()
+      await handler(reqFrom('203.0.113.9', 'sid-rl6-final'), res)
+      expect(res.statusCode).toBe(429)
+      expect(res.body.error).toMatch(/too many submissions/i)
+      expect(mockSend).toHaveBeenCalledTimes(5)
+    })
+
+    it('does not rate-limit a different IP', async () => {
+      for (let i = 0; i < 5; i++) {
+        await handler(reqFrom('198.51.100.1', `sid-rl-a-${i}`), createMockRes())
+      }
+      const res = createMockRes()
+      await handler(reqFrom('198.51.100.2', 'sid-rl-b'), res)
+      expect(res.statusCode).toBe(200)
+    })
   })
 
   it('returns a clear delivery error when RESEND_API_KEY is not configured', async () => {

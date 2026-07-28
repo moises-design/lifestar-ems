@@ -23,6 +23,12 @@ function sweep(now) {
 
 // Returns true if this submissionId was already seen within the TTL
 // window (i.e. this request should be treated as a duplicate).
+// Marks the id as seen immediately (before validation/delivery runs)
+// so two genuinely concurrent requests for the same id — the actual
+// double-click case this exists for — both see it as taken. Callers
+// MUST pair this with clearSubmission() when the request turns out to
+// be a validation or delivery failure, so a legitimate retry after a
+// fixed/transient error isn't misreported as a duplicate success.
 export function isDuplicateSubmission(submissionId) {
   if (!submissionId || typeof submissionId !== 'string') return false
   const now = Date.now()
@@ -30,6 +36,16 @@ export function isDuplicateSubmission(submissionId) {
   if (seen.has(submissionId)) return true
   seen.set(submissionId, now + TTL_MS)
   return false
+}
+
+// Removes a submissionId from the seen set. Call this when a request
+// did NOT result in an email actually being sent (validation error or
+// delivery failure), so the client's retry with the same id — it only
+// generates a fresh id after a successful send — isn't classified as
+// a duplicate of a request that never succeeded.
+export function clearSubmission(submissionId) {
+  if (!submissionId || typeof submissionId !== 'string') return
+  seen.delete(submissionId)
 }
 
 // Exposed for tests only, to reset state between cases.

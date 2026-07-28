@@ -8,7 +8,8 @@ import { FORM_CONFIGS } from './_lib/forms.js'
 import { validateSubmission } from './_lib/validate.js'
 import { renderHtmlEmail, renderTextEmail } from './_lib/email-template.js'
 import { sendNotificationEmail } from './_lib/resend-client.js'
-import { isDuplicateSubmission } from './_lib/dedupe.js'
+import { isDuplicateSubmission, clearSubmission } from './_lib/dedupe.js'
+import { isRateLimited } from './_lib/rate-limit.js'
 import { requireMethod, sendJson } from './_lib/respond.js'
 
 function parseBody(req) {
@@ -23,8 +24,18 @@ function parseBody(req) {
   return req.body
 }
 
+function clientIp(req) {
+  const forwarded = req.headers?.['x-forwarded-for']
+  if (typeof forwarded === 'string' && forwarded) return forwarded.split(',')[0].trim()
+  return req.socket?.remoteAddress || null
+}
+
 export default async function handler(req, res) {
   if (!requireMethod(req, res, ['POST'])) return
+
+  if (isRateLimited(clientIp(req))) {
+    return sendJson(res, 429, { error: 'Too many submissions. Please try again later, or call (956) 660-6543.' })
+  }
 
   const body = parseBody(req)
   if (body === null) {
@@ -42,6 +53,9 @@ export default async function handler(req, res) {
 
   const validated = validateSubmission(formType, body)
   if (!validated.ok) {
+    // No email was sent for this id — clear it so a retry after fixing
+    // the input isn't misreported as a duplicate success.
+    clearSubmission(submissionId)
     return sendJson(res, validated.status, { error: validated.error })
   }
   if (validated.honeypot) {
@@ -68,6 +82,10 @@ export default async function handler(req, res) {
   })
 
   if (!result.ok) {
+    // Delivery failed — no email was actually sent, so clear the id
+    // the same way as a validation failure: a retry must not be
+    // reported as a duplicate of a request that never succeeded.
+    clearSubmission(submissionId)
     return sendJson(res, 502, {
       error: 'We could not send your request right now. Please call (956) 660-6543.',
     })

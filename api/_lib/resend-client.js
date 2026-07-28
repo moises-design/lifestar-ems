@@ -34,7 +34,11 @@ export async function sendNotificationEmail({ subject, html, text, replyTo }) {
       subject,
       html,
       text,
-      reply_to: replyTo || undefined,
+      // The Resend Node SDK's CreateEmailOptions type uses the
+      // camelCase `replyTo` (it translates to the API's `reply_to`
+      // internally) — passing `reply_to` directly is silently dropped
+      // as an unrecognized field, so Reply-To never actually applies.
+      replyTo: replyTo || undefined,
     })
     if (error) return { ok: false, reason: error.message || 'Resend rejected the request.' }
     return { ok: true }
