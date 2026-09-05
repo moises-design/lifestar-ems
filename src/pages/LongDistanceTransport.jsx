@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaPhone, FaCheckCircle, FaMapMarkerAlt } from 'react-icons/fa'
-import { supabase } from '../lib/supabase'
+import { submitForm, newSubmissionId } from '../lib/submitForm'
 import InnerPage from '../v2/InnerPage'
 import { content } from '../v2/content'
 import { PrivacyNotice, FormStatus } from '../v2/components'
@@ -21,19 +21,32 @@ const needs = ['Wheelchair', 'Stretcher', 'Oxygen', 'IV Access', 'Special Equipm
 export default function LongDistanceTransport() {
   const [form, setForm] = useState({ name: '', phone: '', email: '', pickup_city: 'McAllen/RGV', destination_city: '', travel_date: '', notes: '', patient_needs: [], website: '' })
   const [status, setStatus] = useState('idle')
+  const [errorMessage, setErrorMessage] = useState('')
+  const submissionId = useRef(newSubmissionId())
+  const submittingRef = useRef(false)
 
   const handleCheck = (need) => setForm(f => ({ ...f, patient_needs: f.patient_needs.includes(need) ? f.patient_needs.filter(n => n !== need) : [...f.patient_needs, need] }))
   const submit = async e => {
     e.preventDefault()
     // Honeypot: real users never see or fill this field.
     if (form.website) return
+    if (submittingRef.current) return
+    submittingRef.current = true
     setStatus('sending')
     try {
-      const { website: _website, ...submission } = form
-      const { error } = await supabase.from('long_distance_requests').insert([{ ...submission, patient_needs: form.patient_needs.join(', '), created_at: new Date().toISOString() }])
-      if (error) throw error
+      await submitForm('long-distance', {
+        ...form,
+        patient_needs: form.patient_needs.join(', '),
+        submissionId: submissionId.current,
+      })
       setStatus('sent')
-    } catch { setStatus('error') }
+      submissionId.current = newSubmissionId()
+    } catch (err) {
+      setErrorMessage(err.message)
+      setStatus('error')
+    } finally {
+      submittingRef.current = false
+    }
   }
 
   return (
@@ -62,7 +75,7 @@ export default function LongDistanceTransport() {
               </div>
             ))}
           </div>
-          <div className="ld-anywhere"><FaMapMarkerAlt aria-hidden="true" /> We coordinate trips across Texas and have transported patients interstate, including to Michigan and California — call to discuss your destination</div>
+          <div className="ld-anywhere"><FaMapMarkerAlt aria-hidden="true" /> We coordinate trips across Texas and have transported patients interstate, including to Michigan and California. Call to discuss your destination.</div>
         </div>
       </section>
 
@@ -73,11 +86,11 @@ export default function LongDistanceTransport() {
               <span className="label">Why Choose Us</span>
               <h2 className="title">Safe, Coordinated<br /><em>Transport</em></h2>
               <ul className="sp-list">
-                {['BLS-certified crews', 'Patient monitoring and care throughout the trip, provided by our BLS crews', 'Wheelchair and stretcher accessible vehicles', 'Oxygen, IV, and special equipment available', 'Coordinated with the receiving facility', 'Family member can ride along, space permitting', 'Insurance details confirmed before the trip', '24/7 dispatch'].map((item, i) => (
+                {['BLS-certified crews', 'Patient monitoring and care throughout the trip, provided by our BLS crews', 'Wheelchair and stretcher accessible vehicles', 'Oxygen, IV, and special equipment available', 'Coordinated with the receiving facility', 'Family member can ride along, space permitting', 'Insurance details confirmed before the trip', 'Daily dispatch support'].map((item, i) => (
                   <li key={i}><FaCheckCircle className="sp-list-check" />{item}</li>
                 ))}
               </ul>
-              <p className="ld-scope-note">Transport availability, staffing, equipment, and clinical requirements are confirmed for each trip before it's scheduled — not every request can be automatically accepted.</p>
+              <p className="ld-scope-note">Transport availability, staffing, equipment, and clinical requirements are confirmed for each trip before it's scheduled. Not every request can be automatically accepted.</p>
             </div>
             <div className="sp-cta-box ld-form-box">
               {status === 'sent' ? (
@@ -91,10 +104,10 @@ export default function LongDistanceTransport() {
                 <form onSubmit={submit}>
                   <h3>Request Long-Distance Transport</h3>
                   <div className="ld-form-row">
-                    <div className="ld-form-group"><label>Full Name *</label><input type="text" placeholder="John Doe" required value={form.name} onChange={e => setForm(f => ({...f, name: e.target.value}))} /></div>
-                    <div className="ld-form-group"><label>Phone *</label><input type="tel" placeholder="(956) 000-0000" required value={form.phone} onChange={e => setForm(f => ({...f, phone: e.target.value}))} /></div>
+                    <div className="ld-form-group"><label>Full Name *</label><input type="text" autoComplete="name" placeholder="John Doe" required value={form.name} onChange={e => setForm(f => ({...f, name: e.target.value}))} /></div>
+                    <div className="ld-form-group"><label>Phone *</label><input type="tel" autoComplete="tel" placeholder="(956) 000-0000" required value={form.phone} onChange={e => setForm(f => ({...f, phone: e.target.value}))} /></div>
                   </div>
-                  <div className="ld-form-group"><label>Email *</label><input type="email" placeholder="you@example.com" required value={form.email} onChange={e => setForm(f => ({...f, email: e.target.value}))} /></div>
+                  <div className="ld-form-group"><label>Email *</label><input type="email" autoComplete="email" placeholder="you@example.com" required value={form.email} onChange={e => setForm(f => ({...f, email: e.target.value}))} /></div>
                   <div className="ld-form-row">
                     <div className="ld-form-group"><label>Pickup City</label><input type="text" value={form.pickup_city} onChange={e => setForm(f => ({...f, pickup_city: e.target.value}))} /></div>
                     <div className="ld-form-group"><label>Destination *</label><input type="text" placeholder="Houston, Dallas..." required value={form.destination_city} onChange={e => setForm(f => ({...f, destination_city: e.target.value}))} /></div>
@@ -112,11 +125,11 @@ export default function LongDistanceTransport() {
                   <PrivacyNotice sensitive />
                   {status === 'error' && (
                     <FormStatus state="error" title="Something went wrong.">
-                      Please call us at (956) 660-6543.
+                      {errorMessage || 'Please call us at (956) 660-6543.'}
                     </FormStatus>
                   )}
                   <button type="submit" className="btn btn-blue" style={{width:'100%',justifyContent:'center'}} disabled={status === 'sending'}>{status === 'sending' ? 'Sending…' : 'Request Transport →'}</button>
-                  <p className="ld-note">This form starts the conversation about your trip. Submitting a request does not confirm scheduling — our team will confirm staffing, equipment, and clinical requirements before your transport is scheduled. Call dispatch for immediate coordination.</p>
+                  <p className="ld-note">This form starts the conversation about your trip. Submitting a request does not confirm scheduling. Our team will confirm staffing, equipment, and clinical requirements before your transport is scheduled. Call dispatch for immediate coordination.</p>
                 </form>
               )}
             </div>
@@ -127,7 +140,7 @@ export default function LongDistanceTransport() {
       <section className="sp-cta-banner">
         <div className="container">
           <h2>Planning a Long-Distance Trip?</h2>
-          <p>Call us to discuss your destination, timing, and transport needs — we'll confirm what's needed before scheduling.</p>
+          <p>Call us to discuss your destination, timing, and transport needs. We'll confirm what's needed before scheduling.</p>
           <a href="tel:+19566606543" className="btn btn-blue btn-lg"><FaPhone /> Call (956) 660-6543</a>
           <Link to="/request" className="btn btn-outline btn-lg">Submit a Request</Link>
         </div>
