@@ -1,4 +1,4 @@
-// Registry of the four public forms this endpoint accepts. Prefixed
+// Registry of the public forms this endpoint accepts. Prefixed
 // directory (_lib) so Vercel does not deploy these as routes of their
 // own — see https://vercel.com/docs/functions/functions-api-reference
 // ("prefix a file or folder with an underscore to exclude it").
@@ -8,7 +8,7 @@
 // `type: 'checkbox'` marks boolean fields. Order here is the order
 // fields appear in the email.
 
-export const FORM_TYPES = ['transport-request', 'contact', 'event', 'government']
+export const FORM_TYPES = ['transport-request', 'contact', 'event', 'government', 'long-distance']
 
 export const FORM_CONFIGS = {
   'transport-request': {
@@ -70,6 +70,21 @@ export const FORM_CONFIGS = {
       { key: 'message', label: 'Message', required: true, max: 4000 },
       { key: 'wantsPdf', label: 'Capability Statement Requested', type: 'checkbox' },
       { key: 'contactMethod', label: 'Preferred Contact Method', max: 40 },
+    ],
+  },
+  'long-distance': {
+    subject: 'New Long-Distance Transport Request | Life Star EMS',
+    pageSource: '/services/long-distance',
+    emailField: 'email',
+    fields: [
+      { key: 'name', label: 'Full Name', required: true, max: 120 },
+      { key: 'phone', label: 'Phone', required: true, max: 30 },
+      { key: 'email', label: 'Email', required: true, max: 200, isEmail: true },
+      { key: 'pickup_city', label: 'Pickup City', max: 160 },
+      { key: 'destination_city', label: 'Destination', required: true, max: 160 },
+      { key: 'travel_date', label: 'Travel Date', max: 40 },
+      { key: 'patient_needs', label: 'Patient Needs', max: 500 },
+      { key: 'notes', label: 'Additional Notes', max: 4000 },
     ],
   },
 }
