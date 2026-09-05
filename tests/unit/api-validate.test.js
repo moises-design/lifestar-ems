@@ -66,6 +66,7 @@ describe('validateSubmission', () => {
       contact: validContact,
       event: { name: 'A', phone: '9', email: 'a@b.com', event_name: 'Game' },
       government: { name: 'A', organization: 'B', agencyType: 'City', email: 'a@b.com', service: 'Ambulance', message: 'x' },
+      'long-distance': { name: 'A', phone: '9', email: 'a@b.com', pickup_city: 'Edinburg', destination_city: 'Houston', patient_needs: 'Stretcher' },
     }
     for (const formType of FORM_TYPES) {
       const result = validateSubmission(formType, goodBodies[formType])
